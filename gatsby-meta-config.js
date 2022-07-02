@@ -15,7 +15,7 @@ module.exports = {
     bio: {
       role: `대학원생`,
       description: ['생각하는', '능동적으로 일하는', '새로움에 도전하는'],
-      thumbnail: 'zoomkoding.gif', // Path to the image in the 'asset' folder
+      thumbnail: 'spongebob.gif', // Path to the image in the 'asset' folder
     },
     social: {
       github: `https://github.com/kimsoyeong`,
