@@ -19,9 +19,10 @@ function Utterances({ repo, path }) {
       theme: JSON.parse(storedIsDarkMode) ? 'photon-dark' : 'github-light',
       label: 'comment',
       async: true,
-      'issue-term': 'pathname',
       crossorigin: 'anonymous',
     };
+    if (path === '/gatsby-github-blog/') utterancesConfig['issue-number'] = 14;
+    else utterancesConfig['issue-term'] = 'pathname';
 
     Object.keys(utterancesConfig).forEach((configKey) => {
       utterances.setAttribute(configKey, utterancesConfig[configKey]);
