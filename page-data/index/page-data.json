@@ -1,5 +1,5 @@
 {
     "componentChunkName": "component---src-pages-index-js",
     "path": "/",
-    "result": {"data":{"allMarkdownRemark":{"edges":[{"node":{"id":"882cfb5c-26a2-54c2-9a4f-1949be2b8696","excerpt":"TEST 마크다운이군 hihi 블로그 글 작성 테스트 중입니다. 그림도 테스트 우주비행사","frontmatter":{"categories":"TEST","title":"BLOG TEST","date":"July 02, 2022"},"fields":{"slug":"/soyeong/test/"}}}]},"site":{"siteMetadata":{"language":"ko","author":{"name":"김소영","bio":{"role":"대학원생","description":["생각하는","능동적으로 일하는","새로움에 도전하는"],"thumbnail":"zoomkoding.gif"},"social":{"github":"https://github.com/kimsoyeong","linkedIn":"https://www.linkedin.com/in/soyeong-kim/","email":"soyeong.kim9@gmail.com"}}}}},"pageContext":{}},
+    "result": {"data":{"allMarkdownRemark":{"edges":[{"node":{"id":"882cfb5c-26a2-54c2-9a4f-1949be2b8696","excerpt":"TEST 마크다운이군 hihi 블로그 글 작성 테스트 중입니다. 그림도 테스트 우주비행사","frontmatter":{"categories":"TEST","title":"BLOG TEST","date":"July 02, 2022"},"fields":{"slug":"/soyeong/test/"}}}]},"site":{"siteMetadata":{"language":"ko","author":{"name":"김소영","bio":{"role":"대학원생","description":["생각하는","능동적으로 일하는","새로움에 도전하는"],"thumbnail":"spongebob.gif"},"social":{"github":"https://github.com/kimsoyeong","linkedIn":"https://www.linkedin.com/in/soyeong-kim/","email":"soyeong.kim9@gmail.com"}}}}},"pageContext":{}},
     "staticQueryHashes": ["1073350324","1956554647","2938748437","3350743975"]}
