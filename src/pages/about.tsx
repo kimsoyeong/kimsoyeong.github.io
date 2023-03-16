@@ -3,7 +3,8 @@ import { graphql, Link } from 'gatsby'
 // import Layout from '../layout';
 // import Seo from '../components/seo';
 // import Bio from '../components/bio';
-// import TimeStampSection from '../components/timestamp-section';
+import TimeStampSection from '../timestamp-section'
+// import TimeStampSection from '../components/timestamp-section'
 // import ProjectSection from '../components/project-section';
 
 type TimeStamp = {
@@ -50,7 +51,8 @@ type AboutPageProps = {
           }
         }
         about: {
-          timestamps: [TimeStamp]
+          school: [TimeStamp]
+          experience: [TimeStamp]
           projects: [Project]
         }
       }
@@ -70,10 +72,7 @@ const AboutPage: FunctionComponent<AboutPageProps> = function ({
           bio: { command, thumbnail },
           social: { github, linkedIn, email },
         },
-        about: {
-          timestamps, //: [{ date, activity, links }],
-          projects,
-        },
+        about: { school, experience, projects },
       },
     },
   },
@@ -89,14 +88,9 @@ const AboutPage: FunctionComponent<AboutPageProps> = function ({
         <Link to={github}>Github</Link> <Link to={linkedIn}>Linked In</Link>{' '}
         <Link to={email}>Email</Link>
       </div>
-      <div>
-        <h3>School</h3>
-        {timestamps.map((timestamp, i) => (
-          <li key={i}>
-            {timestamp.date} {timestamp.activity}
-          </li>
-        ))}
-      </div>
+      <TimeStampSection timestamps={school} title={'School'} />
+      <TimeStampSection timestamps={experience} title={'Experience'} />
+
       <div>
         <h3>Projects</h3>
         {projects.map((project, i) => (
@@ -111,7 +105,6 @@ const AboutPage: FunctionComponent<AboutPageProps> = function ({
     // <Layout>
     //   <Seo title="About" />
     //   <Bio author={author} language={language} />
-    //   <TimeStampSection timestamps={timestamps} />
     //   <ProjectSection projects={projects} />
     // </Layout>
   )
@@ -139,7 +132,18 @@ export const pageQuery = graphql`
           }
         }
         about {
-          timestamps {
+          school {
+            date
+            activity
+            links {
+              post
+              github
+              demo
+              googlePlay
+              appStore
+            }
+          }
+          experience {
             date
             activity
             links {

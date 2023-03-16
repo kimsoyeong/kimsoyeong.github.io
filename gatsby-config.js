@@ -25,12 +25,12 @@ module.exports = {
       },
     },
     about: {
-      timestamps: [
+      school: [
         // =====       [Timestamp Sample and Structure]      =====
         // ===== 🚫 Don't erase this sample (여기 지우지 마세요!) =====
         {
-          date: 'test',
-          activity: 'test',
+          date: '학력',
+          activity: '',
           links: {
             github: '',
             post: '',
@@ -46,12 +46,25 @@ module.exports = {
           activity: '서울대학교 컴퓨터공학부 석사',
         },
         {
-          date: '2021.06 ~ 2021.08',
-          activity: 'SI Analytics 인턴',
-        },
-        {
           date: '2018.03 ~ 2022.02',
           activity: '충남대학교 컴퓨터공학과 학사',
+        },
+      ],
+      experience: [
+        {
+          date: '경력',
+          activity: '',
+          links: {
+            github: '',
+            post: '',
+            googlePlay: '',
+            appStore: '',
+            demo: '',
+          },
+        },
+        {
+          date: '2021.06 ~ 2021.08',
+          activity: 'SI Analytics 인턴',
         },
       ],
       // experience: 경력
@@ -59,7 +72,7 @@ module.exports = {
         // =====        [Project Sample and Structure]        =====
         // ===== 🚫 Don't erase this sample (여기 지우지 마세요!)  =====
         {
-          title: '',
+          title: '프로젝트',
           description: '',
           techStack: ['', ''],
           thumbnailUrl: '',
