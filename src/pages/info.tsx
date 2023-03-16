@@ -9,7 +9,13 @@ type InfoPageProps = {
       siteMetadata: {
         title: string
         description: string
-        author: string
+        author: {
+          name: string
+          social: {
+            github: string
+            email: string
+          }
+        }
       }
     }
   }
@@ -46,7 +52,14 @@ const Text2 = styled('div')<{ disable: boolean }>(({ disable }) => ({
 const InfoPage: FunctionComponent<InfoPageProps> = function ({
   data: {
     site: {
-      siteMetadata: { title, description, author },
+      siteMetadata: {
+        title,
+        description,
+        author: {
+          name,
+          social: { github, email },
+        },
+      },
     },
   },
 }) {
@@ -55,7 +68,7 @@ const InfoPage: FunctionComponent<InfoPageProps> = function ({
       <Global styles={globalStyle} />
       <div css={TextStyle}>{title}</div>
       <Text1 disable={true}>{description}</Text1>
-      <Text2 disable={true}>{author}</Text2>
+      <Text2 disable={true}>{name}</Text2>
     </div>
   )
 }
@@ -68,7 +81,13 @@ export const metadataQuery = graphql`
       siteMetadata {
         title
         description
-        author
+        author {
+          name
+          social {
+            github
+            email
+          }
+        }
       }
     }
   }

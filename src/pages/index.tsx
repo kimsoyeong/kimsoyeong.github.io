@@ -4,7 +4,7 @@ import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
 import CategoryList from 'components/Main/CategoryList'
 import Introduction from 'components/Main/Introduction'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
 const CATEGORY_LIST = {
   All: 5,
@@ -23,7 +23,8 @@ const IndexPage: FunctionComponent = function () {
     <Container>
       <GlobalStyle />
       <Introduction />
-      <CategoryList selectedCategory="Mobile" categoryList={CATEGORY_LIST} />
+      {/* <CategoryList selectedCategory="Mobile" categoryList={CATEGORY_LIST} /> */}
+      <Link to="/about">To About</Link>
       <Footer />
     </Container>
   )
