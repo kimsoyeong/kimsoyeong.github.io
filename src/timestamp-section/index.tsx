@@ -1,14 +1,15 @@
 import React from 'react'
+import './style.css'
 // import SectionHeader from '../section-header'
 // import IconButtonBar from '../icon-button-bar'
 
 const TimeStampSection: FunctionComponent = function ({ timestamps, title }) {
   if (!timestamps || timestamps.length < 2) return null
   return (
-    <div className="timestamp-section">
-      <h3>{title}</h3>
+    <div className="section-inner">
+      <h3 class="section-title">{title}</h3>
       {/* <SectionHeader title="Timestamps" /> */}
-      <div className="body">
+      <div className="section-content">
         {timestamps.map((timestamp, index) =>
           index === 0 ? null : (
             <div className="timestamp" key={index}>

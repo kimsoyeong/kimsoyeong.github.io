@@ -1,0 +1,59 @@
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+.main-head {
+  padding: 120px 40px 0 40px;
+}
+.main-head .inner {
+  display: flex;
+  flex-direction: column;
+}
+.hover-blue:hover {
+  color: #3d6aff;
+}
+
+.main-body {
+  padding: 0 40px;
+  margin: 0 60px;
+}
+
+.school-section,
+.experience-section,
+.project-section,
+.url-section {
+  padding-bottom: 60px;
+}
+.url-section {
+  border-bottom: 1px solid rgba(204, 209, 223, 0.8);
+}
+.item-link {
+  list-style: none;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  vertical-align: baseline;
+}
+.item-link li {
+  text-align: -webkit-match-parent;
+  align-items: center;
+}
+.item-link li a {
+  text-decoration: underline;
+  color: #3d6aff;
+  padding: 10px 16px 10px 14px;
+
+  border-radius: 9px;
+  display: block;
+  width: 100%;
+  z-index: 0;
+}
+.item-link li a:hover {
+  background-color: rgba(204, 209, 223, 0.2);
+  border-radius: 9px;
+}

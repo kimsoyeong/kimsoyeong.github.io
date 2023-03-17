@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
 import Footer from 'components/Common/Footer'
-import CategoryList from 'components/Main/CategoryList'
+// import CategoryList from 'components/Main/CategoryList'
 import Introduction from 'components/Main/Introduction'
 import { graphql, Link } from 'gatsby'
 

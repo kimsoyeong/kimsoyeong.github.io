@@ -14,13 +14,16 @@ module.exports = {
     language: `Korean`,
     author: {
       name: `Soyeong Kim`,
+      role: `Graduate Student`,
       bio: {
-        command: `Hello, world!!`,
-        thumbnail: `thumbnail_path`,
+        command: `안녕하세요 :) 척척학사 대학원생 김소영입니다. 👋🏻`,
+        intro: `저는 C++, Python, JAVA를 주요 사용하고 AI 연구와 웹/앱 개발에 관심이 많습니다.`,
+        thumbnail: `thumbnail.png`,
       },
       social: {
         github: `https://github.com/kimsoyeong`,
         linkedIn: `https://www.linkedin.com/in/soyeong-kim/`,
+        tistory: `https://soso-cod3v.tistory.com/`,
         email: `soyeong@csap.snu.ac.kr`,
       },
     },
@@ -97,6 +100,58 @@ module.exports = {
             github: 'https://github.com/zoomkoding/zoomkoding-gatsby-blog',
             demo: 'https://www.zoomkoding.com',
           },
+        },
+      ],
+      awards: [
+        {
+          date: 'YYYY',
+          title: '대회 이름',
+          host: '주최',
+          description: '수상내역',
+          links: {
+            github: '',
+            post: '',
+            googlePlay: '',
+            appStore: '',
+            demo: '',
+          },
+        },
+        {
+          date: '2021',
+          title: '2021 CNU 창의SW축전',
+          host: '충남대학교 컴퓨터공학과',
+          description: '교내 창의작품 경진대회 우수상(2등) 수상',
+        },
+        {
+          date: '2021',
+          title:
+            '2021 CNU Engineering Fair: 캡스톤 디자인 및 졸업작품 경진대회',
+          host: '충남대학교 공과대학',
+          description: '교내 캡스톤 디자인 및 졸업작품 경진대회 우수상 수상',
+        },
+        {
+          date: '2021',
+          title: '2021 생각하는 프로그래밍 대회',
+          host: '충남대학교 컴퓨터공학과',
+          description: '교내 알고리즘 경진대회 은상 수상',
+        },
+        {
+          date: '2021',
+          title: '2021 CNU/AI Project Fair',
+          host: '충남대학교 컴퓨터공학과',
+          description: '교내 AI/SW 프로젝트 경진대회 우수상(2등) 수상',
+        },
+        {
+          date: '2020',
+          title: '2020 생각하는 프로그래밍 대회',
+          host: '충남대학교 컴퓨터공학과',
+          description: '교내 알고리즘 대회 동상 수상',
+        },
+        {
+          date: '2018',
+          title: '2018 생각하는 프로그래밍 대회',
+          host: '충남대학교 컴퓨터공학과',
+          description: '교내 알고리즘 경진대회 신입생 2등상 수상',
         },
       ],
     },
