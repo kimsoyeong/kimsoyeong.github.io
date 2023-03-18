@@ -24,8 +24,7 @@ const IndexPage: FunctionComponent = function () {
       <GlobalStyle />
       <Introduction />
       {/* <CategoryList selectedCategory="Mobile" categoryList={CATEGORY_LIST} /> */}
-      <Link to="/about">To About</Link>
-      <Footer />
+      {/* <Footer /> */}
     </Container>
   )
 }

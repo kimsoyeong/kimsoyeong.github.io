@@ -249,12 +249,6 @@ const AboutPage: FunctionComponent<AboutPageProps> = function ({
       </div>
       <Footer />
     </div>
-
-    // <Layout>
-    //   <Seo title="About" />
-    //   <Bio author={author} language={language} />
-    //   <ProjectSection projects={projects} />
-    // </Layout>
   )
 }
 
