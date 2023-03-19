@@ -7,10 +7,13 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@types/react-helmet": "^6.1.6",
     "gatsby": "^5.7.0",
     "gatsby-plugin-emotion": "^8.7.0",
     "gatsby-plugin-image": "^3.7.0",
+    "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sharp": "^5.7.0",
+    "gatsby-plugin-sitemap": "^6.7.0",
     "gatsby-plugin-typescript": "^5.7.0",
     "gatsby-remark-copy-linked-files": "^6.7.0",
     "gatsby-remark-external-links": "^0.0.4",
