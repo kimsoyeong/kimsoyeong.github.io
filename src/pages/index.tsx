@@ -1,16 +1,8 @@
 import React, { FunctionComponent } from 'react'
 import styled from '@emotion/styled'
 import GlobalStyle from 'components/Common/GlobalStyle'
-import Footer from 'components/Common/Footer'
-// import CategoryList from 'components/Main/CategoryList'
 import Introduction from 'components/Main/Introduction'
-import { graphql, Link } from 'gatsby'
-
-const CATEGORY_LIST = {
-  All: 5,
-  Web: 3,
-  Mobile: 2,
-}
+import { graphql } from 'gatsby'
 
 const Container = styled.div`
   display: flex;
@@ -23,8 +15,6 @@ const IndexPage: FunctionComponent = function () {
     <Container>
       <GlobalStyle />
       <Introduction />
-      {/* <CategoryList selectedCategory="Mobile" categoryList={CATEGORY_LIST} /> */}
-      {/* <Footer /> */}
     </Container>
   )
 }
