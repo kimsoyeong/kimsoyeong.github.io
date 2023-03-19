@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://kimsoyeong.github.io/sitemap-index.xml
+Host: https://kimsoyeong.github.io
