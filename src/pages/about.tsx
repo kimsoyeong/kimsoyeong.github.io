@@ -3,12 +3,11 @@ import { graphql, Link } from 'gatsby'
 // import Layout from '../layout';
 // import Seo from '../components/seo';
 // import Bio from '../components/bio';
+import Footer from 'components/Common/Footer'
 import TimeStampSection from '../timestamp-section'
 import AwardsSection from '../awards-section'
-// import TimeStampSection from '../components/timestamp-section'
-// import ProjectSection from '../components/project-section';
+
 import './about.css'
-import Footer from 'components/Common/Footer'
 
 type TimeStamp = {
   date: string
@@ -100,7 +99,7 @@ const AboutPage: FunctionComponent<AboutPageProps> = function ({
 }) {
   return (
     <div className="content">
-      <div className="main-head" style={{ margin: '0 60px' }}>
+      <div className="main-head">
         <section style={{ paddingBottom: '48px' }}>
           <div className="inner">
             <div

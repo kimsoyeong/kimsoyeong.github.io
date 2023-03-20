@@ -18,6 +18,11 @@ const Background = styled.div`
   background-repeat: round;
   background-size: contain;
   color: #ffffff;
+
+  @media (max-width: 768px) {
+    height: 100vh;
+    width: 100%;
+  }
 `
 
 const Wrapper = styled.div`
@@ -30,9 +35,41 @@ const Wrapper = styled.div`
   padding: 40px 20px;
   margin: auto;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767.9px) {
     width: 100%;
-    height: 100vh;
+  }
+
+  @media (max-width: 576px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 10px;
+  }
+`
+
+const BottomNavbar = styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  text-align: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  height: 70px;
+  color: black;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  z-index: 1;
+
+  @media screen and (max-width: 576px) {
+    padding-left: 8px;
+    padding-right: 8px;
+    height: 56px;
+    border-radius: 16px;
   }
 `
 
@@ -42,27 +79,7 @@ const Introduction: FunctionComponent = function () {
       <Wrapper>
         <PlayerBox />
         <MemoBox />
-        <div
-          className="bottom-navbar"
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            position: 'absolute',
-            bottom: '10px',
-            left: '50%',
-            transform: 'translate(-50%, 0)',
-            textAlign: 'center',
-            paddingLeft: '12px',
-            paddingRight: '12px',
-            height: '70px',
-            color: 'black',
-            fontWeight: '600',
-            backgroundColor: 'rgba(255, 255, 255, 0.5)',
-            border: '1px solid rgba(255, 255, 255, 0.4)',
-            borderRadius: '20px',
-            zIndex: 1,
-          }}
-        >
+        <BottomNavbar>
           <div
             style={{
               display: 'flex',
@@ -77,7 +94,7 @@ const Introduction: FunctionComponent = function () {
             <IconBox title={'Portfolio'} />
             <IconBox title={'Appstore'} />
           </div>
-        </div>
+        </BottomNavbar>
       </Wrapper>
     </Background>
   )
