@@ -27,27 +27,27 @@ const ProfileImageWrapper = styled.img`
   }
 `
 const PlayerWrapper = styled.div`
-  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   margin: 8px 0;
+`
 
-  @media (max-width: 768px) {
+const Box = styled.div`
+  border-radius: 0.7rem;
+  border: 0.1px solid #00000090;
+  background-color: #fefefe;
+  box-shadow: 4px 6px 20px 8px #00000036;
+
+  @media (max-width: 767.9px) {
+    margin: 8px auto;
   }
 `
 
 const PlayerBox: FunctionComponent = function () {
   return (
-    <div
-      style={{
-        borderRadius: '0.7rem',
-        border: '0.1px solid #00000090',
-        backgroundColor: '#FEFEFE',
-        boxShadow: '4px 6px 20px 8px #00000036',
-      }}
-    >
+    <Box>
       <ProfileImageWrapper src={PROFILE_IMAGE_LINK} alt="Profile Image" />
       <div
         className="player-top"
@@ -165,7 +165,7 @@ const PlayerBox: FunctionComponent = function () {
           />
         </div>
       </div>
-    </div>
+    </Box>
   )
 }
 

@@ -1,6 +1,24 @@
 import { Link } from 'gatsby'
 import React, { FunctionComponent } from 'react'
-import './IconBox.css'
+import styled from '@emotion/styled'
+
+const Box = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  margin: 0 2px;
+  padding: 0;
+  border-radius: 10px;
+
+  @media screen and (max-width: 576px) {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+  }
+`
 
 const IconBox: FunctionComponent = function ({ title }) {
   return title === 'Portfolio' || title === 'Mail' ? (
@@ -12,7 +30,7 @@ const IconBox: FunctionComponent = function ({ title }) {
       }
       target="_blank"
     >
-      <div className="box">
+      <Box>
         <img
           src={
             title === 'Portfolio'
@@ -20,11 +38,11 @@ const IconBox: FunctionComponent = function ({ title }) {
               : 'https://preview.redd.it/izqwm1g21b751.png?auto=webp&s=da8f46dec79e38870efeac10d5a829e50792686b'
           }
         />
-      </div>
+      </Box>
     </a>
   ) : (
     <Link to={title === 'Memo' ? '/about' : '/info'}>
-      <div className="box">
+      <Box>
         <img
           src={
             title === 'Finder'
@@ -38,7 +56,7 @@ const IconBox: FunctionComponent = function ({ title }) {
               : 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Mac_App_Store_logo.png'
           }
         />
-      </div>
+      </Box>
     </Link>
   )
 }
