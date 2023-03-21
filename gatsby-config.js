@@ -10,8 +10,8 @@
 module.exports = {
   siteMetadata: {
     siteUrl: `https://kimsoyeong.github.io/`,
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    title: `Mac-theme gatsby theme (developing)`,
+    description: `Welcome to Soyeong Kim's personal website.`,
     language: `Korean`,
     author: {
       name: `Soyeong Kim`,
@@ -91,15 +91,59 @@ module.exports = {
         // ========================================================
         // ========================================================
         {
-          title: '커밋냥(커밋기록 앱) 개발',
+          title: 'YOCO: You Only Cook Once',
           description:
-            '학생들이 예비 수강 신청 과정에서 겪게 되는 불편함을 개선하고자 예비 수강 신청을 도와줄 수 있는 웹사이트를 만들게 되었습니다...',
-          techStack: ['kotlin', 'android studio', 'node.js', 'firebase'],
-          thumbnailUrl: 'picky.png',
+            'YOCO is a cooking AI based on the Unbiased teacher v2 network. It helps users cook easily by predicting doneness of the ingredients.',
+          techStack: ['python', 'pytorch', 'detectron2', 'ubteacher v2'],
+          thumbnailUrl:
+            'https://user-images.githubusercontent.com/43427380/222368809-683b0c2e-0aca-4f7e-ac1e-eb8eef6e51d1.png',
           links: {
-            post: '/gatsby-starter-zoomkoding-introduction',
-            github: 'https://github.com/zoomkoding/zoomkoding-gatsby-blog',
-            demo: 'https://www.zoomkoding.com',
+            github: 'https://github.com/SNU-YOCO/YOCO',
+          },
+        },
+        {
+          title: '소복소복: Send me sobok',
+          description:
+            '"Bok" means luck in Korean. In the new year, Koreans wish a happy new year by sharing words of blessing with people around them.',
+          techStack: ['python', 'pytorch', 'detectron2', 'ubteacher v2'],
+          thumbnailUrl:
+            'https://user-images.githubusercontent.com/43427380/226523633-c0b6c1e5-5143-4939-b1da-159e967824e2.png',
+          links: {
+            post: 'https://rainbow-libra-648.notion.site/2a0285cb699f4f97bc2d8ad1f1af52cd',
+            github: 'https://github.com/horangtteok/sendmesobok',
+          },
+        },
+        {
+          title: 'PURUPURU: EASY Waste-Sorting Guide App',
+          description:
+            'An Android App for waste sorting using a Real-time object detection on camera feed.',
+          techStack: [
+            'python',
+            'fast.ai',
+            'kotlin',
+            'android studio',
+            'tensorflow',
+            'tflite',
+            'firebase',
+          ],
+          thumbnailUrl:
+            'https://user-images.githubusercontent.com/43427380/143508106-19002018-3890-4fea-aadf-5030c56671ce.png',
+          links: {
+            github: 'https://github.com/PA-roketdan/PruPru',
+          },
+        },
+        {
+          title: '커밋냥: 커밋기록 앱',
+          description: '1일 1커밋 도우미 애플리케이션 구현',
+          techStack: [
+            'kotlin',
+            'android studio',
+            'node.js',
+            'firebase',
+            'heroku',
+          ],
+          links: {
+            github: 'https://github.com/Soyeong-personal/GitMeow_android',
           },
         },
       ],
@@ -116,6 +160,12 @@ module.exports = {
             appStore: '',
             demo: '',
           },
+        },
+        {
+          date: '2023',
+          title: '앰비언트 AI Competition',
+          host: '서울대학교 데이터사이언스대학원',
+          description: '교내 최우수상 수상',
         },
         {
           date: '2021',
