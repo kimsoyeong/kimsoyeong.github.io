@@ -1,11 +1,11 @@
 import React, { FunctionComponent } from 'react'
 import { graphql, Link } from 'gatsby'
-// import Layout from '../layout';
-// import Seo from '../components/seo';
-// import Bio from '../components/bio';
 import Footer from 'components/Common/Footer'
 import TimeStampSection from '../timestamp-section'
 import AwardsSection from '../awards-section'
+import ProjectsSection from '../projects-section'
+
+import styled from '@emotion/styled'
 
 import './about.css'
 
@@ -79,6 +79,22 @@ type AboutPageProps = {
   }
 }
 
+const AboutHeader = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 95%;
+  background-color: '#FEFEFE';
+  padding: 10px;
+  color: black;
+  font-weight: 700;
+
+  .small-title {
+    line-height: 12px;
+    margin: 0 16px;
+    font-size: 12px;
+  }
+`
+
 const AboutPage: FunctionComponent<AboutPageProps> = function ({
   data: {
     site: {
@@ -99,6 +115,53 @@ const AboutPage: FunctionComponent<AboutPageProps> = function ({
 }) {
   return (
     <div className="content">
+      <AboutHeader>
+        <div
+          style={{
+            display: 'flex',
+            verticalAlign: 'middle',
+            justifyContent: 'flex-start',
+          }}
+        >
+          <Link to="/">
+            <div
+              style={{
+                backgroundColor: '#FC5959',
+                border: '0.5px solid #E94B4D',
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                marginRight: '7px',
+              }}
+            ></div>
+          </Link>
+          <Link to="/">
+            <div
+              style={{
+                backgroundColor: '#FCBD29',
+                border: '0.5px solid #F6BA2B',
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                marginRight: '7px',
+              }}
+            ></div>
+          </Link>
+          <Link to="/">
+            <div
+              style={{
+                backgroundColor: '#36D141',
+                border: '0.5px solid #32C438',
+                width: '12px',
+                height: '12px',
+                borderRadius: '50%',
+                marginRight: '7px',
+              }}
+            ></div>
+          </Link>
+        </div>
+        <div className="small-title">Soyeong Kim</div>
+      </AboutHeader>
       <div className="main-head">
         <section style={{ paddingBottom: '48px' }}>
           <div className="inner">
@@ -186,17 +249,7 @@ const AboutPage: FunctionComponent<AboutPageProps> = function ({
             <TimeStampSection timestamps={experience} title={'Experience'} />
           </div>
           <div className="project-section">
-            <div className="section-inner">
-              <h3 className="section-title">Projects</h3>
-              <div className="section-content">
-                {projects.map((project, i) => (
-                  <li key={i}>
-                    {project.title} {project.description}
-                    {project.thumbnailUrl}
-                  </li>
-                ))}
-              </div>
-            </div>
+            <ProjectsSection projects={projects} />
           </div>
 
           <div className="award-section">
