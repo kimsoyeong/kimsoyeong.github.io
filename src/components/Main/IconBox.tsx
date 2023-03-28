@@ -41,7 +41,11 @@ const IconBox: FunctionComponent = function ({ title }) {
       </Box>
     </a>
   ) : (
-    <Link to={title === 'Memo' ? '/about' : '/info'}>
+    <Link
+      to={
+        title === 'Finder' ? '/finder' : title === 'Memo' ? '/about' : '/info'
+      }
+    >
       <Box>
         <img
           src={
