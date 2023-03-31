@@ -1,8 +1,9 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
 import PlayerBox from 'components/Main/PlayerBox'
 import IconBox from './IconBox'
 import MemoBox from './MemoBox'
+import WindowBox from 'components/Common/WindowBox'
 
 const Background = styled.div`
   width: 100%;
@@ -73,7 +74,13 @@ const BottomNavbar = styled.div`
   }
 `
 
-const Introduction: FunctionComponent = function () {
+const Introduction: FunctionComponent = function ({ projects }) {
+  const [windowVisible, setWindowVisible] = useState(false)
+
+  const showWindowBox = () => {
+    setWindowVisible(!windowVisible)
+  }
+
   return (
     <Background>
       <Wrapper>
@@ -86,7 +93,7 @@ const Introduction: FunctionComponent = function () {
               alignItems: 'center',
             }}
           >
-            <IconBox title={'Finder'} />
+            <IconBox title={'Finder'} func={showWindowBox} />
             <IconBox title={'Launchpad'} />
             <IconBox title={'Mail'} />
             <IconBox title={'Memo'} />
@@ -95,6 +102,14 @@ const Introduction: FunctionComponent = function () {
             <IconBox title={'Appstore'} />
           </div>
         </BottomNavbar>
+
+        {windowVisible ? (
+          <WindowBox
+            title={'Project Finder'}
+            projects={projects}
+            func={showWindowBox}
+          />
+        ) : null}
       </Wrapper>
     </Background>
   )

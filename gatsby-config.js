@@ -121,7 +121,7 @@ module.exports = {
             'python',
             'fast.ai',
             'kotlin',
-            'android studio',
+            'android',
             'tensorflow',
             'tflite',
             'firebase',

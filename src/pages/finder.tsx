@@ -44,7 +44,7 @@ type Award = {
     demo: string
   }
 }
-type AboutPageProps = {
+type FinderPageProps = {
   data: {
     site: {
       siteMetadata: {
@@ -93,7 +93,7 @@ const FinderHeader = styled.div`
   }
 `
 
-const AboutPage: FunctionComponent<AboutPageProps> = function ({
+const AboutPage: FunctionComponent<FinderPageProps> = function ({
   data: {
     site: {
       siteMetadata: {

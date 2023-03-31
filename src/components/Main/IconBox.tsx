@@ -20,7 +20,7 @@ const Box = styled.div`
   }
 `
 
-const IconBox: FunctionComponent = function ({ title }) {
+const IconBox: FunctionComponent = function ({ title, func }) {
   return title === 'Portfolio' || title === 'Mail' ? (
     <a
       href={
@@ -40,10 +40,15 @@ const IconBox: FunctionComponent = function ({ title }) {
         />
       </Box>
     </a>
+  ) : title === 'Finder' ? (
+    <Box onClick={func} style={{ cursor: 'pointer' }}>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png" />
+    </Box>
   ) : (
     <Link
       to={
-        title === 'Finder' ? '/finder' : title === 'Memo' ? '/about' : '/info'
+        // title === 'Finder' ? '/finder' : title === 'Memo' ? '/about' : '/info'
+        title === 'Memo' ? '/about' : '/info'
       }
     >
       <Box>
