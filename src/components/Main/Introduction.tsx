@@ -4,6 +4,7 @@ import PlayerBox from 'components/Main/PlayerBox'
 import IconBox from './IconBox'
 import MemoBox from './MemoBox'
 import WindowBox from 'components/Common/WindowBox'
+import Terminal from 'components/Common/Terminal'
 
 const Background = styled.div`
   width: 100%;
@@ -76,9 +77,14 @@ const BottomNavbar = styled.div`
 
 const Introduction: FunctionComponent = function ({ projects }) {
   const [windowVisible, setWindowVisible] = useState(false)
+  const [terminalVisible, setTerminalVisible] = useState(false)
 
   const showWindowBox = () => {
     setWindowVisible(!windowVisible)
+  }
+
+  const showTerminal = () => {
+    setTerminalVisible(!terminalVisible)
   }
 
   return (
@@ -97,7 +103,7 @@ const Introduction: FunctionComponent = function ({ projects }) {
             <IconBox title={'Launchpad'} />
             <IconBox title={'Mail'} />
             <IconBox title={'Memo'} />
-            <IconBox title={'Terminal'} />
+            <IconBox title={'Terminal'} func={showTerminal} />
             <IconBox title={'Portfolio'} />
             <IconBox title={'Appstore'} />
           </div>
@@ -110,6 +116,8 @@ const Introduction: FunctionComponent = function ({ projects }) {
             func={showWindowBox}
           />
         ) : null}
+
+        {terminalVisible ? <Terminal func={showTerminal} /> : null}
       </Wrapper>
     </Background>
   )

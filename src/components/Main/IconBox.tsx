@@ -44,6 +44,10 @@ const IconBox: FunctionComponent = function ({ title, func }) {
     <Box onClick={func} style={{ cursor: 'pointer' }}>
       <img src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Finder_Icon_macOS_Big_Sur.png" />
     </Box>
+  ) : title === 'Terminal' ? (
+    <Box onClick={func} style={{ cursor: 'pointer' }}>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Terminalicon2.png" />
+    </Box>
   ) : (
     <Link
       to={
@@ -60,8 +64,6 @@ const IconBox: FunctionComponent = function ({ title, func }) {
               ? 'https://upload.wikimedia.org/wikipedia/it/5/57/Icona_Launchpad.png'
               : title === 'Memo'
               ? 'https://eshop.macsales.com/blog/wp-content/uploads/2020/12/Notes-Icon-Big-Sur.png'
-              : title === 'Terminal'
-              ? 'https://upload.wikimedia.org/wikipedia/commons/b/b3/Terminalicon2.png'
               : 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Mac_App_Store_logo.png'
           }
         />
