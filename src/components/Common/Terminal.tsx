@@ -1,6 +1,14 @@
 import React, { FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
-import { CgDollar, CgGitBranch } from 'react-icons/cg'
+import {
+  CgChevronRight,
+  CgCornerDownRight,
+  CgDollar,
+  CgGitBranch,
+  CgOculus,
+  CgPentagonRight,
+  CgPlayButton,
+} from 'react-icons/cg'
 
 const Term = styled.div`
   position: fixed;
@@ -65,26 +73,6 @@ const TermHeader = styled.div`
   }
 `
 
-const TermSide = styled.div`
-  background-color: #ffffff80;
-  float: none;
-  max-height: none;
-  max-width: 230px;
-  overflow-y: auto !important;
-  width: 100%;
-  background-color: rgba(239, 242, 245, 0.75);
-  backdrop-filter: blur(16px);
-  padding-left: 1rem;
-  padding-right: 1rem;
-  overflow-x: auto;
-  height: 100%;
-  padding-top: 4.5rem;
-  white-space: nowrap;
-
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-`
-
 const TermContent = styled.div`
   float: none;
   overflow-y: auto;
@@ -99,7 +87,7 @@ const TermContent = styled.div`
 
 const CmdLine: FunctionComponent = function ({ command }) {
   return (
-    <div className="cmd_line" style={{ marginBottom: '4px' }}>
+    <div className="cmd_line" style={{ marginBottom: '10px' }}>
       <span
         style={{
           backgroundColor: '#DB666F',
@@ -149,12 +137,21 @@ const CmdLine: FunctionComponent = function ({ command }) {
       >
         <CgDollar style={{ verticalAlign: 'text-top' }} />!
       </span>
-      <span style={{ color: '#C0C0C0', fontSize: '12px' }}>{command}</span>
+      <div style={{ marginTop: '3px' }}>
+        <CgPlayButton
+          style={{
+            verticalAlign: 'middle',
+            color: '#49B16F',
+            marginRight: '6px',
+          }}
+        />
+        <span style={{ color: '#C0C0C0', fontSize: '12px' }}>{command}</span>
+      </div>
     </div>
   )
 }
 
-const Terminal: FunctionComponent = function ({ title, func }) {
+const Terminal: FunctionComponent = function ({ func }) {
   const [termInput, setTermInput] = useState('')
   const [cmds, setCmds] = useState([])
 
@@ -262,10 +259,12 @@ const Terminal: FunctionComponent = function ({ title, func }) {
 
 export default Terminal
 
-// #DB666F
-// #FFF193
-// #319CF7
-// #49B16F
-// #B263E2
-// #02C5C8
-// #EFEFEF
+/* terminal color theme */
+// #DB666F // red
+// #FFF193 // yellow
+// #319CF7 // blue
+// #49B16F // green
+// #B263E2 // purple
+// #02C5C8 // mint
+// #EFEFEF // white
+// #1c2431 // background
