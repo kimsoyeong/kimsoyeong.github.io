@@ -1,14 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
-import {
-  CgChevronRight,
-  CgCornerDownRight,
-  CgDollar,
-  CgGitBranch,
-  CgOculus,
-  CgPentagonRight,
-  CgPlayButton,
-} from 'react-icons/cg'
+import { CgDollar, CgGitBranch, CgPlayButton } from 'react-icons/cg'
 
 const Term = styled.div`
   position: fixed;
@@ -39,8 +31,10 @@ const TermHeader = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  background-color: #1c2431;
+  border-radius: 15px;
   width: 100%;
-  height: 4rem;
+  height: 2.6rem;
   z-index: 2;
   padding-left: 1rem;
   padding-top: 1rem;

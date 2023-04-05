@@ -11,7 +11,7 @@ const Window = styled.div`
   overflow: hiddeen;
 
   height: 60vh;
-  width: 60%;
+  width: 80%;
   top: 45%;
   left: 50%;
   max-width: 1000px;
@@ -22,10 +22,13 @@ const Window = styled.div`
   font-weight: bold;
   border-radius: 15px;
 
+  @media screen and (max-width: 767.9px) {
+    margin: 10px auto;
+    border-radius: 12px;
+  }
+
   @media screen and (max-width: 576px) {
     flex-direction: row;
-    width: 80%;
-    border-radius: 12px;
   }
 `
 const WindowHeader = styled.div`
@@ -72,7 +75,7 @@ const WindowSide = styled.div`
   max-height: none;
   max-width: 230px;
   overflow-y: auto !important;
-  width: 100%;
+  width: 80%;
   background-color: rgba(239, 242, 245, 0.75);
   backdrop-filter: blur(16px);
   padding-left: 1rem;
@@ -84,6 +87,10 @@ const WindowSide = styled.div`
 
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
+
+  @media (max-width: 768px) {
+    width: 40%;
+  }
 `
 
 const WindowContent = styled.div`

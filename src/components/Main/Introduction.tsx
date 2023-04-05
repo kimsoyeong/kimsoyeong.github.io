@@ -5,6 +5,7 @@ import IconBox from './IconBox'
 import MemoBox from './MemoBox'
 import WindowBox from 'components/Common/WindowBox'
 import Terminal from 'components/Common/Terminal'
+import BannerBox from 'components/Common/BannerBox'
 
 const Background = styled.div`
   width: 100%;
@@ -65,7 +66,7 @@ const BottomNavbar = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 20px;
-  z-index: 1;
+  z-index: 2;
 
   @media screen and (max-width: 576px) {
     padding-left: 8px;
@@ -92,6 +93,9 @@ const Introduction: FunctionComponent = function ({ projects }) {
       <Wrapper>
         <PlayerBox />
         <MemoBox />
+        {/* <div> */}
+        <BannerBox />
+        {/* </div> */}
         <BottomNavbar>
           <div
             style={{

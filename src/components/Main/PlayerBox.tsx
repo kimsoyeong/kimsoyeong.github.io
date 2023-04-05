@@ -83,6 +83,8 @@ const Box = styled.div`
   background-color: #fefefe;
   box-shadow: 4px 6px 20px 8px #00000036;
 
+  z-index: 1;
+
   @media (max-width: 767.9px) {
     margin: 8px auto;
     width: 300px;
