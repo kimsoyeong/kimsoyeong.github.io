@@ -6,8 +6,6 @@ const Window = styled.div`
   bottom: 40px;
   top: 58%;
   left: 28%;
-  max-width: 1000px;
-  max-height: 650px;
   // transform: translate(40%, 0%);
 
   display: flex;
@@ -15,10 +13,10 @@ const Window = styled.div`
   box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
   overflow: hidden;
 
+  background-color: rgba(239, 242, 245, 0.75);
+  backdrop-filter: blur(16px);
+
   height: 28vh;
-  max-width: 1000px;
-  min-width: 300px;
-  max-height: 650px;
 
   color: black;
   font-weight: bold;
@@ -32,17 +30,14 @@ const Window = styled.div`
 
     width: 300px;
     border-radius: 12px;
+    z-index: 1;
   }
 `
 const WindowHeader = styled.div`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   width: 100%;
-  height: 2.8rem;
-  padding: 14px 24px 0 24px;
-
-  background-color: rgba(239, 242, 245, 0.75);
-  backdrop-filter: blur(16px);
+  padding: 14px 24px;
 
   div {
     display: flex;
