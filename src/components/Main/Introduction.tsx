@@ -53,7 +53,7 @@ const Wrapper = styled.div`
 const BottomNavbar = styled.div`
   display: flex;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   left: 50%;
   transform: translate(-50%, 0);
@@ -93,9 +93,7 @@ const Introduction: FunctionComponent = function ({ projects }) {
       <Wrapper>
         <PlayerBox />
         <MemoBox />
-        {/* <div> */}
         <BannerBox />
-        {/* </div> */}
         <BottomNavbar>
           <div
             style={{
