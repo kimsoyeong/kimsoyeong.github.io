@@ -11,7 +11,7 @@ import {
 
 // 자신이 원하는 프로필 이미지 링크로 설정해주세요.
 const PROFILE_IMAGE_LINK =
-  'https://user-images.githubusercontent.com/43427380/226154106-3932e0cb-267d-451e-981e-76ef6daa3625.png'
+  'https://user-images.githubusercontent.com/43427380/227985376-c16a5aba-73be-40a2-ae03-553d41151c2c.png'
 
 const ProfileImageWrapper = styled.img`
   width: 300px;
