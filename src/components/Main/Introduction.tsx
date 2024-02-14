@@ -106,6 +106,7 @@ const Introduction: FunctionComponent<{ projects: any }> = function ({
           >
             <IconBox title={'Finder'} func={showWindowBox} />
             <IconBox title={'Launchpad'} />
+            <IconBox title={'Journal'} />
             <IconBox title={'Mail'} />
             <IconBox title={'Memo'} />
             <IconBox title={'Terminal'} func={showTerminal} />

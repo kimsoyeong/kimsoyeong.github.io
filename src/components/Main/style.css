@@ -1,0 +1,39 @@
+.cover {
+  z-index: 5;
+}
+
+#page1 {
+  z-index: 4;
+}
+
+#page2 {
+  z-index: 3;
+}
+
+#page3 {
+  z-index: 2;
+}
+
+#page4 {
+  z-index: 1;
+}
+
+#checkbox-page1:checked ~ .book #page1 {
+  transform: rotateY(-180deg);
+  z-index: 2;
+}
+
+#checkbox-page2:checked ~ .book #page2 {
+  transform: rotateY(-180deg);
+  z-index: 3;
+}
+
+#checkbox-page3:checked ~ .book #page3 {
+  transform: rotateY(-180deg);
+  z-index: 4;
+}
+
+#checkbox-page4:checked ~ .book #page4 {
+  transform: rotateY(-180deg);
+  z-index: 5;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,137 @@
+.book {
+  width: 350px;
+  height: 450px;
+  /* width: 45%;
+  height: 50%; */
+  position: relative;
+  align-items: center;
+  margin: 0 auto;
+  transition-duration: 1s;
+  perspective: 1500;
+}
+input {
+  display: none;
+}
+.cover,
+.back-cover {
+  background-color: #98eeff;
+  width: 100%;
+  height: 100%;
+  border-radius: 0 30px 30px 0;
+  box-shadow: 0 0 5px rgb(41, 41, 41);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center left;
+}
+.cover {
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  position: absolute;
+  /* z-index: 4; */
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0 30px 30px 0;
+}
+.cover .front-page {
+  padding: 0;
+}
+.cover .back-page img {
+  border-radius: 30px 0 0 30px;
+}
+.back-cover {
+  position: relative;
+  z-index: -1;
+}
+.page {
+  position: absolute;
+  background-color: white;
+  width: 100%; /* 330px; */
+  height: 100%; /* 430px; */
+  border-radius: 0 30px 30px 0;
+  transform-origin: left;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition-duration: 1.5s;
+}
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 30px 0 0 30px;
+}
+.page .page-text,
+.cover .page-text {
+  padding: 1rem;
+  border: 1px solid rgb(99, 98, 98);
+  width: 100%;
+  height: 100%;
+}
+.front-page .page-text {
+  border-radius: 0 30px 30px 0;
+}
+.back-page .page-text {
+  border-radius: 30px 0 0 30px;
+}
+/* style for Last(left) page */
+.page .last {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.front-page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+  /* border: 1px solid rgb(99, 98, 98); */
+  border-radius: 0 30px 30px 0;
+}
+.front-page img {
+  border-radius: 0 30px 30px 0;
+}
+.back-page {
+  transform: rotateY(180deg);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-sizing: border-box;
+  /* padding: 1rem; */
+  border-radius: 30px 0 0 30px;
+  z-index: 99;
+}
+.back-page img {
+  border-radius: 30px 0 0 30px;
+}
+.next,
+.prev {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.next {
+  right: 0;
+}
+.prev {
+  left: 0;
+}
+#checkbox-cover:checked ~ .book {
+  transform: translateX(175px); /* half of the width of the book cover/page */
+}
+#checkbox-cover:checked ~ .book .cover {
+  transition: transform 1.5s, z-index 0.5s 0.5s;
+  transform: rotateY(-180deg);
+  z-index: 1;
+}
+/* #checkbox-cover:checked ~ .book .page { */
+/* box-shadow: 0 0 3px rgb(99, 98, 98); */
+/* } */

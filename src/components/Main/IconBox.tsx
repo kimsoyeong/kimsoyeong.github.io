@@ -54,7 +54,11 @@ const IconBox: FunctionComponent<IconBoxProps> = function ({ title, func }) {
       <img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Terminalicon2.png" />
     </Box>
   ) : (
-    <Link to={title === 'Memo' ? '/about' : '/info'}>
+    <Link
+      to={
+        title === 'Memo' ? '/about' : title === 'Journal' ? '/journal' : '/info'
+      }
+    >
       <Box>
         <img
           src={
@@ -68,6 +72,8 @@ const IconBox: FunctionComponent<IconBoxProps> = function ({ title, func }) {
               ? 'https://upload.wikimedia.org/wikipedia/commons/b/b3/Terminalicon2.png'
               : title === 'Photobooth'
               ? 'https://help.apple.com/assets/61E899F78F0A0930525095E9/61E899F88F0A0930525095F0/en_US/cf5e7b842bc14056aa04fb60a2cd84e1.png'
+              : title === 'Journal'
+              ? 'https://github.com/kimsoyeong/kimsoyeong.github.io/assets/43427380/19278351-90a4-4a8f-a345-230055a7389c'
               : title === 'Photo' // currently not used
               ? 'https://help.apple.com/assets/6348318B9C14DE7E263A6023/6348319C9C14DE7E263A602B/en_US/b27be11281d58d9597fabdfcc67a3060.png'
               : 'https://help.apple.com/assets/635FFDD9F3522E368071002A/635FFDDBF3522E3680710032/en_US/14afc11a08e3fe617b2404ee08a0d0af.png'
