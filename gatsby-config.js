@@ -105,7 +105,7 @@ module.exports = {
           title: '소복소복: Send me sobok',
           description:
             '"Bok" means luck in Korean. In the new year, Koreans wish a happy new year by sharing words of blessing with people around them.',
-          techStack: ['python', 'pytorch', 'detectron2', 'ubteacher v2'],
+          techStack: ['react.js', 'node.js', 'express', 'mongo db'],
           thumbnailUrl:
             'https://user-images.githubusercontent.com/43427380/226523633-c0b6c1e5-5143-4939-b1da-159e967824e2.png',
           links: {
@@ -121,7 +121,7 @@ module.exports = {
             'python',
             'fast.ai',
             'kotlin',
-            'android studio',
+            'android',
             'tensorflow',
             'tflite',
             'firebase',

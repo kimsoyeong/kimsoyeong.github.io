@@ -8,7 +8,7 @@ const defaultStyle = css`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Nanum Gothic', serif;
+    font-family: 'Nanum Gothic', 'Malgun Gothic', serif;
   }
 
   html,

@@ -24,22 +24,22 @@ const MemoContent = styled.div`
 const Title = styled.div`
   margin-top: 10px;
   margin-bottom: 16px;
-  font-size: 50px;
+  font-size: 42px;
   font-weight: 800;
   color: black;
 
   @media (max-width: 768px) {
-    font-size: 36px;
+    font-size: 32px;
   }
 
   @media (max-width: 576px) {
     margin-top: 0px;
-    font-size: 30px;
+    font-size: 28px;
   }
 `
 
 const SubTitle = styled.div`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: black;
   margin-top: 20px;
@@ -47,17 +47,17 @@ const SubTitle = styled.div`
 
   @media (max-width: 768px) {
     margin-top: 14px;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   @media (max-width: 576px) {
     margin-top: 12px;
-    font-size: 14px;
+    font-size: 12px;
   }
 `
 
 const IntroText = styled.ul`
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   color: black;
   margin-bottom: 10px;
@@ -97,16 +97,20 @@ const PS = styled.div`
 `
 
 const Box = styled.div`
-  border-radius: 0.7rem;
+  border-radius: 15px;
   border: 0.1px solid #00000060;
   background-color: #fefefe;
   box-shadow: 4px 6px 20px 8px #00000036;
-  margin: 80px 20px;
+  margin: 120px 20px;
   padding: 8px 16px;
+  z-index: 1;
+
+  min-width: 300px;
 
   @media screen and (max-width: 767.9px) {
     margin: 10px auto;
     width: 300px;
+    border-radius: 12px;
   }
 `
 

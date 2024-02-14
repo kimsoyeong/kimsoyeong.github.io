@@ -1,8 +1,11 @@
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import styled from '@emotion/styled'
 import PlayerBox from 'components/Main/PlayerBox'
 import IconBox from './IconBox'
 import MemoBox from './MemoBox'
+import WindowBox from 'components/Common/WindowBox'
+import Terminal from 'components/Common/Terminal'
+import BannerBox from 'components/Common/BannerBox'
 
 const Background = styled.div`
   width: 100%;
@@ -50,7 +53,7 @@ const Wrapper = styled.div`
 const BottomNavbar = styled.div`
   display: flex;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   left: 50%;
   transform: translate(-50%, 0);
@@ -63,7 +66,7 @@ const BottomNavbar = styled.div`
   background-color: rgba(255, 255, 255, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 20px;
-  z-index: 1;
+  z-index: 2;
 
   @media screen and (max-width: 576px) {
     padding-left: 8px;
@@ -73,12 +76,24 @@ const BottomNavbar = styled.div`
   }
 `
 
-const Introduction: FunctionComponent = function () {
+const Introduction: FunctionComponent = function ({ projects }) {
+  const [windowVisible, setWindowVisible] = useState(false)
+  const [terminalVisible, setTerminalVisible] = useState(false)
+
+  const showWindowBox = () => {
+    setWindowVisible(!windowVisible)
+  }
+
+  const showTerminal = () => {
+    setTerminalVisible(!terminalVisible)
+  }
+
   return (
     <Background>
       <Wrapper>
         <PlayerBox />
         <MemoBox />
+        <BannerBox />
         <BottomNavbar>
           <div
             style={{
@@ -86,15 +101,25 @@ const Introduction: FunctionComponent = function () {
               alignItems: 'center',
             }}
           >
-            <IconBox title={'Finder'} />
+            <IconBox title={'Finder'} func={showWindowBox} />
             <IconBox title={'Launchpad'} />
             <IconBox title={'Mail'} />
             <IconBox title={'Memo'} />
-            <IconBox title={'Terminal'} />
+            <IconBox title={'Terminal'} func={showTerminal} />
             <IconBox title={'Portfolio'} />
             <IconBox title={'Appstore'} />
           </div>
         </BottomNavbar>
+
+        {windowVisible ? (
+          <WindowBox
+            title={'Project Finder'}
+            projects={projects}
+            func={showWindowBox}
+          />
+        ) : null}
+
+        {terminalVisible ? <Terminal func={showTerminal} /> : null}
       </Wrapper>
     </Background>
   )
