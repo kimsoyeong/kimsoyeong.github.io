@@ -79,7 +79,7 @@ const TermContent = styled.div`
   border-radius: 15px;
 `
 
-const CmdLine: FunctionComponent = function ({ command }) {
+const CmdLine: FunctionComponent<{ command: string }> = ({ command }) => {
   return (
     <div className="cmd_line" style={{ marginBottom: '10px' }}>
       <span
@@ -145,16 +145,16 @@ const CmdLine: FunctionComponent = function ({ command }) {
   )
 }
 
-const Terminal: FunctionComponent = function ({ func }) {
+const Terminal: FunctionComponent<{ func: any }> = function ({ func }) {
   const [termInput, setTermInput] = useState('')
-  const [cmds, setCmds] = useState([])
+  const [cmds, setCmds] = useState([] as any)
 
-  const onChange = e => {
+  const onChange = (e: any) => {
     setTermInput(e.target.value)
   }
 
   const enterCmd = () => {
-    let tmp = cmds
+    let tmp: any[] = cmds
     if (termInput === 'exit') {
       func()
     }
@@ -162,7 +162,7 @@ const Terminal: FunctionComponent = function ({ func }) {
     setCmds(tmp)
   }
 
-  const handleOnKeyPress = e => {
+  const handleOnKeyPress = (e: any) => {
     if (e.key === 'Enter') {
       enterCmd()
       setTermInput('')
@@ -179,7 +179,7 @@ const Terminal: FunctionComponent = function ({ func }) {
         </div>
       </TermHeader>
       <TermContent className="term_content">
-        {cmds.map((cmd, index) => (
+        {cmds.map((cmd: string, index: number) => (
           <CmdLine command={cmd} />
         ))}
         <div className="current_cmd">

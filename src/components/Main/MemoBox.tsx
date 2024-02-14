@@ -166,11 +166,11 @@ const MemoBox: FunctionComponent = function () {
           <li>AI/ML/DL</li>
           <li>Web/App development</li>
         </IntroText>
-        <SubTitle>Language</SubTitle>
+        <SubTitle>What can I do</SubTitle>
         <IntroText>
-          <li>Python</li>
-          <li>Java</li>
-          <li>C++</li>
+          <li>Python, Java/Kotlin, C++</li>
+          <li>Android, iOS app</li>
+          <li>Garmin watch app</li>
         </IntroText>
         <PS>Check my resume by clicking the memo app.</PS>
       </MemoContent>

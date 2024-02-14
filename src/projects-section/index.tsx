@@ -1,17 +1,19 @@
 import React, { FunctionComponent } from 'react'
-import { AiFillFile, AiFillGithub } from 'react-icons/ai'
+import { AiFillFile, AiFillGithub, AiFillPlayCircle } from 'react-icons/ai'
 import './style.css'
 // import SectionHeader from '../section-header'
 // import IconButtonBar from '../icon-button-bar'
 
-const ProjectsSection: FunctionComponent = function ({ projects }) {
+const ProjectsSection: FunctionComponent<{ projects: any }> = function ({
+  projects,
+}) {
   if (!projects || projects.length < 2) return null
   return (
     <div className="section-inner">
       <h3 className="section-title">Projects</h3>
       <div className="section-content">
         <ol className="item-text" style={{ listStyle: 'none' }}>
-          {projects.map((project, index) =>
+          {projects.map((project: any, index: number) =>
             index === 0 ? null : (
               <li className="project" key={index}>
                 <div className="title" style={{ marginBottom: '0' }}>
@@ -37,7 +39,7 @@ const ProjectsSection: FunctionComponent = function ({ projects }) {
                   </div>
                 </div>
                 <div className="techstack">
-                  {project.techStack.map((tech, index) => (
+                  {project.techStack.map((tech: string, index: number) => (
                     <div
                       style={{
                         fontSize: '12px',

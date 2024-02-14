@@ -3,14 +3,16 @@ import './style.css'
 // import SectionHeader from '../section-header'
 // import IconButtonBar from '../icon-button-bar'
 
-const AwardsSection: FunctionComponent = function ({ awards }) {
+const AwardsSection: FunctionComponent<{ awards: any }> = function ({
+  awards,
+}) {
   if (!awards || awards.length < 2) return null
   return (
     <div className="section-inner">
       <h3 className="section-title">Awards</h3>
       <div className="section-content">
         <ol className="item-text" style={{ listStyle: 'none' }}>
-          {awards.map((award, index) =>
+          {awards.map((award: any, index: number) =>
             index === 0 ? null : (
               <li className="award" key={index}>
                 <div className="title" style={{ marginBottom: '4px' }}>

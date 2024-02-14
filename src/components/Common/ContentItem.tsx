@@ -1,6 +1,8 @@
 import React, { FunctionComponent } from 'react'
 
-const ContentItem: FunctionComponent = function ({ contents }) {
+const ContentItem: FunctionComponent<{ contents: any }> = function ({
+  contents,
+}) {
   return (
     <div className="section-inner" style={{ border: 'none', paddingTop: 0 }}>
       <div>
@@ -12,7 +14,7 @@ const ContentItem: FunctionComponent = function ({ contents }) {
             width: '100%',
           }}
         >
-          {contents.map((content, index) =>
+          {contents.map((content: any, index: number) =>
             index === 0 ? null : (
               <li
                 className="content"

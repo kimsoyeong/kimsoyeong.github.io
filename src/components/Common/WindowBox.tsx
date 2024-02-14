@@ -106,7 +106,11 @@ const WindowContent = styled.div`
   border-bottom-right-radius: 15px;
 `
 
-const WindowBox: FunctionComponent = function ({ title, projects, func }) {
+const WindowBox: FunctionComponent<{
+  title: string
+  projects: any
+  func: any
+}> = function ({ title, projects, func }) {
   return (
     <Window>
       <WindowHeader className="window_header">

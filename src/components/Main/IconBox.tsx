@@ -20,7 +20,12 @@ const Box = styled.div`
   }
 `
 
-const IconBox: FunctionComponent = function ({ title, func }) {
+interface IconBoxProps {
+  title: string
+  func?: any
+}
+
+const IconBox: FunctionComponent<IconBoxProps> = function ({ title, func }) {
   return title === 'Portfolio' || title === 'Mail' ? (
     <a
       href={
@@ -50,7 +55,7 @@ const IconBox: FunctionComponent = function ({ title, func }) {
     </Box>
   ) : (
     <Link to={title === 'Memo' ? '/about' : '/info'}>
-      <Box style={title === 'Photo' ? { padding: '3px' } : null}>
+      <Box>
         <img
           src={
             title === 'Finder'
@@ -63,7 +68,7 @@ const IconBox: FunctionComponent = function ({ title, func }) {
               ? 'https://upload.wikimedia.org/wikipedia/commons/b/b3/Terminalicon2.png'
               : title === 'Photobooth'
               ? 'https://help.apple.com/assets/61E899F78F0A0930525095E9/61E899F88F0A0930525095F0/en_US/cf5e7b842bc14056aa04fb60a2cd84e1.png'
-              : title === 'Photo'
+              : title === 'Photo' // currently not used
               ? 'https://help.apple.com/assets/6348318B9C14DE7E263A6023/6348319C9C14DE7E263A602B/en_US/b27be11281d58d9597fabdfcc67a3060.png'
               : 'https://help.apple.com/assets/635FFDD9F3522E368071002A/635FFDDBF3522E3680710032/en_US/14afc11a08e3fe617b2404ee08a0d0af.png'
             // 'https://upload.wikimedia.org/wikipedia/commons/c/cf/Mac_App_Store_logo.png'

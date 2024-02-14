@@ -76,7 +76,9 @@ const BottomNavbar = styled.div`
   }
 `
 
-const Introduction: FunctionComponent = function ({ projects }) {
+const Introduction: FunctionComponent<{ projects: any }> = function ({
+  projects,
+}) {
   const [windowVisible, setWindowVisible] = useState(false)
   const [terminalVisible, setTerminalVisible] = useState(false)
 
@@ -94,6 +96,7 @@ const Introduction: FunctionComponent = function ({ projects }) {
         <PlayerBox />
         <MemoBox />
         <BannerBox />
+        {/* Bottom menu bar */}
         <BottomNavbar>
           <div
             style={{
