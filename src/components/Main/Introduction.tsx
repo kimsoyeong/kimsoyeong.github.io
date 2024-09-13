@@ -11,12 +11,20 @@ const Background = styled.div`
   width: 100%;
   heihgt: 100vh;
 
+  // mac style (violet)
   background-image: linear-gradient(
     190deg,
     #c4c4de 0%,
     #cd91b5 40%,
     #a331ce 80%,
     #3a1791 100%
+  );
+  // ipad style (skyblue)
+  background-image: radial-gradient(
+    circle,
+    #559aff 0%,
+    #a9d9fd 25%,
+    #f5fbff 60%
   );
   background-repeat: round;
   background-size: contain;
@@ -111,7 +119,7 @@ const Introduction: FunctionComponent<{ projects: any }> = function ({
             <IconBox title={'Memo'} />
             <IconBox title={'Terminal'} func={showTerminal} />
             <IconBox title={'Portfolio'} />
-            <IconBox title={'Appstore'} />
+            {/* <IconBox title={'Appstore'} /> */}
           </div>
         </BottomNavbar>
 
