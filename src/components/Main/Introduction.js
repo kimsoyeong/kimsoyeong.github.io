@@ -1,9 +1,11 @@
 import { useState } from "react";
-import IconBtn from "./IconBtn";
 import Draggable from "react-draggable";
 import Terminal from "../Common/Terminal";
 // import WindowBox from 'components/Common/WindowBox'
 import Directory from "../Common/Directory";
+import IconBtn from "./IconBtn";
+
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 const Introduction = () => {
   const [windowVisible, setWindowVisible] = useState(false);
@@ -20,6 +22,34 @@ const Introduction = () => {
   return (
     <div className="relative flex w-full h-screen bg-gradient-to-t from-[#559aff] via-[#a9d9fd] to-90% text-white md:w-full md:h-screen">
       <div className="relative flex flex-row justify-center items-start w-[768px] h-screen px-5 py-10 mx-auto sm:w-full sm:flex-col sm:justify-start sm:pt-2">
+        <Draggable>
+          <div className="flex absolute min-w-[720px] rounded-lg shadow-xl border border-gray-500/30 top-20 left-20 z-30">
+            <div className="flex flex-col pl-3 pr-11 py-3 rounded-l-lg bg-[#ededed] bg-opacity-85">
+              <div className="flex items-center p-2 text-black font-semibold">
+                <div className="flex">
+                  <div className="bg-[#FC5959] w-[12px] h-[12px] rounded-xl mr-2"></div>
+                  <div className="bg-[#FCBD29] w-[12px] h-[12px] rounded-xl mr-2"></div>
+                  <div className="bg-[#36D141] w-[12px] h-[12px] rounded-xl mr-2"></div>
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col w-full justify-center items-center rounded-r-lg bg-[#fefefe] text-black">
+              <div className="flex w-full items-center py-3 border-b border-b-gray-500/30">
+                <div className="flex gap-3 pl-4">
+                  <div className="">
+                    <IoIosArrowBack className="size-6 text-gray-500" />
+                  </div>
+                  <div className="">
+                    <IoIosArrowForward className="size-6 text-gray-300" />
+                  </div>
+                </div>
+                <p className="mx-3 text-start text-md">데스크탑</p>
+              </div>
+              <div className="flex w-full justify-center items-center min-h-[420px]"></div>
+            </div>
+          </div>
+        </Draggable>
+
         <Draggable>
           <div className="flex flex-col absolute top-20 left-20 px-6 py-2 min-w-[300px] rounded-xl shadow-xl bg-[#fefefe] border border-gray-500/15 z-20">
             <div className="flex items-center p-2 text-black font-semibold">
