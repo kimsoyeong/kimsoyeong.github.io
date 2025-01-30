@@ -18,8 +18,8 @@ const Introduction = () => {
   };
 
   return (
-    <div className="flex w-full h-screen bg-tomato bg-gradient-to-t from-[#559aff] via-[#a9d9fd] to-90% text-white md:w-full md:h-screen">
-      <div className="flex flex-row justify-center items-start w-[768px] h-screen px-5 py-10 mx-auto sm:w-full sm:flex-col sm:justify-start sm:pt-2">
+    <div className="relative flex w-full h-screen bg-gradient-to-t from-[#559aff] via-[#a9d9fd] to-90% text-white md:w-full md:h-screen">
+      <div className="relative flex flex-row justify-center items-start w-[768px] h-screen px-5 py-10 mx-auto sm:w-full sm:flex-col sm:justify-start sm:pt-2">
         <Draggable>
           <div className="flex flex-col absolute top-20 left-20 px-6 py-2 min-w-[300px] rounded-xl shadow-xl bg-[#fefefe] border border-gray-500/15 z-20">
             <div className="flex items-center p-2 text-black font-semibold">
@@ -54,13 +54,15 @@ const Introduction = () => {
         </Draggable>
 
         <Draggable>
-          <div className="flex flex-col justify-center items-start gap-2 px-4 bg-gradient-to-tr from-rose-500 via-pink-500 to-yellow-500 bg-opacity-90 shadow-lg rounded-3xl size-40 absolute top-20 right-20 z-30">
-            <div className="flex w-full justify-between w-16 aspect-square overflow-hidden rounded-lg">
-              <img
-                src="/assets/img/profile.gif"
-                className="w-full h-full object-cover size-16 rounded-lg shadow-xl"
-                alt="profile"
-              />
+          <div className="flex flex-col justify-center items-start gap-2 px-4 bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-200 bg-opacity-90 shadow-lg rounded-3xl size-40 absolute top-20 right-40 z-30">
+            <div className="flex w-full justify-between">
+              <div className="w-16 aspect-square overflow-hidden rounded-lg">
+                <img
+                  src="/assets/img/profile.gif"
+                  className="w-full h-full object-cover size-16 rounded-lg shadow-xl"
+                  alt="profile"
+                />
+              </div>
               <img
                 src="/assets/img/Beam.png"
                 className="w-5 h-6"
@@ -76,20 +78,13 @@ const Introduction = () => {
 
         <Directory
           title="Projects"
-          func={() => alert("Double Clicked!!")}
+          func={() => alert("Double Clicked!! Projects:)")}
           pos={20}
         />
-
         <Directory
-          title="Experience"
-          func={() => alert("Double Clicked!!")}
-          pos={40}
-        />
-
-        <Directory
-          title="Education"
-          func={() => alert("Double Clicked!!")}
-          pos={96}
+          title="Folder2"
+          func={() => alert("Double Clicked!! Memory:D")}
+          pos={124}
         />
 
         {/* Bottom Navigation Bar */}
