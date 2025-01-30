@@ -24,7 +24,7 @@ const Introduction = () => {
       <div className="relative flex flex-row justify-center items-start w-[768px] h-screen px-5 py-10 mx-auto sm:w-full sm:flex-col sm:justify-start sm:pt-2">
         <Draggable>
           <div className="flex absolute min-w-[720px] rounded-lg shadow-xl border border-gray-500/30 top-20 left-20 z-30">
-            <div className="flex flex-col pl-3 pr-11 py-3 rounded-l-lg bg-[#ededed] bg-opacity-85">
+            <div className="flex flex-col pl-3 pr-11 py-3 rounded-l-lg bg-gradient-to-b from-[#ededed] to-[#a9d9fd]">
               <div className="flex items-center p-2 text-black font-semibold">
                 <div className="flex">
                   <div className="bg-[#FC5959] w-[12px] h-[12px] rounded-xl mr-2"></div>
@@ -37,10 +37,10 @@ const Introduction = () => {
               <div className="flex w-full items-center py-3 border-b border-b-gray-500/30">
                 <div className="flex gap-3 pl-4">
                   <div className="">
-                    <IoIosArrowBack className="size-6 text-gray-500" />
+                    <IoIosArrowBack className="size-6 text-gray-500 stroke-1" />
                   </div>
                   <div className="">
-                    <IoIosArrowForward className="size-6 text-gray-300" />
+                    <IoIosArrowForward className="size-6 text-gray-300 stroke-1" />
                   </div>
                 </div>
                 <p className="mx-3 text-start text-md">데스크탑</p>
