@@ -1,4 +1,3 @@
-import React, { FunctionComponent } from "react";
 import { useNavigate } from "react-router-dom";
 
 const IconBtn = ({ title, func }) => {
@@ -13,6 +12,7 @@ const IconBtn = ({ title, func }) => {
           : "mailto:soyeong.kim9@gmail.com"
       }
       target="_blank"
+      rel="noopener noreferrer" // ✅ 보안 강화
     >
       <div className="flex size-14">
         <img src={`/assets/img/${title}.png`} alt={`icon-${title}`} />
