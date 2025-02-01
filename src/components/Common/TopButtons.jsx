@@ -9,7 +9,10 @@ const TopButtons = ({ red }) => {
       >
         <IoIosClose className="size-4 group-hover:text-[#a31212] text-[#FC5959]" />
       </div>
-      <div className="flex justify-center items-center bg-[#FCBD29] w-[12px] h-[12px] rounded-xl">
+      <div
+        className="flex justify-center items-center bg-[#FCBD29] w-[12px] h-[12px] rounded-xl"
+        onClick={() => red()}
+      >
         <IoIosRemove className="size-4 group-hover:text-[#a39012] text-[#FCBD29]" />
       </div>
       <div className="flex justify-center items-center bg-[#36D141] w-[12px] h-[12px] rounded-xl">
