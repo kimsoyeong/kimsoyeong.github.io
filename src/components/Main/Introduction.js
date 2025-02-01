@@ -1,18 +1,81 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Draggable from "react-draggable";
 import Terminal from "../Common/Terminal";
-// import WindowBox from 'components/Common/WindowBox'
 import Directory from "../Common/Directory";
 import IconBtn from "./IconBtn";
 
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import ProjectThumb from "../Common/ProjectThumb";
+import TopButtons from "../Common/TopButtons";
 
 const Introduction = () => {
-  const [windowVisible, setWindowVisible] = useState(false);
+  const [notesVisible, setNotesVisible] = useState(true);
+  const [finderVisible, setFinderVisible] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(false);
 
-  const showWindowBox = () => {
-    setWindowVisible(!windowVisible);
+  const projects = [
+    {
+      title: "Human Activity Recognition",
+      desc: "Deep Learning-Based Human Activity Recognition with Smartwatch's sensor data",
+      types: ["AI", "Human Activity Recognition", "Smartwatch app"],
+      languages: ["Python", "Monkey C"],
+      skills: ["Tensorflow", "Garmin"],
+      logo: "",
+    },
+    {
+      title: "YOCO",
+      desc: "A Unbiased teacher v2-based AI model predicting doneness of the ingredients",
+      types: ["AI", "Computer Vision"],
+      languages: ["Python"],
+      skills: ["ub-teacher v2"],
+      logo: "",
+      url: "https://github.com/SNU-YOCO/YOCO",
+    },
+    {
+      title: "PruPru",
+      desc: "An guide android app for waste sorting with deep learning cameras",
+      types: ["AI", "Computer Vision", "Android App"],
+      languages: ["Kotlin", "Java", "Python"],
+      skills: ["Tensorflow", "TFLite", "Firebase", "Android Studio"],
+      logo: "",
+      url: "https://github.com/PA-roketdan/PruPru",
+    },
+    {
+      title: "Blooming",
+      desc: "A website to change the image style to a different style",
+      types: ["AI", "Computer Vision", "Web"],
+      languages: ["Javascript", "Python", "SQL"],
+      skills: [
+        "Docker",
+        "React",
+        "Flask",
+        "Gunicorn",
+        "MySQL",
+        "Nginx",
+        "GCP",
+        "AWS",
+      ],
+      logo: "",
+      url: "https://github.com/SiliconValleyInternship-Lambda/Blooming",
+    },
+    {
+      title: "소복소복",
+      desc: "A Rolling-paper website celebrating Korean New Year",
+      types: ["Web"],
+      languages: ["Javascript"],
+      skills: ["React", "Node.js", "Express", "MongoDB"],
+      logo: "",
+      url: "https://github.com/horangtteok/sendmesobok",
+    },
+  ];
+  const [currentProject, setCurrentProject] = useState(0);
+
+  const showNotesBox = () => {
+    setNotesVisible(!notesVisible);
+  };
+
+  const showFinderBox = () => {
+    setFinderVisible(!finderVisible);
   };
 
   const showTerminal = () => {
@@ -22,66 +85,79 @@ const Introduction = () => {
   return (
     <div className="relative flex w-full h-screen bg-gradient-to-t from-[#559aff] via-[#a9d9fd] to-90% text-white md:w-full md:h-screen">
       <div className="relative flex flex-row justify-center items-start w-[768px] h-screen px-5 py-10 mx-auto sm:w-full sm:flex-col sm:justify-start sm:pt-2">
-        <Draggable>
-          <div className="flex absolute min-w-[720px] rounded-lg shadow-xl border border-gray-500/30 top-20 left-20 z-30">
-            <div className="flex flex-col pl-3 pr-11 py-3 rounded-l-lg bg-gradient-to-b from-[#ededed] to-[#a9d9fd]">
-              <div className="flex items-center p-2 text-black font-semibold">
-                <div className="flex">
-                  <div className="bg-[#FC5959] w-[12px] h-[12px] rounded-xl mr-2"></div>
-                  <div className="bg-[#FCBD29] w-[12px] h-[12px] rounded-xl mr-2"></div>
-                  <div className="bg-[#36D141] w-[12px] h-[12px] rounded-xl mr-2"></div>
+        {finderVisible && (
+          <Draggable>
+            <div className="flex absolute min-w-[900px] h-[600px] rounded-lg shadow-xl border border-gray-500/30 top-20 left-20 z-30">
+              <div className="flex flex-col min-w-[320px] max-w-[320px] text-black rounded-l-lg bg-gray-50 border-r border-b-gray-15 overflow-hidden">
+                <div className="flex items-center py-2.5 px-3 border-b border-b-gray-150">
+                  <TopButtons red={() => showFinderBox(false)} />
+                </div>
+
+                <div className="flex flex-col w-full h-full overflow-y-auto">
+                  {projects.map((proj, idx) => (
+                    <>
+                      <ProjectThumb
+                        key={idx}
+                        proj={proj}
+                        current={currentProject}
+                        idx={idx}
+                        func={() => setCurrentProject(idx)}
+                      />
+                      <hr class="border-gray-200"></hr>
+                    </>
+                  ))}
                 </div>
               </div>
-            </div>
-            <div className="flex flex-col w-full justify-center items-center rounded-r-lg bg-[#fefefe] text-black">
-              <div className="flex w-full items-center py-3 border-b border-b-gray-500/30">
-                <div className="flex gap-3 pl-4">
-                  <div className="">
+
+              <div className="flex flex-col w-full h-full justify-center items-center rounded-r-lg overflow-hidden bg-[#fefefe] text-black">
+                <div className="flex w-full items-center py-3 border-b border-gray-150">
+                  <div className="flex gap-3 pl-4">
                     <IoIosArrowBack className="size-6 text-gray-500 stroke-1" />
-                  </div>
-                  <div className="">
                     <IoIosArrowForward className="size-6 text-gray-300 stroke-1" />
                   </div>
+                  <p className="mx-3 text-start text-md">Projects</p>
                 </div>
-                <p className="mx-3 text-start text-md">데스크탑</p>
+                <div className="flex w-full h-full justify-center items-center bg-white overflow-y-auto markdown-body">
+                  <p className="">{projects[currentProject].title}</p>
+                </div>
               </div>
-              <div className="flex w-full justify-center items-center min-h-[420px]"></div>
             </div>
-          </div>
-        </Draggable>
+          </Draggable>
+        )}
 
-        <Draggable>
-          <div className="flex flex-col absolute top-20 left-20 px-6 py-2 min-w-[300px] rounded-xl shadow-xl bg-[#fefefe] border border-gray-500/15 z-20">
-            <div className="flex items-center p-2 text-black font-semibold">
-              <div className="flex">
-                <div className="bg-[#FC5959] w-[12px] h-[12px] rounded-xl mr-2"></div>
-                <div className="bg-[#FCBD29] w-[12px] h-[12px] rounded-xl mr-2"></div>
-                <div className="bg-[#36D141] w-[12px] h-[12px] rounded-xl mr-2"></div>
+        {notesVisible && (
+          <Draggable>
+            <div className="flex flex-col absolute top-20 left-20 px-6 py-2 min-w-[300px] rounded-xl shadow-xl bg-[#fefefe] border border-gray-500/15 z-20">
+              <div className="flex items-center py-2 text-black font-semibold">
+                <TopButtons red={() => showNotesBox(false)} />
+
+                <p className="mx-4 text-center">Soyeong Kim</p>
               </div>
-              <p className="mx-4 text-center">Soyeong Kim</p>
+              <div className="p-2">
+                <p className="mb-4 text-2xl font-bold text-black">
+                  Soyeong Kim
+                </p>
+                <p className="mt-4 mb-2 text-md font-semibold text-black">
+                  Interest
+                </p>
+                <p className="mb-2 text-md text-black">
+                  <li>AI, AI Agent, NLP</li>
+                  <li>Web, Android, iOS</li>
+                </p>
+                <p className="mt-4 mb-2 text-md font-semibold text-black">
+                  What can I do
+                </p>
+                <p className="mb-2 text-md text-black">
+                  <li>Python, Javascript</li>
+                  <li>Java/Kotlin, C++</li>
+                </p>
+                <p className="mt-4 mb-2 bg-[#f2f2f2] rounded-lg px-5 py-3 items-center text-black/50 text-md">
+                  Check my resume by clicking the memo app.
+                </p>
+              </div>
             </div>
-            <div className="p-2">
-              <p className="mb-4 text-2xl font-bold text-black">Soyeong Kim</p>
-              <p className="mt-4 mb-2 text-md font-semibold text-black">
-                Interest
-              </p>
-              <p className="mb-2 text-md text-black">
-                <li>AI, AI Agent, NLP</li>
-                <li>Web, Android, iOS</li>
-              </p>
-              <p className="mt-4 mb-2 text-md font-semibold text-black">
-                What can I do
-              </p>
-              <p className="mb-2 text-md text-black">
-                <li>Python, Javascript</li>
-                <li>Java/Kotlin, C++</li>
-              </p>
-              <p className="mt-4 mb-2 bg-[#f2f2f2] rounded-lg px-5 py-3 items-center text-black/50 text-md">
-                Check my resume by clicking the memo app.
-              </p>
-            </div>
-          </div>
-        </Draggable>
+          </Draggable>
+        )}
 
         <Draggable>
           <div className="flex flex-col justify-center items-start gap-2 px-4 bg-gradient-to-tr from-blue-400 via-cyan-300 to-emerald-200 bg-opacity-90 shadow-lg rounded-3xl size-40 absolute top-20 right-40 z-30">
@@ -118,23 +194,15 @@ const Introduction = () => {
         />
 
         {/* Bottom Navigation Bar */}
-        <div className="flex justify-center items-center gap-2 fixed bottom-2 left-1/2 transform -translate-x-1/2 text-center px-2 h-[70px] bg-white bg-opacity-30 shadow-lg border border-white border-opacity-10 rounded-2xl z-20">
-          <IconBtn title={"Finder"} func={showWindowBox} />
+        <div className="flex justify-center items-center gap-2 fixed bottom-2 left-1/2 transform -translate-x-1/2 text-center px-2.5 h-[70px] bg-white bg-opacity-30 shadow-xl border border-white border-opacity-10 rounded-3xl z-20">
+          <IconBtn title={"Finder"} func={showFinderBox} />
           <IconBtn title={"Launchpad"} />
           <IconBtn title={"Freeform"} />
           <IconBtn title={"Mail"} />
-          <IconBtn title={"Notes"} />
+          <IconBtn title={"Notes"} func={showNotesBox} />
           <IconBtn title={"Terminal"} func={showTerminal} />
           <IconBtn title={"Portfolio"} />
         </div>
-
-        {/* {windowVisible ? (
-          <WindowBox
-            title={'Project Finder'}
-            projects={projects}
-            func={showWindowBox}
-          />
-        ) : null} */}
 
         {terminalVisible ? <Terminal func={showTerminal} /> : null}
       </div>
