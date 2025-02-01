@@ -14,13 +14,13 @@ const IconBtn = ({ title, func }) => {
       target="_blank"
       rel="noopener noreferrer" // ✅ 보안 강화
     >
-      <div className="flex size-14">
+      <div className="flex size-14 transform transition-all duration-300 hover:scale-110">
         <img src={`/assets/img/${title}.png`} alt={`icon-${title}`} />
       </div>
     </a>
-  ) : title === "Finder" || title === "Terminal" ? (
+  ) : title === "Finder" || title === "Terminal" || title === "Notes" ? (
     // Case 2: function
-    <div onClick={func} className="flex size-14 cursor-pointer">
+    <div className="flex size-14 transform transition-all duration-300 hover:scale-110 cursor-pointer">
       <img src={`/assets/img/${title}.png`} alt={`icon-${title}`} />
     </div>
   ) : (
@@ -34,7 +34,7 @@ const IconBtn = ({ title, func }) => {
             : "/info"
         )
       }
-      className="flex size-14 cursor-pointer"
+      className="flex size-14 transform transition-all duration-300 hover:scale-110 cursor-pointer"
     >
       <img src={`/assets/img/${title}.png`} alt={`icon-${title}`} />
     </div>
