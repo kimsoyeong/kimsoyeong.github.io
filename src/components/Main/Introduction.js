@@ -90,7 +90,7 @@ const Introduction = () => {
             <div className="flex absolute min-w-[900px] h-[600px] rounded-lg shadow-xl border border-gray-500/30 top-20 left-20 z-30">
               <div className="flex flex-col min-w-[320px] max-w-[320px] text-black rounded-l-lg bg-gray-50 border-r border-b-gray-15 overflow-hidden">
                 <div className="flex items-center py-2.5 px-3 border-b border-b-gray-150">
-                  <TopButtons red={() => showFinderBox(false)} />
+                  <TopButtons red={showFinderBox} />
                 </div>
 
                 <div className="flex flex-col w-full h-full overflow-y-auto">
@@ -129,7 +129,7 @@ const Introduction = () => {
           <Draggable>
             <div className="flex flex-col absolute top-20 left-20 px-6 py-2 min-w-[300px] rounded-xl shadow-xl bg-[#fefefe] border border-gray-500/15 z-20">
               <div className="flex items-center py-2 text-black font-semibold">
-                <TopButtons red={() => showNotesBox(false)} />
+                <TopButtons red={showNotesBox} />
 
                 <p className="mx-4 text-center">Soyeong Kim</p>
               </div>
