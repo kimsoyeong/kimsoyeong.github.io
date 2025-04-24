@@ -6,7 +6,7 @@ const ProjectThumb = ({ idx, proj, current, func }) => {
   return (
     <div
       className={`flex flex-col gap-2 p-4 hover:bg-gray-100 cursor-pointer transition-colors duration-200 ${
-        current == idx && "bg-blue-100/70 border-l-2 border-blue-500"
+        current === idx && "bg-blue-100/70 border-l-2 border-blue-500"
       }`}
       onClick={() => func(idx)}
     >
@@ -36,7 +36,10 @@ const ProjectThumb = ({ idx, proj, current, func }) => {
       <p className="text-sm line-clamp-2">{desc}</p>
       <div className="flex flex-wrap justify-start gap-1 w-full">
         {types.map((type, i) => (
-          <p className="rounded-xl px-2.5 py-0.5 text-xs bg-lime-200 text-lime-600">
+          <p
+            key={i}
+            className="rounded-xl px-2.5 py-0.5 text-xs bg-lime-200 text-lime-600"
+          >
             {type}
           </p>
         ))}
