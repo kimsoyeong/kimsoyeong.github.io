@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Draggable from "react-draggable";
+
 import Terminal from "../Common/Terminal";
 import Directory from "../Common/Directory";
 import IconBtn from "../Common/IconBtn";
@@ -13,11 +14,12 @@ import {
 import { IoSearch, IoBatteryFull } from "react-icons/io5";
 import ProjectThumb from "../Common/ProjectThumb";
 import TopButtons from "../Common/TopButtons";
+import ProjectBody from "../Common/ProjectBody";
 
 const MainPage = () => {
   const [formattedDate, setFormattedDate] = useState("");
 
-  const [notesVisible, setNotesVisible] = useState(true);
+  const [notesVisible, setNotesVisible] = useState(false);
   const [finderVisible, setFinderVisible] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(false);
 
@@ -29,6 +31,7 @@ const MainPage = () => {
       languages: ["Python", "Monkey C"],
       skills: ["Tensorflow", "Garmin"],
       logo: "",
+      path: "/assets/md/har.md",
     },
     {
       title: "YOCO",
@@ -38,6 +41,7 @@ const MainPage = () => {
       skills: ["ub-teacher v2"],
       logo: "",
       url: "https://github.com/SNU-YOCO/YOCO",
+      path: "/assets/md/yoco.md",
     },
     {
       title: "PruPru",
@@ -47,6 +51,7 @@ const MainPage = () => {
       skills: ["Tensorflow", "TFLite", "Firebase", "Android Studio"],
       logo: "",
       url: "https://github.com/PA-roketdan/PruPru",
+      path: "/assets/md/prupru.md",
     },
     {
       title: "Blooming",
@@ -65,6 +70,7 @@ const MainPage = () => {
       ],
       logo: "",
       url: "https://github.com/SiliconValleyInternship-Lambda/Blooming",
+      path: "/assets/md/blooming.md",
     },
     {
       title: "소복소복",
@@ -74,9 +80,16 @@ const MainPage = () => {
       skills: ["React", "Node.js", "Express", "MongoDB"],
       logo: "",
       url: "https://github.com/horangtteok/sendmesobok",
+      path: "/assets/md/sendmesobok.md",
     },
   ];
-  const [currentProject, setCurrentProject] = useState(0);
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [currentProject, setCurrentProject] = useState(projects[0]);
+
+  const onChangeCurrentProject = (index) => {
+    setCurrentProjectIndex(index);
+    setCurrentProject(projects[index]);
+  };
 
   const showNotesBox = () => {
     setNotesVisible(!notesVisible);
@@ -168,7 +181,7 @@ const MainPage = () => {
       <div className="relative flex flex-row justify-center items-start w-[768px] h-screen px-5 py-10 mx-auto sm:w-full sm:flex-col sm:justify-start sm:pt-2 text-white">
         {finderVisible && (
           <Draggable>
-            <div className="flex absolute inset-0 m-auto w-[900px] h-[600px] rounded-lg shadow-xl border border-gray-500/30 z-30">
+            <div className="flex absolute inset-0 m-auto w-[1200px] h-[700px] rounded-lg shadow-xl border border-gray-500/30 z-30">
               <div className="flex flex-col min-w-[320px] max-w-[320px] text-black rounded-l-lg bg-gray-50 border-r border-b-gray-15 overflow-hidden">
                 <div className="flex items-center py-2.5 px-3 border-b border-b-gray-150">
                   <TopButtons red={showFinderBox} />
@@ -176,16 +189,16 @@ const MainPage = () => {
 
                 <div className="flex flex-col w-full h-full overflow-y-auto">
                   {projects.map((proj, idx) => (
-                    <>
+                    <React.Fragment key={idx}>
                       <ProjectThumb
                         key={idx}
                         proj={proj}
-                        current={currentProject}
+                        current={currentProjectIndex}
                         idx={idx}
-                        func={() => setCurrentProject(idx)}
+                        func={() => onChangeCurrentProject(idx)}
                       />
-                      <hr key={idx} className="border-gray-200"></hr>
-                    </>
+                      <hr className="border-gray-200"></hr>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
@@ -198,8 +211,9 @@ const MainPage = () => {
                   </div>
                   <p className="mx-3 text-start text-md">Projects</p>
                 </div>
-                <div className="flex w-full h-full justify-center items-center bg-white overflow-y-auto markdown-body">
-                  <p>{projects[currentProject].title}</p>
+                <div className="flex w-full h-full justify-center items-center bg-white overflow-y-auto">
+                  {/* Project Body */}
+                  <ProjectBody project={currentProject} />
                 </div>
               </div>
             </div>
