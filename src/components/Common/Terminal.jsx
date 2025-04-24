@@ -32,12 +32,12 @@ const CmdLine = ({ command }) => {
   return (
     <div className="flex flex-col text-xs">
       <div className="flex items-center gap-0.5">
-        <span className="flex text-[#DB666F] py-1 text-start items-center">
+        <span className="flex text-[#CBB4FF] py-1 text-start items-center">
           soyeong@world
         </span>
         <span className="text-white/45 pr-0.5">:</span>
 
-        <span className="flex text-[#319CF7] rounded-tl-xl rounded-bl-xl py-1 text-center items-center">
+        <span className="flex text-[#FFFEAF] rounded-tl-xl rounded-bl-xl py-1 text-center items-center">
           ~/Desktop
         </span>
         <FaCaretRight className="text-[#fff193]" />
@@ -108,11 +108,11 @@ const Terminal = ({ func }) => {
       </div>
 
       <div className="flex items-center justify-center align-center border-t border-t-white/30 p-2">
-        <span className="flex gap-2 text-[#DB666F] px-1 py-1 text-start items-center justify-center text-xs">
+        <span className="flex gap-2 text-[#CBB4FF] px-1 py-1 text-start items-center justify-center text-xs">
           soyeong@world
         </span>
         <span className="text-white/45 pr-0.5">:</span>
-        <span className="flex text-[#319CF7] px-1 py-1 mr-1/2 text-center items-center text-xs">
+        <span className="flex text-[#FFFEAF] px-1 py-1 mr-1/2 text-center items-center text-xs">
           ~/Desktop
         </span>
         <FaCaretRight className="text-[#fff193]" />
@@ -133,9 +133,9 @@ const Terminal = ({ func }) => {
 export default Terminal;
 
 /* terminal color theme */
-// #DB666F // red
+// #CBB4FF // red
 // #FFF193 // yellow
-// #319CF7 // blue
+// #FFFEAF // blue
 // #49B16F // green
 // #B263E2 // purple
 // #5aebed // mint
