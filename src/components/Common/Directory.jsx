@@ -6,7 +6,11 @@ const Directory = ({ title, func, pos }) => {
       onDoubleClick={func}
     >
       <img
-        src="/assets/img/Folder.png"
+        src={
+          title === "Projects"
+            ? "/assets/img/Folder_prj.png"
+            : "/assets/img/Folder.png"
+        }
         className="size-16 drop-shadow-md"
         alt="Folder-icon"
       />
