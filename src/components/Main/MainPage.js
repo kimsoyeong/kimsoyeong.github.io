@@ -4,6 +4,7 @@ import Draggable from "react-draggable";
 import Terminal from "../Common/Terminal";
 import Directory from "../Common/Directory";
 import IconBtn from "../Common/IconBtn";
+import Messages from "../Common/Messages";
 
 import {
   IoIosArrowForward,
@@ -22,8 +23,19 @@ const MainPage = () => {
   const [notesVisible, setNotesVisible] = useState(false);
   const [finderVisible, setFinderVisible] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(false);
+  const [messagesVisible, setMessagesVisible] = useState(true);
 
   const projects = [
+    {
+      title: "PreFlight: AI Agent for Compliance",
+      desc: "An AI agent that validates system architectures for compliance during the design phase",
+      types: ["AI", "Compliance", "System Architecture"],
+      languages: ["Python, Typescript"],
+      skills: ["Microsoft Agent Framework", "Github Copilot SDK", "Docker", "React", "FastAPI"],
+      logo: "",
+      url: "https://github.com/kimsoyeong/works-on-my-machine",
+      path: "/assets/md/preflight.md",
+    },
     {
       title: "Human Activity Recognition",
       desc: "Deep Learning-Based Human Activity Recognition with Smartwatch's sensor data",
@@ -101,6 +113,10 @@ const MainPage = () => {
 
   const showTerminal = () => {
     setTerminalVisible(!terminalVisible);
+  };
+
+  const showMessages = () => {
+    setMessagesVisible(!messagesVisible);
   };
 
   function formatDate(date) {
@@ -295,10 +311,12 @@ const MainPage = () => {
           <IconBtn title={"Freeform"} />
           <IconBtn title={"Mail"} />
           <IconBtn title={"Notes"} func={showNotesBox} />
+          <IconBtn title={"Messages"} func={showMessages} />
           <IconBtn title={"Terminal"} func={showTerminal} />
           <IconBtn title={"Portfolio"} />
         </div>
 
+        {messagesVisible && <Messages func={showMessages} />}
         {terminalVisible ? <Terminal func={showTerminal} /> : null}
       </div>
     </div>

@@ -18,7 +18,7 @@ const IconBtn = ({ title, func }) => {
         <img src={`/assets/img/${title}.png`} alt={`icon-${title}`} />
       </div>
     </a>
-  ) : title === "Finder" || title === "Terminal" || title === "Notes" ? (
+  ) : title === "Finder" || title === "Terminal" || title === "Notes" || title === "Messages" ? (
     // Case 2: function
     <div
       className="flex size-14 transform transition-all duration-300 hover:scale-110 cursor-pointer"
