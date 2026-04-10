@@ -63,11 +63,7 @@ const cvMessages = [
   { type: "sent", text: "How can I reach you?" },
   { type: "received", text: "📧 soyeong.kim9@gmail.com" },
   { type: "received", text: "💻 github.com/kimsoyeong" },
-  { type: "date", text: "" },
-  {
-    type: "sent",
-    text: "Thanks! Your profile looks great! 👏",
-  },
+  { type: "date", text: "Feel free to reach out!" },
 ];
 
 const Messages = ({ func }) => {

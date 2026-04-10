@@ -14,7 +14,7 @@ const ProjectBody = ({ project }) => {
   }, [project.path]);
 
   return (
-    <div className="flex w-full h-full justify-center items-center bg-white px-8 pt-3">
+    <div className="flex w-full h-full justify-center items-center bg-white dark:bg-[#1e1e1e] px-8 pt-3">
       <MarkdownRenderer content={content} />
     </div>
   );

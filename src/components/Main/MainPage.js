@@ -20,10 +20,23 @@ import ProjectBody from "../Common/ProjectBody";
 const MainPage = () => {
   const [formattedDate, setFormattedDate] = useState("");
 
-  const [notesVisible, setNotesVisible] = useState(false);
+  const [notesVisible, setNotesVisible] = useState(true);
   const [finderVisible, setFinderVisible] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(false);
   const [messagesVisible, setMessagesVisible] = useState(true);
+  const [isDark, setIsDark] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved === "dark";
+  });
+
+  useEffect(() => {
+    if (isDark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
 
   const projects = [
     {
@@ -165,8 +178,8 @@ const MainPage = () => {
 
   return (
     // from-[#559aff] via-[#a9d9fd] to-90%
-    <div className="relative flex w-full h-screen bg-gradient-to-t from-[#77dbd6] via-[#92d5d2] to-99% md:w-full md:h-screen">
-      <div className="absolute flex w-full min-h-[30px] justify-between items-center px-2 bg-[#92d5d2]/30">
+    <div className="relative flex w-full h-screen bg-gradient-to-t from-[#77dbd6] via-[#92d5d2] to-99% dark:from-[#1a1a2e] dark:via-[#16213e] dark:to-[#0f3460] md:w-full md:h-screen">
+      <div className="absolute flex w-full min-h-[30px] justify-between items-center px-2 bg-[#92d5d2]/30 dark:bg-[#1a1a2e]/50 dark:text-gray-200">
         <div className="flex justify-center items-center gap-4 text-xs">
           <IoLogoApple className="size-5" />
           <p>Finder</p>
@@ -187,6 +200,8 @@ const MainPage = () => {
             height="16"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
+            className="cursor-pointer hover:opacity-70 transition-opacity"
+            onClick={() => setIsDark(!isDark)}
           >
             <path d="M7.5,13h14a5.5,5.5,0,0,0,0-11H7.5a5.5,5.5,0,0,0,0,11Zm0-9h14a3.5,3.5,0,0,1,0,7H7.5a3.5,3.5,0,0,1,0-7Zm0,6A2.5,2.5,0,1,0,5,7.5,2.5,2.5,0,0,0,7.5,10Zm14,6H7.5a5.5,5.5,0,0,0,0,11h14a5.5,5.5,0,0,0,0-11Zm1.43439,8a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,22.93439,24Z"></path>
           </svg>
@@ -197,8 +212,8 @@ const MainPage = () => {
       <div className="relative flex flex-row justify-center items-start w-[768px] h-screen px-5 py-10 mx-auto sm:w-full sm:flex-col sm:justify-start sm:pt-2 text-white">
         {finderVisible && (
           <Draggable>
-            <div className="flex absolute inset-0 m-auto w-[1200px] h-[700px] rounded-lg shadow-xl border border-gray-500/30 z-30">
-              <div className="flex flex-col min-w-[320px] max-w-[320px] text-black rounded-l-lg bg-gray-50 border-r border-b-gray-15 overflow-hidden">
+            <div className="flex absolute inset-0 m-auto w-[1200px] h-[700px] rounded-lg shadow-xl border border-gray-500/30 dark:border-gray-600/50 z-30">
+              <div className="flex flex-col min-w-[320px] max-w-[320px] text-black dark:text-gray-200 rounded-l-lg bg-gray-50 dark:bg-[#2d2d2d] border-r border-b-gray-15 dark:border-gray-600 overflow-hidden">
                 <div className="flex items-center py-2.5 px-3 border-b border-b-gray-150">
                   <TopButtons red={showFinderBox} />
                 </div>
@@ -213,13 +228,13 @@ const MainPage = () => {
                         idx={idx}
                         func={() => onChangeCurrentProject(idx)}
                       />
-                      <hr className="border-gray-200"></hr>
+                      <hr className="border-gray-200 dark:border-gray-600"></hr>
                     </React.Fragment>
                   ))}
                 </div>
               </div>
 
-              <div className="flex flex-col w-full h-full justify-center items-center rounded-r-lg overflow-hidden bg-[#fefefe] text-black">
+              <div className="flex flex-col w-full h-full justify-center items-center rounded-r-lg overflow-hidden bg-[#fefefe] dark:bg-[#1e1e1e] text-black dark:text-gray-200">
                 <div className="flex w-full items-center py-3 border-b border-gray-150">
                   <div className="flex gap-3 pl-4">
                     <IoIosArrowBack className="size-6 text-gray-500 stroke-1" />
@@ -227,7 +242,7 @@ const MainPage = () => {
                   </div>
                   <p className="mx-3 text-start text-md">Projects</p>
                 </div>
-                <div className="flex w-full h-full justify-center items-center bg-white overflow-y-auto">
+                <div className="flex w-full h-full justify-center items-center bg-white dark:bg-[#1e1e1e] overflow-y-auto">
                   {/* Project Body */}
                   <ProjectBody project={currentProject} />
                 </div>
@@ -238,32 +253,42 @@ const MainPage = () => {
 
         {notesVisible && (
           <Draggable>
-            <div className="flex flex-col absolute top-20 left-20 px-6 py-2 min-w-[300px] rounded-xl shadow-xl bg-[#fefefe] border border-gray-500/15 z-20">
-              <div className="flex items-center py-2 text-black/65 font-semibold">
+            <div className="flex flex-col absolute top-[35%] right-[5%] px-6 py-2 min-w-[300px] rounded-xl shadow-xl bg-[#fefefe] dark:bg-[#2d2d2d] border border-gray-500/15 dark:border-gray-600/50 z-20">
+              <div className="flex items-center py-2 text-black/65 dark:text-gray-400 font-semibold">
                 <TopButtons red={showNotesBox} />
 
                 <p className="mx-4 text-center">About me</p>
               </div>
               <div className="p-2">
-                <p className="mb-4 text-2xl font-bold text-black">
+                <p className="mb-1 text-2xl font-bold text-black dark:text-white">
                   Soyeong Kim
                 </p>
-                <p className="mt-4 mb-2 text-md font-semibold text-black">
+                <p className="mb-4 text-sm text-black/50 dark:text-gray-400">
+                  AI & Full-stack Developer
+                </p>
+                <p className="mt-4 mb-2 text-md font-semibold text-black dark:text-white">
                   Interest
                 </p>
-                <p className="mb-2 text-md text-black">
-                  <li>AI, AI Agent, NLP</li>
+                <ul className="mb-2 text-md text-black dark:text-gray-300 list-disc list-inside">
+                  <li>AI, AI Agent</li>
                   <li>Web, Android, iOS</li>
+                </ul>
+                <p className="mt-4 mb-2 text-md font-semibold text-black dark:text-white">
+                  Skills
                 </p>
-                <p className="mt-4 mb-2 text-md font-semibold text-black">
-                  What can I do
+                <ul className="mb-2 text-md text-black dark:text-gray-300 list-disc list-inside">
+                  <li>Python, React, FastAPI</li>
+                  <li>LangGraph, ADK, Docker</li>
+                </ul>
+                <p className="mt-4 mb-2 text-md font-semibold text-black dark:text-white">
+                  Contact
                 </p>
-                <p className="mb-2 text-md text-black">
-                  <li>Python, Javascript</li>
-                  <li>Java/Kotlin, C++</li>
-                </p>
-                <p className="mt-4 mb-2 bg-[#f2f2f2] rounded-lg px-5 py-3 items-center text-black/50 text-md">
-                  Check my resume by clicking the memo app.
+                <ul className="mb-2 text-md text-black dark:text-gray-300 list-none">
+                  <li>📧 soyeong.kim9@gmail.com</li>
+                  <li>💻 github.com/kimsoyeong</li>
+                </ul>
+                <p className="mt-4 mb-2 bg-[#f2f2f2] dark:bg-[#3a3a3a] rounded-lg px-5 py-3 items-center text-black/50 dark:text-gray-400 text-md">
+                  Click a project below to learn more! 👇
                 </p>
               </div>
             </div>
@@ -305,7 +330,7 @@ const MainPage = () => {
         />
 
         {/* Bottom Navigation Bar */}
-        <div className="flex justify-center items-center gap-2 fixed bottom-2 left-1/2 transform -translate-x-1/2 text-center px-2.5 h-[70px] bg-white bg-opacity-30 shadow-xl border border-white border-opacity-10 rounded-3xl z-20">
+        <div className="flex justify-center items-center gap-2 fixed bottom-2 left-1/2 transform -translate-x-1/2 text-center px-2.5 h-[70px] bg-white bg-opacity-30 dark:bg-gray-800 dark:bg-opacity-50 shadow-xl border border-white border-opacity-10 dark:border-gray-600/30 rounded-3xl z-20">
           <IconBtn title={"Finder"} func={showFinderBox} />
           <IconBtn title={"Launchpad"} />
           <IconBtn title={"Freeform"} />

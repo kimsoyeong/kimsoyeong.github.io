@@ -28,23 +28,23 @@ const MarkdownRenderer = ({ content }) => {
             return isBlock ? (
               <code className={`${className || ''} block w-full`} {...props} />
             ) : (
-              <code className="bg-gray-200 px-1.5 py-0.5 rounded-md text-sm" {...props} />
+              <code className="bg-gray-200 dark:bg-gray-700 dark:text-gray-200 px-1.5 py-0.5 rounded-md text-sm" {...props} />
             );
           },
           table: ({ node, ...props }) => (
-            <table className="w-full border-collapse border border-gray-300 my-4" {...props} />
+            <table className="w-full border-collapse border border-gray-300 dark:border-gray-600 my-4" {...props} />
           ),
           thead: ({ node, ...props }) => (
-            <thead className="bg-gray-100" {...props} />
+            <thead className="bg-gray-100 dark:bg-gray-700" {...props} />
           ),
           th: ({ node, ...props }) => (
-            <th className="border border-gray-300 px-4 py-2 text-left font-semibold" {...props} />
+            <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left font-semibold" {...props} />
           ),
           td: ({ node, ...props }) => (
-            <td className="border border-gray-300 px-4 py-2" {...props} />
+            <td className="border border-gray-300 dark:border-gray-600 px-4 py-2" {...props} />
           ),
           blockquote: ({ node, ...props }) => (
-            <blockquote className="border-l-4 border-gray-400 pl-4 py-2 my-3 text-gray-600 italic" {...props} />
+            <blockquote className="border-l-4 border-gray-400 dark:border-gray-500 pl-4 py-2 my-3 text-gray-600 dark:text-gray-400 italic" {...props} />
           ),
           hr: ({ node, ...props }) => <hr className="my-4" {...props} />,
         }}

@@ -5,8 +5,8 @@ const ProjectThumb = ({ idx, proj, current, func }) => {
 
   return (
     <div
-      className={`flex flex-col gap-2 p-4 hover:bg-gray-100 cursor-pointer transition-colors duration-200 ${
-        current === idx && "bg-blue-100/70 border-l-2 border-blue-500"
+      className={`flex flex-col gap-2 p-4 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer transition-colors duration-200 ${
+        current === idx && "bg-blue-100/70 dark:bg-blue-900/40 border-l-2 border-blue-500"
       }`}
       onClick={() => func(idx)}
     >
@@ -29,7 +29,7 @@ const ProjectThumb = ({ idx, proj, current, func }) => {
             target="_blank"
             rel="noopener noreferrer" // ✅ 보안 강화
           >
-            <IoLogoGithub className="text-gray-400 size-5" />
+            <IoLogoGithub className="text-gray-400 dark:text-gray-500 size-5" />
           </a>
         )}
       </div>
@@ -38,7 +38,7 @@ const ProjectThumb = ({ idx, proj, current, func }) => {
         {types.map((type, i) => (
           <p
             key={i}
-            className="rounded-xl px-2.5 py-0.5 text-xs bg-lime-200 text-lime-600"
+            className="rounded-xl px-2.5 py-0.5 text-xs bg-lime-200 dark:bg-lime-900/50 text-lime-600 dark:text-lime-300"
           >
             {type}
           </p>
@@ -46,7 +46,7 @@ const ProjectThumb = ({ idx, proj, current, func }) => {
         {languages.map((lang, i) => (
           <p
             key={i}
-            className="rounded-xl px-2.5 py-0.5 text-xs bg-purple-100 text-purple-500"
+            className="rounded-xl px-2.5 py-0.5 text-xs bg-purple-100 dark:bg-purple-900/50 text-purple-500 dark:text-purple-300"
           >
             {lang}
           </p>
@@ -54,7 +54,7 @@ const ProjectThumb = ({ idx, proj, current, func }) => {
         {skills.map((skill, i) => (
           <p
             key={i}
-            className="rounded-xl px-2.5 py-0.5 text-xs bg-orange-100 text-orange-500"
+            className="rounded-xl px-2.5 py-0.5 text-xs bg-orange-100 dark:bg-orange-900/50 text-orange-500 dark:text-orange-300"
           >
             {skill}
           </p>
