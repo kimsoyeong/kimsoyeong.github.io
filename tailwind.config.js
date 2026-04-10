@@ -1,10 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {
         "source-code": ["Source Code Pro", "monospace"],
+        "dm-sans": ["DM Sans", "sans-serif"],
+        "dm-mono": ["DM Mono", "monospace"],
+        "playfair": ["Playfair Display", "serif"],
       },
       keyframes: {
         fadeInUp: {
