@@ -43,6 +43,92 @@ const TurboQuantPost = () => {
   return (
     <div className="font-dm-sans text-[#1a1e2a] text-[15px] leading-relaxed">
 
+      {/* ═══ -1. 문제 정의 ═══ */}
+      <div className={css.section}>
+        <div className={css.secLabel}>Motivation</div>
+        <h2 id="problem" className={css.h2}>문제 정의 — LLM 추론의 메모리 병목</h2>
+        <p className={css.p}>
+          LLM의 핵심 연산인 어텐션 메커니즘에서, 입력 토큰들은 Query, Key, Value 세 가지 벡터로 변환됩니다.
+          이전 토큰들의 Key와 Value를 메모리에 저장해 재계산을 방지하는 것이 <strong>KV 캐시</strong>이며,
+          대화 길이에 비례하여 실시간으로 늘어나는 가변적 데이터 공간입니다.
+        </p>
+
+        <div className={css.cardAccent}>
+          <h3 className={css.h3}>두 가지 병목</h3>
+          <div className="space-y-4">
+            <div className="flex items-start gap-3">
+              <div className="w-7 h-7 bg-gray-100 border border-gray-300 rounded-md text-gray-600 font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">1</div>
+              <div>
+                <div className="font-semibold text-[14px] mb-0.5">메모리 용량 병목 (공간)</div>
+                <p className="text-[13px] text-gray-600 mb-0">컨텍스트 길이가 길어질수록 KV 캐시의 크기가 선형적으로 증가합니다. 수백만 토큰 입력 시 수백 GB를 초과하여 단일 GPU의 VRAM 한계를 넘어서게 됩니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-7 h-7 bg-gray-100 border border-gray-300 rounded-md text-gray-600 font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">2</div>
+              <div>
+                <div className="font-semibold text-[14px] mb-0.5">대역폭 병목 (속도)</div>
+                <p className="text-[13px] text-gray-600 mb-0">KV 캐시 데이터를 메모리(HBM)에서 연산 장치(SRAM)로 이동시키는 대역폭에 한계가 있어 추론 속도 지연으로 이어집니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={css.calloutGold}>
+          <strong>기존 양자화의 딜레마:</strong><br/>
+          <strong>오프라인(데이터 의존)</strong>: Hessian 정보 등을 이용한 무거운 전처리/학습이 필요하며 KV 캐시처럼 실시간으로 생성되는 동적 데이터에 부적합합니다.<br/>
+          <strong>온라인(데이터 무관)</strong>: 기존의 KIVI 등 스칼라 양자화는 4비트 이하에서 치명적인 정밀도 손실을 주며, 격자 기반 PQ 방법은 GPU 벡터가 불가능하여 가속기에 비효율적입니다.
+        </div>
+
+        <div className={css.callout}>
+          <strong>TurboQuant의 해법:</strong> 랜덤 회전+Lloyd-Max+QJL을 결합하여 KV 캐시를 <em>온라인</em>으로 고압축하면서도 정보이론적 하한에 근접한 왜곡률을 보장합니다.
+          별도 재학습 없이 기존 LLM에 drop-in으로 적용 가능하며, FP16 대비 최대 <strong>6배 메모리 절감</strong>과 KV fetch 단계 최대 <strong>8배 속도 향상</strong>을 달성합니다.
+        </div>
+      </div>
+
+      {/* ═══ -0.5. 수학적 기초 ═══ */}
+      <SectionDivider>Mathematical Foundations</SectionDivider>
+      <div className={css.section}>
+        <div className={css.secLabel}>Formal Framework</div>
+        <h2 id="math-foundations" className={css.h2}>수학적 기초 — 양자화 맵의 정의</h2>
+        <p className={css.p}>
+          양자화 맵 <Formula tex={String.raw`Q : \mathbb{R}^d \to \{0,1\}^B`} />는 d차원 벡터를 B비트의 이진 비트열로 변환합니다.
+          좌표 하나당 평균 b비트를 사용하며 (<Formula tex={String.raw`B = b \cdot d`} />), 역양자화 맵{" "}
+          <Formula tex={String.raw`Q^{-1} : \{0,1\}^B \to \mathbb{R}^d`} />는 비트열로부터 원본 벡터를 근사 복원합니다.
+          Q는 전단사 함수가 아니므로 이 변환은 본질적으로 손실적(lossy)입니다.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-5">
+          <div className={css.card}>
+            <h3 className="text-[1rem] font-semibold mb-2 text-gray-800">
+              <Formula tex={String.raw`D_{\text{mse}}`} /> — MSE 왜곡
+            </h3>
+            <FormulaBlock comment="압축 후 복원했을 때 원본과 얼마나 달라졌는가">
+              <Formula tex={String.raw`D_{\text{mse}} := \mathbb{E}_Q\!\left[\|x - Q^{-1}(Q(x))\|^2\right]`} block />
+            </FormulaBlock>
+          </div>
+          <div className={css.card}>
+            <h3 className="text-[1rem] font-semibold mb-2 text-[#b45309]">
+              <Formula tex={String.raw`D_{\text{prod}}`} /> — 내적 왜곡
+            </h3>
+            <FormulaBlock comment="양자화 후 내적이 얼마나 틀어지는 지">
+              <Formula tex={String.raw`D_{\text{prod}} := \mathbb{E}_Q\!\left[|\langle y, x\rangle - \langle y, Q^{-1}(Q(x))\rangle|^2\right]`} block />
+            </FormulaBlock>
+          </div>
+          <div className={css.cardGreen}>
+            <h3 className="text-[1rem] font-semibold mb-2 text-[#059669]">비편향 조건</h3>
+            <FormulaBlock comment="평균적으로 한쪽으로 치우치지 않아야 한다">
+              <Formula tex={String.raw`\mathbb{E}_Q\!\left[\langle y, Q^{-1}(Q(x))\rangle\right] = \langle y, x\rangle`} block />
+            </FormulaBlock>
+          </div>
+        </div>
+
+        <div className={css.callout}>
+          <strong>설계 목표:</strong> 내적 양자화기 <Formula tex={String.raw`Q_{\text{prod}}`} />는 비편향 조건을 제약조건으로 만족시킨 상태에서{" "}
+          <Formula tex={String.raw`D_{\text{prod}}`} />를 최소화하는 방향으로 설계됩니다. 비편향 조건이 만족되면{" "}
+          <Formula tex={String.raw`D_{\text{prod}}`} />는 순수한 분산(variance)이 되어 깔끔한 최적화 목표가 됩니다.
+        </div>
+      </div>
+
       {/* ═══ 0. 전체 파이프라인 ═══ */}
       <div className={css.section}>
         <div className={css.secLabel}>Overview</div>
@@ -357,6 +443,38 @@ const TurboQuantPost = () => {
           </div>
           <p className="text-[12px] text-gray-500 mt-2.5">TurboQuant의 MSE는 이론적 하한선의 최대 <strong className="text-[#b45309]"><Formula tex={String.raw`\sqrt{3\pi}/2 \approx 2.7`} />배</strong> 이내.</p>
         </div>
+
+        {/* Theorem 1 */}
+        <div className={css.calloutGreen + " mt-5"}>
+          <strong>Theorem 1:</strong> b비트 <Formula tex={String.raw`Q_{\text{mse}}`} />는 임의의 단위벡터 x에 대해 다음을 달성한다.
+          <FormulaBlock>
+            <Formula tex={String.raw`D_{\text{mse}}(Q_{\text{mse}}) \leq \frac{\sqrt{3\pi}}{2} \cdot 4^{-b}`} block />
+          </FormulaBlock>
+          <p className="text-[12px] text-gray-600 mt-1 mb-0">비트 1개를 늘릴 때마다 오차가 약 1/4로 줄어듭니다 (지수적 감소). 4비트만 써도 오차가 0.009로 거의 무시할 수 있는 수준입니다.</p>
+        </div>
+
+        {/* Algorithm 1 */}
+        <div className={css.cardAccent + " mt-5"}>
+          <h3 className={css.h3}>Algorithm 1 — TurboQuant_mse (MSE 최적화)</h3>
+          <div className="bg-white/80 rounded-md p-4 font-mono text-[12px] text-gray-700 leading-[1.8] overflow-x-auto">
+            <div className="text-gray-400 mb-2">{'// 사전 설정'}</div>
+            <div><span className="text-[#2563eb]">input:</span> dimension d, bit-width b</div>
+            <div>Generate random rotation matrix <Formula tex={String.raw`\Pi \in \mathbb{R}^{d \times d}`} /></div>
+            <div>Construct codebook: <Formula tex={String.raw`c_1, c_2, \ldots, c_{2^b} \in [-1,1]`} /> minimizing MSE</div>
+            <div className="border-t border-gray-200 my-2" />
+            <div className="text-gray-400 mb-1">{'// 양자화'}</div>
+            <div><span className="text-[#059669]">Procedure</span> <strong>Quant_mse</strong>(x):</div>
+            <div className="pl-4">y ← Π · x</div>
+            <div className="pl-4">idx_j ← argmin{'_{k∈[2^b]}'} |y_j − c_k| &nbsp; for every j ∈ [d]</div>
+            <div className="pl-4"><span className="text-[#2563eb]">output:</span> idx</div>
+            <div className="border-t border-gray-200 my-2" />
+            <div className="text-gray-400 mb-1">{'// 역양자화'}</div>
+            <div><span className="text-[#059669]">Procedure</span> <strong>DeQuant_mse</strong>(idx):</div>
+            <div className="pl-4">ỹ_j ← c_{'idx_j'} &nbsp; for every j ∈ [d]</div>
+            <div className="pl-4">x̃ ← Π<sup>T</sup> · ỹ</div>
+            <div className="pl-4"><span className="text-[#2563eb]">output:</span> x̃</div>
+          </div>
+        </div>
       </div>
 
       {/* ═══ 3. QJL 편향 제거 ═══ */}
@@ -455,7 +573,7 @@ const TurboQuantPost = () => {
                 </FormulaBlock>
 
                 {/* Matrix multiplication visual */}
-                <div className="flex items-center gap-2.5 mt-3 flex-wrap">
+                <div className="flex items-center gap-2.5 mt-3 flex-wrap bg-white/70 rounded-lg p-4">
                   <div>
                     <div className="font-mono text-[9px] text-gray-500 mb-1">S (4×4, Gaussian)</div>
                     <table className="border-separate" style={{borderSpacing:"3px"}}>
@@ -469,8 +587,8 @@ const TurboQuantPost = () => {
                           <tr key={i}>
                             {row.map((v,j)=>{
                               const isPos = !v.trim().startsWith("−");
-                              return <td key={j} className="w-[42px] h-[32px] text-center rounded font-mono text-[11px]"
-                                style={{background: isPos ? "rgba(180,83,9,.11)" : "rgba(5,150,105,.07)", color: isPos ? "#b45309" : "#059669"}}>{v}</td>;
+                              return <td key={j} className="w-[42px] h-[32px] text-center rounded font-mono text-[11px] font-medium"
+                                style={{background: "#ffffff", border: isPos ? "2px solid #b45309" : "2px solid #059669", color: isPos ? "#b45309" : "#059669"}}>{v}</td>;
                             })}
                           </tr>
                         ))}
@@ -482,8 +600,8 @@ const TurboQuantPost = () => {
                     <div className="font-mono text-[9px] text-[#059669] mb-1">r (잔차)</div>
                     <div className="flex flex-col gap-[3px]">
                       {["0.020","0.012","0.038","0.009"].map((v,i)=>(
-                        <div key={i} className="w-[48px] h-[32px] rounded flex items-center justify-center font-mono text-[9px]"
-                          style={{background:"rgba(5,150,105,.09)",border:"1px solid #059669",color:"#059669"}}>{v}</div>
+                        <div key={i} className="w-[48px] h-[32px] rounded flex items-center justify-center font-mono text-[10px] font-medium"
+                          style={{background:"#ffffff",border:"2px solid #059669",color:"#059669"}}>{v}</div>
                       ))}
                     </div>
                   </div>
@@ -494,8 +612,8 @@ const TurboQuantPost = () => {
                       {["+1","−1","+1","+1"].map((v,i)=>(
                         <div key={i} className="w-[48px] h-[32px] rounded flex items-center justify-center font-mono text-[11px] font-bold"
                           style={{
-                            background: v==="+1" ? "rgba(5,150,105,.14)" : "rgba(37,99,235,.12)",
-                            border: v==="+1" ? "1px solid #059669" : "1px solid #2563eb",
+                            background: "#ffffff",
+                            border: v==="+1" ? "2px solid #059669" : "2px solid #2563eb",
                             color: v==="+1" ? "#059669" : "#2563eb",
                           }}>{v}</div>
                       ))}
@@ -546,6 +664,31 @@ const TurboQuantPost = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Algorithm 2 */}
+        <div className={css.cardGold + " mt-5"}>
+          <h3 className={css.h3}>Algorithm 2 — TurboQuant_prod (내적 최적화)</h3>
+          <div className="bg-white/80 rounded-md p-4 font-mono text-[12px] text-gray-700 leading-[1.8] overflow-x-auto">
+            <div className="text-gray-400 mb-2">{'// 사전 설정'}</div>
+            <div><span className="text-[#b45309]">input:</span> dimension d, bit-width b</div>
+            <div>Instantiate TurboQuant_mse with bit-width <strong>b − 1</strong> (Algorithm 1)</div>
+            <div>Generate random projection matrix <Formula tex={String.raw`S \in \mathbb{R}^{d \times d},\; S_{ij} \sim \mathcal{N}(0,1)`} /></div>
+            <div className="border-t border-gray-200 my-2" />
+            <div className="text-gray-400 mb-1">{'// 양자화'}</div>
+            <div><span className="text-[#059669]">Procedure</span> <strong>Quant_prod</strong>(x):</div>
+            <div className="pl-4">idx ← Quant_mse(x)</div>
+            <div className="pl-4">r ← x − DeQuant_mse(idx) &nbsp; <span className="text-gray-400">{'// residual vector'}</span></div>
+            <div className="pl-4">qjl ← sign(S · r) &nbsp; <span className="text-gray-400">{'// QJL on residual'}</span></div>
+            <div className="pl-4"><span className="text-[#b45309]">output:</span> (idx, qjl, ‖r‖₂)</div>
+            <div className="border-t border-gray-200 my-2" />
+            <div className="text-gray-400 mb-1">{'// 역양자화'}</div>
+            <div><span className="text-[#059669]">Procedure</span> <strong>DeQuant_prod</strong>(idx, qjl, γ):</div>
+            <div className="pl-4">x̃_mse ← DeQuant_mse(idx)</div>
+            <div className="pl-4">x̃_qjl ← √(π/2)/d · γ · S<sup>T</sup> · qjl</div>
+            <div className="pl-4"><span className="text-[#b45309]">output:</span> x̃_mse + x̃_qjl</div>
+          </div>
+          <p className="text-[12px] text-gray-500 mt-2.5 mb-0">총 비트 예산: (b−1)+1=b. <strong>Q_mse</strong>가 오차 크기를 줄이고, <strong>QJL</strong>이 편향을 제거합니다.</p>
         </div>
       </div>
 
@@ -711,6 +854,42 @@ const TurboQuantPost = () => {
           </div>
           <p className="text-[12px] text-gray-500 mt-2.5">TurboQuant는 데이터 의존적 전처리(k-means) 없이도 PQ를 전 범위에서 상회.</p>
         </div>
+
+        {/* Empirical Validation */}
+        <div className={css.cardAccent + " mt-4"}>
+          <h3 className={css.h3}>실증 검증 — 이론과 실측의 일치</h3>
+          <p className="text-[12px] text-gray-500 mb-3">DBpedia Entities (OpenAI 임베딩, 1536차원), 학습 세트 100,000개 + 쿼리 세트 1,000개에서 검증.</p>
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <div className="w-7 h-7 bg-[rgba(5,150,105,0.08)] border border-[#059669] rounded-md text-[#059669] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">✓</div>
+              <div>
+                <div className="font-semibold text-[14px] mb-0.5"><Formula tex={String.raw`Q_{\text{prod}}`} /> — 모든 비트폭에서 비편향 유지</div>
+                <p className="text-[12px] text-gray-600 mb-0">내적 추정에 체계적 오류 없음. 비트폭이 증가해도 오차 분포가 0 중심에서 벗어나지 않습니다.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <div className="w-7 h-7 bg-[rgba(180,83,9,0.08)] border border-[#b45309] rounded-md text-[#b45309] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">!</div>
+              <div>
+                <div className="font-semibold text-[14px] mb-0.5"><Formula tex={String.raw`Q_{\text{mse}}`} /> — 낮은 비트폭에서 편향 발생</div>
+                <p className="text-[12px] text-gray-600 mb-0">비트폭이 높아지면 편향이 줄어들며, 높은 비트(3비트 이상)에서는 오히려 Q_mse가 내적 추정 성능이 더 우수합니다.</p>
+              </div>
+            </div>
+          </div>
+          <div className={css.callout + " mt-3"}>
+            <strong>핵심 시사점:</strong> 낮은 비트(1~2비트)에서는 <Formula tex={String.raw`Q_{\text{prod}}`} />가, 높은 비트(3비트 이상)에서는 <Formula tex={String.raw`Q_{\text{mse}}`} />가 내적 추정에 유리합니다.
+            실측 왜곡값이 Theorem 1, 2의 이론적 상한 및 Theorem 3의 하한과 밀접하게 일치함을 확인했습니다.
+          </div>
+        </div>
+
+        {/* 비정수 비트폭 */}
+        <div className={css.card + " mt-4"}>
+          <h3 className={css.h3}>비정수 비트폭 구현 방식</h3>
+          <p className="text-[12px] text-gray-500 mb-3">채널을 아웃라이어/비아웃라이어로 분리하여 각각 다른 비트를 할당합니다.</p>
+          <FormulaBlock comment="예: 2.5비트 = (32개 아웃라이어 채널 × 3비트 + 96개 일반 채널 × 2비트) / 128">
+            <Formula tex={String.raw`b_{\text{avg}} = \frac{n_{\text{outlier}} \times b_{\text{high}} + n_{\text{inlier}} \times b_{\text{low}}}{n_{\text{total}}}`} block />
+          </FormulaBlock>
+          <p className="text-[12px] text-gray-500 mt-2 mb-0">TurboQuant는 기존 방법(KIVI, PolarQuant)이 생성 중 새 토큰을 양자화하지 않는 반면, <strong className="text-[#059669]">스트리밍 생성 과정 중에도 양자화를 적용</strong>합니다.</p>
+        </div>
       </div>
 
       {/* ═══ 6. 요약 ═══ */}
@@ -763,6 +942,61 @@ const TurboQuantPost = () => {
           TurboQuant는 <em>데이터 비의존적(online)</em>이므로 KV Cache처럼 스트리밍 생성 중 실시간 적용이 가능합니다.
           GPU에서 완전 벡터화되며, 코드북 크기는 상수 — 비트폭이 늘어도 저장 공간이 지수 증가하는 PQ의 한계를 극복합니다.
           3.5비트에서 Full Precision과 동등한 품질, 2.5비트에서 미미한 품질 저하만으로 메모리를 6분의 1 수준으로 절감합니다.
+        </div>
+      </div>
+
+      {/* ═══ 7. 결론 및 의의 ═══ */}
+      <SectionDivider>Conclusion & Significance</SectionDivider>
+      <div className={css.section}>
+        <div className={css.secLabel}>Conclusion</div>
+        <h2 id="conclusion" className={css.h2}>결론 및 의의</h2>
+        <p className={css.p}>
+          TurboQuant는 재학습이나 캘리브레이션 없이 기존 시스템에 바로 적용 가능한 Drop-in 양자화 솔루션으로,
+          정보이론적 하한에 근접한 왜곡률을 이론적으로 증명하면서도 실용적 성능을 달성했습니다.
+        </p>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 my-5">
+          {[
+            {label:"메모리", value:"최대 6배 감소", sub:"FP16 대비"},
+            {label:"속도", value:"최대 8배 향상", sub:"KV fetch 단계 기준"},
+            {label:"정확도", value:"사실상 무손실", sub:"3.5비트 기준"},
+            {label:"적용성", value:"Drop-in", sub:"재학습 불필요"},
+            {label:"NN 탐색", value:"인덱싱 제로", sub:"PQ/RabitQ 대비"},
+            {label:"이론-실험", value:"하한 근접", sub:"최대 2.7배 이내"},
+          ].map(({label,value,sub})=>(
+            <div key={label} className="bg-white border border-gray-200 rounded-lg p-4 text-center">
+              <div className="font-mono text-[10px] text-gray-400 uppercase tracking-[0.1em] mb-1">{label}</div>
+              <div className="text-[1.05rem] font-bold text-[#059669]">{value}</div>
+              <div className="font-mono text-[10px] text-gray-500 mt-0.5">{sub}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className={css.calloutGreen}>
+          <strong>AI 미래를 어떻게 바꿔놓을까?</strong><br/>
+          추론 비용이 AI의 발전을 가로막는 세상에서, 효율성은 곧 능력입니다.
+          메모리 문제가 해결되면 AI는 훨씬 더 많은 곳에서 많이 쓰게 될 것이며 (제본스의 역설),
+          대규모 모델의 온디바이스 배포와 롱 컨텍스트 에이전트 구현을 가능하게 하여 AI 연산 시장 전체의 활용 범위를 확장할 잠재력을 지닙니다.
+        </div>
+      </div>
+
+      {/* ═══ 8. 용어 사전 ═══ */}
+      <SectionDivider>Glossary</SectionDivider>
+      <div className={css.section}>
+        <div className={css.secLabel}>Reference</div>
+        <h2 id="glossary" className={css.h2}>용어 사전</h2>
+        <div className="space-y-3">
+          {[
+            {term:"KV Cache", def:"어텐션 연산 시 이전 토큰의 Key와 Value를 저장하여 재계산을 방지하는 메모리 공간."},
+            {term:"QJL (Quantized Johnson-Lindenstrauss)", def:"고차원 벡터의 내적을 1비트 부호(sign)만으로 비편향 추정할 수 있는 수학적 기법. 본 논문에서는 내적 왜곡 최적화를 위한 잔차 보정 단계에 활용됩니다."},
+            {term:"Lloyd-Max Algorithm", def:"연속 확률 분포에 대한 최적 스칼라 양자화기를 구하는 알고리즘. 1차원 연속 k-means와 동치이다."},
+            {term:"Shannon Lower Bound", def:"정보이론에서 유래한, 주어진 비트 수로 달성 가능한 최소 왜곡의 이론적 한계."},
+          ].map(({term,def})=>(
+            <div key={term} className="border-b border-gray-200 pb-3 last:border-b-0">
+              <div className="font-semibold text-[14px] text-gray-800 mb-0.5">{term}</div>
+              <p className="text-[13px] text-gray-600 mb-0">{def}</p>
+            </div>
+          ))}
         </div>
       </div>
 
