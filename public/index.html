@@ -25,6 +25,20 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script>
+      // GitHub Pages SPA redirect restore
+      (function(){
+        var redirect = window.location.search.split('?/');
+        if (redirect[1]) {
+          var decoded = redirect[1].split('&').map(function(s){
+            return s.replace(/~and~/g, '&');
+          }).join('?');
+          window.history.replaceState(null, null,
+            '/' + decoded + window.location.hash
+          );
+        }
+      })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
   </head>
   <body>
