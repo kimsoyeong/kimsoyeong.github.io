@@ -16,6 +16,7 @@ import { IoSearch, IoBatteryFull } from "react-icons/io5";
 import ProjectThumb from "../Common/ProjectThumb";
 import TopButtons from "../Common/TopButtons";
 import ProjectBody from "../Common/ProjectBody";
+import RecentPosts from "./RecentPosts";
 
 const MainPage = () => {
   const [formattedDate, setFormattedDate] = useState("");
@@ -24,6 +25,7 @@ const MainPage = () => {
   const [finderVisible, setFinderVisible] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(false);
   const [messagesVisible, setMessagesVisible] = useState(true);
+  const [recentPostsVisible, setRecentPostsVisible] = useState(true);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
@@ -341,6 +343,12 @@ const MainPage = () => {
           <IconBtn title={"Portfolio"} />
         </div>
 
+        {recentPostsVisible && (
+          <RecentPosts
+            count={3}
+            onClose={() => setRecentPostsVisible(!recentPostsVisible)}
+          />
+        )}
         {messagesVisible && <Messages func={showMessages} />}
         {terminalVisible ? <Terminal func={showTerminal} /> : null}
       </div>
