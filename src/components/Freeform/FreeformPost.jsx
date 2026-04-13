@@ -25,12 +25,12 @@ const FreeformPost = () => {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[#f5f6f8] font-dm-sans flex items-center justify-center">
+      <div className="min-h-screen bg-[#fafafa] font-dm-sans flex items-center justify-center">
         <div className="text-center">
-          <p className="text-[#6b7280] mb-4">Post not found.</p>
+          <p className="text-gray-500 mb-4">Post not found.</p>
           <button
             onClick={() => navigate("/freeform")}
-            className="font-dm-mono text-[12px] text-[#2563eb] hover:underline"
+            className="font-mono text-[12px] text-gray-800 hover:underline"
           >
             ← Back to list
           </button>
@@ -40,39 +40,42 @@ const FreeformPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f6f8] font-dm-sans text-[#1a1e2a]">
+    <div className="min-h-screen bg-[#fafafa] font-dm-sans text-[#1a1e2a]">
       {/* Hero */}
-      <div className="border-b border-[#dde1ea]">
+      <div className="border-b border-gray-200 bg-white">
         <div className="max-w-[960px] mx-auto px-7 pt-20 pb-14">
           <button
             onClick={() => navigate("/freeform")}
-            className="font-dm-mono text-[12px] text-[#6b7280] hover:text-[#2563eb] transition-colors mb-6 block"
+            className="font-mono text-[12px] text-gray-400 hover:text-gray-800 transition-colors mb-6 block"
           >
             ← All Posts
           </button>
 
-          <p className="font-dm-mono text-[11px] text-[#2563eb] tracking-[0.15em] uppercase mb-4">
-            {post.tag}
-          </p>
+          <div className="flex items-center gap-3 mb-4">
+            <img src="/assets/img/Freeform.png" alt="freeform" className="w-6 h-6" />
+            <p className="font-mono text-[11px] text-gray-500 tracking-[0.15em] uppercase">
+              {post.tag}
+            </p>
+          </div>
           <h1 className="font-playfair text-3xl md:text-[clamp(2rem,5vw,3.4rem)] leading-[1.15] mb-5">
             {post.title}
             <br />
-            <span className="text-[#2563eb]">{post.subtitle}</span>
+            <span className="text-gray-600">{post.subtitle}</span>
           </h1>
-          <p className="text-[#6b7280] text-[15px] max-w-[640px] leading-relaxed">
+          <p className="text-gray-500 text-[15px] max-w-[640px] leading-relaxed">
             {post.desc}
           </p>
 
           <div className="flex gap-7 flex-wrap mt-7 items-center">
-            <span className="font-dm-mono text-[12px] text-[#6b7280]">
-              날짜 <strong className="text-[#b45309]">{post.date}</strong>
+            <span className="font-mono text-[12px] text-gray-500">
+              날짜 <strong className="text-gray-800">{post.date}</strong>
             </span>
             {post.source && (
               <a
                 href={post.source}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-dm-mono text-[12px] text-[#2563eb] hover:underline"
+                className="font-mono text-[12px] text-gray-500 hover:text-gray-800 underline"
               >
                 원본 논문 →
               </a>
@@ -81,7 +84,7 @@ const FreeformPost = () => {
               {post.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="font-dm-mono text-[10px] text-[#6b7280] bg-[#f0f2f7] border border-[#dde1ea] px-2 py-0.5 rounded"
+                  className="font-mono text-[10px] text-gray-500 bg-black/5 px-2 py-0.5 rounded"
                 >
                   {tag}
                 </span>
@@ -99,7 +102,7 @@ const FreeformPost = () => {
             {Component ? (
               <Component />
             ) : (
-              <div className="bg-white border border-[#dde1ea] rounded-[10px] p-8 md:p-10">
+              <div className="bg-[#f0ede4] rounded-lg p-8 md:p-10 shadow-md">
                 <MarkdownRenderer content={content} />
               </div>
             )}
@@ -118,7 +121,7 @@ const FreeformPost = () => {
       <div className="max-w-[960px] mx-auto px-7 pb-16">
         <button
           onClick={() => navigate("/freeform")}
-          className="font-dm-mono text-[12px] text-[#6b7280] hover:text-[#2563eb] transition-colors"
+          className="font-mono text-[12px] text-gray-400 hover:text-gray-800 transition-colors"
         >
           ← Back to All Posts
         </button>

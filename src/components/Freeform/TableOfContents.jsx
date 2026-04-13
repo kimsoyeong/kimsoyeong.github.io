@@ -27,7 +27,7 @@ const TableOfContents = ({ items }) => {
 
   return (
     <nav className="sticky top-24">
-      <div className="font-dm-mono text-[10px] text-[#6b7280] uppercase tracking-[0.15em] mb-4">
+      <div className="font-mono text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-4">
         On this page
       </div>
       <ul className="flex flex-col gap-0.5">
@@ -41,8 +41,8 @@ const TableOfContents = ({ items }) => {
               }}
               className={`block py-1.5 pl-3 border-l-2 text-[13px] transition-all duration-150 ${
                 activeId === item.id
-                  ? "border-[#2563eb] text-[#2563eb] font-medium"
-                  : "border-transparent text-[#6b7280] hover:text-[#1a1e2a] hover:border-[#dde1ea]"
+                  ? "border-gray-800 text-gray-800 font-medium"
+                  : "border-transparent text-gray-400 hover:text-gray-800 hover:border-gray-300"
               }`}
             >
               {item.label}

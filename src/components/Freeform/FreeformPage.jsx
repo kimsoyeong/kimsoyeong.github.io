@@ -8,6 +8,17 @@ const categoryLabel = {
   article: "아티클",
 };
 
+const cardColors = [
+  "bg-[#f0ede4]", // warm beige
+  "bg-[#d6e4d6]", // muted green
+  "bg-[#dce6ef]", // muted blue
+  "bg-[#e8d8df]", // muted pink
+  "bg-[#e8ddd0]", // muted sand
+  "bg-[#d9d3e3]", // muted purple
+];
+
+const cardRotations = ["-rotate-1", "rotate-[0.5deg]", "-rotate-[0.5deg]", "rotate-1", "-rotate-[0.3deg]", "rotate-[0.8deg]"];
+
 const FreeformPage = () => {
   const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("all");
@@ -28,36 +39,39 @@ const FreeformPage = () => {
   }, [activeCategory, activeTag]);
 
   return (
-    <div className="min-h-screen bg-[#f5f6f8] font-dm-sans text-[#1a1e2a]">
+    <div className="min-h-screen bg-[#fafafa] font-dm-sans text-[#1a1e2a]">
       {/* Hero */}
-      <div className="border-b border-[#dde1ea]">
+      <div className="border-b border-gray-200 bg-white">
         <div className="max-w-[960px] mx-auto px-7 pt-20 pb-14">
-          <p className="font-dm-mono text-[11px] text-[#2563eb] tracking-[0.15em] uppercase mb-4">
-            Freeform · Blog
-          </p>
+          <div className="flex items-center gap-3 mb-4">
+            <img src="/assets/img/Freeform.png" alt="freeform" className="w-8 h-8" />
+            <p className="font-mono text-[11px] text-gray-500 tracking-[0.15em] uppercase">
+              Freeform · Blog
+            </p>
+          </div>
           <h1 className="font-playfair text-4xl md:text-5xl leading-tight mb-5">
-            Reading <span className="text-[#2563eb]">Notes</span>
+            Reading <span className="text-gray-800">Notes</span>
           </h1>
-          <p className="text-[#6b7280] text-[15px] max-w-[640px] leading-relaxed">
+          <p className="text-gray-500 text-[15px] max-w-[640px] leading-relaxed">
             논문, 공식문서, 아티클을 읽고 정리한 리뷰와 리포트를 모아둡니다.
           </p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="border-b border-[#dde1ea] bg-white">
+      <div className="border-b border-gray-200 bg-[#f8f8f8]">
         <div className="max-w-[960px] mx-auto px-7 py-4">
           {/* Category filter */}
           <div className="flex gap-2 flex-wrap items-center mb-3">
-            <span className="font-dm-mono text-[10px] text-[#6b7280] uppercase tracking-[0.12em] mr-2">Category</span>
+            <span className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.12em] mr-2">Category</span>
             {categories.map((cat) => (
               <button
                 key={cat.key}
                 onClick={() => setActiveCategory(cat.key)}
-                className={`font-dm-mono text-[11px] px-3 py-1 rounded-full border transition-all ${
+                className={`font-mono text-[11px] px-3 py-1 rounded-full border transition-all ${
                   activeCategory === cat.key
-                    ? "bg-[#2563eb] text-white border-[#2563eb]"
-                    : "bg-white text-[#6b7280] border-[#dde1ea] hover:border-[#2563eb] hover:text-[#2563eb]"
+                    ? "bg-gray-800 text-white border-gray-800"
+                    : "bg-white text-gray-500 border-gray-300 hover:border-gray-800 hover:text-gray-800"
                 }`}
               >
                 {cat.label}
@@ -66,15 +80,15 @@ const FreeformPage = () => {
           </div>
           {/* Tag filter */}
           <div className="flex gap-2 flex-wrap items-center">
-            <span className="font-dm-mono text-[10px] text-[#6b7280] uppercase tracking-[0.12em] mr-2">Tags</span>
+            <span className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.12em] mr-2">Tags</span>
             {allTags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                className={`font-dm-mono text-[10px] px-2.5 py-0.5 rounded border transition-all ${
+                className={`font-mono text-[10px] px-2.5 py-0.5 rounded border transition-all ${
                   activeTag === tag
-                    ? "bg-[rgba(37,99,235,0.08)] text-[#2563eb] border-[#2563eb]"
-                    : "bg-[#f0f2f7] text-[#6b7280] border-transparent hover:border-[#dde1ea]"
+                    ? "bg-gray-100 text-gray-800 border-gray-800"
+                    : "bg-white text-gray-500 border-transparent hover:border-gray-300"
                 }`}
               >
                 {tag}
@@ -83,7 +97,7 @@ const FreeformPage = () => {
             {activeTag && (
               <button
                 onClick={() => setActiveTag(null)}
-                className="font-dm-mono text-[10px] text-[#6b7280] hover:text-[#dc2626] ml-1"
+                className="font-mono text-[10px] text-gray-400 hover:text-red-500 ml-1"
               >
                 × clear
               </button>
@@ -92,73 +106,92 @@ const FreeformPage = () => {
         </div>
       </div>
 
-      {/* Post List */}
+      {/* Post List — sticky note board */}
       <div className="max-w-[960px] mx-auto px-7 py-16">
-        <p className="font-dm-mono text-[10px] tracking-[0.18em] uppercase text-[#6b7280] mb-4">
+        <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-gray-400 mb-6">
           {activeCategory === "all" ? "All Posts" : categoryLabel[activeCategory] || activeCategory} · {filtered.length}
         </p>
 
         {filtered.length === 0 ? (
-          <div className="text-center py-20 text-[#6b7280]">
+          <div className="text-center py-20 text-gray-500">
             <p className="text-lg mb-2">No posts found.</p>
             <button
               onClick={() => { setActiveCategory("all"); setActiveTag(null); }}
-              className="font-dm-mono text-[12px] text-[#2563eb] hover:underline"
+              className="font-mono text-[12px] text-gray-800 hover:underline"
             >
               Reset filters
             </button>
           </div>
         ) : (
-          <div className="flex flex-col gap-5">
-            {filtered.map((post) => (
+          <div className="flex flex-col gap-6">
+            {filtered.map((post, i) => (
               <div
                 key={post.slug}
                 onClick={() => navigate(`/freeform/${post.slug}`)}
-                className="bg-white border border-[#dde1ea] rounded-[10px] p-7 cursor-pointer
-                           hover:border-[#2563eb] hover:shadow-md transition-all duration-200"
+                className={`${cardColors[i % cardColors.length]} ${cardRotations[i % cardRotations.length]}
+                            rounded-lg p-6 shadow-md cursor-pointer
+                            hover:rotate-0 hover:scale-[1.01] hover:shadow-lg transition-all duration-200`}
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="font-dm-mono text-[10px] tracking-[0.12em] uppercase text-[#2563eb] bg-[rgba(37,99,235,0.08)] px-2 py-0.5 rounded">
-                    {categoryLabel[post.category] || post.category}
-                  </span>
-                  <span className="font-dm-mono text-[11px] text-[#6b7280]">
-                    {post.date}
-                  </span>
-                  {post.source && (
-                    <a
-                      href={post.source}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className="font-dm-mono text-[10px] text-[#6b7280] hover:text-[#2563eb] underline"
-                    >
-                      원본 →
-                    </a>
-                  )}
-                </div>
+                <div className="flex gap-4">
+                  {/* Thumbnail */}
+                  <div className="w-20 h-20 rounded-md overflow-hidden shrink-0 bg-gray-200/50 flex items-center justify-center shadow-sm">
+                    {post.thumbnail ? (
+                      <img
+                        src={post.thumbnail}
+                        alt={post.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-3xl">📝</span>
+                    )}
+                  </div>
 
-                <h3 className="text-lg font-bold mb-1">
-                  {post.title}
-                  {post.subtitle && (
-                    <span className="text-[#2563eb] ml-2 font-semibold">
-                      — {post.subtitle}
-                    </span>
-                  )}
-                </h3>
+                  {/* Content */}
+                  <div className="flex flex-col min-w-0 flex-1">
+                    <div className="flex items-center gap-3 mb-1.5">
+                      <span className="font-mono text-[10px] tracking-[0.12em] uppercase text-gray-500 bg-black/5 px-2 py-0.5 rounded">
+                        {categoryLabel[post.category] || post.category}
+                      </span>
+                      <span className="font-mono text-[11px] text-gray-500">
+                        {post.date}
+                      </span>
+                      {post.source && (
+                        <a
+                          href={post.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="font-mono text-[10px] text-gray-500 hover:text-gray-800 underline"
+                        >
+                          원본 →
+                        </a>
+                      )}
+                    </div>
 
-                <p className="text-[#4b5563] text-sm leading-relaxed mb-3">
-                  {post.desc}
-                </p>
+                    <h3 className="text-lg font-bold text-gray-800 mb-1">
+                      {post.title}
+                      {post.subtitle && (
+                        <span className="text-gray-600 ml-2 font-semibold">
+                          — {post.subtitle}
+                        </span>
+                      )}
+                    </h3>
 
-                <div className="flex gap-2 flex-wrap">
-                  {post.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="font-dm-mono text-[10px] text-[#6b7280] bg-[#f0f2f7] px-2 py-0.5 rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                    <p className="text-gray-600 text-sm leading-relaxed mb-2 line-clamp-2">
+                      {post.desc}
+                    </p>
+
+                    <div className="flex gap-1.5 flex-wrap">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="font-mono text-[9px] text-gray-500 bg-black/5 px-1.5 py-0.5 rounded"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -170,7 +203,7 @@ const FreeformPage = () => {
       <div className="max-w-[960px] mx-auto px-7 pb-16">
         <button
           onClick={() => navigate("/")}
-          className="font-dm-mono text-[12px] text-[#6b7280] hover:text-[#2563eb] transition-colors"
+          className="font-mono text-[12px] text-gray-400 hover:text-gray-800 transition-colors"
         >
           ← Back to Home
         </button>
