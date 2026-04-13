@@ -1,4 +1,4 @@
-import TurboQuantPost from "./TurboQuantPost";
+import TurboQuantPost from "./posts/turboquant/TurboQuantPost";
 
 const posts = [
   {
