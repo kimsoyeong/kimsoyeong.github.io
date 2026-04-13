@@ -896,7 +896,7 @@ const TurboQuantPost = () => {
       <hr className="border-none border-t border-gray-200 my-14" />
       <div className={css.section}>
         <div className={css.secLabel}>Summary</div>
-        <h2 id="summary" className={css.h2}>핵심 요약</h2>
+        <h2 id="summary" className={css.h2}>핵심 요약 및 의의</h2>
         <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1">
           <div className={css.cardAccent}>
             <h3 className={css.h3}>Qmse — MSE 최적화</h3>
@@ -937,25 +937,8 @@ const TurboQuantPost = () => {
           </div>
         </div>
 
-        <div className={css.calloutGreen + " mt-5"}>
-          <strong>AI Agent 개발자 관점 핵심 포인트:</strong><br/>
-          TurboQuant는 <em>데이터 비의존적(online)</em>이므로 KV Cache처럼 스트리밍 생성 중 실시간 적용이 가능합니다.
-          GPU에서 완전 벡터화되며, 코드북 크기는 상수 — 비트폭이 늘어도 저장 공간이 지수 증가하는 PQ의 한계를 극복합니다.
-          3.5비트에서 Full Precision과 동등한 품질, 2.5비트에서 미미한 품질 저하만으로 메모리를 6분의 1 수준으로 절감합니다.
-        </div>
-      </div>
-
-      {/* ═══ 7. 결론 및 의의 ═══ */}
-      <SectionDivider>Conclusion & Significance</SectionDivider>
-      <div className={css.section}>
-        <div className={css.secLabel}>Conclusion</div>
-        <h2 id="conclusion" className={css.h2}>결론 및 의의</h2>
-        <p className={css.p}>
-          TurboQuant는 재학습이나 캘리브레이션 없이 기존 시스템에 바로 적용 가능한 Drop-in 양자화 솔루션으로,
-          정보이론적 하한에 근접한 왜곡률을 이론적으로 증명하면서도 실용적 성능을 달성했습니다.
-        </p>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 my-5">
+        {/* 결과 종합 */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-5 mb-5">
           {[
             {label:"메모리", value:"최대 6배 감소", sub:"FP16 대비"},
             {label:"속도", value:"최대 8배 향상", sub:"KV fetch 단계 기준"},
@@ -972,7 +955,14 @@ const TurboQuantPost = () => {
           ))}
         </div>
 
-        <div className={css.calloutGreen}>
+        <div className={css.calloutGreen + " mt-5"}>
+          <strong>AI Agent 개발자 관점 핵심 포인트:</strong><br/>
+          TurboQuant는 <em>데이터 비의존적(online)</em>이므로 KV Cache처럼 스트리밍 생성 중 실시간 적용이 가능합니다.
+          GPU에서 완전 벡터화되며, 코드북 크기는 상수 — 비트폭이 늘어도 저장 공간이 지수 증가하는 PQ의 한계를 극복합니다.
+          3.5비트에서 Full Precision과 동등한 품질, 2.5비트에서 미미한 품질 저하만으로 메모리를 6분의 1 수준으로 절감합니다.
+        </div>
+
+        <div className={css.calloutGold + " mt-4"}>
           <strong>AI 미래를 어떻게 바꿔놓을까?</strong><br/>
           추론 비용이 AI의 발전을 가로막는 세상에서, 효율성은 곧 능력입니다.
           메모리 문제가 해결되면 AI는 훨씬 더 많은 곳에서 많이 쓰게 될 것이며 (제본스의 역설),
