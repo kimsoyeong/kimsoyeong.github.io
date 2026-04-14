@@ -1,6 +1,30 @@
 import TurboQuantPost from "./posts/turboquant/TurboQuantPost";
+import TriAttentionPost from "./posts/triattention/TriAttentionPost";
 
 const posts = [
+  {
+    slug: "triattention",
+    title: "TriAttention",
+    subtitle: "삼각함수 KV 압축으로 효율적 장문 추론",
+    tag: "논문 리뷰 · 2026 · arXiv:2604.04921",
+    date: "2026-04-13",
+    category: "paper",
+    thumbnail: null,
+    desc: "KV Cache의 Q/K 집중 현상을 삼각함수 급수로 포착해, 장문 추론에서도 정확도와 처리량을 동시에 잡는 새로운 어텐션 메커니즘을 분석합니다.",
+    tags: ["AI", "KV Cache", "Attention"],
+    source: "https://arxiv.org/abs/2604.04921",
+    component: TriAttentionPost,
+    toc: [
+      { id: "overview", label: "개요" },
+      { id: "problem", label: "문제 정의" },
+      { id: "concentration", label: "Q/K Concentration" },
+      { id: "method", label: "설계" },
+      { id: "results", label: "실험 결과" },
+      { id: "appendix", label: "부록 핵심" },
+      { id: "conclusion", label: "결론" },
+      { id: "glossary", label: "용어 사전" },
+    ],
+  },
   {
     slug: "turboquant",
     title: "TurboQuant",
