@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import Draggable from "react-draggable";
-import TopButtons from "./TopButtons";
 
 const cvMessages = [
   { type: "date", text: "Today" },

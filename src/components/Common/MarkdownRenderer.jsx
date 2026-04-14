@@ -11,14 +11,14 @@ const MarkdownRenderer = ({ content }) => {
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeHighlight, rehypeRaw]}
         components={{
-          h1: ({ node, ...props }) => (
-            <h1 className="text-3xl font-bold my-4" {...props} />
+          h1: ({ node, children, ...props }) => (
+            <h1 className="text-3xl font-bold my-4" {...props}>{children}</h1>
           ),
-          h2: ({ node, ...props }) => (
-            <h2 className="text-2xl font-semibold my-3" {...props} />
+          h2: ({ node, children, ...props }) => (
+            <h2 className="text-2xl font-semibold my-3" {...props}>{children}</h2>
           ),
-          h3: ({ node, ...props }) => (
-            <h3 className="text-2xl font-semibold my-2" {...props} />
+          h3: ({ node, children, ...props }) => (
+            <h3 className="text-2xl font-semibold my-2" {...props}>{children}</h3>
           ),
           pre: ({ node, ...props }) => (
             <pre className="bg-[#2b2b2b] text-gray-100 p-4 rounded-lg my-3 overflow-x-auto block w-full" {...props} />
