@@ -98,7 +98,7 @@ const FreeformPost = () => {
       <div className={`mx-auto px-7 py-16 ${hasToc ? "max-w-[1280px]" : "max-w-[960px]"}`}>
         <div className={hasToc ? "flex gap-10" : ""}>
           {/* Main content */}
-          <div className={hasToc ? "flex-1 min-w-0 max-w-[960px]" : ""}>
+          <div className={hasToc ? "flex-1 min-w-0 max-w-[860px] mx-auto" : ""}>
             {Component ? (
               <Component />
             ) : (
