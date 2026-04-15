@@ -22,6 +22,7 @@ const posts = [
       { id: "results", label: "실험 결과" },
       { id: "appendix", label: "부록 핵심" },
       { id: "conclusion", label: "결론" },
+      { id: "explainer", label: "개념 해설" },
       { id: "glossary", label: "용어 사전" },
     ],
   },
