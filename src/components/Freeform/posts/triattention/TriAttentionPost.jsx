@@ -1,22 +1,22 @@
 import { useState } from "react";
 
 const css = {
-  section: "pt-[52px]",
+  section: "pt-8 sm:pt-[52px]",
   secLabel: "font-mono text-[9px] tracking-[0.2em] uppercase text-[#7a6f65] mb-2.5 flex items-center gap-2.5 after:content-[''] after:flex-1 after:h-px after:bg-[#e0d8ce]",
-  h2: "text-[clamp(20px,2.5vw,28px)] font-bold mb-[18px] text-[#1a1614] leading-[1.22] tracking-[-0.01em]",
-  h3: "text-[17px] font-bold mb-3 text-[#1a1614]",
-  p: "text-[14.5px] text-[#3d3530] mb-4 leading-[1.82]",
-  overviewCard: "bg-white border border-[#e0d8ce] border-l-4 border-l-[#b45309] rounded-r-[10px] rounded-l-none p-7 mb-8 shadow-[0_2px_12px_rgba(0,0,0,0.04)]",
-  card: "bg-[#f0ede4] rounded-lg p-7 mb-5 shadow-md -rotate-[0.3deg]",
-  cardAccent: "bg-[#dce6ef] rounded-lg p-7 mb-5 shadow-md rotate-[0.3deg]",
-  cardGold: "bg-[#e8ddd0] rounded-lg p-7 mb-5 shadow-md -rotate-[0.2deg]",
-  cardGreen: "bg-[#d6e4d6] rounded-lg p-7 mb-5 shadow-md rotate-[0.2deg]",
-  finding: "bg-[#fef3c7] border border-[#fde68a] rounded-[10px] px-[26px] py-[22px] mb-5",
+  h2: "text-[clamp(18px,2.5vw,28px)] font-bold mb-3 sm:mb-[18px] text-[#1a1614] leading-[1.22] tracking-[-0.01em]",
+  h3: "text-[15px] sm:text-[17px] font-bold mb-3 text-[#1a1614]",
+  p: "text-[13.5px] sm:text-[14.5px] text-[#3d3530] mb-4 leading-[1.82]",
+  overviewCard: "bg-white border border-[#e0d8ce] border-l-4 border-l-[#b45309] rounded-r-[10px] rounded-l-none p-4 sm:p-7 mb-8 shadow-[0_2px_12px_rgba(0,0,0,0.04)]",
+  card: "bg-[#f0ede4] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:-rotate-[0.3deg]",
+  cardAccent: "bg-[#dce6ef] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:rotate-[0.3deg]",
+  cardGold: "bg-[#e8ddd0] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:-rotate-[0.2deg]",
+  cardGreen: "bg-[#d6e4d6] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:rotate-[0.2deg]",
+  finding: "bg-[#fef3c7] border border-[#fde68a] rounded-[10px] px-4 py-4 sm:px-[26px] sm:py-[22px] mb-5",
   findingLabel: "font-mono text-[9.5px] tracking-[0.14em] uppercase text-[#b45309] mb-2 font-semibold",
-  findingTitle: "text-[16px] font-bold text-[#1a1614] mb-2",
-  divider: "h-px bg-[#e0d8ce] mt-9",
-  code: "font-mono text-[12px] bg-[#f2ede6] border border-[#e0d8ce] rounded-[3px] px-[5px] py-px text-[#b45309]",
-  numLabel: "font-mono text-[13px] text-[#b45309] font-semibold mr-2",
+  findingTitle: "text-[14px] sm:text-[16px] font-bold text-[#1a1614] mb-2",
+  divider: "h-px bg-[#e0d8ce] mt-6 sm:mt-9",
+  code: "font-mono text-[11px] sm:text-[12px] bg-[#f2ede6] border border-[#e0d8ce] rounded-[3px] px-[5px] py-px text-[#b45309]",
+  numLabel: "font-mono text-[12px] sm:text-[13px] text-[#b45309] font-semibold mr-2",
 };
 
 const SectionDivider = () => (
@@ -33,7 +33,7 @@ const InsightCard = ({ icon, title, children, color = "blue" }) => {
     purple: "border-t-[#6d28d9]",
   };
   return (
-    <div className={`bg-white border border-[#e0d8ce] border-t-[3px] ${colors[color]} rounded-[10px] px-[22px] py-5 overflow-hidden`}>
+    <div className={`bg-white border border-[#e0d8ce] border-t-[3px] ${colors[color]} rounded-[10px] px-4 py-4 sm:px-[22px] sm:py-5 overflow-hidden`}>
       <div className="text-[22px] mb-2">{icon}</div>
       <div className="font-bold text-[14px] text-[#1a1614] mb-1.5">{title}</div>
       <p className="text-[13px] text-[#3d3530] leading-[1.72]">{children}</p>
