@@ -42,14 +42,14 @@ const FreeformPage = () => {
     <div className="min-h-screen bg-[#fafafa] font-dm-sans text-[#1a1e2a]">
       {/* Hero */}
       <div className="border-b border-gray-200 bg-white">
-        <div className="max-w-[960px] mx-auto px-7 pt-20 pb-14">
+        <div className="max-w-[960px] mx-auto px-4 pt-12 pb-8 sm:px-7 sm:pt-20 sm:pb-14">
           <div className="flex items-center gap-3 mb-4">
             <img src="/assets/img/Freeform.png" alt="freeform" className="w-8 h-8" />
             <p className="font-mono text-[11px] text-gray-500 tracking-[0.15em] uppercase">
               Freeform · Blog
             </p>
           </div>
-          <h1 className="font-playfair text-4xl md:text-5xl leading-tight mb-5">
+          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl leading-tight mb-4 sm:mb-5">
             Reading <span className="text-gray-800">Notes</span>
           </h1>
           <p className="text-gray-500 text-[15px] max-w-[640px] leading-relaxed">
@@ -60,7 +60,7 @@ const FreeformPage = () => {
 
       {/* Filters */}
       <div className="border-b border-gray-200 bg-[#f8f8f8]">
-        <div className="max-w-[960px] mx-auto px-7 py-4">
+        <div className="max-w-[960px] mx-auto px-4 py-3 sm:px-7 sm:py-4">
           {/* Category filter */}
           <div className="flex gap-2 flex-wrap items-center mb-3">
             <span className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.12em] mr-2">Category</span>
@@ -107,7 +107,7 @@ const FreeformPage = () => {
       </div>
 
       {/* Post List — sticky note board */}
-      <div className="max-w-[960px] mx-auto px-7 py-16">
+      <div className="max-w-[960px] mx-auto px-4 py-10 sm:px-7 sm:py-16">
         <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-gray-400 mb-6">
           {activeCategory === "all" ? "All Posts" : categoryLabel[activeCategory] || activeCategory} · {filtered.length}
         </p>
@@ -129,12 +129,12 @@ const FreeformPage = () => {
                 key={post.slug}
                 onClick={() => navigate(`/freeform/${post.slug}`)}
                 className={`${cardColors[i % cardColors.length]} ${cardRotations[i % cardRotations.length]}
-                            rounded-lg p-6 shadow-md cursor-pointer
+                            rounded-lg p-4 sm:p-6 shadow-md cursor-pointer
                             hover:rotate-0 hover:scale-[1.01] hover:shadow-lg transition-all duration-200`}
               >
-                <div className="flex gap-4">
+                <div className="flex gap-3 sm:gap-4">
                   {/* Thumbnail */}
-                  <div className="w-20 h-20 rounded-md overflow-hidden shrink-0 bg-gray-200/50 flex items-center justify-center shadow-sm">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-md overflow-hidden shrink-0 bg-gray-200/50 flex items-center justify-center shadow-sm">
                     {post.thumbnail ? (
                       <img
                         src={post.thumbnail}
@@ -168,7 +168,7 @@ const FreeformPage = () => {
                       )}
                     </div>
 
-                    <h3 className="text-lg font-bold text-gray-800 mb-1">
+                    <h3 className="text-[15px] sm:text-lg font-bold text-gray-800 mb-1">
                       {post.title}
                       {post.subtitle && (
                         <span className="text-gray-600 ml-2 font-semibold">
@@ -200,7 +200,7 @@ const FreeformPage = () => {
       </div>
 
       {/* Back */}
-      <div className="max-w-[960px] mx-auto px-7 pb-16">
+      <div className="max-w-[960px] mx-auto px-4 pb-10 sm:px-7 sm:pb-16">
         <button
           onClick={() => navigate("/")}
           className="font-mono text-[12px] text-gray-400 hover:text-gray-800 transition-colors"

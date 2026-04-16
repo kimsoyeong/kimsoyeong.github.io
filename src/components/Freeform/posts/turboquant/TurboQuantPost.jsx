@@ -1,33 +1,27 @@
 import Formula from "../../Formula";
 
 const css = {
-  section: "mb-20",
-  secLabel: "font-mono text-[10px] tracking-[0.18em] uppercase text-gray-400 mb-2.5",
-  h2: "text-2xl font-bold mb-1.5 text-gray-800",
-  h3: "text-[1.05rem] font-semibold mb-3 text-gray-800",
-  p: "text-gray-600 mb-3.5 leading-relaxed text-[15px]",
-  card: "bg-[#f0ede4] rounded-lg p-7 mb-5 shadow-md -rotate-[0.3deg]",
-  cardAccent: "bg-[#dce6ef] rounded-lg p-7 mb-5 shadow-md rotate-[0.3deg]",
-  cardGold: "bg-[#e8ddd0] rounded-lg p-7 mb-5 shadow-md -rotate-[0.2deg]",
-  cardGreen: "bg-[#d6e4d6] rounded-lg p-7 mb-5 shadow-md rotate-[0.2deg]",
-  formula: "bg-white/60 border border-gray-200 border-l-[3px] border-l-gray-400 rounded-md px-5 py-4 my-4 overflow-x-auto",
-  callout: "bg-[#dce6ef]/50 border border-[#c4d3e0] rounded-lg px-5 py-4 my-4 text-[13px] text-gray-700",
-  calloutGold: "bg-[#e8ddd0]/50 border border-[#d4c4b0] rounded-lg px-5 py-4 my-4 text-[13px] text-gray-700",
-  calloutGreen: "bg-[#d6e4d6]/50 border border-[#b8ccb8] rounded-lg px-5 py-4 my-4 text-[13px] text-gray-700",
-  divider: "flex items-center gap-3.5 my-16",
-  dividerLine: "flex-1 h-px bg-gray-200",
-  dividerText: "font-mono text-[11px] text-gray-400 whitespace-nowrap uppercase tracking-[0.14em]",
-  code: "font-mono text-[12px] bg-gray-100 px-1 py-px rounded text-gray-700",
-  vecCell: "w-[38px] h-[38px] rounded-[5px] flex items-center justify-center font-mono text-[10px] font-medium shrink-0",
-  vecLabel: "font-mono text-[11px] text-gray-500 mr-1.5 min-w-[36px]",
+  section: "pt-8 sm:pt-[52px]",
+  secLabel: "font-mono text-[9px] tracking-[0.2em] uppercase text-[#7a6f65] mb-2.5 flex items-center gap-2.5 after:content-[''] after:flex-1 after:h-px after:bg-[#e0d8ce]",
+  h2: "text-[clamp(18px,2.5vw,28px)] font-bold mb-3 sm:mb-[18px] text-[#1a1614] leading-[1.22] tracking-[-0.01em]",
+  h3: "text-[15px] sm:text-[17px] font-bold mb-3 text-[#1a1614]",
+  p: "text-[13.5px] sm:text-[14.5px] text-[#3d3530] mb-4 leading-[1.82]",
+  card: "bg-[#f0ede4] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:-rotate-[0.3deg]",
+  cardAccent: "bg-[#dce6ef] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:rotate-[0.3deg]",
+  cardGold: "bg-[#e8ddd0] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:-rotate-[0.2deg]",
+  cardGreen: "bg-[#d6e4d6] rounded-lg p-4 sm:p-7 mb-5 shadow-md sm:rotate-[0.2deg]",
+  formula: "bg-white border border-[#e0d8ce] border-l-[3px] border-l-[#b45309] rounded-r-[6px] rounded-l-none px-3 py-3 sm:px-5 sm:py-4 my-3.5 overflow-x-auto",
+  callout: "bg-[#dce6ef]/50 border border-[#c4d3e0] rounded-lg px-3 py-3 sm:px-5 sm:py-4 my-4 text-[12px] sm:text-[13px] text-[#3d3530]",
+  calloutGold: "bg-[#e8ddd0]/50 border border-[#d4c4b0] rounded-lg px-3 py-3 sm:px-5 sm:py-4 my-4 text-[12px] sm:text-[13px] text-[#3d3530]",
+  calloutGreen: "bg-[#d6e4d6]/50 border border-[#b8ccb8] rounded-lg px-3 py-3 sm:px-5 sm:py-4 my-4 text-[12px] sm:text-[13px] text-[#3d3530]",
+  divider: "h-px bg-[#e0d8ce] mt-6 sm:mt-9",
+  code: "font-mono text-[11px] sm:text-[12px] bg-[#f2ede6] border border-[#e0d8ce] rounded-[3px] px-[5px] py-px text-[#b45309]",
+  vecCell: "w-[32px] h-[32px] sm:w-[38px] sm:h-[38px] rounded-[5px] flex items-center justify-center font-mono text-[9px] sm:text-[10px] font-medium shrink-0",
+  vecLabel: "font-mono text-[10px] sm:text-[11px] text-[#7a6f65] mr-1.5 min-w-[28px] sm:min-w-[36px]",
 };
 
-const SectionDivider = ({ children }) => (
-  <div className={css.divider}>
-    <div className={css.dividerLine} />
-    <span className={css.dividerText}>{children}</span>
-    <div className={css.dividerLine} />
-  </div>
+const SectionDivider = () => (
+  <div className={css.divider} />
 );
 
 const FormulaBlock = ({ children, comment }) => (
@@ -35,13 +29,13 @@ const FormulaBlock = ({ children, comment }) => (
     <div className="text-center">
       {children}
     </div>
-    {comment && <div className="font-mono text-[12px] text-gray-500 mt-2 text-center">{comment}</div>}
+    {comment && <div className="font-mono text-[12px] text-[#7a6f65] mt-2 text-center">{comment}</div>}
   </div>
 );
 
 const TurboQuantPost = () => {
   return (
-    <div className="font-dm-sans text-[#1a1e2a] text-[15px] leading-relaxed">
+    <div className="text-[#1a1614] text-[15px] leading-[1.7]" style={{fontFamily:"'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif"}}>
 
       {/* ═══ -1. 문제 정의 ═══ */}
       <div className={css.section}>
@@ -57,17 +51,17 @@ const TurboQuantPost = () => {
           <h3 className={css.h3}>두 가지 병목</h3>
           <div className="space-y-4">
             <div className="flex items-start gap-3">
-              <div className="w-7 h-7 bg-gray-100 border border-gray-300 rounded-md text-gray-600 font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">1</div>
+              <div className="w-7 h-7 bg-[#f2ede6] border border-[#ccc4b8] rounded-md text-[#3d3530] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">1</div>
               <div>
                 <div className="font-semibold text-[14px] mb-0.5">메모리 용량 병목 (공간)</div>
-                <p className="text-[13px] text-gray-600 mb-0">컨텍스트 길이가 길어질수록 KV 캐시의 크기가 선형적으로 증가합니다. 수백만 토큰 입력 시 수백 GB를 초과하여 단일 GPU의 VRAM 한계를 넘어서게 됩니다.</p>
+                <p className="text-[13px] text-[#3d3530] mb-0">컨텍스트 길이가 길어질수록 KV 캐시의 크기가 선형적으로 증가합니다. 수백만 토큰 입력 시 수백 GB를 초과하여 단일 GPU의 VRAM 한계를 넘어서게 됩니다.</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <div className="w-7 h-7 bg-gray-100 border border-gray-300 rounded-md text-gray-600 font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">2</div>
+              <div className="w-7 h-7 bg-[#f2ede6] border border-[#ccc4b8] rounded-md text-[#3d3530] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">2</div>
               <div>
                 <div className="font-semibold text-[14px] mb-0.5">대역폭 병목 (속도)</div>
-                <p className="text-[13px] text-gray-600 mb-0">KV 캐시 데이터를 메모리(HBM)에서 연산 장치(SRAM)로 이동시키는 대역폭에 한계가 있어 추론 속도 지연으로 이어집니다.</p>
+                <p className="text-[13px] text-[#3d3530] mb-0">KV 캐시 데이터를 메모리(HBM)에서 연산 장치(SRAM)로 이동시키는 대역폭에 한계가 있어 추론 속도 지연으로 이어집니다.</p>
               </div>
             </div>
           </div>
@@ -86,7 +80,7 @@ const TurboQuantPost = () => {
       </div>
 
       {/* ═══ -0.5. 수학적 기초 ═══ */}
-      <SectionDivider>Mathematical Foundations</SectionDivider>
+      <SectionDivider />
       <div className={css.section}>
         <div className={css.secLabel}>Formal Framework</div>
         <h2 id="math-foundations" className={css.h2}>수학적 기초 — 양자화 맵의 정의</h2>
@@ -99,7 +93,7 @@ const TurboQuantPost = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-5">
           <div className={css.card}>
-            <h3 className="text-[1rem] font-semibold mb-2 text-gray-800">
+            <h3 className="text-[1rem] font-semibold mb-2 text-[#1a1614]">
               <Formula tex={String.raw`D_{\text{mse}}`} /> — MSE 왜곡
             </h3>
             <FormulaBlock comment="압축 후 복원했을 때 원본과 얼마나 달라졌는가">
@@ -139,7 +133,7 @@ const TurboQuantPost = () => {
         </p>
 
         {/* 파이프라인 레전드 */}
-        <div className="flex gap-5 mb-3.5 flex-wrap font-mono text-[11px] text-gray-500">
+        <div className="flex gap-5 mb-3.5 flex-wrap font-mono text-[11px] text-[#7a6f65]">
           <span className="flex items-center gap-1.5">
             <span className="inline-block w-3 h-3 bg-[rgba(37,99,235,0.12)] border-[1.5px] border-[#2563eb] rounded-sm" />
             Qmse (MSE 최적화)
@@ -159,7 +153,7 @@ const TurboQuantPost = () => {
           </defs>
           {/* INPUT */}
           <rect x="0" y="24" width="90" height="72" rx="7" fill="#ffffff" stroke="#dde1ea" strokeWidth="1.5"/>
-          <text x="45" y="52" fontSize="10" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".08em">INPUT</text>
+          <text x="45" y="52" fontSize="10" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".08em">INPUT</text>
           <text x="45" y="70" fontSize="15" fill="#1a1e2a" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">x</text>
           <text x="45" y="86" fontSize="9" fill="#6b7280" fontFamily="DM Mono" textAnchor="middle">d차원 벡터</text>
           <line x1="92" y1="60" x2="118" y2="60" stroke="#9ca3af" strokeWidth="1.5" markerEnd="url(#arr)"/>
@@ -203,7 +197,7 @@ const TurboQuantPost = () => {
           <line x1="702" y1="60" x2="726" y2="60" stroke="#9ca3af" strokeWidth="1.5" markerEnd="url(#arr)"/>
           {/* OUTPUT */}
           <rect x="728" y="24" width="88" height="72" rx="7" fill="#ffffff" stroke="#dde1ea" strokeWidth="1.5"/>
-          <text x="772" y="42" fontSize="9" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".08em">OUTPUT</text>
+          <text x="772" y="42" fontSize="9" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".08em">OUTPUT</text>
           <text x="772" y="58" fontSize="9.5" fill="#1a1e2a" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">idx</text>
           <text x="772" y="72" fontSize="9.5" fill="#1a1e2a" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">qjl</text>
           <text x="772" y="86" fontSize="9.5" fill="#1a1e2a" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">‖r‖</text>
@@ -217,7 +211,7 @@ const TurboQuantPost = () => {
       </div>
 
       {/* ═══ 1. 랜덤 회전 & Beta 분포 ═══ */}
-      <SectionDivider>Step 1 — 랜덤 회전</SectionDivider>
+      <SectionDivider />
       <div className={css.section}>
         <div className={css.secLabel}>Core Mechanism · MSE Optimizer</div>
         <h2 id="random-rotation" className={css.h2}>랜덤 회전과 Beta 분포</h2>
@@ -233,8 +227,8 @@ const TurboQuantPost = () => {
 
         {/* Distribution comparison */}
         <div className="grid grid-cols-2 gap-4 my-5 max-[600px]:grid-cols-1">
-          <div className="bg-gray-100 border border-gray-200 rounded-lg p-4">
-            <h4 className="font-mono text-[11px] text-gray-500 uppercase tracking-[0.1em] mb-3">회전 전 — 임의 분포</h4>
+          <div className="bg-[#f2ede6] border border-[#e0d8ce] rounded-lg p-4">
+            <h4 className="font-mono text-[11px] text-[#7a6f65] uppercase tracking-[0.1em] mb-3">회전 전 — 임의 분포</h4>
             <svg viewBox="0 0 200 100" width="100%" className="rounded">
               <rect width="200" height="100" fill="#f0f2f7"/>
               <line x1="10" y1="90" x2="190" y2="90" stroke="#c8cdd8" strokeWidth="1"/>
@@ -250,10 +244,10 @@ const TurboQuantPost = () => {
               <rect x="158" y="35" width="14" height="55" fill="#2563eb" opacity=".35"/>
               <text x="100" y="8" fill="#6b7280" fontSize="8" textAnchor="middle" fontFamily="DM Mono">비균일, 예측 불가</text>
             </svg>
-            <p className="text-[12px] text-gray-500 mt-2 mb-0">각 좌표가 어떤 분포를 따를지 알 수 없으므로 최적 스칼라 양자화기 설계 불가</p>
+            <p className="text-[12px] text-[#7a6f65] mt-2 mb-0">각 좌표가 어떤 분포를 따를지 알 수 없으므로 최적 스칼라 양자화기 설계 불가</p>
           </div>
-          <div className="bg-gray-100 border border-gray-200 rounded-lg p-4">
-            <h4 className="font-mono text-[11px] text-gray-500 uppercase tracking-[0.1em] mb-3">회전 후 — Beta 분포 (→ Gaussian)</h4>
+          <div className="bg-[#f2ede6] border border-[#e0d8ce] rounded-lg p-4">
+            <h4 className="font-mono text-[11px] text-[#7a6f65] uppercase tracking-[0.1em] mb-3">회전 후 — Beta 분포 (→ Gaussian)</h4>
             <svg viewBox="0 0 200 100" width="100%" className="rounded">
               <rect width="200" height="100" fill="#f0f2f7"/>
               <line x1="10" y1="90" x2="190" y2="90" stroke="#c8cdd8" strokeWidth="1"/>
@@ -270,7 +264,7 @@ const TurboQuantPost = () => {
               <path d="M10,90 C30,90 40,88 60,70 C80,52 90,12 100,10 C110,12 120,52 140,70 C160,88 170,90 190,90" fill="none" stroke="#059669" strokeWidth="1.5" opacity=".5"/>
               <text x="100" y="8" fill="#059669" fontSize="8" textAnchor="middle" fontFamily="DM Mono">Beta ≈ N(0, 1/d)</text>
             </svg>
-            <p className="text-[12px] text-gray-500 mt-2 mb-0">모든 좌표가 동일한 Beta(→Gaussian) 분포를 가짐 → 좌표별 독립 최적 양자화 가능</p>
+            <p className="text-[12px] text-[#7a6f65] mt-2 mb-0">모든 좌표가 동일한 Beta(→Gaussian) 분포를 가짐 → 좌표별 독립 최적 양자화 가능</p>
           </div>
         </div>
 
@@ -287,21 +281,21 @@ const TurboQuantPost = () => {
               <div key={i} className={css.vecCell} style={{background:"rgba(37,99,235,.10)",border:"1px solid #2563eb",color:"#2563eb"}}>{v}</div>
             ))}
           </div>
-          <div className="text-center text-gray-500 text-xl my-1">↓ <span className="text-[12px] font-mono">Π·x (랜덤 직교 행렬)</span></div>
+          <div className="text-center text-[#7a6f65] text-xl my-1">↓ <span className="text-[12px] font-mono">Π·x (랜덤 직교 행렬)</span></div>
           <div className="flex gap-1 my-2 items-center flex-wrap">
             <span className={css.vecLabel + " text-[#059669]"}>Π·x</span>
             {["0.21","−0.18","0.34","−0.09","0.27","−0.23"].map((v,i)=>(
               <div key={i} className={css.vecCell} style={{background:"rgba(5,150,105,.10)",border:"1px solid #059669",color:"#059669"}}>{v}</div>
             ))}
           </div>
-          <p className="text-[12px] text-gray-500 mt-2.5 mb-0">
+          <p className="text-[12px] text-[#7a6f65] mt-2.5 mb-0">
             회전 후 각 좌표의 절대값이 균일하게 분포하며, 서로 거의 독립적입니다. <Formula tex={String.raw`\|x\| = \|\Pi x\|`} /> (길이 보존)
           </p>
         </div>
       </div>
 
       {/* ═══ 2. Lloyd-Max 스칼라 양자화 ═══ */}
-      <SectionDivider>Step 2 — Lloyd-Max Quantization</SectionDivider>
+      <SectionDivider />
       <div className={css.section}>
         <div className={css.secLabel}>Core Mechanism · Codebook Design</div>
         <h2 id="lloyd-max" className={css.h2}>Lloyd-Max 최적 스칼라 양자화</h2>
@@ -319,7 +313,7 @@ const TurboQuantPost = () => {
           <p className="text-[12px] mb-3.5">Gaussian <Formula tex={String.raw`\mathcal{N}(0,1/d)`} /> 분포에서 4개의 최적 centroids를 찾는 반복 과정</p>
 
           {/* Legend */}
-          <div className="flex gap-5 mb-3.5 flex-wrap font-mono text-[11px] text-gray-500">
+          <div className="flex gap-5 mb-3.5 flex-wrap font-mono text-[11px] text-[#7a6f65]">
             <span className="flex items-center gap-1"><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="#059669" strokeWidth="2"/></svg>확률 분포 곡선 (Gaussian)</span>
             <span className="flex items-center gap-1"><svg width="16" height="10"><line x1="8" y1="0" x2="8" y2="10" stroke="#b45309" strokeWidth="1.5" strokeDasharray="3,2"/></svg>centroid</span>
             <span className="flex items-center gap-1"><svg width="16" height="10"><line x1="8" y1="0" x2="8" y2="10" stroke="#9ca3af" strokeWidth="1" strokeDasharray="4,2"/></svg>Voronoi 경계</span>
@@ -327,7 +321,7 @@ const TurboQuantPost = () => {
 
           {/* ① INIT */}
           <div className="mb-7">
-            <div className="font-mono text-[10px] text-gray-500 mb-2 tracking-[0.06em]">① 초기화 — centroid를 균일 간격으로 배치 → Voronoi 구간의 확률 질량이 불균등</div>
+            <div className="font-mono text-[10px] text-[#7a6f65] mb-2 tracking-[0.06em]">① 초기화 — centroid를 균일 간격으로 배치 → Voronoi 구간의 확률 질량이 불균등</div>
             <svg viewBox="0 0 400 120" width="100%" className="block" style={{background:"#ffffff",borderRadius:"6px"}}>
               <defs>
                 <linearGradient id="gA" x1="0" y1="0" x2="1" y2="0">
@@ -342,10 +336,10 @@ const TurboQuantPost = () => {
               <rect x="200" y="6" width="38" height="64" fill="#f3f4f6" rx="4"/>
               <rect x="238" y="6" width="152" height="64" fill="#f9fafb" rx="4"/>
               {/* 확률 질량 라벨 */}
-              <text x="86" y="60" fontSize="9" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">~16%</text>
+              <text x="86" y="60" fontSize="9" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">~16%</text>
               <text x="181" y="34" fontSize="9" fill="#6b7280" fontFamily="DM Mono" textAnchor="middle" fontWeight="600">~34%</text>
               <text x="219" y="34" fontSize="9" fill="#6b7280" fontFamily="DM Mono" textAnchor="middle" fontWeight="600">~34%</text>
-              <text x="314" y="60" fontSize="9" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">~16%</text>
+              <text x="314" y="60" fontSize="9" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">~16%</text>
               {/* Gaussian curve — GREEN */}
               <path d="M10,70 C40,70 70,66 100,54 C130,42 150,14 200,12 C250,14 270,42 300,54 C330,66 360,70 390,70" fill="url(#gA)"/>
               <path d="M10,70 C40,70 70,66 100,54 C130,42 150,14 200,12 C250,14 270,42 300,54 C330,66 360,70 390,70" fill="none" stroke="#059669" strokeWidth="2"/>
@@ -364,14 +358,14 @@ const TurboQuantPost = () => {
               {[["143","−0.75"],["181","−0.25"],["219","+0.25"],["257","+0.75"]].map(([x,v],i)=>(
                 <g key={i}>
                   <text x={x} y="82" fontSize="8" fill="#b45309" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">{v}</text>
-                  <text x={x} y="93" fontSize="7.5" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle">c{String.fromCharCode(8321+i)}</text>
+                  <text x={x} y="93" fontSize="7.5" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle">c{String.fromCharCode(8321+i)}</text>
                 </g>
               ))}
               {/* 구간 넓음 표시 */}
-              <text x="86" y="16" fontSize="7.5" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle">← 구간 넓음 →</text>
-              <text x="314" y="16" fontSize="7.5" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle">← 구간 넓음 →</text>
+              <text x="86" y="16" fontSize="7.5" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle">← 구간 넓음 →</text>
+              <text x="314" y="16" fontSize="7.5" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle">← 구간 넓음 →</text>
             </svg>
-            <p className="text-[12px] text-gray-500 mt-1.5">균일 배치 시 외곽 구간(c₁, c₄ 담당)이 넓어 그 안의 많은 값을 거칠게 표현 → MSE ↑</p>
+            <p className="text-[12px] text-[#7a6f65] mt-1.5">균일 배치 시 외곽 구간(c₁, c₄ 담당)이 넓어 그 안의 많은 값을 거칠게 표현 → MSE ↑</p>
           </div>
 
           {/* ② CONVERGED */}
@@ -411,13 +405,13 @@ const TurboQuantPost = () => {
               {[["85","−1.51/√d"],["166","−0.45/√d"],["234","+0.45/√d"],["315","+1.51/√d"]].map(([x,v],i)=>(
                 <g key={i}>
                   <text x={x} y="82" fontSize="8" fill="#059669" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">{v}</text>
-                  <text x={x} y="93" fontSize="7.5" fill="#9ca3af" fontFamily="DM Mono" textAnchor="middle">c{String.fromCharCode(8321+i)}</text>
+                  <text x={x} y="93" fontSize="7.5" fill="#7a6f65" fontFamily="DM Mono" textAnchor="middle">c{String.fromCharCode(8321+i)}</text>
                 </g>
               ))}
               {/* 촘촘함 표시 */}
               <text x="200" y="16" fontSize="7.5" fill="#059669" fontFamily="DM Mono" textAnchor="middle">← c₂·c₃ 촘촘 (고밀도 영역) →</text>
             </svg>
-            <p className="text-[12px] text-gray-500 mt-1.5">수렴 후 각 구간이 정확히 25%의 확률 질량을 담당합니다. centroid는 각 구간의 <strong className="text-[#374151]">무게중심</strong>에 위치합니다.</p>
+            <p className="text-[12px] text-[#7a6f65] mt-1.5">수렴 후 각 구간이 정확히 25%의 확률 질량을 담당합니다. centroid는 각 구간의 <strong className="text-[#374151]">무게중심</strong>에 위치합니다.</p>
           </div>
         </div>
 
@@ -432,16 +426,16 @@ const TurboQuantPost = () => {
               {b:"b=4", w:"10%", val:"0.009", lb:"LB: 0.0039"},
             ].map(({b,w,val,lb})=>(
               <div key={b} className="flex items-center gap-1.5">
-                <span className="font-mono text-[10px] text-gray-500 min-w-[28px]">{b}</span>
-                <div className="flex-1 h-[14px] bg-gray-100 rounded-sm overflow-hidden">
+                <span className="font-mono text-[10px] text-[#7a6f65] min-w-[28px]">{b}</span>
+                <div className="flex-1 h-[14px] bg-[#f2ede6] rounded-sm overflow-hidden">
                   <div className="h-full bg-[#2563eb] opacity-80 rounded-sm" style={{width:w}} />
                 </div>
-                <span className="font-mono text-[10px] text-gray-500 min-w-[52px]">{val}</span>
-                <span className="font-mono text-[10px] text-gray-500 min-w-[80px]">{lb}</span>
+                <span className="font-mono text-[10px] text-[#7a6f65] min-w-[52px]">{val}</span>
+                <span className="font-mono text-[10px] text-[#7a6f65] min-w-[80px]">{lb}</span>
               </div>
             ))}
           </div>
-          <p className="text-[12px] text-gray-500 mt-2.5">TurboQuant의 MSE는 이론적 하한선의 최대 <strong className="text-[#b45309]"><Formula tex={String.raw`\sqrt{3\pi}/2 \approx 2.7`} />배</strong> 이내.</p>
+          <p className="text-[12px] text-[#7a6f65] mt-2.5">TurboQuant의 MSE는 이론적 하한선의 최대 <strong className="text-[#b45309]"><Formula tex={String.raw`\sqrt{3\pi}/2 \approx 2.7`} />배</strong> 이내.</p>
         </div>
 
         {/* Theorem 1 */}
@@ -450,25 +444,25 @@ const TurboQuantPost = () => {
           <FormulaBlock>
             <Formula tex={String.raw`D_{\text{mse}}(Q_{\text{mse}}) \leq \frac{\sqrt{3\pi}}{2} \cdot 4^{-b}`} block />
           </FormulaBlock>
-          <p className="text-[12px] text-gray-600 mt-1 mb-0">비트 1개를 늘릴 때마다 오차가 약 1/4로 줄어듭니다 (지수적 감소). 4비트만 써도 오차가 0.009로 거의 무시할 수 있는 수준입니다.</p>
+          <p className="text-[12px] text-[#3d3530] mt-1 mb-0">비트 1개를 늘릴 때마다 오차가 약 1/4로 줄어듭니다 (지수적 감소). 4비트만 써도 오차가 0.009로 거의 무시할 수 있는 수준입니다.</p>
         </div>
 
         {/* Algorithm 1 */}
         <div className={css.cardAccent + " mt-5"}>
           <h3 className={css.h3}>Algorithm 1 — TurboQuant_mse (MSE 최적화)</h3>
-          <div className="bg-white/80 rounded-md p-4 font-mono text-[12px] text-gray-700 leading-[1.8] overflow-x-auto">
-            <div className="text-gray-400 mb-2">{'// 사전 설정'}</div>
+          <div className="bg-white/80 rounded-md p-4 font-mono text-[12px] text-[#3d3530] leading-[1.8] overflow-x-auto">
+            <div className="text-[#7a6f65] mb-2">{'// 사전 설정'}</div>
             <div><span className="text-[#2563eb]">input:</span> dimension d, bit-width b</div>
             <div>Generate random rotation matrix <Formula tex={String.raw`\Pi \in \mathbb{R}^{d \times d}`} /></div>
             <div>Construct codebook: <Formula tex={String.raw`c_1, c_2, \ldots, c_{2^b} \in [-1,1]`} /> minimizing MSE</div>
-            <div className="border-t border-gray-200 my-2" />
-            <div className="text-gray-400 mb-1">{'// 양자화'}</div>
+            <div className="border-t border-[#e0d8ce] my-2" />
+            <div className="text-[#7a6f65] mb-1">{'// 양자화'}</div>
             <div><span className="text-[#059669]">Procedure</span> <strong>Quant_mse</strong>(x):</div>
             <div className="pl-4">y ← Π · x</div>
             <div className="pl-4">idx_j ← argmin{'_{k∈[2^b]}'} |y_j − c_k| &nbsp; for every j ∈ [d]</div>
             <div className="pl-4"><span className="text-[#2563eb]">output:</span> idx</div>
-            <div className="border-t border-gray-200 my-2" />
-            <div className="text-gray-400 mb-1">{'// 역양자화'}</div>
+            <div className="border-t border-[#e0d8ce] my-2" />
+            <div className="text-[#7a6f65] mb-1">{'// 역양자화'}</div>
             <div><span className="text-[#059669]">Procedure</span> <strong>DeQuant_mse</strong>(idx):</div>
             <div className="pl-4">ỹ_j ← c_{'idx_j'} &nbsp; for every j ∈ [d]</div>
             <div className="pl-4">x̃ ← Π<sup>T</sup> · ỹ</div>
@@ -478,7 +472,7 @@ const TurboQuantPost = () => {
       </div>
 
       {/* ═══ 3. QJL 편향 제거 ═══ */}
-      <SectionDivider>Steps 3–4 — QJL 내적 편향 제거</SectionDivider>
+      <SectionDivider />
       <div className={css.section}>
         <div className={css.secLabel}>Core Mechanism · Inner Product Optimizer</div>
         <h2 id="qjl" className={css.h2}>QJL — 잔차 기반 내적 편향 제거</h2>
@@ -490,8 +484,8 @@ const TurboQuantPost = () => {
 
         {/* Bias visualization */}
         <div className="grid grid-cols-2 gap-4 my-5 max-[600px]:grid-cols-1">
-          <div className="bg-white border border-gray-200 rounded-[10px] p-5">
-            <div className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.1em] mb-3">Qmse 단독 — 편향 있음 (b=1)</div>
+          <div className="bg-white border border-[#e0d8ce] rounded-[10px] p-5">
+            <div className="font-mono text-[10px] text-[#7a6f65] uppercase tracking-[0.1em] mb-3">Qmse 단독 — 편향 있음 (b=1)</div>
             <svg viewBox="0 0 200 100" width="100%">
               <rect width="200" height="100" fill="#f8f9fc" rx="6"/>
               {/* Grid lines */}
@@ -508,13 +502,13 @@ const TurboQuantPost = () => {
               <text x="118" y="14" fill="#2563eb" fontSize="8" fontFamily="DM Mono" fontWeight="500">E[err]≠0</text>
               {/* Zero reference */}
               <line x1="100" y1="82" x2="100" y2="88" stroke="#9ca3af" strokeWidth="1.5"/>
-              <text x="100" y="96" fill="#9ca3af" fontSize="7" fontFamily="DM Mono" textAnchor="middle">0</text>
+              <text x="100" y="96" fill="#7a6f65" fontSize="7" fontFamily="DM Mono" textAnchor="middle">0</text>
               <text x="100" y="88" fill="#6b7280" fontSize="7" fontFamily="DM Mono" textAnchor="middle" dy="8"/>
             </svg>
             <div className="font-mono text-[10px] text-[#9ca3af] mt-2 text-center">내적 오차 분포 — 평균이 0에서 벗어남</div>
           </div>
-          <div className="bg-white border border-gray-200 rounded-[10px] p-5">
-            <div className="font-mono text-[10px] text-gray-500 uppercase tracking-[0.1em] mb-3">Qprod — 편향 없음</div>
+          <div className="bg-white border border-[#e0d8ce] rounded-[10px] p-5">
+            <div className="font-mono text-[10px] text-[#7a6f65] uppercase tracking-[0.1em] mb-3">Qprod — 편향 없음</div>
             <svg viewBox="0 0 200 100" width="100%">
               <rect width="200" height="100" fill="#f8f9fc" rx="6"/>
               {/* Grid lines */}
@@ -550,7 +544,7 @@ const TurboQuantPost = () => {
           <h3 className={css.h3}>QJL 변환 — 단계별 계산 과정</h3>
 
           {/* Step 1: Residual */}
-          <div className="border-b border-gray-200 pb-4 mb-4">
+          <div className="border-b border-[#e0d8ce] pb-4 mb-4">
             <div className="flex items-start gap-3.5">
               <div className="w-7 h-7 bg-[rgba(180,83,9,0.08)] border border-[#b45309] rounded-md text-[#b45309] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">1</div>
               <div>
@@ -563,7 +557,7 @@ const TurboQuantPost = () => {
           </div>
 
           {/* Step 2: QJL */}
-          <div className="border-b border-gray-200 pb-4 mb-4">
+          <div className="border-b border-[#e0d8ce] pb-4 mb-4">
             <div className="flex items-start gap-3.5">
               <div className="w-7 h-7 bg-[rgba(180,83,9,0.08)] border border-[#b45309] rounded-md text-[#b45309] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">2</div>
               <div className="w-full">
@@ -575,7 +569,7 @@ const TurboQuantPost = () => {
                 {/* Matrix multiplication visual */}
                 <div className="flex items-center gap-2.5 mt-3 flex-wrap bg-white/70 rounded-lg p-4">
                   <div>
-                    <div className="font-mono text-[9px] text-gray-500 mb-1">S (4×4, Gaussian)</div>
+                    <div className="font-mono text-[9px] text-[#7a6f65] mb-1">S (4×4, Gaussian)</div>
                     <table className="border-separate" style={{borderSpacing:"3px"}}>
                       <tbody>
                         {[
@@ -595,7 +589,7 @@ const TurboQuantPost = () => {
                       </tbody>
                     </table>
                   </div>
-                  <div className="text-xl text-gray-500">·</div>
+                  <div className="text-xl text-[#7a6f65]">·</div>
                   <div>
                     <div className="font-mono text-[9px] text-[#059669] mb-1">r (잔차)</div>
                     <div className="flex flex-col gap-[3px]">
@@ -605,9 +599,9 @@ const TurboQuantPost = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="text-xl text-gray-500">=</div>
+                  <div className="text-xl text-[#7a6f65]">=</div>
                   <div>
-                    <div className="font-mono text-[9px] text-gray-500 mb-1">sign(S·r)</div>
+                    <div className="font-mono text-[9px] text-[#7a6f65] mb-1">sign(S·r)</div>
                     <div className="flex flex-col gap-[3px]">
                       {["+1","−1","+1","+1"].map((v,i)=>(
                         <div key={i} className="w-[48px] h-[32px] rounded flex items-center justify-center font-mono text-[11px] font-bold"
@@ -655,12 +649,12 @@ const TurboQuantPost = () => {
               {b:"b=4", w:"8%", val:"0.047/d", lb:"LB: 0.016/d"},
             ].map(({b,w,val,lb})=>(
               <div key={b} className="flex items-center gap-1.5">
-                <span className="font-mono text-[10px] text-gray-500 min-w-[28px]">{b}</span>
-                <div className="flex-1 h-[14px] bg-gray-100 rounded-sm overflow-hidden">
+                <span className="font-mono text-[10px] text-[#7a6f65] min-w-[28px]">{b}</span>
+                <div className="flex-1 h-[14px] bg-[#f2ede6] rounded-sm overflow-hidden">
                   <div className="h-full bg-[#059669] opacity-70 rounded-sm" style={{width:w}} />
                 </div>
-                <span className="font-mono text-[10px] text-gray-500 min-w-[52px]">{val}</span>
-                <span className="font-mono text-[10px] text-gray-500 min-w-[72px]">{lb}</span>
+                <span className="font-mono text-[10px] text-[#7a6f65] min-w-[52px]">{val}</span>
+                <span className="font-mono text-[10px] text-[#7a6f65] min-w-[72px]">{lb}</span>
               </div>
             ))}
           </div>
@@ -669,31 +663,31 @@ const TurboQuantPost = () => {
         {/* Algorithm 2 */}
         <div className={css.cardGold + " mt-5"}>
           <h3 className={css.h3}>Algorithm 2 — TurboQuant_prod (내적 최적화)</h3>
-          <div className="bg-white/80 rounded-md p-4 font-mono text-[12px] text-gray-700 leading-[1.8] overflow-x-auto">
-            <div className="text-gray-400 mb-2">{'// 사전 설정'}</div>
+          <div className="bg-white/80 rounded-md p-4 font-mono text-[12px] text-[#3d3530] leading-[1.8] overflow-x-auto">
+            <div className="text-[#7a6f65] mb-2">{'// 사전 설정'}</div>
             <div><span className="text-[#b45309]">input:</span> dimension d, bit-width b</div>
             <div>Instantiate TurboQuant_mse with bit-width <strong>b − 1</strong> (Algorithm 1)</div>
             <div>Generate random projection matrix <Formula tex={String.raw`S \in \mathbb{R}^{d \times d},\; S_{ij} \sim \mathcal{N}(0,1)`} /></div>
-            <div className="border-t border-gray-200 my-2" />
-            <div className="text-gray-400 mb-1">{'// 양자화'}</div>
+            <div className="border-t border-[#e0d8ce] my-2" />
+            <div className="text-[#7a6f65] mb-1">{'// 양자화'}</div>
             <div><span className="text-[#059669]">Procedure</span> <strong>Quant_prod</strong>(x):</div>
             <div className="pl-4">idx ← Quant_mse(x)</div>
-            <div className="pl-4">r ← x − DeQuant_mse(idx) &nbsp; <span className="text-gray-400">{'// residual vector'}</span></div>
-            <div className="pl-4">qjl ← sign(S · r) &nbsp; <span className="text-gray-400">{'// QJL on residual'}</span></div>
+            <div className="pl-4">r ← x − DeQuant_mse(idx) &nbsp; <span className="text-[#7a6f65]">{'// residual vector'}</span></div>
+            <div className="pl-4">qjl ← sign(S · r) &nbsp; <span className="text-[#7a6f65]">{'// QJL on residual'}</span></div>
             <div className="pl-4"><span className="text-[#b45309]">output:</span> (idx, qjl, ‖r‖₂)</div>
-            <div className="border-t border-gray-200 my-2" />
-            <div className="text-gray-400 mb-1">{'// 역양자화'}</div>
+            <div className="border-t border-[#e0d8ce] my-2" />
+            <div className="text-[#7a6f65] mb-1">{'// 역양자화'}</div>
             <div><span className="text-[#059669]">Procedure</span> <strong>DeQuant_prod</strong>(idx, qjl, γ):</div>
             <div className="pl-4">x̃_mse ← DeQuant_mse(idx)</div>
             <div className="pl-4">x̃_qjl ← √(π/2)/d · γ · S<sup>T</sup> · qjl</div>
             <div className="pl-4"><span className="text-[#b45309]">output:</span> x̃_mse + x̃_qjl</div>
           </div>
-          <p className="text-[12px] text-gray-500 mt-2.5 mb-0">총 비트 예산: (b−1)+1=b. <strong>Q_mse</strong>가 오차 크기를 줄이고, <strong>QJL</strong>이 편향을 제거합니다.</p>
+          <p className="text-[12px] text-[#7a6f65] mt-2.5 mb-0">총 비트 예산: (b−1)+1=b. <strong>Q_mse</strong>가 오차 크기를 줄이고, <strong>QJL</strong>이 편향을 제거합니다.</p>
         </div>
       </div>
 
       {/* ═══ 4. 이론적 하한선 ═══ */}
-      <SectionDivider>Information-Theoretic Lower Bounds</SectionDivider>
+      <SectionDivider />
       <div className={css.section}>
         <div className={css.secLabel}>Theorem 3</div>
         <h2 id="lower-bounds" className={css.h2}>이론적 하한선 — Shannon + Yao Minimax</h2>
@@ -703,7 +697,7 @@ const TurboQuantPost = () => {
         </p>
         <div className="grid grid-cols-2 gap-4 max-[600px]:grid-cols-1">
           <div className={css.card}>
-            <h3 className="text-[1.05rem] font-semibold mb-3 text-gray-800">MSE 하한</h3>
+            <h3 className="text-[1.05rem] font-semibold mb-3 text-[#1a1614]">MSE 하한</h3>
             <FormulaBlock comment="Shannon Lower Bound + Yao Minimax">
               <Formula tex={String.raw`D_{\text{mse}}(Q) \geq 4^{-b}`} block />
             </FormulaBlock>
@@ -724,7 +718,7 @@ const TurboQuantPost = () => {
       </div>
 
       {/* ═══ 5. 결과 비교 ═══ */}
-      <hr className="border-none border-t border-gray-200 my-14" />
+      <hr className="border-none border-t border-[#e0d8ce] my-14" />
       <div className={css.section}>
         <div className={css.secLabel}>Experimental Results — p.2</div>
         <h2 id="experiments" className={css.h2}>기존 방법론과의 비교</h2>
@@ -732,13 +726,13 @@ const TurboQuantPost = () => {
         {/* KV Cache LongBench */}
         <div className={css.card + " mt-4"}>
           <h3 className={css.h3}>KV Cache 압축 — LongBench-V1 (Llama-3.1-8B)</h3>
-          <p className="text-[12px] text-gray-500 mb-4">낮을수록 좋은 KV 크기(bits), 높을수록 좋은 평균 점수.</p>
+          <p className="text-[12px] text-[#7a6f65] mb-4">낮을수록 좋은 KV 크기(bits), 높을수록 좋은 평균 점수.</p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-[13px]">
               <thead>
                 <tr>
                   {["방법론","KV 크기","SingleQA","MultiQA","요약","코드","평균"].map(h=>(
-                    <th key={h} className="font-mono text-[10px] uppercase tracking-[0.1em] text-gray-500 text-left px-3.5 py-2.5 border-b border-gray-200">{h}</th>
+                    <th key={h} className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#7a6f65] text-left px-3.5 py-2.5 border-b border-[#e0d8ce]">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -751,17 +745,17 @@ const TurboQuantPost = () => {
                   {name:"TurboQuant",kv:"2.5",badge:"badge-good",vals:["44.16","44.96","24.80","45.76"],avg:"49.44",turbo:true,extra:"4.5×압축"},
                   {name:"TurboQuant",kv:"3.5",badge:"badge-good",vals:["45.01","45.31","26.00","46.17"],avg:"50.06",turbo:true,extra:"Full 동등"},
                 ].map((r,i)=>(
-                  <tr key={i} className="hover:bg-black/[0.02]">
-                    <td className={`px-3.5 py-2.5 border-b border-[#eaecf0] ${r.turbo?"text-[#059669] font-bold":""}`}>{r.name}</td>
-                    <td className="px-3.5 py-2.5 border-b border-[#eaecf0]">
+                  <tr key={i} className="hover:bg-[#f8f5f0]">
+                    <td className={`px-3.5 py-2.5 border-b border-[#f0ebe4] ${r.turbo?"text-[#059669] font-bold":""}`}>{r.name}</td>
+                    <td className="px-3.5 py-2.5 border-b border-[#f0ebe4]">
                       <span className={`inline-block font-mono text-[10px] px-1.5 py-0.5 rounded ${
                         r.badge==="badge-good"?"bg-[rgba(5,150,105,0.1)] text-[#059669] border border-[#059669]":
                         r.badge==="badge-bad"?"bg-[rgba(220,38,38,0.1)] text-[#dc2626] border border-[#dc2626]":
                         "bg-[rgba(180,83,9,0.08)] text-[#b45309] border border-[#b45309]"
                       }`}>{r.kv}</span>
                     </td>
-                    {r.vals.map((v,j)=><td key={j} className="px-3.5 py-2.5 border-b border-[#eaecf0] text-gray-600">{v}</td>)}
-                    <td className={`px-3.5 py-2.5 border-b border-[#eaecf0] ${r.avgStyle||""} ${r.turbo?"text-[#059669] font-bold":""}`}>
+                    {r.vals.map((v,j)=><td key={j} className="px-3.5 py-2.5 border-b border-[#f0ebe4] text-[#3d3530]">{v}</td>)}
+                    <td className={`px-3.5 py-2.5 border-b border-[#f0ebe4] ${r.avgStyle||""} ${r.turbo?"text-[#059669] font-bold":""}`}>
                       {r.avg}
                       {r.extra && <span className="inline-block font-mono text-[10px] bg-[rgba(5,150,105,0.1)] text-[#059669] border border-[#059669] px-1.5 py-0.5 rounded ml-1">{r.extra}</span>}
                     </td>
@@ -775,7 +769,7 @@ const TurboQuantPost = () => {
         {/* Needle in Haystack */}
         <div className={css.cardGreen + " mt-4"}>
           <h3 className={css.h3}>Needle-in-a-Haystack (최장 104k 토큰, Llama-3.1-8B)</h3>
-          <p className="text-[12px] text-gray-500 mb-3">긴 컨텍스트에서 특정 정보를 찾는 능력. 1.0에 가까울수록 완벽한 recall.</p>
+          <p className="text-[12px] text-[#7a6f65] mb-3">긴 컨텍스트에서 특정 정보를 찾는 능력. 1.0에 가까울수록 완벽한 recall.</p>
           <div className="grid grid-cols-3 gap-2.5 mt-3.5 max-[500px]:grid-cols-2">
             {[
               {score:"0.858",name:"SnapKV",color:"#dc2626"},
@@ -785,19 +779,19 @@ const TurboQuantPost = () => {
               {score:"0.997",name:"Full Precision",color:"#1a1e2a"},
               {score:"0.997",name:"TurboQuant ✓",color:"#059669",winner:true},
             ].map(({score,name,color,winner})=>(
-              <div key={name} className={`bg-gray-100 border rounded-lg p-3.5 text-center ${winner?"border-[#059669]":"border-gray-200"}`}>
+              <div key={name} className={`bg-[#f2ede6] border rounded-lg p-3.5 text-center ${winner?"border-[#059669]":"border-[#e0d8ce]"}`}>
                 <div className="font-mono text-[1.4rem] font-bold mb-1" style={{color}}>{score}</div>
-                <div className="text-[11px] text-gray-500">{name}</div>
+                <div className="text-[11px] text-[#7a6f65]">{name}</div>
               </div>
             ))}
           </div>
-          <p className="text-[12px] text-gray-500 mt-3">TurboQuant는 <strong className="text-[#059669]">4× 이상 압축</strong> 상태에서도 Full Precision과 동일한 recall 달성.</p>
+          <p className="text-[12px] text-[#7a6f65] mt-3">TurboQuant는 <strong className="text-[#059669]">4× 이상 압축</strong> 상태에서도 Full Precision과 동일한 recall 달성.</p>
         </div>
 
         {/* Quantization Speed */}
         <div className={css.card + " mt-4"}>
           <h3 className={css.h3}>양자화 속도 비교 (4비트, GPU 기준)</h3>
-          <p className="text-[12px] text-gray-500 mb-3.5">d=1536 기준. 온라인 KV Cache 압축에서는 속도가 핵심입니다.</p>
+          <p className="text-[12px] text-[#7a6f65] mb-3.5">d=1536 기준. 온라인 KV Cache 압축에서는 속도가 핵심입니다.</p>
           <div className="flex flex-col gap-1.5">
             {[
               {name:"PQ",w:"90%",val:"239.75s",color:"#2563eb"},
@@ -806,26 +800,26 @@ const TurboQuantPost = () => {
             ].map(({name,w,val,color,nameColor})=>(
               <div key={name} className="flex items-center gap-2.5 my-1">
                 <span className="font-mono text-[11px] min-w-[90px]" style={{color:nameColor||"#6b7280"}}>{name}</span>
-                <div className="flex-1 h-[18px] bg-gray-100 rounded-sm overflow-hidden relative">
+                <div className="flex-1 h-[18px] bg-[#f2ede6] rounded-sm overflow-hidden relative">
                   <div className="h-full rounded-sm flex items-center pl-1.5 font-mono text-[10px] font-semibold" style={{width:w,background:color}}/>
                 </div>
                 <span className="font-mono text-[11px] min-w-[40px] text-right" style={{color}}>{val}</span>
               </div>
             ))}
           </div>
-          <p className="text-[12px] text-gray-500 mt-2.5">TurboQuant는 PQ 대비 <strong className="text-[#059669]">약 18만 배</strong>, RabitQ 대비 <strong className="text-[#059669]">약 174만 배</strong> 빠름.</p>
+          <p className="text-[12px] text-[#7a6f65] mt-2.5">TurboQuant는 PQ 대비 <strong className="text-[#059669]">약 18만 배</strong>, RabitQ 대비 <strong className="text-[#059669]">약 174만 배</strong> 빠름.</p>
         </div>
 
         {/* ANN Search */}
         <div className={css.card + " mt-4"}>
           <h3 className={css.h3}>최근접 이웃 탐색 Recall@1@k (d=1536, 4비트)</h3>
-          <p className="text-[12px] text-gray-500 mb-3.5">top-k 후보 중 실제 정답이 포함된 비율.</p>
+          <p className="text-[12px] text-[#7a6f65] mb-3.5">top-k 후보 중 실제 정답이 포함된 비율.</p>
           <div className="overflow-x-auto">
             <table className="w-full border-collapse text-[13px]">
               <thead>
                 <tr>
                   {["방법론","k=1","k=4","k=10","k=32","전처리 필요?"].map(h=>(
-                    <th key={h} className="font-mono text-[10px] uppercase tracking-[0.1em] text-gray-500 text-left px-3.5 py-2.5 border-b border-gray-200">{h}</th>
+                    <th key={h} className="font-mono text-[10px] uppercase tracking-[0.1em] text-[#7a6f65] text-left px-3.5 py-2.5 border-b border-[#e0d8ce]">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -837,10 +831,10 @@ const TurboQuantPost = () => {
                   {name:"TurboQuant (2bit)",vals:["0.880","0.930","0.957","0.979"],pre:"불필요",preBadge:"good",turbo:true},
                   {name:"TurboQuant (4bit)",vals:["0.920","0.961","0.978","0.991"],pre:"불필요",preBadge:"good",turbo:true},
                 ].map((r,i)=>(
-                  <tr key={i} className="hover:bg-black/[0.02]">
-                    <td className={`px-3.5 py-2.5 border-b border-[#eaecf0] ${r.turbo?"text-[#059669] font-bold":""}`}>{r.name}</td>
-                    {r.vals.map((v,j)=><td key={j} className={`px-3.5 py-2.5 border-b border-[#eaecf0] ${r.turbo?"text-[#059669] font-bold":"text-gray-600"}`}>{v}</td>)}
-                    <td className="px-3.5 py-2.5 border-b border-[#eaecf0]">
+                  <tr key={i} className="hover:bg-[#f8f5f0]">
+                    <td className={`px-3.5 py-2.5 border-b border-[#f0ebe4] ${r.turbo?"text-[#059669] font-bold":""}`}>{r.name}</td>
+                    {r.vals.map((v,j)=><td key={j} className={`px-3.5 py-2.5 border-b border-[#f0ebe4] ${r.turbo?"text-[#059669] font-bold":"text-[#3d3530]"}`}>{v}</td>)}
+                    <td className="px-3.5 py-2.5 border-b border-[#f0ebe4]">
                       <span className={`inline-block font-mono text-[10px] px-1.5 py-0.5 rounded ${
                         r.preBadge==="good"?"bg-[rgba(5,150,105,0.1)] text-[#059669] border border-[#059669]":
                         r.preBadge==="bad"?"bg-[rgba(220,38,38,0.1)] text-[#dc2626] border border-[#dc2626]":
@@ -852,26 +846,26 @@ const TurboQuantPost = () => {
               </tbody>
             </table>
           </div>
-          <p className="text-[12px] text-gray-500 mt-2.5">TurboQuant는 데이터 의존적 전처리(k-means) 없이도 PQ를 전 범위에서 상회.</p>
+          <p className="text-[12px] text-[#7a6f65] mt-2.5">TurboQuant는 데이터 의존적 전처리(k-means) 없이도 PQ를 전 범위에서 상회.</p>
         </div>
 
         {/* Empirical Validation */}
         <div className={css.cardAccent + " mt-4"}>
           <h3 className={css.h3}>실증 검증 — 이론과 실측의 일치</h3>
-          <p className="text-[12px] text-gray-500 mb-3">DBpedia Entities (OpenAI 임베딩, 1536차원), 학습 세트 100,000개 + 쿼리 세트 1,000개에서 검증.</p>
+          <p className="text-[12px] text-[#7a6f65] mb-3">DBpedia Entities (OpenAI 임베딩, 1536차원), 학습 세트 100,000개 + 쿼리 세트 1,000개에서 검증.</p>
           <div className="space-y-3">
             <div className="flex items-start gap-3">
               <div className="w-7 h-7 bg-[rgba(5,150,105,0.08)] border border-[#059669] rounded-md text-[#059669] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">✓</div>
               <div>
                 <div className="font-semibold text-[14px] mb-0.5"><Formula tex={String.raw`Q_{\text{prod}}`} /> — 모든 비트폭에서 비편향 유지</div>
-                <p className="text-[12px] text-gray-600 mb-0">내적 추정에 체계적 오류 없음. 비트폭이 증가해도 오차 분포가 0 중심에서 벗어나지 않습니다.</p>
+                <p className="text-[12px] text-[#3d3530] mb-0">내적 추정에 체계적 오류 없음. 비트폭이 증가해도 오차 분포가 0 중심에서 벗어나지 않습니다.</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
               <div className="w-7 h-7 bg-[rgba(180,83,9,0.08)] border border-[#b45309] rounded-md text-[#b45309] font-mono text-[11px] flex items-center justify-center shrink-0 mt-0.5">!</div>
               <div>
                 <div className="font-semibold text-[14px] mb-0.5"><Formula tex={String.raw`Q_{\text{mse}}`} /> — 낮은 비트폭에서 편향 발생</div>
-                <p className="text-[12px] text-gray-600 mb-0">비트폭이 높아지면 편향이 줄어들며, 높은 비트(3비트 이상)에서는 오히려 Q_mse가 내적 추정 성능이 더 우수합니다.</p>
+                <p className="text-[12px] text-[#3d3530] mb-0">비트폭이 높아지면 편향이 줄어들며, 높은 비트(3비트 이상)에서는 오히려 Q_mse가 내적 추정 성능이 더 우수합니다.</p>
               </div>
             </div>
           </div>
@@ -884,16 +878,16 @@ const TurboQuantPost = () => {
         {/* 비정수 비트폭 */}
         <div className={css.card + " mt-4"}>
           <h3 className={css.h3}>비정수 비트폭 구현 방식</h3>
-          <p className="text-[12px] text-gray-500 mb-3">채널을 아웃라이어/비아웃라이어로 분리하여 각각 다른 비트를 할당합니다.</p>
+          <p className="text-[12px] text-[#7a6f65] mb-3">채널을 아웃라이어/비아웃라이어로 분리하여 각각 다른 비트를 할당합니다.</p>
           <FormulaBlock comment="예: 2.5비트 = (32개 아웃라이어 채널 × 3비트 + 96개 일반 채널 × 2비트) / 128">
             <Formula tex={String.raw`b_{\text{avg}} = \frac{n_{\text{outlier}} \times b_{\text{high}} + n_{\text{inlier}} \times b_{\text{low}}}{n_{\text{total}}}`} block />
           </FormulaBlock>
-          <p className="text-[12px] text-gray-500 mt-2 mb-0">TurboQuant는 기존 방법(KIVI, PolarQuant)이 생성 중 새 토큰을 양자화하지 않는 반면, <strong className="text-[#059669]">스트리밍 생성 과정 중에도 양자화를 적용</strong>합니다.</p>
+          <p className="text-[12px] text-[#7a6f65] mt-2 mb-0">TurboQuant는 기존 방법(KIVI, PolarQuant)이 생성 중 새 토큰을 양자화하지 않는 반면, <strong className="text-[#059669]">스트리밍 생성 과정 중에도 양자화를 적용</strong>합니다.</p>
         </div>
       </div>
 
       {/* ═══ 6. 요약 ═══ */}
-      <hr className="border-none border-t border-gray-200 my-14" />
+      <hr className="border-none border-t border-[#e0d8ce] my-14" />
       <div className={css.section}>
         <div className={css.secLabel}>Summary</div>
         <h2 id="summary" className={css.h2}>핵심 요약 및 의의</h2>
@@ -906,11 +900,11 @@ const TurboQuantPost = () => {
                 {title:"Lloyd-Max 코드북",desc:"Beta→Gaussian 분포에 최적화된 스칼라 양자화기 (오프라인 사전 계산)"},
                 {title:"좌표별 독립 양자화",desc:"near-independence 덕에 좌표 간 상관 무시 가능 → O(d) 연산"},
               ].map(({title,desc},i)=>(
-                <div key={i} className="flex items-start gap-3 pb-3 border-b border-gray-200 last:border-b-0">
-                  <div className="w-6 h-6 bg-gray-100 border border-gray-300 rounded-md text-gray-600 font-mono text-[11px] flex items-center justify-center shrink-0">{i+1}</div>
+                <div key={i} className="flex items-start gap-3 pb-3 border-b border-[#e0d8ce] last:border-b-0">
+                  <div className="w-6 h-6 bg-[#f2ede6] border border-[#ccc4b8] rounded-md text-[#3d3530] font-mono text-[11px] flex items-center justify-center shrink-0">{i+1}</div>
                   <div>
                     <div className="font-semibold text-[14px]">{title}</div>
-                    <p className="text-[12px] text-gray-600">{desc}</p>
+                    <p className="text-[12px] text-[#3d3530]">{desc}</p>
                   </div>
                 </div>
               ))}
@@ -924,11 +918,11 @@ const TurboQuantPost = () => {
                 {title:"QJL on residual",desc:"잔차에 1비트 QJL 변환 적용 — 편향 제거, 불편 추정"},
                 {title:"복원",tex:String.raw`\tilde{x} = \tilde{x}_{\text{mse}} + \|r\| \cdot \sqrt{\pi/2}/d \cdot S^\top \cdot \text{qjl}`},
               ].map(({title,desc,tex},i)=>(
-                <div key={i} className="flex items-start gap-3 pb-3 border-b border-gray-200 last:border-b-0">
+                <div key={i} className="flex items-start gap-3 pb-3 border-b border-[#e0d8ce] last:border-b-0">
                   <div className="w-6 h-6 bg-[rgba(180,83,9,0.08)] border border-[#b45309] rounded-md text-[#b45309] font-mono text-[11px] flex items-center justify-center shrink-0">{i+1}</div>
                   <div>
                     <div className="font-semibold text-[14px]">{title}</div>
-                    {desc && <p className="text-[12px] text-gray-600">{desc}</p>}
+                    {desc && <p className="text-[12px] text-[#3d3530]">{desc}</p>}
                     {tex && <div className="mt-1"><Formula tex={tex} block /></div>}
                   </div>
                 </div>
@@ -947,10 +941,10 @@ const TurboQuantPost = () => {
             {label:"NN 탐색", value:"인덱싱 제로", sub:"PQ/RabitQ 대비"},
             {label:"이론-실험", value:"하한 근접", sub:"최대 2.7배 이내"},
           ].map(({label,value,sub})=>(
-            <div key={label} className="bg-white border border-gray-200 rounded-lg p-4 text-center">
-              <div className="font-mono text-[10px] text-gray-400 uppercase tracking-[0.1em] mb-1">{label}</div>
+            <div key={label} className="bg-white border border-[#e0d8ce] rounded-lg p-4 text-center">
+              <div className="font-mono text-[10px] text-[#7a6f65] uppercase tracking-[0.1em] mb-1">{label}</div>
               <div className="text-[1.05rem] font-bold text-[#059669]">{value}</div>
-              <div className="font-mono text-[10px] text-gray-500 mt-0.5">{sub}</div>
+              <div className="font-mono text-[10px] text-[#7a6f65] mt-0.5">{sub}</div>
             </div>
           ))}
         </div>
@@ -971,7 +965,7 @@ const TurboQuantPost = () => {
       </div>
 
       {/* ═══ 8. 용어 사전 ═══ */}
-      <SectionDivider>Glossary</SectionDivider>
+      <SectionDivider />
       <div className={css.section}>
         <div className={css.secLabel}>Reference</div>
         <h2 id="glossary" className={css.h2}>용어 사전</h2>
@@ -982,26 +976,26 @@ const TurboQuantPost = () => {
             {term:"Lloyd-Max Algorithm", def:"연속 확률 분포에 대한 최적 스칼라 양자화기를 구하는 알고리즘. 1차원 연속 k-means와 동치이다."},
             {term:"Shannon Lower Bound", def:"정보이론에서 유래한, 주어진 비트 수로 달성 가능한 최소 왜곡의 이론적 한계."},
           ].map(({term,def})=>(
-            <div key={term} className="border-b border-gray-200 pb-3 last:border-b-0">
-              <div className="font-semibold text-[14px] text-gray-800 mb-0.5">{term}</div>
-              <p className="text-[13px] text-gray-600 mb-0">{def}</p>
+            <div key={term} className="border-b border-[#e0d8ce] pb-3 last:border-b-0">
+              <div className="font-semibold text-[14px] text-[#1a1614] mb-0.5">{term}</div>
+              <p className="text-[13px] text-[#3d3530] mb-0">{def}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Footer */}
-      <div className="text-center py-10 border-t border-gray-200">
+      <div className="text-center py-10 border-t border-[#e0d8ce]">
         <a
           href="https://arxiv.org/abs/2504.19874"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-mono text-[11px] text-gray-500 hover:text-gray-800 hover:underline"
+          className="font-mono text-[11px] text-[#7a6f65] hover:text-[#1a1614] hover:underline"
         >
           arXiv:2504.19874 · 원본 논문 보기 →
         </a>
-        <div className="font-mono text-[10px] text-gray-500 mt-2">TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate</div>
-        <div className="font-mono text-[10px] text-gray-500 mt-1">Zandieh · Daliri · Hadian · Mirrokni · Google Research / DeepMind / NYU · 2025</div>
+        <div className="font-mono text-[10px] text-[#7a6f65] mt-2">TurboQuant: Online Vector Quantization with Near-optimal Distortion Rate</div>
+        <div className="font-mono text-[10px] text-[#7a6f65] mt-1">Zandieh · Daliri · Hadian · Mirrokni · Google Research / DeepMind / NYU · 2025</div>
       </div>
     </div>
   );
