@@ -1,7 +1,31 @@
 import TurboQuantPost from "./posts/turboquant/TurboQuantPost";
 import TriAttentionPost from "./posts/triattention/TriAttentionPost";
+import AgentCustomizePost from "./posts/agentcustomize/AgentCustomizePost";
 
 const posts = [
+  {
+    slug: "agent-customize",
+    title: "AI 코딩 에이전트 커스터마이징",
+    subtitle: "Instructions · Skills · Hooks 완전 정리",
+    tag: "공식문서 정리 · 2026",
+    date: "2026-04-17",
+    category: "docs",
+    thumbnail: "/assets/img/freeform/agent-customize.svg",
+    desc: "Instructions, Skills, Hooks 그리고 CLAUDE.md / AGENTS.md의 차이와 관계를 공식 문서 기반으로 정리한 가이드.",
+    tags: ["AI", "Claude Code", "GitHub Copilot", "Hooks"],
+    component: AgentCustomizePost,
+    toc: [
+      { id: "overview", label: "전체 개념 개요" },
+      { id: "instruction-files", label: "지시 파일 비교" },
+      { id: "instructions", label: "Instructions 상세" },
+      { id: "skills", label: "Skills 상세" },
+      { id: "hooks", label: "Hooks 상세" },
+      { id: "comparison", label: "한눈에 보는 비교표" },
+      { id: "relationship", label: "세 개념의 관계" },
+      { id: "skills-not-mcp", label: "Skills와 MCP/도구" },
+      { id: "references", label: "참고 링크" },
+    ],
+  },
   {
     slug: "triattention",
     title: "TriAttention",
