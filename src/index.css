@@ -24,3 +24,69 @@ code {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ── Post theme: GitHub Light (default) ── */
+[data-post-theme="light"] {
+  --pt-bg:     #ffffff;
+  --pt-sf:     #f6f8fa;
+  --pt-sf2:    #eaeef2;
+  --pt-bd:     #d0d7de;
+  --pt-bd2:    #d8dee4;
+  --pt-tx:     #1f2328;
+  --pt-tx2:    #656d76;
+  --pt-tx3:    #8c959f;
+  --pt-ac:     #0969da;
+  --pt-pu:     #8250df;
+  --pt-gn:     #1a7f37;
+  --pt-yw:     #ca8a04;
+  --pt-rd:     #cf222e;
+  --pt-ac-bg:  #ddf4ff;
+  --pt-pu-bg:  #fbefff;
+  --pt-gn-bg:  #dafbe1;
+  --pt-gn-bg2: #dcfce7;
+  --pt-or-bg:  #fff1e5;
+  --pt-yw-bg:  #fff8c5;
+  --pt-rd-bg:  #ffebe9;
+  --pt-ac-bd:  #54aeff;
+  --pt-pu-bd:  #d2a8ff;
+  --pt-gn-bd:  #4ac26b;
+  --pt-or-bd:  #ffa657;
+  --pt-yw-bd:  #f2cc60;
+  --pt-rd-bd:  #fca5a5;
+  --pt-ac-arc: rgba(9, 105, 218, 0.35);
+  --pt-or:     #bc4c00;
+  --pt-or-bg2: rgba(188, 76, 0, 0.09);
+}
+
+/* ── Post theme: GitHub Dark ── */
+[data-post-theme="dark"] {
+  --pt-bg:     #0d1117;
+  --pt-sf:     #161b22;
+  --pt-sf2:    #21262d;
+  --pt-bd:     #30363d;
+  --pt-bd2:    #30363d;
+  --pt-tx:     #e6edf3;
+  --pt-tx2:    #8b949e;
+  --pt-tx3:    #6e7681;
+  --pt-ac:     #58a6ff;
+  --pt-pu:     #bc8cff;
+  --pt-gn:     #3fb950;
+  --pt-yw:     #e3b341;
+  --pt-rd:     #ff7b72;
+  --pt-ac-bg:  #1c2d3e;
+  --pt-pu-bg:  #271d37;
+  --pt-gn-bg:  #162619;
+  --pt-gn-bg2: #1a2e1a;
+  --pt-or-bg:  #2c1a0f;
+  --pt-yw-bg:  #2c2208;
+  --pt-rd-bg:  #2d1216;
+  --pt-ac-bd:  #1f6feb;
+  --pt-pu-bd:  #6e40c9;
+  --pt-gn-bd:  #238636;
+  --pt-or-bd:  #b85c00;
+  --pt-yw-bd:  #9e6a03;
+  --pt-rd-bd:  #da3633;
+  --pt-ac-arc: rgba(88, 166, 255, 0.45);
+  --pt-or:     #f0883e;
+  --pt-or-bg2: rgba(240, 136, 62, 0.12);
+}

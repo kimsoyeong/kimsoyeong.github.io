@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const TableOfContents = ({ items }) => {
+const TableOfContents = ({ items, isDark = false }) => {
   const [activeId, setActiveId] = useState("");
 
   useEffect(() => {
@@ -25,9 +25,11 @@ const TableOfContents = ({ items }) => {
     return () => observer.disconnect();
   }, [items]);
 
+  const dk = isDark;
+
   return (
     <nav className="sticky top-24">
-      <div className="font-mono text-[10px] text-gray-400 uppercase tracking-[0.15em] mb-4">
+      <div className={`font-mono text-[10px] uppercase tracking-[0.15em] mb-4 ${dk ? "text-[#6e7681]" : "text-gray-400"}`}>
         On this page
       </div>
       <ul className="flex flex-col gap-0.5">
@@ -41,8 +43,12 @@ const TableOfContents = ({ items }) => {
               }}
               className={`block py-1.5 pl-3 border-l-2 text-[13px] transition-all duration-150 ${
                 activeId === item.id
-                  ? "border-gray-800 text-gray-800 font-medium"
-                  : "border-transparent text-gray-400 hover:text-gray-800 hover:border-gray-300"
+                  ? dk
+                    ? "border-[#58a6ff] text-[#e6edf3] font-medium"
+                    : "border-gray-800 text-gray-800 font-medium"
+                  : dk
+                    ? "border-transparent text-[#8b949e] hover:text-[#e6edf3] hover:border-[#30363d]"
+                    : "border-transparent text-gray-400 hover:text-gray-800 hover:border-gray-300"
               }`}
             >
               {item.label}
