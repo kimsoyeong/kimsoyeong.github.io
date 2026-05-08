@@ -416,10 +416,70 @@ description: Playwright를 사용한 웹 앱 테스트 가이드.
       </div>
     </div>
 
-    {/* ═══ 5. Hooks 상세 ═══ */}
+    {/* ═══ 5. Skill vs Spec ═══ */}
     <SectionDivider />
     <div className={css.section}>
-      <div className={css.secLabel}>§ 5 · Hooks 상세</div>
+      <div className={css.secLabel}>§ 5 · Skill vs Spec</div>
+      <h2 id="skill-vs-spec" className={css.h2}>Skill vs Spec: "어떻게"와 "무엇을"</h2>
+      <p className={css.p}>
+        지시 파일을 작성할 때 가장 흔한 혼동 중 하나는{" "}
+        <strong>Skill</strong>과 <strong>Spec</strong>의 역할을 구분하지 않는 것입니다.
+        둘 다 에이전트에게 맥락을 제공하지만, 관점이 다릅니다.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
+        <div className="bg-[#ddf4ff] dark:bg-[#1c2d3e] border border-[#54aeff] dark:border-[#1f6feb] rounded-[10px] px-5 py-5">
+          <div className="font-bold text-[15px] text-[#0969da] dark:text-[#58a6ff] mb-2">Skill = "어떻게 하는가" (How)</div>
+          <ul className="list-disc pl-5 text-[13px] text-[#1f2328] dark:text-[#e6edf3] leading-[1.78] space-y-1">
+            <li>반복 가능한 패턴, 코드 레시피, 도구 사용법</li>
+            <li>Claude가 작업 시 따를 절차적 지침</li>
+            <li>예: <span className={css.code}>evaluate() 래핑 패턴</span>, <span className={css.code}>Behavior Tree 순회 방법</span></li>
+          </ul>
+        </div>
+        <div className="bg-[#fbefff] dark:bg-[#271d37] border border-[#d2a8ff] dark:border-[#6e40c9] rounded-[10px] px-5 py-5">
+          <div className="font-bold text-[15px] text-[#8250df] dark:text-[#bc8cff] mb-2">Spec = "무엇을 만드는가" (What)</div>
+          <ul className="list-disc pl-5 text-[13px] text-[#1f2328] dark:text-[#e6edf3] leading-[1.78] space-y-1">
+            <li>시스템 아키텍처, 인터페이스 정의, 요구사항 명세</li>
+            <li>구현해야 할 목표와 제약을 정의</li>
+            <li>예: <span className={css.code}>RCAFlow 3-모듈 파이프라인 구조</span>, <span className={css.code}>평가 모듈 사양</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 className={css.h3}>비교표</h3>
+      <div className="bg-white dark:bg-[#161b22] border border-[#d0d7de] dark:border-[#30363d] rounded-[10px] overflow-hidden mb-5">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-[13px]">
+            <thead>
+              <tr>{["구분", "Skill", "Spec"].map(h => <th key={h} className={css.th}>{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {[
+                ["성격",     "재사용 가능한 레시피",       "일회성 설계 문서"],
+                ["톤",       '"~할 때 이 패턴을 따른다"',  '"~를 구현해야 한다"'],
+                ["활용 시점", "코딩 중 참조",              "설계/계획 단계에서 참조"],
+              ].map(([item, skill, spec], i, arr) => (
+                <tr key={item} className="hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]">
+                  <td className={`${css.td} font-semibold ${i === arr.length - 1 ? "border-b-0" : ""}`}>{item}</td>
+                  <td className={`${css.td} ${i === arr.length - 1 ? "border-b-0" : ""}`}>{skill}</td>
+                  <td className={`${css.td} ${i === arr.length - 1 ? "border-b-0" : ""}`}>{spec}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <Callout type="tip" title="실전 팁">
+        하나의 프로젝트에서 Skill과 Spec을 함께 사용하면 효과적입니다.
+        Spec으로 "무엇을 만들지" 정의하고, Skill로 "어떻게 만들지" 안내하세요.
+      </Callout>
+    </div>
+
+    {/* ═══ 6. Hooks 상세 ═══ */}
+    <SectionDivider />
+    <div className={css.section}>
+      <div className={css.secLabel}>§ 6 · Hooks 상세</div>
       <h2 id="hooks" className={css.h2}>Hooks (훅)</h2>
       <p className={css.p}>
         Hooks는 에이전트의 라이프사이클 이벤트에 바인딩되는{" "}
@@ -535,10 +595,10 @@ echo '{"continue":true}'`}</pre>
       </div>
     </div>
 
-    {/* ═══ 6. 한눈에 보는 비교표 ═══ */}
+    {/* ═══ 7. 한눈에 보는 비교표 ═══ */}
     <SectionDivider />
     <div className={css.section}>
-      <div className={css.secLabel}>§ 6 · 비교표</div>
+      <div className={css.secLabel}>§ 7 · 비교표</div>
       <h2 id="comparison" className={css.h2}>한눈에 보는 비교표</h2>
 
       <h3 className={css.h3}>세 가지 커스터마이징 메커니즘</h3>
@@ -599,10 +659,10 @@ echo '{"continue":true}'`}</pre>
       </div>
     </div>
 
-    {/* ═══ 7. 세 개념의 관계 ═══ */}
+    {/* ═══ 8. 세 개념의 관계 ═══ */}
     <SectionDivider />
     <div className={css.section}>
-      <div className={css.secLabel}>§ 7 · 관계</div>
+      <div className={css.secLabel}>§ 8 · 관계</div>
       <h2 id="relationship" className={css.h2}>세 개념의 관계: 비유로 이해하기</h2>
       <p className={css.p}>세 개념을 <strong>요리사(에이전트)</strong>에 비유하면 명확해집니다.</p>
 
@@ -627,10 +687,10 @@ echo '{"continue":true}'`}</pre>
       </Callout>
     </div>
 
-    {/* ═══ 8. Skills는 MCP/도구가 아니다 ═══ */}
+    {/* ═══ 9. Skills는 MCP/도구가 아니다 ═══ */}
     <SectionDivider />
     <div className={css.section}>
-      <div className={css.secLabel}>§ 8 · 자주 혼동하는 개념</div>
+      <div className={css.secLabel}>§ 9 · 자주 혼동하는 개념</div>
       <h2 id="skills-not-mcp" className={css.h2}>Skills는 MCP/도구를 구현하는 것이 아니다</h2>
       <p className={css.p}>
         자주 혼동되는 부분이지만,{" "}
@@ -703,10 +763,10 @@ echo '{"continue":true}'`}</pre>
       </Callout>
     </div>
 
-    {/* ═══ 9. 참고 링크 ═══ */}
+    {/* ═══ 10. 참고 링크 ═══ */}
     <SectionDivider />
     <div className={css.section}>
-      <div className={css.secLabel}>§ 9 · 참고 링크</div>
+      <div className={css.secLabel}>§ 10 · 참고 링크</div>
       <h2 id="references" className={css.h2}>참고 링크</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-5">
         {[
