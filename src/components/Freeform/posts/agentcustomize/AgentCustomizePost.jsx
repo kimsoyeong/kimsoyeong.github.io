@@ -98,24 +98,28 @@ const AgentCustomizePost = () => (
     {/* ═══ 1. 전체 개념 개요 ═══ */}
     <div className={css.section}>
       <div className={css.secLabel}>§ 1 · 전체 개념 개요</div>
-      <h2 id="overview" className={css.h2}>세 가지 커스터마이징 레이어</h2>
+      <h2 id="overview" className={css.h2}>네 가지 커스터마이징 레이어</h2>
       <p className={css.p}>
         AI 코딩 에이전트(GitHub Copilot, Claude Code 등)의 동작을 커스터마이징하는 방법은
-        크게 세 가지 레이어로 나뉩니다. 각각은 서로 다른 목적과 실행 방식을 가지며,
+        크게 네 가지 레이어로 나뉩니다. 각각은 서로 다른 목적과 실행 방식을 가지며,
         상호 보완적으로 작동합니다.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-[18px] mt-5 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[18px] mt-5 mb-8">
         <CDCard icon="📋" title="Instructions">
           에이전트가 <strong>어떻게 행동해야 하는지</strong>를 정의하는 자연어 규칙.
           코딩 표준, 프로젝트 구조, 컨벤션 등을 담습니다.
         </CDCard>
         <CDCard icon="🧩" title="Skills">
-          에이전트가 <strong>무엇을 할 수 있는지</strong>를 확장하는 능력 패키지.
-          워크플로우, 스크립트, 예제 파일을 묶어 필요할 때만 로드됩니다.
+          에이전트의 능력을 확장하는 <strong>재사용 가능한 워크플로우</strong> 패키지.
+          "어떻게 하는가(How)"를 캡슐화합니다.
+        </CDCard>
+        <CDCard icon="📐" title="Spec">
+          <strong>무엇을 만드는가(What)</strong>를 정의하는 설계 문서.
+          아키텍처, 인터페이스, 요구사항을 명세합니다.
         </CDCard>
         <CDCard icon="⚡" title="Hooks">
           에이전트의 동작 <strong>전후에 자동 실행</strong>되는 셸 스크립트.
-          LLM을 거치지 않고 결정론적으로 코드가 실행됩니다.
+          LLM을 거치지 않고 결정론적으로 실행됩니다.
         </CDCard>
       </div>
     </div>
@@ -416,23 +420,95 @@ description: Playwright를 사용한 웹 앱 테스트 가이드.
       </div>
     </div>
 
-    {/* ═══ 5. Skill vs Spec ═══ */}
+    {/* ═══ 5. Spec 상세 ═══ */}
     <SectionDivider />
     <div className={css.section}>
-      <div className={css.secLabel}>§ 5 · Skill vs Spec</div>
-      <h2 id="skill-vs-spec" className={css.h2}>Skill vs Spec: "어떻게"와 "무엇을"</h2>
+      <div className={css.secLabel}>§ 5 · Spec 상세</div>
+      <h2 id="spec" className={css.h2}>Spec (설계 명세)</h2>
       <p className={css.p}>
-        지시 파일을 작성할 때 가장 흔한 혼동 중 하나는{" "}
-        <strong>Skill</strong>과 <strong>Spec</strong>의 역할을 구분하지 않는 것입니다.
-        둘 다 에이전트에게 맥락을 제공하지만, 관점이 다릅니다.
+        Spec은 에이전트에게 <strong>"무엇을 만들어야 하는가(What)"</strong>를 전달하는
+        설계 문서입니다. 시스템 아키텍처, 인터페이스 정의, 요구사항 등
+        <strong>구현 목표와 제약</strong>을 명세합니다.
       </p>
 
+      <h3 className={css.h3}>Spec의 핵심 역할</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+        <div className="bg-[#fbefff] dark:bg-[#271d37] border border-[#d2a8ff] dark:border-[#6e40c9] rounded-[10px] px-5 py-5">
+          <div className="text-[20px] mb-2">🏗️</div>
+          <div className="font-bold text-[14px] text-[#8250df] dark:text-[#bc8cff] mb-1.5">아키텍처 정의</div>
+          <p className="text-[13px] text-[#1f2328] dark:text-[#e6edf3] leading-[1.72] mb-0">
+            모듈 구조, 데이터 흐름, 시스템 경계를 설명합니다.
+          </p>
+        </div>
+        <div className="bg-[#fbefff] dark:bg-[#271d37] border border-[#d2a8ff] dark:border-[#6e40c9] rounded-[10px] px-5 py-5">
+          <div className="text-[20px] mb-2">📝</div>
+          <div className="font-bold text-[14px] text-[#8250df] dark:text-[#bc8cff] mb-1.5">인터페이스 명세</div>
+          <p className="text-[13px] text-[#1f2328] dark:text-[#e6edf3] leading-[1.72] mb-0">
+            API 계약, 타입 정의, 입출력 스키마를 규정합니다.
+          </p>
+        </div>
+        <div className="bg-[#fbefff] dark:bg-[#271d37] border border-[#d2a8ff] dark:border-[#6e40c9] rounded-[10px] px-5 py-5">
+          <div className="text-[20px] mb-2">🎯</div>
+          <div className="font-bold text-[14px] text-[#8250df] dark:text-[#bc8cff] mb-1.5">요구사항·제약</div>
+          <p className="text-[13px] text-[#1f2328] dark:text-[#e6edf3] leading-[1.72] mb-0">
+            기능 요건, 비기능 요건, 제약 조건을 정의합니다.
+          </p>
+        </div>
+      </div>
+
+      <h3 className={css.h3}>Spec 예시</h3>
+      <pre className={css.pre}>{`# RCAFlow 파이프라인 설계 명세
+
+## 모듈 구성
+- Collector: 로그/메트릭/트레이스 수집 (OpenTelemetry)
+- Analyzer: 이상 탐지 및 근본 원인 분석 (causal graph)
+- Reporter: Slack/PagerDuty 알림 + 대시보드 렌더링
+
+## 인터페이스
+Collector → Analyzer: RawEvent[] (JSON Lines, max 10MB/batch)
+Analyzer → Reporter: RCAResult { root_cause, confidence, evidence[] }
+
+## 제약 사항
+- 분석 지연 시간: < 30초 (P95)
+- Python 3.11+, FastAPI, 외부 DB 의존 금지`}</pre>
+
+      <h3 className={css.h3}>Spec의 위치와 형태</h3>
+      <p className={css.p}>
+        Spec은 아직 표준화된 파일 형식이 없습니다. 프로젝트 상황에 맞게 유연하게 배치할 수 있습니다.
+      </p>
+      <div className="bg-white dark:bg-[#161b22] border border-[#d0d7de] dark:border-[#30363d] rounded-[10px] overflow-hidden mb-5">
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse text-[13px]">
+            <thead>
+              <tr>{["방식", "위치", "장점"].map(h => <th key={h} className={css.th}>{h}</th>)}</tr>
+            </thead>
+            <tbody>
+              {[
+                ["Instructions 내 포함", "CLAUDE.md / copilot-instructions.md", "별도 파일 없이 바로 전달"],
+                ["별도 문서로 분리",     "docs/spec/ 또는 프로젝트 루트",        "버전 관리·리뷰 용이"],
+                ["Skill에서 참조",       "SKILL.md 내 references/",              "Skill이 로드될 때 함께 제공"],
+              ].map(([method, loc, adv], i, arr) => (
+                <tr key={method} className="hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]">
+                  <td className={`${css.td} font-semibold ${i === arr.length - 1 ? "border-b-0" : ""}`}>{method}</td>
+                  <td className={`${css.td} font-mono text-[11px] text-[#8250df] dark:text-[#bc8cff] ${i === arr.length - 1 ? "border-b-0" : ""}`}>{loc}</td>
+                  <td className={`${css.td} ${i === arr.length - 1 ? "border-b-0" : ""}`}>{adv}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h3 className={css.h3}>Skill vs Spec: How와 What</h3>
+      <p className={css.p}>
+        Skill과 Spec은 모두 에이전트에게 맥락을 제공하지만, <strong>관점이 다릅니다.</strong>
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
         <div className="bg-[#ddf4ff] dark:bg-[#1c2d3e] border border-[#54aeff] dark:border-[#1f6feb] rounded-[10px] px-5 py-5">
           <div className="font-bold text-[15px] text-[#0969da] dark:text-[#58a6ff] mb-2">Skill = "어떻게 하는가" (How)</div>
           <ul className="list-disc pl-5 text-[13px] text-[#1f2328] dark:text-[#e6edf3] leading-[1.78] space-y-1">
             <li>반복 가능한 패턴, 코드 레시피, 도구 사용법</li>
-            <li>Claude가 작업 시 따를 절차적 지침</li>
+            <li>에이전트가 작업 시 따를 절차적 지침</li>
             <li>예: <span className={css.code}>evaluate() 래핑 패턴</span>, <span className={css.code}>Behavior Tree 순회 방법</span></li>
           </ul>
         </div>
@@ -446,7 +522,6 @@ description: Playwright를 사용한 웹 앱 테스트 가이드.
         </div>
       </div>
 
-      <h3 className={css.h3}>비교표</h3>
       <div className="bg-white dark:bg-[#161b22] border border-[#d0d7de] dark:border-[#30363d] rounded-[10px] overflow-hidden mb-5">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-[13px]">
@@ -473,6 +548,7 @@ description: Playwright를 사용한 웹 앱 테스트 가이드.
       <Callout type="tip" title="실전 팁">
         하나의 프로젝트에서 Skill과 Spec을 함께 사용하면 효과적입니다.
         Spec으로 "무엇을 만들지" 정의하고, Skill로 "어떻게 만들지" 안내하세요.
+        Instructions로 전체 코딩 규칙을, Hooks로 자동화를 더하면 완전한 에이전트 환경이 됩니다.
       </Callout>
     </div>
 
@@ -601,27 +677,28 @@ echo '{"continue":true}'`}</pre>
       <div className={css.secLabel}>§ 7 · 비교표</div>
       <h2 id="comparison" className={css.h2}>한눈에 보는 비교표</h2>
 
-      <h3 className={css.h3}>세 가지 커스터마이징 메커니즘</h3>
+      <h3 className={css.h3}>네 가지 커스터마이징 메커니즘</h3>
       <div className="bg-white dark:bg-[#161b22] border border-[#d0d7de] dark:border-[#30363d] rounded-[10px] overflow-hidden mb-7">
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-[13px]">
             <thead>
-              <tr>{["", "Instructions", "Skills", "Hooks"].map(h => <th key={h} className={css.th}>{h}</th>)}</tr>
+              <tr>{["", "Instructions", "Skills", "Spec", "Hooks"].map(h => <th key={h} className={css.th}>{h}</th>)}</tr>
             </thead>
             <tbody>
               {[
-                ["본질",    "코딩 규칙/표준",             "재사용 가능한 능력 패키지",           "라이프사이클 자동화 스크립트"],
-                ["형태",    "마크다운 텍스트",             "폴더 (SKILL.md + 리소스)",            "JSON 설정 + 셸 스크립트"],
-                ["로딩",    "Always-on 또는 glob 매칭",   "On-demand (점진적 로드)",             "이벤트 트리거"],
-                ["실행 주체","LLM이 참고",                 "LLM이 호출/참고",                     "OS가 직접 실행 (결정론적)"],
-                ["대상",    "Copilot (VS Code, GitHub)",  "Copilot, CLI, cloud agent (오픈 스탠다드)", "Copilot, Claude Code 등"],
-                ["콘텐츠",  "텍스트만",                   "텍스트 + 스크립트 + 예제",            "셸 명령어"],
-                ["비유",    '"이렇게 행동해라"',           '"이 작업은 이렇게 해라"',             '"이 시점에 이걸 자동 실행해라"'],
-              ].map(([item, inst, skill, hook], i, arr) => (
+                ["본질",    "코딩 규칙/표준",             "재사용 가능한 능력 패키지",           "설계 명세·아키텍처 문서",          "라이프사이클 자동화 스크립트"],
+                ["핵심 질문","'어떻게 행동할까'",          "'어떻게 수행할까 (How)'",             "'무엇을 만들까 (What)'",           "'언제 자동 실행할까'"],
+                ["형태",    "마크다운 텍스트",             "폴더 (SKILL.md + 리소스)",            "마크다운/문서 파일",               "JSON 설정 + 셸 스크립트"],
+                ["로딩",    "Always-on 또는 glob 매칭",   "On-demand (점진적 로드)",             "수동 참조 또는 Skill 내 포함",     "이벤트 트리거"],
+                ["실행 주체","LLM이 참고",                 "LLM이 호출/참고",                     "LLM이 참고",                      "OS가 직접 실행 (결정론적)"],
+                ["재사용성", "프로젝트 전체",              "프로젝트 간 이식 가능",               "프로젝트별 일회성",                "프로젝트 간 이식 가능"],
+                ["비유",    '"이렇게 행동해라"',           '"이 작업은 이렇게 해라"',             '"이것을 만들어라"',                '"이 시점에 이걸 자동 실행해라"'],
+              ].map(([item, inst, skill, spec, hook], i, arr) => (
                 <tr key={item} className="hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]">
                   <td className={`${css.td} font-semibold ${i === arr.length - 1 ? "border-b-0" : ""}`}>{item}</td>
                   <td className={`${css.td} ${i === arr.length - 1 ? "border-b-0" : ""}`}>{inst}</td>
                   <td className={`${css.td} ${i === arr.length - 1 ? "border-b-0" : ""}`}>{skill}</td>
+                  <td className={`${css.td} ${i === arr.length - 1 ? "border-b-0" : ""}`}>{spec}</td>
                   <td className={`${css.td} ${i === arr.length - 1 ? "border-b-0" : ""}`}>{hook}</td>
                 </tr>
               ))}
@@ -663,10 +740,10 @@ echo '{"continue":true}'`}</pre>
     <SectionDivider />
     <div className={css.section}>
       <div className={css.secLabel}>§ 8 · 관계</div>
-      <h2 id="relationship" className={css.h2}>세 개념의 관계: 비유로 이해하기</h2>
-      <p className={css.p}>세 개념을 <strong>요리사(에이전트)</strong>에 비유하면 명확해집니다.</p>
+      <h2 id="relationship" className={css.h2}>네 개념의 관계: 비유로 이해하기</h2>
+      <p className={css.p}>네 개념을 <strong>요리사(에이전트)</strong>에 비유하면 명확해집니다.</p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-5">
         <Card icon="📋" title="Instructions = 주방 규칙" accentColor="var(--pt-ac)">
           "채소는 항상 오른쪽에 놓아라", "소금은 마지막에 넣어라" 같은{" "}
           <strong>항상 지켜야 할 기본 규칙</strong>. 요리사는 모든 요리에서 이 규칙을 참고합니다.
@@ -675,6 +752,10 @@ echo '{"continue":true}'`}</pre>
           "파스타 만들기", "스시 말기" 같은 <strong>특정 작업의 상세 절차</strong>.
           필요할 때만 꺼내 보고, 조리법뿐 아니라 참고 사진이나 도구 사용법도 포함됩니다.
         </Card>
+        <Card icon="📐" title="Spec = 주문서" accentColor="#8250df">
+          "코스 A: 전채 → 파스타 → 디저트, 글루텐 프리" 같은{" "}
+          <strong>무엇을 만들지 정의한 설계서</strong>. 고객의 요구와 제약을 명확히 전달합니다.
+        </Card>
         <Card icon="⚡" title="Hooks = 자동화 장비" accentColor="var(--pt-gn)">
           "오븐 문이 열리면 타이머 시작", "조리 완료 시 자동 접시세척기 가동" 같은{" "}
           <strong>특정 시점에 자동 실행되는 장치</strong>. 요리사의 판단 없이 기계적으로 작동합니다.
@@ -682,8 +763,9 @@ echo '{"continue":true}'`}</pre>
       </div>
 
       <Callout type="info" title="🔗 상호 보완 관계">
-        이 세 가지는 서로 대체재가 아니라 보완재입니다. Instructions가 "성격과 규칙"을,
-        Skills가 "전문 능력"을, Hooks가 "직접 실행되는 자동화"를 담당합니다.
+        이 네 가지는 서로 대체재가 아니라 보완재입니다. Instructions가 "행동 규칙"을,
+        Skills가 "수행 절차(How)"를, Spec이 "구현 목표(What)"를,
+        Hooks가 "자동화 트리거"를 담당합니다.
       </Callout>
     </div>
 
