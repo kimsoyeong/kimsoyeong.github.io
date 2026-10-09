@@ -12,13 +12,14 @@ test('structure examples link to existing records and represent stored edges', (
   }
 });
 
-test('PreFlight is directly linked to its contributor and demonstrates three distinct capabilities', () => {
+test('PreFlight is directly linked to its contributor and separates demonstrated capabilities from implementation technology', () => {
   expect(graph.edges).toEqual(expect.arrayContaining([
     expect.objectContaining({source:'person:soyeong', predicate:'workedOn', target:'project:preflight'}),
-    ...['integration','architecture','agent-sdk'].map(id => expect.objectContaining({
+    ...['integration','architecture'].map(id => expect.objectContaining({
       source:'contribution:preflight', predicate:'demonstrates', target:`capability:${id}`
     }))
   ]));
   expect(ontologyExampleEdges.some(e => e.predicate === 'workedOn')).toBe(true);
-  expect(ontologyExampleEdges.filter(e => e.predicate === 'demonstrates')).toHaveLength(3);
+  expect(ontologyExampleEdges).toContainEqual(expect.objectContaining({source:'contribution:preflight',predicate:'usesTechnology',target:'technology:github-copilot-sdk'}));
+  expect(ontologyExampleEdges.filter(e => e.predicate === 'demonstrates')).toHaveLength(2);
 });

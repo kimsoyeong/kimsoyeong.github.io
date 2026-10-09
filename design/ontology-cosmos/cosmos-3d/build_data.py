@@ -72,7 +72,8 @@ edge('contribution:rca', 'implemented', 'tool:device', 'career')
 edge('contribution:preflight', 'implemented', 'agent:recon', 'career')
 for tid in ['github-copilot-sdk', 'microsoft-agent-framework']:
     edge('writing:tistory-copilot', 'coversTechnology', f'technology:{tid}', 'tistory-copilot')
-    edge('capability:agent-sdk', 'appliesTechnology', f'technology:{tid}', 'user-preflight-capabilities')
+    edge('capability:architecture', 'appliesTechnology', f'technology:{tid}', 'user-preflight-capabilities')
+    edge('contribution:preflight', 'usesTechnology', f'technology:{tid}', 'user-preflight-capabilities')
 derive_relations(data)
 
 assert all(e['source'] in ids and e['target'] in ids for e in data['edges'])

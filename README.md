@@ -58,7 +58,7 @@ Person → authored → Writing / Review / Paper
 Writing / Review → publishedIn → PublicationChannel
 ```
 
-프로젝트에 참여했다는 사실과 본인이 맡은 범위를 구분한다. 역량은 개인의 실제 기여를 근거로 연결한다. 글을 읽거나 특정 기술을 프로젝트 목록에 기재했다는 이유만으로 실무 역량을 만들지 않는다.
+프로젝트에 참여했다는 사실과 본인이 맡은 범위를 구분한다. 역량은 개인의 실제 기여를 근거로 연결한다. 에이전트 구조 설계, SDK 활용, 플랫폼 구성과 Workflow 설계는 하나의 `Agent Design & Development` 역량으로 묶고 RCA, 사내 플랫폼 업무, PreFlight의 기여를 각각 근거로 연결한다. SDK와 프레임워크는 `Technology`로 구분하며 실제 사용한 기여의 범위를 다른 프로젝트로 확장하지 않는다. 글을 읽거나 특정 기술을 프로젝트 목록에 기재했다는 이유만으로 실무 역량을 만들지 않는다.
 
 `Paper`는 본인 저술 논문, `Review`는 외부 자료에 대한 본인 리뷰, `Writing`은 본인 기술 글이다. 리뷰한 원논문은 필요에 따라 리뷰의 `references` 속성으로 보관한다.
 

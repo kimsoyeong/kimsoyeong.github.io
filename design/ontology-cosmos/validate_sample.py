@@ -122,7 +122,7 @@ print('PASS: actual thesis title, official session and detailed media records')
 assert 'p2s2YJBEg4w' not in json.dumps(data)
 
 assert not {"project:aof", "project:atc"} & nodes.keys()
-assert len([e for e in data["edges"] if e["source"]=="person:soyeong" and e["predicate"]=="hasCapability"])==12
+assert len([e for e in data["edges"] if e["source"]=="person:soyeong" and e["predicate"]=="hasCapability"])==9
 assert not {"role:agent-lead", "capability:agent-leadership"} & nodes.keys()
 
 assert '파트 리딩' not in json.dumps(data, ensure_ascii=False)
@@ -158,7 +158,7 @@ assert ('person:soyeong', 'owns', 'channel:kode') not in triples
 assert ('contribution:har-followup', 'duringExperience', 'experience:snu') in triples
 assert ('contribution:har', 'duringExperience', 'experience:snu') not in triples
 assert ('contribution:har-followup', 'duringEducation', 'education:snu') not in triples
-assert {e['target'] for e in data['edges'] if e['source'] == 'contribution:preflight' and e['predicate'] == 'demonstrates'} == {'capability:integration', 'capability:architecture', 'capability:agent-sdk'}
+assert {e['target'] for e in data['edges'] if e['source'] == 'contribution:preflight' and e['predicate'] == 'demonstrates'} == {'capability:integration', 'capability:architecture'}
 print('PASS: blog ownership and publication coverage, personal skill evidence, distinct HAR research periods')
 
 if len(sys.argv) > 1:
@@ -186,3 +186,6 @@ if len(sys.argv) > 1:
                         assert (a['source'], predicate, b['target']) in triples
     assert len(next(e['basisPaths'] for e in data['edges'] if e['source'] == 'person:soyeong' and e['predicate'] == 'workedOn' and e['target'] == 'project:har')) == 2
     print('PASS: generated graph types and derived navigation links preserve every confirmed basis path')
+
+assert not {'capability:agent-sdk', 'capability:platform-architecture', 'capability:workflow'} & nodes.keys()
+assert {e['source'] for e in data['edges'] if e['predicate']=='demonstrates' and e['target']=='capability:architecture'} == {'contribution:rca','contribution:agent-platform','contribution:preflight'}

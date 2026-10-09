@@ -2,9 +2,9 @@ export const ontologyExampleNodes = [
   {id:'person:soyeong', type:'Person', label:'김소영', x:90, y:180},
   {id:'project:preflight', type:'Project', label:'PreFlight', x:350, y:90},
   {id:'contribution:preflight', type:'Contribution', label:'Recon 및 통합 기여', x:350, y:370},
-  {id:'capability:architecture', type:'Capability', label:'에이전트 구조 설계', x:670, y:130},
+  {id:'capability:architecture', type:'Capability', label:'에이전트 설계 및 개발', x:670, y:130},
   {id:'capability:integration', type:'Capability', label:'시스템 통합', x:670, y:370},
-  {id:'capability:agent-sdk', type:'Capability', label:'에이전트 SDK 활용', x:670, y:610},
+  {id:'technology:github-copilot-sdk', type:'Technology', label:'GitHub Copilot SDK', x:670, y:610},
   {id:'review:tistory-handbook', type:'Review', label:'HANDBOOK.md 리뷰', x:90, y:630},
   {id:'channel:tistory', type:'PublicationChannel', label:'소소한 코딩일지', x:350, y:630}
 ];
@@ -15,7 +15,7 @@ export const ontologyExampleEdges = [
   {source:'contribution:preflight', predicate:'inProject', target:'project:preflight', label:'이 프로젝트에서', x:403, y:224},
   {source:'contribution:preflight', predicate:'demonstrates', target:'capability:architecture', label:'드러난 역량', x:510, y:224},
   {source:'contribution:preflight', predicate:'demonstrates', target:'capability:integration', label:'드러난 역량', x:510, y:348},
-  {source:'contribution:preflight', predicate:'demonstrates', target:'capability:agent-sdk', label:'드러난 역량', x:510, y:525},
+  {source:'contribution:preflight', predicate:'usesTechnology', target:'technology:github-copilot-sdk', label:'사용한 기술', x:510, y:525},
   {source:'person:soyeong', predicate:'authored', target:'review:tistory-handbook', label:'작성함', x:134, y:454},
   {source:'review:tistory-handbook', predicate:'publishedIn', target:'channel:tistory', label:'게시됨', x:220, y:604}
 ];
@@ -49,7 +49,7 @@ export function ontologyGuide(nodeCount, edgeCount) {
       <p class="ontology-diagram-note">프로젝트 수행은 전체 참여를, 기여는 본인이 맡은 범위를, 역량은 그 수행으로 입증한 능력을 나타냅니다. 관계 이름은 화살표 방향으로 읽습니다. 작은 화면에서는 구조도를 좌우로 움직여 볼 수 있습니다.</p>
       <div class="ontology-type-list">
         <div><h3>경력에서 조직으로</h3><p>김소영의 KT 재직 기록이 회사와 연결됩니다. 기여 기록도 당시 재직 경험과 연결되어 어떤 맥락에서 수행한 일인지 보여줍니다.</p></div>
-        <div><h3>수행한 프로젝트와 맡은 기여</h3><p>김소영 → 프로젝트 수행 → PreFlight로 직접 연결합니다. Recon 및 통합은 그 프로젝트 안에서 맡은 개인 기여입니다. 기여를 근거로 시스템 통합, 에이전트 구조 설계, SDK 활용 역량을 각각 연결합니다.</p></div>
+        <div><h3>수행한 프로젝트와 맡은 기여</h3><p>김소영 → 프로젝트 수행 → PreFlight로 직접 연결합니다. Recon 및 통합은 그 프로젝트 안에서 맡은 개인 기여입니다. 기여를 근거로 에이전트 설계 및 개발과 시스템 통합 역량을 연결합니다. SDK는 그 기여에서 사용한 기술로 연결합니다.</p></div>
         <div><h3>소유한 블로그와 작성한 글</h3><p>김소영은 소소한 코딩일지를 소유하고 운영하며, 본인이 작성한 HANDBOOK.md 리뷰를 그 블로그에 게시합니다. 블로그 소유, 글 작성, 게시 위치는 서로 다른 관계입니다. 원논문은 리뷰 안의 참고 자료이며 독립 노드로 표시하지 않습니다.</p></div>
       </div>
     </section>
@@ -66,6 +66,7 @@ export function ontologyGuide(nodeCount, edgeCount) {
       <div class="ontology-type-list">
         <div><h3>직접 연결도 수행 근거를 가집니다</h3><p>수행한 프로젝트, 근무 조직, 학교와 행사 참여를 직접 연결하되 개인 기여, 경력, 학위 및 참가 기록의 근거 경로를 함께 보존합니다. 같은 프로젝트의 석사 연구와 졸업 이후 연구원 기여도 별도로 기록합니다.</p></div>
         <div><h3>소속과 소유는 다릅니다</h3><p>KT 재직 중 수행한 업무와 KT 소속 대외 활동을 구분합니다. 재직 관계가 있다고 해서 회사의 소유 프로젝트라는 의미는 아닙니다.</p></div>
+        <div><h3>역량과 구현 수단을 구분합니다</h3><p>에이전트 구조 설계, SDK 활용, 플랫폼 구성과 Workflow 설계는 에이전트 설계 및 개발 역량의 수행 범위로 묶습니다. RCA, 사내 플랫폼 업무와 PreFlight의 개인 기여가 같은 역량을 뒷받침합니다. SDK와 프레임워크는 사용 기술이며, 한 기여의 기술을 다른 프로젝트로 자동 확장하지 않습니다.</p></div>
         <div><h3>학습 기록과 실무 근거를 구분합니다</h3><p>리뷰의 about는 다루는 주제를 뜻합니다. 기여의 demonstrates는 실제 수행에서 드러난 역량을 뜻합니다. 같은 주제를 읽었다는 이유로 수행 경력을 만들지 않습니다.</p></div>
         <div><h3>상태와 출처를 함께 읽습니다</h3><p>관계에는 확인 근거를 연결합니다. 만료된 어학 기록에는 상태를 표시합니다. 공간에서 가깝다는 이유만으로 관계를 만들지 않습니다.</p></div>
       </div>

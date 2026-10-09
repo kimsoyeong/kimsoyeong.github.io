@@ -100,7 +100,7 @@ test('profile index lists top-level sections and keeps technology tags without l
 
 test('intro customization card opens architecture capability instead of a blog post', () => {
   render(<CosmosPage />);
-  fireEvent.click(screen.getByRole('button',{name:'에이전트 구조 설계 역량 보기'}));
-  expect(screen.getByRole('heading',{name:'Agent Architecture',level:1})).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button',{name:'에이전트 설계 및 개발 역량 보기'}));
+  expect(screen.getByRole('heading',{name:'Agent Design & Development',level:1})).toBeInTheDocument();
   expect(screen.queryByRole('button',{name:'글 본문 읽기 ↗'})).not.toBeInTheDocument();
 });

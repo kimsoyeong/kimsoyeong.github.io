@@ -146,7 +146,7 @@
       "label": "사용자 확인 / GitHub는 포트폴리오, Tistory는 기술 및 학습 기록 / 2026-10-09"
     },
     "user-preflight-capabilities": {
-      "label": "사용자 확인 / PreFlight 수행, Recon 및 통합 기여와 설계 및 SDK 활용 역량",
+      "label": "사용자 확인 / PreFlight 수행, Recon 및 통합 기여와 SDK 활용",
       "observedAt": "2026-10-10",
       "verification": "user-confirmed",
       "visibility": "review"
@@ -873,26 +873,44 @@
     {
       "id": "capability:architecture",
       "type": "Capability",
-      "label": "Agent Architecture",
-      "summary": "에이전트의 책임, 도구 입출력, 상태와 실행 흐름을 설계하는 역량.",
+      "label": "Agent Design & Development",
+      "summary": "에이전트의 역할, 도구 계약, 상태와 실행 흐름을 설계하고 SDK 기반 구현부터 플랫폼 구성까지 연결하는 역량.",
       "evidenceIds": [
         "career",
         "atc",
-        "user-preflight-capabilities"
+        "user-preflight-capabilities",
+        "user-work-context",
+        "user-agent-work",
+        "repo-projects"
       ],
       "visibility": "review",
       "details": [
         {
-          "title": "에이전트 책임과 실행 계약",
+          "title": "설계와 구현의 범위",
           "paragraphs": [
-            "에이전트가 담당할 역할과 도구의 입력 및 출력을 구분하고, 상태와 실행 결과가 다음 단계로 이어지는 구조를 다룬다.",
-            "에이전트 프레임워크 개발 경험에서 얻은 구조 설계 역량을 개인 역량으로 정리했다."
+            "에이전트별 책임과 도구 입출력, 공유할 상태와 실행 흐름을 설계하고 실제 동작하는 시스템으로 구현한다. 프레임워크와 SDK 활용은 이 역량을 구현하는 방법으로 다룬다.",
+            "플랫폼 구조와 온톨로지 기반 Skill 및 Workflow 구성도 같은 설계 및 개발 역량 안에서 설명한다. 사용 기술과 구체적인 수행 범위는 각 개인 기여 기록에 연결한다."
           ]
         },
         {
-          "title": "PreFlight 수행 근거",
+          "title": "Network RCA Agent에서의 기여",
           "paragraphs": [
-            "PreFlight에서 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 구체적인 수행 범위는 연결된 개인 기여 기록에서 확인할 수 있다."
+            "네트워크 원인분석을 위한 에이전트 구조와 도메인 도구를 직접 설계하고 개발했다. Supervisor, Action, Report의 역할을 나누고 가설 검토, 도구 실행과 보고서 작성의 흐름을 연결했다.",
+            "LangGraph를 활용한 구현과 사내 적용 이후의 실행 결과 분석이 이 역량의 수행 근거다."
+          ]
+        },
+        {
+          "title": "사내 에이전트 플랫폼 설계 업무",
+          "paragraphs": [
+            "KT 사내 과제에서 개별 에이전트의 동작을 넘어 실행 기능, 업무 흐름과 플랫폼 구성의 전체 구조를 설계했다.",
+            "업무 기능을 Skill 단위로 구분하고 Workflow로 연결하며, 온톨로지 기반 실행 흐름과 Playground의 실행 상태 확인을 구성했다. 시스템 간 API와 화면 연결은 별도의 시스템 통합 역량으로도 연결한다."
+          ]
+        },
+        {
+          "title": "PreFlight에서의 기여",
+          "paragraphs": [
+            "2인 팀에서 구조를 공동 설계하고 Recon 에이전트 개발과 FastAPI 및 React 통합을 담당했다.",
+            "Microsoft Agent Framework와 GitHub Copilot SDK 활용은 이 프로젝트에서의 설계 및 구현 경험에 연결한다. 다른 프로젝트에도 같은 SDK를 사용했다고 추정하지 않는다."
           ]
         }
       ]
@@ -947,7 +965,7 @@
       "id": "contribution:preflight",
       "type": "Contribution",
       "label": "PreFlight Recon 및 통합",
-      "summary": "PreFlight 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 이 기여에서 에이전트 구조 설계, 시스템 통합, SDK 활용 역량을 드러냈다.",
+      "summary": "PreFlight 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 에이전트 설계 및 개발과 시스템 통합 경험의 근거다.",
       "evidenceIds": [
         "career",
         "user-preflight-capabilities"
@@ -1690,25 +1708,6 @@
       "verification": "profile-observed"
     },
     {
-      "id": "capability:workflow",
-      "type": "Capability",
-      "visibility": "review",
-      "label": "Ontology & Workflow Design",
-      "summary": "업무 기능과 절차를 Skill 및 Workflow로 구조화하고 실행 흐름을 설계하는 역량.",
-      "evidenceIds": [
-        "atc"
-      ],
-      "details": [
-        {
-          "title": "업무 기능에서 실행 절차까지",
-          "paragraphs": [
-            "업무 기능을 Skill 단위로 나누고 Workflow로 연결하며, 온톨로지 기반 업무 흐름을 구성하는 경험을 갖고 있다.",
-            "생성, 구성, 실행 확인을 구분하고 Playground에서 실행 상태를 확인할 수 있도록 제품 흐름을 연결한다."
-          ]
-        }
-      ]
-    },
-    {
       "id": "organization:ax-institute",
       "type": "Organization",
       "label": "AX미래기술원",
@@ -1747,31 +1746,6 @@
         "user-agent-work"
       ],
       "visibility": "review"
-    },
-    {
-      "id": "capability:platform-architecture",
-      "type": "Capability",
-      "label": "Agent Platform Architecture",
-      "summary": "에이전트 실행 기능을 플랫폼 전체 구조로 설계하는 역량.",
-      "evidenceIds": [
-        "user-work-context",
-        "user-agent-work"
-      ],
-      "visibility": "review",
-      "details": [
-        {
-          "title": "플랫폼 전체를 설계",
-          "paragraphs": [
-            "개별 에이전트의 동작뿐 아니라 실행 기능, 업무 흐름, API와 사용자 화면이 이어지는 플랫폼 전체 구조를 설계한다."
-          ]
-        },
-        {
-          "title": "기능 경계와 연결",
-          "paragraphs": [
-            "기능별 책임과 입력 및 출력을 구분하고, 구성과 실행 결과가 시스템 사이에서 어떻게 전달되는지 설계한다. 전시 준비 과정에서 플랫폼 전체 구조 설계를 맡은 경험이 근거다."
-          ]
-        }
-      ]
     },
     {
       "id": "capability:agent-evaluation",
@@ -2090,26 +2064,6 @@
             "Edwin Chen"
           ],
           "url": "https://arxiv.org/abs/2607.25398"
-        }
-      ]
-    },
-    {
-      "id": "capability:agent-sdk",
-      "type": "Capability",
-      "label": "Agent SDK Integration",
-      "summary": "에이전트 SDK를 활용해 프로젝트의 에이전트 기능을 구현하고 시스템에 통합하는 역량.",
-      "evidenceIds": [
-        "user-preflight-capabilities",
-        "repo-projects"
-      ],
-      "visibility": "review",
-      "details": [
-        {
-          "title": "PreFlight에서의 활용",
-          "paragraphs": [
-            "PreFlight의 Recon 및 통합 기여를 통해 드러난 SDK 활용 역량이다. 해당 프로젝트에는 Microsoft Agent Framework와 GitHub Copilot SDK가 사용 기술로 기록되어 있다.",
-            "SDK 사용 역량은 본인이 확인한 수행 경험을 근거로 연결한다. 기술 목록에 이름이 있다는 이유만으로 별도 기능의 구현이나 전문성을 추정하지 않는다."
-          ]
         }
       ]
     },
@@ -3312,7 +3266,11 @@
       "target": "capability:architecture",
       "evidenceIds": [
         "career",
-        "atc"
+        "atc",
+        "user-work-context",
+        "user-agent-work",
+        "user-preflight-capabilities",
+        "repo-projects"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
@@ -3324,17 +3282,6 @@
       "target": "capability:integration",
       "evidenceIds": [
         "career",
-        "atc"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:078",
-      "source": "person:soyeong",
-      "predicate": "hasCapability",
-      "target": "capability:workflow",
-      "evidenceIds": [
         "atc"
       ],
       "assertionStatus": "sourced",
@@ -3385,18 +3332,6 @@
       "visibility": "review"
     },
     {
-      "id": "relation:087",
-      "source": "person:soyeong",
-      "predicate": "hasCapability",
-      "target": "capability:platform-architecture",
-      "evidenceIds": [
-        "user-work-context",
-        "user-agent-work"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
       "id": "relation:088",
       "source": "person:soyeong",
       "predicate": "hasCapability",
@@ -3433,7 +3368,7 @@
     },
     {
       "id": "relation:094",
-      "source": "capability:workflow",
+      "source": "capability:architecture",
       "predicate": "appliesConcept",
       "target": "concept:ontology",
       "evidenceIds": [
@@ -3725,28 +3660,6 @@
       "source": "contribution:agent-platform",
       "predicate": "demonstrates",
       "target": "capability:architecture",
-      "evidenceIds": [
-        "user-work-context"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:120",
-      "source": "contribution:agent-platform",
-      "predicate": "demonstrates",
-      "target": "capability:platform-architecture",
-      "evidenceIds": [
-        "user-work-context"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:121",
-      "source": "contribution:agent-platform",
-      "predicate": "demonstrates",
-      "target": "capability:workflow",
       "evidenceIds": [
         "user-work-context"
       ],
@@ -4097,30 +4010,7 @@
       "target": "capability:architecture",
       "evidenceIds": [
         "user-preflight-capabilities",
-        "career"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:153",
-      "source": "contribution:preflight",
-      "predicate": "demonstrates",
-      "target": "capability:agent-sdk",
-      "evidenceIds": [
-        "user-preflight-capabilities",
-        "repo-projects"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:154",
-      "source": "person:soyeong",
-      "predicate": "hasCapability",
-      "target": "capability:agent-sdk",
-      "evidenceIds": [
-        "user-preflight-capabilities",
+        "career",
         "repo-projects"
       ],
       "assertionStatus": "sourced",
@@ -5078,7 +4968,7 @@
     },
     {
       "id": "relation:249",
-      "source": "capability:agent-sdk",
+      "source": "capability:architecture",
       "predicate": "appliesTechnology",
       "target": "technology:github-copilot-sdk",
       "evidenceIds": [
@@ -5089,6 +4979,17 @@
     },
     {
       "id": "relation:250",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:251",
       "source": "writing:tistory-copilot",
       "predicate": "coversTechnology",
       "target": "technology:microsoft-agent-framework",
@@ -5099,8 +5000,8 @@
       "visibility": "review"
     },
     {
-      "id": "relation:251",
-      "source": "capability:agent-sdk",
+      "id": "relation:252",
+      "source": "capability:architecture",
       "predicate": "appliesTechnology",
       "target": "technology:microsoft-agent-framework",
       "evidenceIds": [
@@ -5110,7 +5011,18 @@
       "visibility": "review"
     },
     {
-      "id": "relation:252",
+      "id": "relation:253",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:254",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:rca",
@@ -5127,7 +5039,7 @@
       ]
     },
     {
-      "id": "relation:253",
+      "id": "relation:255",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:preflight",
@@ -5144,7 +5056,7 @@
       ]
     },
     {
-      "id": "relation:254",
+      "id": "relation:256",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:tracebench",
@@ -5161,7 +5073,7 @@
       ]
     },
     {
-      "id": "relation:255",
+      "id": "relation:257",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:har",
@@ -5184,7 +5096,7 @@
       ]
     },
     {
-      "id": "relation:256",
+      "id": "relation:258",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:sia",
@@ -5201,7 +5113,7 @@
       ]
     },
     {
-      "id": "relation:257",
+      "id": "relation:259",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:yoco",
@@ -5220,7 +5132,7 @@
       ]
     },
     {
-      "id": "relation:258",
+      "id": "relation:260",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:prupru",
@@ -5238,7 +5150,7 @@
       ]
     },
     {
-      "id": "relation:259",
+      "id": "relation:261",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:blooming",
@@ -5256,7 +5168,7 @@
       ]
     },
     {
-      "id": "relation:260",
+      "id": "relation:262",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:sobok",
@@ -5274,7 +5186,7 @@
       ]
     },
     {
-      "id": "relation:261",
+      "id": "relation:263",
       "source": "person:soyeong",
       "predicate": "workedAt",
       "target": "organization:kt",
@@ -5291,7 +5203,7 @@
       ]
     },
     {
-      "id": "relation:262",
+      "id": "relation:264",
       "source": "person:soyeong",
       "predicate": "workedAt",
       "target": "organization:snu",
@@ -5308,7 +5220,7 @@
       ]
     },
     {
-      "id": "relation:263",
+      "id": "relation:265",
       "source": "person:soyeong",
       "predicate": "workedAt",
       "target": "organization:sia",
@@ -5325,7 +5237,7 @@
       ]
     },
     {
-      "id": "relation:264",
+      "id": "relation:266",
       "source": "person:soyeong",
       "predicate": "studiedAt",
       "target": "organization:snu",
@@ -5342,7 +5254,7 @@
       ]
     },
     {
-      "id": "relation:265",
+      "id": "relation:267",
       "source": "person:soyeong",
       "predicate": "studiedAt",
       "target": "organization:cnu",
@@ -5359,7 +5271,7 @@
       ]
     },
     {
-      "id": "relation:266",
+      "id": "relation:268",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "event:agenthon2026",
@@ -5377,7 +5289,7 @@
       ]
     },
     {
-      "id": "relation:267",
+      "id": "relation:269",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "event:ambient",
@@ -5394,7 +5306,7 @@
       ]
     },
     {
-      "id": "relation:268",
+      "id": "relation:270",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "program:silicon-valley-bootcamp",
@@ -5411,7 +5323,7 @@
       ]
     },
     {
-      "id": "relation:269",
+      "id": "relation:271",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "event:ai-tour2026",

@@ -20,10 +20,10 @@ const markup = `
   <div class="mini-system" aria-hidden="true"><span>Supervisor</span><i>↓</i><div><span>Action</span><span>Report</span></div><i>↓</i><span>Tools + observations</span></div>
   <span class="card-foot">NETWORK RCA AGENT</span>
  </button>
- <button class="floating-card card-paper" data-open="capability:architecture" aria-label="에이전트 구조 설계 역량 보기">
+ <button class="floating-card card-paper" data-open="capability:architecture" aria-label="에이전트 설계 및 개발 역량 보기">
   <span class="card-kicker">AGENT ENGINEERING <span>↗</span></span><strong>Customize<br>your agents.</strong><span class="paper-sub">Architecture, tools,<br>state &amp; orchestration.</span>
   <div class="paper-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="paper-plot" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
-  <span class="card-foot">AGENT ARCHITECTURE</span>
+  <span class="card-foot">AGENT DESIGN &amp; DEVELOPMENT</span>
  </button>
  <button class="floating-card card-framework" data-open="person:soyeong" aria-label="에이전트 설계 역량 보기">
   <span class="card-kicker">ENGINEERING <span>↗</span></span><strong>Knowledge<br>into action.</strong><div class="framework-flow"><span>Skill</span><i>→</i><span>Workflow</span><i>→</i><span>Playground</span></div><span class="card-foot">AGENT DESIGN / ENGINEERING</span>

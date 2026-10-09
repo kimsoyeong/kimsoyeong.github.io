@@ -6,7 +6,7 @@ import { connectedSubgraph } from './connectedGraph';
 test('KT context reaches confirmed duties and external activities without unrelated side projects', () => {
   const paths = contextPaths('organization:kt', graph.nodes, graph.edges);
   const targets = paths.map(p => p.ids[p.ids.length - 1]);
-  expect(targets).toEqual(expect.arrayContaining(['project:rca', 'project:tracebench', 'project:preflight', 'capability:platform-architecture']));
+  expect(targets).toEqual(expect.arrayContaining(['project:rca', 'project:tracebench', 'project:preflight', 'capability:architecture']));
   expect(targets).not.toContain('project:sobok');
   expect(paths.every(p => p.edges.every(e => e.assertionStatus === 'sourced'))).toBe(true);
   const edges = graph.edges.map(e => e.predicate === 'duringExperience' ? { ...e, assertionStatus: 'proposed' } : e);
@@ -140,4 +140,15 @@ test('leadership entities and all incident edges are removed from public knowled
   const ids = new Set(graph.nodes.map(n => n.id));
   expect(graph.edges.every(e => ids.has(e.source) && ids.has(e.target))).toBe(true);
   expect(contextPaths('experience:kt', graph.nodes, graph.edges).flatMap(p => p.ids)).toContain('capability:research-planning');
+});
+
+test('agent design consolidates scopes while preserving each contribution and technology provenance', () => {
+  const merged = ['capability:agent-sdk','capability:platform-architecture','capability:workflow'];
+  expect(graph.nodes.some(n => merged.includes(n.id))).toBe(false);
+  const evidence = graph.edges.filter(e => e.predicate === 'demonstrates' && e.target === 'capability:architecture');
+  expect(evidence.map(e => e.source).sort()).toEqual(['contribution:agent-platform','contribution:preflight','contribution:rca']);
+  expect(evidence.every(e => e.evidenceIds.length > 0)).toBe(true);
+  const sdkUsage = graph.edges.filter(e => e.predicate === 'usesTechnology' && e.target === 'technology:github-copilot-sdk');
+  expect(sdkUsage.map(e => e.source).sort()).toEqual(['contribution:preflight','project:preflight']);
+  expect(new Set(graph.edges.map(e => [e.source,e.predicate,e.target].join('|'))).size).toBe(graph.edges.length);
 });
