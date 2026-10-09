@@ -427,7 +427,8 @@
       "evidenceIds": [
         "repo-projects",
         "career",
-        "user-har-followup"
+        "user-har-followup",
+        "har-bibliography"
       ],
       "visibility": "review",
       "details": [
@@ -444,9 +445,11 @@
           ]
         },
         {
-          "title": "연구 산출물",
+          "title": "석사 학위논문",
           "paragraphs": [
-            "연결된 석사 학위논문에서 실제 제목과 서지 정보를 확인할 수 있다. 정량 성능이나 모델 우월성은 현재 자료에 없는 수치를 추가하지 않았다."
+            "Deep Learning-based Human Activity Recognition with Multivariate Time Series Data",
+            "다변량 시계열 데이터를 이용한 딥러닝 기반 인간 활동 인식",
+            "서울대학교 대학원, 2024년 2월. 연결된 논문 항목에서 서지 정보를 확인할 수 있다."
           ]
         },
         {

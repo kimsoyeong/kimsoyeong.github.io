@@ -109,5 +109,14 @@ test('Soyeong media includes contributed projects without pulling unrelated orga
 });
 
 test('public graph excludes unpublished invention records and their sources', () => {
-  expect(JSON.stringify(data)).not.toMatch(/patent|직무발명|명세서|승계|특허/i);
+  expect(JSON.stringify(graph)).not.toMatch(/patent|직무발명|명세서|승계|특허/i);
+});
+
+test('HAR project displays the actual thesis title separately from its degree type', () => {
+  const project = graph.nodes.find(n => n.id === 'project:har');
+  const thesis = graph.nodes.find(n => n.id === 'paper:har-thesis');
+  expect(project.details).toContainEqual(expect.objectContaining({
+    title: '석사 학위논문',
+    paragraphs: expect.arrayContaining([thesis.fullTitle]),
+  }));
 });
