@@ -57,7 +57,7 @@ export function ontologyGuide(nodeCount, edgeCount) {
       <div class="ontology-type-list">
         <div><h3>사람과 경력</h3><p><code>Person</code> 사람, <code>Organization</code> 회사와 팀, <code>Experience</code> 재직 기록, <code>RoleAssignment</code> 맡은 역할, <code>Education</code> 학력</p></div>
         <div><h3>수행과 역량</h3><p><code>Project</code> 프로젝트, <code>Contribution</code> 본인의 기여, <code>Capability</code> 경험으로 드러난 능력</p></div>
-        <div><h3>연구와 글</h3><p><code>Paper</code> 본인 저술 논문, <code>Patent</code> 진행 단계가 있는 발명 기록, <code>Writing</code> 본인 기술 글, <code>Review</code> 외부 자료를 읽고 쓴 리뷰, <code>Section</code> 글의 목차, <code>PublicationChannel</code> 게시 공간</p></div>
+        <div><h3>연구와 글</h3><p><code>Paper</code> 본인 저술 논문, <code>Writing</code> 본인 기술 글, <code>Review</code> 외부 자료를 읽고 쓴 리뷰, <code>Section</code> 글의 목차, <code>PublicationChannel</code> 게시 공간</p></div>
         <div><h3>활동과 결과</h3><p><code>Participation</code> 참가 기록, <code>Event</code> 행사, <code>Program</code> 교육 프로그램, <code>Award</code> 수상, <code>Presentation</code> 발표, <code>Media</code> 출연, <code>Credential</code> 자격 및 어학 기록</p></div>
         <div><h3>설계와 기술</h3><p><code>AgentSystem</code> 에이전트 시스템, <code>Agent</code> 개별 에이전트, <code>Tool</code> 실행 도구, <code>Technology</code> 사용 기술, <code>Concept</code> 지식 주제</p></div>
       </div>

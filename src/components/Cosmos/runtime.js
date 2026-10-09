@@ -99,7 +99,6 @@ export function mountCosmos(root, navigate) {
   const typeName = t => ({
     Writing: 'Writing / 본인 작성 글',
     Paper: 'Paper / 본인 저술 논문',
-    Patent: 'Patent / 특허 및 작성 중 기록',
     Review: 'Review / 본인 작성 리뷰',
     ExternalPublication: 'External paper / 타인 저술 논문',
     ExternalWriting: 'External writing / 타인 작성 글',
@@ -193,7 +192,7 @@ RoleAssignment: 'Role / 담당 역할', Participation: 'Participation / 참가',
   function renderList() {
     const matches = matching();
     activeIds = new Set(matches.map(n => n.id));
-    const prioritized = [...matches].sort((a, b) => (['Person', 'Project', 'Concept', 'Writing', 'Paper', 'Patent', 'Award', 'Presentation', 'Media'].includes(b.type) ? 1 : 0) - (['Person', 'Project', 'Concept', 'Writing', 'Paper', 'Patent', 'Award', 'Presentation', 'Media'].includes(a.type) ? 1 : 0));
+    const prioritized = [...matches].sort((a, b) => (['Person', 'Project', 'Concept', 'Writing', 'Paper', 'Award', 'Presentation', 'Media'].includes(b.type) ? 1 : 0) - (['Person', 'Project', 'Concept', 'Writing', 'Paper', 'Award', 'Presentation', 'Media'].includes(a.type) ? 1 : 0));
     $('#node-list').innerHTML = prioritized.map(n => `<button data-node="${esc(n.id)}" aria-pressed="${n.id === state.selected}" title="${esc(typeName(n.type))}">${swatch(n.type)}${esc(n.label)}</button>`).join('') || `<p class="micro">${state.filter === 'Review' ? '등록된 외부 리뷰가 없습니다. 제외한 리뷰는 복원하지 않았습니다.' : '일치하는 지식이 없습니다.'}</p>`;
     $('#match-count').textContent = `${matches.length} / ${data.nodes.length} nodes`;
     root.querySelectorAll('[data-filter]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === state.filter)));
@@ -240,13 +239,13 @@ function referenceSection(n) {
     const n = byId.get(id);
     if (!n) return;
     disposeConnected(); readerId = id;
-    const items = n.type === 'Person' ? [n] : readerType === 'all' ? data.nodes : data.nodes.filter(x => readerType === 'Research' ? ['Paper', 'Patent'].includes(x.type) : readerType === 'Writing' ? ['Writing', 'Review', 'PublicationChannel'].includes(x.type) : x.type === readerType);
+    const items = n.type === 'Person' ? [n] : readerType === 'all' ? data.nodes : data.nodes.filter(x => readerType === 'Research' ? ['Paper'].includes(x.type) : readerType === 'Writing' ? ['Writing', 'Review', 'PublicationChannel'].includes(x.type) : x.type === readerType);
     $('#reader-list').innerHTML = items.map(x => `<button data-read="${esc(x.id)}" class="${id === x.id ? 'active' : ''}">${swatch(x.type)}${esc(x.label)}</button>`).join('');
     const rels = related(id),
       person = n.type === 'Person';
     const article = n.slug ? n : byId.get(n.articleId);
     const articlePath = article?.slug ? `/freeform/${article.slug}${n.anchor ? '#' + n.anchor : ''}` : null;
-    const groups = person ? [['Capabilities & leadership', ['Capability']], ['Roles & responsibilities', ['RoleAssignment']], ['Career', ['Experience']], ['Education', ['Education']], ['Research', ['Paper', 'Patent']], ['Technical writing', ['Writing', 'Review']], ['Activities', ['Participation']], ['Awards & speaking', ['Award', 'Presentation', 'Media']], ['Credentials', ['Credential']]] : [];
+    const groups = person ? [['Capabilities & leadership', ['Capability']], ['Roles & responsibilities', ['RoleAssignment']], ['Career', ['Experience']], ['Education', ['Education']], ['Research', ['Paper']], ['Technical writing', ['Writing', 'Review']], ['Activities', ['Participation']], ['Awards & speaking', ['Award', 'Presentation', 'Media']], ['Credentials', ['Credential']]] : [];
     const timeline = groups.map(([label, types]) => {
       const records = rels.map(r => r.node).filter(x => types.includes(x.type)).sort(newestFirst);
       return records.length ? `<h2>${label}</h2><div class="profile-records">${records.map(x => `<button data-read="${esc(x.id)}">${swatch(x.type)}<strong>${esc(x.label)}</strong><small>${esc(x.startDate ? `${x.startDateLabel || x.startDate} — ${x.endDate || '현재'}` : x.date || x.status || (x.type === 'Capability' ? x.summary : ''))}</small></button>`).join('')}</div>` : '';
@@ -699,7 +698,7 @@ function referenceSection(n) {
       return;
     }
     if (b.dataset.collection) {
-      const n = data.nodes.find(n => b.dataset.collection === 'Research' ? ['Paper', 'Patent'].includes(n.type) : n.type === b.dataset.collection);
+      const n = data.nodes.find(n => b.dataset.collection === 'Research' ? ['Paper'].includes(n.type) : n.type === b.dataset.collection);
       if (n) openReader(n.id, b.dataset.collection);
       return;
     }

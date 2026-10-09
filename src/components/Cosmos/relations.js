@@ -8,7 +8,7 @@ const relationLabels = {
   hasRole:'담당 역할', hasParticipation:'참가 기록', atEvent:'해당 행사', withProject:'참가 프로젝트', inProgram:'교육 프로그램',
   receivedAward:'수상', organizedBy:'주최 조직', issuedBy:'발급 또는 수여 기관',
   presented:'발표', presentsProject:'발표한 프로젝트', appearedIn:'출연', featuresProject:'소개한 프로젝트',
-  documents:'기록한 프로젝트', producedDuring:'작성한 학위 과정', preparedDisclosure:'직무발명 신고', hasCredential:'자격 및 어학 기록',
+  documents:'기록한 프로젝트', producedDuring:'작성한 학위 과정', hasCredential:'자격 및 어학 기록',
   realizes:'구현한 시스템', hasAgent:'구성 에이전트', invokes:'실행 도구', implemented:'직접 개발한 구성 요소',
   usesTechnology:'사용 기술', coversTechnology:'글에서 다룬 기술', appliesTechnology:'활용 기술',
   about:'다루는 주제', appliesConcept:'역량의 지식 영역', broader:'상위 개념', hasSection:'글의 목차', reviews:'리뷰한 원문'

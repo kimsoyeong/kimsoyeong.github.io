@@ -107,3 +107,7 @@ test('Soyeong media includes contributed projects without pulling unrelated orga
     expect(selected.filter(item => item.owner.id === id)).toHaveLength(2);
   expect(selected[0].m.videoId).toBe('oSdZnvZG0d4');
 });
+
+test('public graph excludes unpublished invention records and their sources', () => {
+  expect(JSON.stringify(data)).not.toMatch(/patent|직무발명|명세서|승계|특허/i);
+});

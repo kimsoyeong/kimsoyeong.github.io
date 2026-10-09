@@ -64,10 +64,6 @@ export const categories = {
     label: 'My papers',
     ...lavender
   },
-  Patent: {
-    label: 'Patents / drafts',
-    ...yellow
-  },
   Writing: {
     label: 'Writing',
     ...lavender
@@ -118,7 +114,7 @@ export function assignPositions(nodes, edges) {
   const roots = new Map([['article:customize', [-245, -185, 100]]]);
   for (const n of nodes) {
     const id = n.id;
-    n.cluster = categoryFor(n.type) === 'Person' ? 'person' : ['Paper', 'Patent', 'Writing', 'Review', 'Section'].includes(n.type) ? 'papers' : /har|yoco|sia|timeseries|tensor|garmin|teacher/.test(id) ? 'models' : /prupru|blooming|sobok|firebase|mysql|nginx|gcp|aws|mongodb/.test(id) ? 'web' : 'agents';
+    n.cluster = categoryFor(n.type) === 'Person' ? 'person' : ['Paper', 'Writing', 'Review', 'Section'].includes(n.type) ? 'papers' : /har|yoco|sia|timeseries|tensor|garmin|teacher/.test(id) ? 'models' : /prupru|blooming|sobok|firebase|mysql|nginx|gcp|aws|mongodb/.test(id) ? 'web' : 'agents';
     let center = clusters[n.cluster],
       spread = 100;
     if (categoryFor(n.type) === 'Achievement') {
@@ -140,7 +136,7 @@ export function assignPositions(nodes, edges) {
     n.y = center[1] + r * u;
     n.z = center[2] + r * Math.sqrt(1 - u * u) * Math.sin(a);
     n.degree = edges.filter(e => e.source === id || e.target === id).length;
-    n.radius = n.type === 'Section' ? 2 : n.type === 'Technology' ? 3 : ['Project', 'Concept', 'Paper', 'Patent', 'Writing', 'Award', 'Presentation', 'Media'].includes(n.type) ? 7 : n.type === 'Person' ? 11 : 4;
+    n.radius = n.type === 'Section' ? 2 : n.type === 'Technology' ? 3 : ['Project', 'Concept', 'Paper', 'Writing', 'Award', 'Presentation', 'Media'].includes(n.type) ? 7 : n.type === 'Person' ? 11 : 4;
   }
   // Keep stable semantic clusters while separating real nodes in all three axes.
   for (let iter = 0; iter < 70; iter++) for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
