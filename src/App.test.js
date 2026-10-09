@@ -25,8 +25,8 @@ test('Cosmos toggles edges and preserves article routes across remounts', () => 
   fireEvent.click(screen.getByRole('button', { name: '연결선 켜짐' }));
   expect(screen.getByRole('button', { name: '연결선 꺼짐' })).toHaveAttribute('aria-pressed', 'false');
   expect(within(screen.getByRole('navigation',{name:'주 메뉴'})).queryByRole('button',{name:'Writing',exact:true})).not.toBeInTheDocument();
-  fireEvent.click(screen.getByRole('button',{name:'인트로로 돌아가기'}));
-  fireEvent.click(screen.getByRole('button',{name:'AI 코딩 에이전트 커스터마이징 글 보기'}));
+  fireEvent.click(screen.getByRole('button',{name:'AI 코딩 에이전트 커스터마이징',exact:true}));
+  fireEvent.click(screen.getByRole('button',{name:'내용 살펴보기 ↗'}));
   fireEvent.click(screen.getByRole('button', { name: '글 본문 읽기 ↗' }));
   expect(mockNavigate).toHaveBeenCalledWith('/freeform/agent-customize');
   unmount();
@@ -96,4 +96,11 @@ test('profile index lists top-level sections and keeps technology tags without l
   expect(technologies.getByRole('button',{name:'LangGraph',exact:true})).toBeInTheDocument();
   fireEvent.click(technologies.getByRole('button',{name:'Python',exact:true}));
   expect(screen.getByRole('heading',{name:'Python',level:1})).toBeInTheDocument();
+});
+
+test('intro customization card opens architecture capability instead of a blog post', () => {
+  render(<CosmosPage />);
+  fireEvent.click(screen.getByRole('button',{name:'에이전트 구조 설계 역량 보기'}));
+  expect(screen.getByRole('heading',{name:'Agent Architecture',level:1})).toBeInTheDocument();
+  expect(screen.queryByRole('button',{name:'글 본문 읽기 ↗'})).not.toBeInTheDocument();
 });
