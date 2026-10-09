@@ -81,5 +81,6 @@ export function profileTechnologies(personId, nodes, edges) {
   const sourced = edges.filter(e => e.assertionStatus === 'sourced');
   const owners = new Set([personId, ...sourced.filter(e => e.source === personId && ['hasContribution', 'hasCapability'].includes(e.predicate)).map(e => e.target)]);
   const ids = new Set(sourced.filter(e => owners.has(e.source) && ['usesTechnology', 'appliesTechnology'].includes(e.predicate)).map(e => e.target));
-  return nodes.filter(n => n.type === 'Technology' && ids.has(n.id)).sort((a, b) => a.label.localeCompare(b.label));
+  const priority = new Map(['technology:langgraph', 'technology:microsoft-agent-framework', 'technology:github-copilot-sdk', 'technology:python'].map((id, i) => [id, i]));
+  return nodes.filter(n => n.type === 'Technology' && ids.has(n.id)).sort((a, b) => (priority.get(a.id) ?? 4) - (priority.get(b.id) ?? 4) || a.label.localeCompare(b.label));
 }

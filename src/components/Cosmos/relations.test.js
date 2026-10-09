@@ -129,6 +129,7 @@ test('profile technology tags use individual evidence and omit team-only or unco
   ];
   const labels = profileTechnologies('person:soyeong', [...graph.nodes, ...extraNodes], [...graph.edges, ...extraEdges]).map(n => n.label);
   expect(labels).toEqual(expect.arrayContaining(['Python','LangGraph','React','FastAPI','Garmin']));
+  expect(labels.slice(0, 4)).toEqual(['LangGraph', 'Microsoft Agent Framework', 'Github Copilot SDK', 'Python']);
   expect(labels).not.toContain('Team only');
   expect(new Set(labels).size).toBe(labels.length);
   expect(graph.nodes.some(n => ['credential:teps','credential:toeic'].includes(n.id))).toBe(false);
