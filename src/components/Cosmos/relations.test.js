@@ -1,5 +1,5 @@
 import graph from './graph.json';
-import { contextPaths, newestFirst, mediaOrder, profileMedia, mediaOwners } from './relations';
+import { contextPaths, newestFirst, mediaOrder, profileMedia, mediaOwners, profileTechnologies } from './relations';
 import { categories, categoryFor } from './spatial';
 import { connectedSubgraph } from './connectedGraph';
 
@@ -119,4 +119,17 @@ test('HAR project displays the actual thesis title separately from its degree ty
     title: '석사 학위논문',
     paragraphs: expect.arrayContaining([thesis.fullTitle]),
   }));
+});
+
+test('profile technology tags use individual evidence and omit team-only or unconfirmed skills', () => {
+  const extraNodes = [{id:'technology:team-only',type:'Technology',label:'Team only'}];
+  const extraEdges = [
+    {source:'project:preflight',predicate:'usesTechnology',target:'technology:team-only',assertionStatus:'sourced'},
+    {source:'person:soyeong',predicate:'usesTechnology',target:'technology:team-only',assertionStatus:'proposed'},
+  ];
+  const labels = profileTechnologies('person:soyeong', [...graph.nodes, ...extraNodes], [...graph.edges, ...extraEdges]).map(n => n.label);
+  expect(labels).toEqual(expect.arrayContaining(['Python','LangGraph','React','FastAPI','Garmin']));
+  expect(labels).not.toContain('Team only');
+  expect(new Set(labels).size).toBe(labels.length);
+  expect(graph.nodes.some(n => ['credential:teps','credential:toeic'].includes(n.id))).toBe(false);
 });

@@ -75,3 +75,11 @@ export function mediaOwners(id, nodes, edges) {
   }
   return [own, ...nodes.filter(n => related.has(n.id) && n.type !== 'Person')].filter(Boolean);
 }
+
+// Use personal contribution evidence, never the whole team's project stack.
+export function profileTechnologies(personId, nodes, edges) {
+  const sourced = edges.filter(e => e.assertionStatus === 'sourced');
+  const owners = new Set([personId, ...sourced.filter(e => e.source === personId && ['hasContribution', 'hasCapability'].includes(e.predicate)).map(e => e.target)]);
+  const ids = new Set(sourced.filter(e => owners.has(e.source) && ['usesTechnology', 'appliesTechnology'].includes(e.predicate)).map(e => e.target));
+  return nodes.filter(n => n.type === 'Technology' && ids.has(n.id)).sort((a, b) => a.label.localeCompare(b.label));
+}

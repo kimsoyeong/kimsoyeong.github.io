@@ -44,7 +44,7 @@ domains = {
     "realizes": ({"Project"}, {"AgentSystem"}),
     "hasAgent": ({"AgentSystem"}, {"Agent"}),
     "invokes": ({"Agent"}, {"Tool"}),
-    "usesTechnology": ({"Project", "AgentSystem", "Tool", "Contribution"}, {"Technology"}),
+    "usesTechnology": ({"Person", "Project", "AgentSystem", "Tool", "Contribution"}, {"Technology"}),
     "reviews": ({"Review"}, {"ExternalPublication", "ExternalWriting"}),
     "preparedDisclosure": ({"Person"}, {"Patent"}),
     "documents": ({"Paper", "Patent", "Writing"}, {"Project"}),
@@ -98,7 +98,7 @@ assert not any(term in json.dumps(data, ensure_ascii=False).lower() for term in 
 assert not any(e['predicate']=='authored' and nodes[e['target']]['type'] in {'ExternalPublication','ExternalWriting','Patent'} for e in data['edges'])
 assert sum(n['type']=='Experience' for n in data['nodes'])==3
 assert sum(n['type']=='Award' for n in data['nodes'])==9
-assert sum(n['type']=='Credential' for n in data['nodes'])==7
+assert sum(n['type']=='Credential' for n in data['nodes'])==5
 print('PASS: authorship vs review, career records and sourced achievements')
 
 assert nodes['paper:har-thesis']['label']==nodes['paper:har-thesis']['fullTitle']

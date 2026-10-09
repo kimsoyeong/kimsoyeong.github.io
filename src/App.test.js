@@ -78,3 +78,20 @@ test('both introduction and ontology indexes highlight the section in the articl
     fireEvent.click(screen.getByRole('button',{name:'콘텐츠 닫기'}));
   }
 });
+
+test('profile index lists top-level sections and keeps technology tags without leadership cards', () => {
+  render(<CosmosPage />);
+  fireEvent.click(screen.getByRole('button', {name:'About',exact:true}));
+  const toc = within(screen.getByRole('navigation', {name:'소개 목차'}));
+  expect(toc.getByRole('button',{name:'Capabilities',exact:true})).toBeInTheDocument();
+  expect(toc.queryByRole('button',{name:'연구개발의 중심'})).not.toBeInTheDocument();
+  expect(toc.queryByRole('button',{name:'연구에서 서비스까지'})).not.toBeInTheDocument();
+  expect(toc.queryByRole('button',{name:'Roles & responsibilities'})).not.toBeInTheDocument();
+  const capabilities = within(screen.getByRole('group',{name:'Capabilities',exact:true}));
+  expect(capabilities.queryByRole('button',{name:/에이전트 파트 리딩/})).not.toBeInTheDocument();
+  const technologies = within(screen.getByRole('group',{name:'활용 기술'}));
+  expect(technologies.getByRole('button',{name:'Python',exact:true})).toBeInTheDocument();
+  expect(technologies.getByRole('button',{name:'LangGraph',exact:true})).toBeInTheDocument();
+  fireEvent.click(technologies.getByRole('button',{name:'Python',exact:true}));
+  expect(screen.getByRole('heading',{name:'Python',level:1})).toBeInTheDocument();
+});

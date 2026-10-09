@@ -168,6 +168,12 @@
       "observedAt": "2026-10-10",
       "verification": "user-confirmed",
       "visibility": "review"
+    },
+    "user-technologies": {
+      "label": "사용자 확인 / Python 및 프레임워크 활용 역량",
+      "observedAt": "2026-10-10",
+      "verification": "user-confirmed",
+      "visibility": "review"
     }
   },
   "nodes": [
@@ -1669,36 +1675,6 @@
       "verification": "profile-observed"
     },
     {
-      "id": "credential:teps",
-      "type": "Credential",
-      "label": "TEPS / 358 (만료)",
-      "summary": "2023-09 유효기간이 만료된 과거 어학 성적. 현재 유효한 성적으로 제시하지 않는다.",
-      "evidenceIds": [
-        "linkedin-certs"
-      ],
-      "visibility": "review",
-      "date": "2021-09",
-      "expiresAt": "2023-09",
-      "issuer": "서울대학교발전기금",
-      "status": "만료된 성적",
-      "verification": "profile-observed"
-    },
-    {
-      "id": "credential:toeic",
-      "type": "Credential",
-      "label": "TOEIC / 860 (만료)",
-      "summary": "2023-03 유효기간이 만료된 과거 어학 성적. 현재 유효한 성적으로 제시하지 않는다.",
-      "evidenceIds": [
-        "linkedin-certs"
-      ],
-      "visibility": "review",
-      "date": "2021-03",
-      "expiresAt": "2023-03",
-      "issuer": "YBM",
-      "status": "만료된 성적",
-      "verification": "profile-observed"
-    },
-    {
       "id": "credential:sqld",
       "type": "Credential",
       "label": "SQL Developer",
@@ -2342,6 +2318,16 @@
           ]
         }
       ]
+    },
+    {
+      "id": "technology:python",
+      "type": "Technology",
+      "label": "Python",
+      "summary": "연구개발과 구현에 활용하는 프로그래밍 언어.",
+      "evidenceIds": [
+        "user-technologies"
+      ],
+      "visibility": "review"
     }
   ],
   "edges": [
@@ -3020,28 +3006,6 @@
       "source": "person:soyeong",
       "predicate": "hasCredential",
       "target": "credential:toeicspeaking",
-      "evidenceIds": [
-        "linkedin-certs"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:073",
-      "source": "person:soyeong",
-      "predicate": "hasCredential",
-      "target": "credential:teps",
-      "evidenceIds": [
-        "linkedin-certs"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:074",
-      "source": "person:soyeong",
-      "predicate": "hasCredential",
-      "target": "credential:toeic",
       "evidenceIds": [
         "linkedin-certs"
       ],
@@ -4287,6 +4251,17 @@
       "target": "organization:cnu",
       "evidenceIds": [
         "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:193",
+      "source": "person:soyeong",
+      "predicate": "usesTechnology",
+      "target": "technology:python",
+      "evidenceIds": [
+        "user-technologies"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
