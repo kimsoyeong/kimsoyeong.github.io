@@ -128,3 +128,5 @@
 .cosmos-page .reader-layout>nav button.is-current{background:#e5dcf7;color:#49385f;font-weight:600}
 
 .cosmos-page .detail-section h3{font-size:14px;color:#695587}.cosmos-page .technology-tags{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px}.cosmos-page .technology-tags button{padding:5px 10px;border-radius:20px;background:#eeebf3;color:#5e5072;font-size:11px}
+
+.cosmos-page .profile-links .resource-link{color:#7352ad;text-decoration:underline;text-underline-offset:4px}
