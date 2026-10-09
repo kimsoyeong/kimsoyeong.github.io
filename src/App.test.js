@@ -87,6 +87,8 @@ test('profile index lists top-level sections and keeps technology tags without l
   expect(toc.queryByRole('button',{name:'연구개발의 중심'})).not.toBeInTheDocument();
   expect(toc.queryByRole('button',{name:'연구에서 서비스까지'})).not.toBeInTheDocument();
   expect(toc.queryByRole('button',{name:'Roles & responsibilities'})).not.toBeInTheDocument();
+  expect(toc.queryByRole('button',{name:'Technical writing'})).not.toBeInTheDocument();
+  expect(screen.queryByRole('heading',{name:'Technical writing'})).not.toBeInTheDocument();
   const capabilities = within(screen.getByRole('group',{name:'Capabilities',exact:true}));
   expect(capabilities.queryByRole('button',{name:/에이전트 파트 리딩/})).not.toBeInTheDocument();
   const technologies = within(screen.getByRole('group',{name:'활용 기술'}));

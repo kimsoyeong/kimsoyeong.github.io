@@ -246,7 +246,7 @@ function referenceSection(n) {
       person = n.type === 'Person';
     const article = n.slug ? n : byId.get(n.articleId);
     const articlePath = article?.slug ? `/freeform/${article.slug}${n.anchor ? '#' + n.anchor : ''}` : null;
-    const groups = person ? [['Capabilities', ['Capability']], ['Roles & responsibilities', ['RoleAssignment']], ['Career', ['Experience']], ['Education', ['Education']], ['Research', ['Paper']], ['Technical writing', ['Writing', 'Review']], ['Activities', ['Participation']], ['Awards & speaking', ['Award', 'Presentation', 'Media']], ['Credentials', ['Credential']]] : [];
+    const groups = person ? [['Capabilities', ['Capability']], ['Roles & responsibilities', ['RoleAssignment']], ['Career', ['Experience']], ['Education', ['Education']], ['Research', ['Paper']], ['Activities', ['Participation']], ['Awards & speaking', ['Award', 'Presentation', 'Media']], ['Credentials', ['Credential']]] : [];
     const techTags = person ? `<div class="technology-tags" role="group" aria-label="활용 기술">${profileTechnologies(n.id, data.nodes, data.edges).map(t => `<button data-read="${esc(t.id)}">${esc(t.label)}</button>`).join('')}</div>` : '';
     const timeline = groups.map(([label, types]) => {
       const records = rels.map(r => r.node).filter(x => types.includes(x.type)).sort(newestFirst);
