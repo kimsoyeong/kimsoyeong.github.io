@@ -25,8 +25,8 @@ const markup = `
   <div class="paper-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="paper-plot" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
   <span class="card-foot">BLOG / OFFICIAL DOCS</span>
  </button>
- <button class="floating-card card-framework" data-open="person:soyeong" aria-label="에이전트 설계 및 리딩 역량 보기">
-  <span class="card-kicker">ENGINEERING <span>↗</span></span><strong>Knowledge<br>into action.</strong><div class="framework-flow"><span>Skill</span><i>→</i><span>Workflow</span><i>→</i><span>Playground</span></div><span class="card-foot">AGENT DESIGN / LEADERSHIP</span>
+ <button class="floating-card card-framework" data-open="person:soyeong" aria-label="에이전트 설계 역량 보기">
+  <span class="card-kicker">ENGINEERING <span>↗</span></span><strong>Knowledge<br>into action.</strong><div class="framework-flow"><span>Skill</span><i>→</i><span>Workflow</span><i>→</i><span>Playground</span></div><span class="card-foot">AGENT DESIGN / ENGINEERING</span>
  </button>
  <button class="floating-card card-identity" data-collection="Person" aria-label="Soyeong 소개 보기">
   <span class="card-kicker">THE HUMAN IN THE LOOP <span>↗</span></span><span class="profile-mark">S<span>K</span></span><strong>Soyeong Kim</strong><span class="card-foot">RESEARCH / BUILD / EVALUATE</span>

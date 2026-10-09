@@ -38,7 +38,7 @@ domains = {
     "workedOn": ({"Person"}, {"Project"}),
     "inProject": ({"Contribution"}, {"Project"}),
     "hasCapability": ({"Person"}, {"Capability"}),
-    "demonstrates": ({"Contribution", "RoleAssignment"}, {"Capability"}),
+    "demonstrates": ({"Contribution", "RoleAssignment", "Experience"}, {"Capability"}),
     "hasEducation": ({"Person"}, {"Education"}),
     "authored": ({"Person"}, {"Writing", "Review", "Paper"}),
     "realizes": ({"Project"}, {"AgentSystem"}),
@@ -122,10 +122,10 @@ print('PASS: actual thesis title, official session and detailed media records')
 assert 'p2s2YJBEg4w' not in json.dumps(data)
 
 assert not {"project:aof", "project:atc"} & nodes.keys()
-assert len([e for e in data["edges"] if e["source"]=="person:soyeong" and e["predicate"]=="hasCapability"])==13
-assert nodes["capability:agent-leadership"]["evidenceIds"]==["user-agent-lead"]
+assert len([e for e in data["edges"] if e["source"]=="person:soyeong" and e["predicate"]=="hasCapability"])==12
+assert not {"role:agent-lead", "capability:agent-leadership"} & nodes.keys()
 
-assert nodes['role:agent-lead']['teamMembers']==4
+assert '파트 리딩' not in json.dumps(data, ensure_ascii=False)
 assert not any(e['source']=='contribution:yoco' and e['predicate']=='duringEducation' for e in data['edges'])
 assert nodes['project:sobok']['activityKind']=='개인 사이드 프로젝트'
 for record in nodes.values():

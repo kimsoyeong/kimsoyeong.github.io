@@ -6,7 +6,7 @@ import { connectedSubgraph } from './connectedGraph';
 test('KT context reaches confirmed duties and external activities without unrelated side projects', () => {
   const paths = contextPaths('organization:kt', graph.nodes, graph.edges);
   const targets = paths.map(p => p.ids[p.ids.length - 1]);
-  expect(targets).toEqual(expect.arrayContaining(['project:rca', 'project:tracebench', 'project:preflight', 'capability:agent-leadership']));
+  expect(targets).toEqual(expect.arrayContaining(['project:rca', 'project:tracebench', 'project:preflight', 'capability:platform-architecture']));
   expect(targets).not.toContain('project:sobok');
   expect(paths.every(p => p.edges.every(e => e.assertionStatus === 'sourced'))).toBe(true);
   const edges = graph.edges.map(e => e.predicate === 'duringExperience' ? { ...e, assertionStatus: 'proposed' } : e);
@@ -133,4 +133,11 @@ test('profile technology tags use individual evidence and omit team-only or unco
   expect(labels).not.toContain('Team only');
   expect(new Set(labels).size).toBe(labels.length);
   expect(graph.nodes.some(n => ['credential:teps','credential:toeic'].includes(n.id))).toBe(false);
+});
+
+test('leadership entities and all incident edges are removed from public knowledge', () => {
+  expect(JSON.stringify(graph)).not.toMatch(/role:agent-lead|capability:agent-leadership|파트 리딩/);
+  const ids = new Set(graph.nodes.map(n => n.id));
+  expect(graph.edges.every(e => ids.has(e.source) && ids.has(e.target))).toBe(true);
+  expect(contextPaths('experience:kt', graph.nodes, graph.edges).flatMap(p => p.ids)).toContain('capability:research-planning');
 });

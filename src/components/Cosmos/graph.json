@@ -118,12 +118,6 @@
       "verification": "primary-source",
       "url": "https://www.linkedin.com/feed/update/urn:li:activity:7493592207258742784/"
     },
-    "user-agent-lead": {
-      "label": "사용자 확인 / 에이전트 파트 소속, 9월 중순 시작 및 리딩 범위",
-      "observedAt": "2026-10-09",
-      "verification": "user-confirmed",
-      "visibility": "review"
-    },
     "user-work-context": {
       "label": "사용자 확인 / KT 주업무, 소속 대외 활동 및 역량",
       "observedAt": "2026-10-09",
@@ -174,6 +168,12 @@
       "observedAt": "2026-10-10",
       "verification": "user-confirmed",
       "visibility": "review"
+    },
+    "user-agent-work": {
+      "label": "사용자 확인 / 에이전트 파트 소속과 연구개발 및 과제 제안 업무",
+      "observedAt": "2026-10-09",
+      "verification": "user-confirmed",
+      "visibility": "review"
     }
   },
   "nodes": [
@@ -187,7 +187,7 @@
         "linkedin",
         "career",
         "atc",
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review",
       "headline": "AI Research Engineer",
@@ -1137,7 +1137,7 @@
       "evidenceIds": [
         "linkedin",
         "user-work-context",
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review",
       "startDate": "2024-08",
@@ -1148,7 +1148,7 @@
         {
           "title": "담당 직무",
           "paragraphs": [
-            "KT에서 AI 에이전트의 구조 설계, 연구개발과 평가를 수행한다. 소속은 AX미래기술원 AX Data Lab 데이터Model팀이며, 에이전트 파트 리딩도 맡고 있다."
+            "KT에서 AI 에이전트의 구조 설계, 연구개발과 평가를 수행한다. 소속은 AX미래기술원 AX Data Lab 데이터Model팀이다."
           ]
         },
         {
@@ -1164,9 +1164,9 @@
           ]
         },
         {
-          "title": "파트 리딩",
+          "title": "연구 과제 제안",
           "paragraphs": [
-            "2026년 9월 중순부터 사내 기술 및 연구 전시회 준비를 총괄하고, 파트원 4명의 역량에 따른 업무 배분, 플랫폼 전체 구조 설계와 후년도 과제 제안을 맡았다."
+            "플랫폼 구조와 에이전트 연구개발 경험을 바탕으로 후년도 과제를 제안했다."
           ]
         }
       ]
@@ -1709,36 +1709,12 @@
       ]
     },
     {
-      "id": "capability:agent-leadership",
-      "type": "Capability",
-      "visibility": "review",
-      "label": "에이전트 파트 리딩",
-      "summary": "파트원 4명의 역량에 따른 업무 배분과 사내 기술 및 연구 전시회 준비를 총괄하는 리딩 역량.",
-      "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "details": [
-        {
-          "title": "구성원의 능력을 업무에 연결",
-          "paragraphs": [
-            "파트원 4명 각각의 능력을 파악하고 그에 맞는 업무를 배분했다."
-          ]
-        },
-        {
-          "title": "전시 준비 총괄",
-          "paragraphs": [
-            "사내 기술 및 연구 전시회 준비를 총괄하며 에이전트 구조 설계, 연구개발과 평가를 수행하는 파트의 업무를 이끌었다."
-          ]
-        }
-      ]
-    },
-    {
       "id": "organization:ax-institute",
       "type": "Organization",
       "label": "AX미래기술원",
       "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review"
     },
@@ -1748,7 +1724,7 @@
       "label": "AX Data Lab",
       "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review"
     },
@@ -1758,7 +1734,7 @@
       "label": "데이터Model팀",
       "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review"
     },
@@ -1768,45 +1744,9 @@
       "label": "에이전트 파트",
       "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review"
-    },
-    {
-      "id": "role:agent-lead",
-      "type": "RoleAssignment",
-      "label": "에이전트 파트 리딩",
-      "summary": "사내 기술 및 연구 전시회 준비 총괄과 파트원 4명의 역량에 따른 업무 배분, 플랫폼 전체 구조 설계, 후년도 과제 제안.",
-      "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "visibility": "review",
-      "startDate": "2026-09",
-      "startDateLabel": "2026-09 중순",
-      "endDate": null,
-      "status": "수행 중",
-      "roleKind": "담당 역할",
-      "teamMembers": 4,
-      "details": [
-        {
-          "title": "파트의 연구개발 범위",
-          "paragraphs": [
-            "AX미래기술원 AX Data Lab 데이터Model팀의 에이전트 파트에서 에이전트 구조 설계, 연구와 개발, 평가를 수행한다."
-          ]
-        },
-        {
-          "title": "전시 준비와 업무 배분",
-          "paragraphs": [
-            "사내 기술 및 연구 전시회를 위한 준비를 총괄했다. 파트원 4명의 능력을 파악하고 각자에게 적절한 업무를 배분했다."
-          ]
-        },
-        {
-          "title": "시스템 설계와 다음 과제",
-          "paragraphs": [
-            "플랫폼 전체 구조 설계와 후년도 과제 제안을 맡았다. 공식 인사 직책과 별개로 확인된 담당 역할을 기록한다."
-          ]
-        }
-      ]
     },
     {
       "id": "capability:platform-architecture",
@@ -1815,7 +1755,7 @@
       "summary": "에이전트 실행 기능을 플랫폼 전체 구조로 설계하는 역량.",
       "evidenceIds": [
         "user-work-context",
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review",
       "details": [
@@ -1840,7 +1780,7 @@
       "summary": "에이전트 실행 결과와 평가 조건을 다루고 재현 가능한 평가 환경을 설계하는 역량.",
       "evidenceIds": [
         "user-work-context",
-        "user-agent-lead",
+        "user-agent-work",
         "career"
       ],
       "visibility": "review",
@@ -1865,14 +1805,14 @@
       "label": "Research & Task Planning",
       "summary": "현재 연구개발 경험을 바탕으로 후년도 과제를 제안하는 역량.",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "visibility": "review",
       "details": [
         {
           "title": "후년도 과제 제안",
           "paragraphs": [
-            "에이전트 파트 리딩 과정에서 후년도 과제 제안을 맡았다. 플랫폼 구조와 에이전트 연구개발 범위를 함께 고려해 다음 업무를 제안하는 역할이다."
+            "KT 재직 중 후년도 과제 제안을 맡았다. 플랫폼 구조와 에이전트 연구개발 범위를 함께 고려해 다음 업무를 제안하는 역할이다."
           ]
         }
       ]
@@ -3401,23 +3341,12 @@
       "visibility": "review"
     },
     {
-      "id": "relation:079",
-      "source": "person:soyeong",
-      "predicate": "hasCapability",
-      "target": "capability:agent-leadership",
-      "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
       "id": "relation:080",
       "source": "organization:ax-institute",
       "predicate": "partOf",
       "target": "organization:kt",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
@@ -3428,7 +3357,7 @@
       "predicate": "partOf",
       "target": "organization:ax-institute",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
@@ -3439,7 +3368,7 @@
       "predicate": "partOf",
       "target": "organization:ax-data-lab",
       "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
@@ -3450,40 +3379,7 @@
       "predicate": "partOf",
       "target": "organization:data-model",
       "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:084",
-      "source": "person:soyeong",
-      "predicate": "hasRole",
-      "target": "role:agent-lead",
-      "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:085",
-      "source": "role:agent-lead",
-      "predicate": "atOrganization",
-      "target": "organization:agent-part",
-      "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:086",
-      "source": "role:agent-lead",
-      "predicate": "duringExperience",
-      "target": "experience:kt",
-      "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
@@ -3495,7 +3391,7 @@
       "target": "capability:platform-architecture",
       "evidenceIds": [
         "user-work-context",
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
@@ -3507,7 +3403,7 @@
       "target": "capability:agent-evaluation",
       "evidenceIds": [
         "user-work-context",
-        "user-agent-lead",
+        "user-agent-work",
         "career"
       ],
       "assertionStatus": "sourced",
@@ -3519,40 +3415,7 @@
       "predicate": "hasCapability",
       "target": "capability:research-planning",
       "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:090",
-      "source": "role:agent-lead",
-      "predicate": "demonstrates",
-      "target": "capability:agent-leadership",
-      "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:091",
-      "source": "role:agent-lead",
-      "predicate": "demonstrates",
-      "target": "capability:platform-architecture",
-      "evidenceIds": [
-        "user-agent-lead"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:092",
-      "source": "role:agent-lead",
-      "predicate": "demonstrates",
-      "target": "capability:research-planning",
-      "evidenceIds": [
-        "user-agent-lead"
+        "user-agent-work"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
@@ -4610,6 +4473,17 @@
     },
     {
       "id": "relation:194",
+      "source": "experience:kt",
+      "predicate": "demonstrates",
+      "target": "capability:research-planning",
+      "evidenceIds": [
+        "user-agent-work"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:195",
       "source": "article:customize",
       "predicate": "hasSection",
       "target": "section:agent-customize/overview",
@@ -4620,7 +4494,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:195",
+      "id": "relation:196",
       "source": "article:customize",
       "predicate": "hasSection",
       "target": "section:agent-customize/instructions",
@@ -4631,7 +4505,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:196",
+      "id": "relation:197",
       "source": "article:customize",
       "predicate": "hasSection",
       "target": "section:agent-customize/skills",
@@ -4642,7 +4516,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:197",
+      "id": "relation:198",
       "source": "article:customize",
       "predicate": "hasSection",
       "target": "section:agent-customize/spec",
@@ -4653,7 +4527,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:198",
+      "id": "relation:199",
       "source": "article:customize",
       "predicate": "hasSection",
       "target": "section:agent-customize/hooks",
@@ -4664,7 +4538,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:199",
+      "id": "relation:200",
       "source": "article:customize",
       "predicate": "hasSection",
       "target": "section:agent-customize/comparison",
@@ -4675,7 +4549,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:200",
+      "id": "relation:201",
       "source": "article:customize",
       "predicate": "hasSection",
       "target": "section:agent-customize/references",
@@ -4686,7 +4560,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:201",
+      "id": "relation:202",
       "source": "project:preflight",
       "predicate": "usesTechnology",
       "target": "technology:microsoft-agent-framework",
@@ -4697,7 +4571,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:202",
+      "id": "relation:203",
       "source": "project:preflight",
       "predicate": "usesTechnology",
       "target": "technology:github-copilot-sdk",
@@ -4708,21 +4582,10 @@
       "visibility": "review"
     },
     {
-      "id": "relation:203",
-      "source": "project:preflight",
-      "predicate": "usesTechnology",
-      "target": "technology:docker",
-      "evidenceIds": [
-        "repo-projects"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
       "id": "relation:204",
       "source": "project:preflight",
       "predicate": "usesTechnology",
-      "target": "technology:react",
+      "target": "technology:docker",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4733,7 +4596,7 @@
       "id": "relation:205",
       "source": "project:preflight",
       "predicate": "usesTechnology",
-      "target": "technology:fastapi",
+      "target": "technology:react",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4742,9 +4605,9 @@
     },
     {
       "id": "relation:206",
-      "source": "project:har",
+      "source": "project:preflight",
       "predicate": "usesTechnology",
-      "target": "technology:tensorflow",
+      "target": "technology:fastapi",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4755,7 +4618,7 @@
       "id": "relation:207",
       "source": "project:har",
       "predicate": "usesTechnology",
-      "target": "technology:garmin",
+      "target": "technology:tensorflow",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4764,6 +4627,17 @@
     },
     {
       "id": "relation:208",
+      "source": "project:har",
+      "predicate": "usesTechnology",
+      "target": "technology:garmin",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:209",
       "source": "project:yoco",
       "predicate": "usesTechnology",
       "target": "technology:ub-teacher-v2",
@@ -4774,7 +4648,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:209",
+      "id": "relation:210",
       "source": "project:prupru",
       "predicate": "usesTechnology",
       "target": "technology:tensorflow",
@@ -4785,7 +4659,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:210",
+      "id": "relation:211",
       "source": "project:prupru",
       "predicate": "usesTechnology",
       "target": "technology:tflite",
@@ -4796,7 +4670,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:211",
+      "id": "relation:212",
       "source": "project:prupru",
       "predicate": "usesTechnology",
       "target": "technology:firebase",
@@ -4807,7 +4681,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:212",
+      "id": "relation:213",
       "source": "project:prupru",
       "predicate": "usesTechnology",
       "target": "technology:android-studio",
@@ -4818,21 +4692,10 @@
       "visibility": "review"
     },
     {
-      "id": "relation:213",
-      "source": "project:blooming",
-      "predicate": "usesTechnology",
-      "target": "technology:docker",
-      "evidenceIds": [
-        "repo-projects"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
       "id": "relation:214",
       "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:react",
+      "target": "technology:docker",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4843,7 +4706,7 @@
       "id": "relation:215",
       "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:flask",
+      "target": "technology:react",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4854,7 +4717,7 @@
       "id": "relation:216",
       "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:gunicorn",
+      "target": "technology:flask",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4865,7 +4728,7 @@
       "id": "relation:217",
       "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:mysql",
+      "target": "technology:gunicorn",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4876,7 +4739,7 @@
       "id": "relation:218",
       "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:nginx",
+      "target": "technology:mysql",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4887,7 +4750,7 @@
       "id": "relation:219",
       "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:gcp",
+      "target": "technology:nginx",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4898,7 +4761,7 @@
       "id": "relation:220",
       "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:aws",
+      "target": "technology:gcp",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4907,9 +4770,9 @@
     },
     {
       "id": "relation:221",
-      "source": "project:sobok",
+      "source": "project:blooming",
       "predicate": "usesTechnology",
-      "target": "technology:react",
+      "target": "technology:aws",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4920,7 +4783,7 @@
       "id": "relation:222",
       "source": "project:sobok",
       "predicate": "usesTechnology",
-      "target": "technology:node-js",
+      "target": "technology:react",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4931,7 +4794,7 @@
       "id": "relation:223",
       "source": "project:sobok",
       "predicate": "usesTechnology",
-      "target": "technology:express",
+      "target": "technology:node-js",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4942,7 +4805,7 @@
       "id": "relation:224",
       "source": "project:sobok",
       "predicate": "usesTechnology",
-      "target": "technology:mongodb",
+      "target": "technology:express",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -4951,6 +4814,17 @@
     },
     {
       "id": "relation:225",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:mongodb",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:226",
       "source": "education:snu",
       "predicate": "atInstitution",
       "target": "organization:snu",
@@ -4961,7 +4835,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:226",
+      "id": "relation:227",
       "source": "education:cnu",
       "predicate": "atInstitution",
       "target": "organization:cnu",
@@ -4972,7 +4846,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:227",
+      "id": "relation:228",
       "source": "education:snu",
       "predicate": "researchProject",
       "target": "project:har",
@@ -4983,7 +4857,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:228",
+      "id": "relation:229",
       "source": "education:cnu",
       "predicate": "researchProject",
       "target": "project:prupru",
@@ -4994,7 +4868,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:229",
+      "id": "relation:230",
       "source": "project:preflight",
       "predicate": "realizes",
       "target": "system:preflight",
@@ -5005,7 +4879,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:230",
+      "id": "relation:231",
       "source": "system:preflight",
       "predicate": "hasAgent",
       "target": "agent:policy",
@@ -5016,7 +4890,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:231",
+      "id": "relation:232",
       "source": "system:preflight",
       "predicate": "hasAgent",
       "target": "agent:recon",
@@ -5027,7 +4901,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:232",
+      "id": "relation:233",
       "source": "system:preflight",
       "predicate": "hasAgent",
       "target": "agent:reporter",
@@ -5038,7 +4912,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:233",
+      "id": "relation:234",
       "source": "contribution:rca",
       "predicate": "usesTechnology",
       "target": "technology:langgraph",
@@ -5049,7 +4923,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:234",
+      "id": "relation:235",
       "source": "contribution:preflight",
       "predicate": "usesTechnology",
       "target": "technology:fastapi",
@@ -5060,7 +4934,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:235",
+      "id": "relation:236",
       "source": "contribution:preflight",
       "predicate": "usesTechnology",
       "target": "technology:react",
@@ -5071,7 +4945,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:236",
+      "id": "relation:237",
       "source": "contribution:prupru",
       "predicate": "usesTechnology",
       "target": "technology:firebase",
@@ -5082,7 +4956,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:237",
+      "id": "relation:238",
       "source": "contribution:blooming",
       "predicate": "usesTechnology",
       "target": "technology:docker",
@@ -5093,19 +4967,8 @@
       "visibility": "review"
     },
     {
-      "id": "relation:238",
-      "source": "contribution:blooming",
-      "predicate": "usesTechnology",
-      "target": "technology:react",
-      "evidenceIds": [
-        "repo-projects"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
       "id": "relation:239",
-      "source": "contribution:sobok",
+      "source": "contribution:blooming",
       "predicate": "usesTechnology",
       "target": "technology:react",
       "evidenceIds": [
@@ -5118,7 +4981,7 @@
       "id": "relation:240",
       "source": "contribution:sobok",
       "predicate": "usesTechnology",
-      "target": "technology:node-js",
+      "target": "technology:react",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -5129,7 +4992,7 @@
       "id": "relation:241",
       "source": "contribution:sobok",
       "predicate": "usesTechnology",
-      "target": "technology:express",
+      "target": "technology:node-js",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -5140,7 +5003,7 @@
       "id": "relation:242",
       "source": "contribution:sobok",
       "predicate": "usesTechnology",
-      "target": "technology:mongodb",
+      "target": "technology:express",
       "evidenceIds": [
         "repo-projects"
       ],
@@ -5149,6 +5012,17 @@
     },
     {
       "id": "relation:243",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:mongodb",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:244",
       "source": "contribution:har-followup",
       "predicate": "usesTechnology",
       "target": "technology:garmin",
@@ -5159,7 +5033,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:244",
+      "id": "relation:245",
       "source": "contribution:rca",
       "predicate": "implemented",
       "target": "system:rca",
@@ -5170,7 +5044,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:245",
+      "id": "relation:246",
       "source": "contribution:rca",
       "predicate": "implemented",
       "target": "tool:device",
@@ -5181,7 +5055,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:246",
+      "id": "relation:247",
       "source": "contribution:preflight",
       "predicate": "implemented",
       "target": "agent:recon",
@@ -5192,29 +5066,29 @@
       "visibility": "review"
     },
     {
-      "id": "relation:247",
+      "id": "relation:248",
       "source": "writing:tistory-copilot",
       "predicate": "coversTechnology",
       "target": "technology:github-copilot-sdk",
       "evidenceIds": [
         "tistory-copilot"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review"
-    },
-    {
-      "id": "relation:248",
-      "source": "capability:agent-sdk",
-      "predicate": "appliesTechnology",
-      "target": "technology:github-copilot-sdk",
-      "evidenceIds": [
-        "user-preflight-capabilities"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"
     },
     {
       "id": "relation:249",
+      "source": "capability:agent-sdk",
+      "predicate": "appliesTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:250",
       "source": "writing:tistory-copilot",
       "predicate": "coversTechnology",
       "target": "technology:microsoft-agent-framework",
@@ -5225,7 +5099,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:250",
+      "id": "relation:251",
       "source": "capability:agent-sdk",
       "predicate": "appliesTechnology",
       "target": "technology:microsoft-agent-framework",
@@ -5236,7 +5110,7 @@
       "visibility": "review"
     },
     {
-      "id": "relation:251",
+      "id": "relation:252",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:rca",
@@ -5253,7 +5127,7 @@
       ]
     },
     {
-      "id": "relation:252",
+      "id": "relation:253",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:preflight",
@@ -5270,7 +5144,7 @@
       ]
     },
     {
-      "id": "relation:253",
+      "id": "relation:254",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:tracebench",
@@ -5287,7 +5161,7 @@
       ]
     },
     {
-      "id": "relation:254",
+      "id": "relation:255",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:har",
@@ -5310,7 +5184,7 @@
       ]
     },
     {
-      "id": "relation:255",
+      "id": "relation:256",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:sia",
@@ -5327,7 +5201,7 @@
       ]
     },
     {
-      "id": "relation:256",
+      "id": "relation:257",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:yoco",
@@ -5346,7 +5220,7 @@
       ]
     },
     {
-      "id": "relation:257",
+      "id": "relation:258",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:prupru",
@@ -5364,7 +5238,7 @@
       ]
     },
     {
-      "id": "relation:258",
+      "id": "relation:259",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:blooming",
@@ -5382,7 +5256,7 @@
       ]
     },
     {
-      "id": "relation:259",
+      "id": "relation:260",
       "source": "person:soyeong",
       "predicate": "workedOn",
       "target": "project:sobok",
@@ -5400,7 +5274,7 @@
       ]
     },
     {
-      "id": "relation:260",
+      "id": "relation:261",
       "source": "person:soyeong",
       "predicate": "workedAt",
       "target": "organization:kt",
@@ -5417,7 +5291,7 @@
       ]
     },
     {
-      "id": "relation:261",
+      "id": "relation:262",
       "source": "person:soyeong",
       "predicate": "workedAt",
       "target": "organization:snu",
@@ -5434,7 +5308,7 @@
       ]
     },
     {
-      "id": "relation:262",
+      "id": "relation:263",
       "source": "person:soyeong",
       "predicate": "workedAt",
       "target": "organization:sia",
@@ -5451,7 +5325,7 @@
       ]
     },
     {
-      "id": "relation:263",
+      "id": "relation:264",
       "source": "person:soyeong",
       "predicate": "studiedAt",
       "target": "organization:snu",
@@ -5463,12 +5337,12 @@
       "basisPaths": [
         [
           "relation:021",
-          "relation:225"
+          "relation:226"
         ]
       ]
     },
     {
-      "id": "relation:264",
+      "id": "relation:265",
       "source": "person:soyeong",
       "predicate": "studiedAt",
       "target": "organization:cnu",
@@ -5480,12 +5354,12 @@
       "basisPaths": [
         [
           "relation:022",
-          "relation:226"
+          "relation:227"
         ]
       ]
     },
     {
-      "id": "relation:265",
+      "id": "relation:266",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "event:agenthon2026",
@@ -5503,7 +5377,7 @@
       ]
     },
     {
-      "id": "relation:266",
+      "id": "relation:267",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "event:ambient",
@@ -5520,7 +5394,7 @@
       ]
     },
     {
-      "id": "relation:267",
+      "id": "relation:268",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "program:silicon-valley-bootcamp",
@@ -5537,7 +5411,7 @@
       ]
     },
     {
-      "id": "relation:268",
+      "id": "relation:269",
       "source": "person:soyeong",
       "predicate": "participatedIn",
       "target": "event:ai-tour2026",
