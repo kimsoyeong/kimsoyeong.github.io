@@ -8,7 +8,7 @@ const markup = `
 </header>
 <main id="intro">
  <div class="hero">
-  <p class="eyebrow">A LIVING CONSTELLATION OF IDEAS</p>
+  <p class="eyebrow">A CONNECTED UNIVERSE OF EXPERIENCE</p>
   <h1>Everything<br>is <em>connected.</em></h1>
   <p class="identity">AI Agent Researcher & Developer<br><span>AI Native Engineer</span></p>
   <p class="intro-copy">에이전트를 연구하고, 시스템을 설계합니다.<br>경험과 역할, 그 안에서 쌓아 온 역량의 연결.</p>
