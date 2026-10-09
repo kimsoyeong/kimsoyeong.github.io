@@ -27,6 +27,7 @@ const ContentItem = ({ contents }) => {
                     <img
                       width="100%"
                       src={content.thumbnailUrl}
+                      alt={content.title || ""}
                       style={{
                         borderRadius: "15px",
                         minHeight: "100px",

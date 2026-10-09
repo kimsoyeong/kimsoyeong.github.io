@@ -148,59 +148,59 @@ const TurboQuantPost = () => {
         <svg viewBox="0 0 820 130" width="100%" className="block overflow-visible mb-1">
           <defs>
             <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
-              <path d="M0,0.5 L5,3 L0,5.5" fill="none" style="stroke:var(--pt-bd)" strokeWidth="1.2"/>
+              <path d="M0,0.5 L5,3 L0,5.5" fill="none" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.2"/>
             </marker>
           </defs>
           {/* INPUT */}
-          <rect x="0" y="24" width="90" height="72" rx="7" fill="var(--pt-bg)" style="stroke:var(--pt-bd)" strokeWidth="1.5"/>
+          <rect x="0" y="24" width="90" height="72" rx="7" fill="var(--pt-bg)" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5"/>
           <text x="45" y="52" fontSize="10" fill="var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".08em">INPUT</text>
-          <text x="45" y="70" fontSize="15" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">x</text>
-          <text x="45" y="86" fontSize="9" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">d차원 벡터</text>
-          <line x1="92" y1="60" x2="118" y2="60" style="stroke:var(--pt-bd)" strokeWidth="1.5" markerEnd="url(#arr)"/>
+          <text x="45" y="70" fontSize="15" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">x</text>
+          <text x="45" y="86" fontSize="9" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">d차원 벡터</text>
+          <line x1="92" y1="60" x2="118" y2="60" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5" markerEnd="url(#arr)"/>
           {/* Step 1 */}
           <rect x="120" y="24" width="120" height="72" rx="7" fill="rgba(37,99,235,.07)" stroke="var(--pt-ac)" strokeWidth="1.5"/>
           <text x="180" y="42" fontSize="9" fill="var(--pt-ac)" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".1em">STEP 1</text>
-          <text x="180" y="60" fontSize="11" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">랜덤 회전</text>
-          <text x="180" y="75" fontSize="10" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">Π · x</text>
-          <text x="180" y="88" fontSize="8.5" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">Beta 분포 유도</text>
-          <line x1="242" y1="60" x2="268" y2="60" style="stroke:var(--pt-bd)" strokeWidth="1.5" markerEnd="url(#arr)"/>
+          <text x="180" y="60" fontSize="11" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">랜덤 회전</text>
+          <text x="180" y="75" fontSize="10" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">Π · x</text>
+          <text x="180" y="88" fontSize="8.5" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">Beta 분포 유도</text>
+          <line x1="242" y1="60" x2="268" y2="60" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5" markerEnd="url(#arr)"/>
           {/* Step 2 */}
           <rect x="270" y="24" width="130" height="72" rx="7" fill="rgba(37,99,235,.07)" stroke="var(--pt-ac)" strokeWidth="1.5"/>
           <text x="335" y="42" fontSize="9" fill="var(--pt-ac)" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".1em">STEP 2</text>
-          <text x="335" y="60" fontSize="11" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">스칼라 양자화</text>
-          <text x="335" y="75" fontSize="9.5" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">Lloyd-Max 코드북</text>
-          <text x="335" y="88" fontSize="8.5" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">→ idx 저장</text>
+          <text x="335" y="60" fontSize="11" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">스칼라 양자화</text>
+          <text x="335" y="75" fontSize="9.5" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">Lloyd-Max 코드북</text>
+          <text x="335" y="88" fontSize="8.5" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">→ idx 저장</text>
           {/* Qmse bracket */}
           <line x1="120" y1="108" x2="400" y2="108" stroke="var(--pt-ac)" strokeWidth="1" opacity=".4"/>
           <line x1="120" y1="104" x2="120" y2="108" stroke="var(--pt-ac)" strokeWidth="1" opacity=".4"/>
           <line x1="400" y1="104" x2="400" y2="108" stroke="var(--pt-ac)" strokeWidth="1" opacity=".4"/>
           <text x="260" y="120" fontSize="8.5" fill="var(--pt-ac)" fontFamily="DM Mono" textAnchor="middle" opacity=".9">Qmse — MSE 최적화 구간</text>
-          <line x1="402" y1="60" x2="428" y2="60" style="stroke:var(--pt-bd)" strokeWidth="1.5" markerEnd="url(#arr)"/>
+          <line x1="402" y1="60" x2="428" y2="60" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5" markerEnd="url(#arr)"/>
           {/* Step 3 */}
           <rect x="430" y="24" width="120" height="72" rx="7" fill="rgba(180,83,9,.07)" stroke="#bc4c00" strokeWidth="1.5"/>
           <text x="490" y="42" fontSize="9" fill="#bc4c00" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".1em">STEP 3</text>
-          <text x="490" y="60" fontSize="11" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">잔차 추출</text>
-          <text x="490" y="75" fontSize="10" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">r = x − x̃mse</text>
-          <text x="490" y="88" fontSize="8.5" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">‖r‖ 최소화 후</text>
-          <line x1="552" y1="60" x2="578" y2="60" style="stroke:var(--pt-bd)" strokeWidth="1.5" markerEnd="url(#arr)"/>
+          <text x="490" y="60" fontSize="11" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">잔차 추출</text>
+          <text x="490" y="75" fontSize="10" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">r = x − x̃mse</text>
+          <text x="490" y="88" fontSize="8.5" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">‖r‖ 최소화 후</text>
+          <line x1="552" y1="60" x2="578" y2="60" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5" markerEnd="url(#arr)"/>
           {/* Step 4 */}
           <rect x="580" y="24" width="120" height="72" rx="7" fill="rgba(180,83,9,.07)" stroke="#bc4c00" strokeWidth="1.5"/>
           <text x="640" y="42" fontSize="9" fill="#bc4c00" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".1em">STEP 4</text>
-          <text x="640" y="60" fontSize="11" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">QJL 변환</text>
-          <text x="640" y="75" fontSize="10" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">sign(S · r)</text>
-          <text x="640" y="88" fontSize="8.5" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle">편향 제거 (1-bit)</text>
+          <text x="640" y="60" fontSize="11" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">QJL 변환</text>
+          <text x="640" y="75" fontSize="10" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">sign(S · r)</text>
+          <text x="640" y="88" fontSize="8.5" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle">편향 제거 (1-bit)</text>
           {/* Qprod bracket */}
           <line x1="430" y1="108" x2="700" y2="108" stroke="#bc4c00" strokeWidth="1" opacity=".4"/>
           <line x1="430" y1="104" x2="430" y2="108" stroke="#bc4c00" strokeWidth="1" opacity=".4"/>
           <line x1="700" y1="104" x2="700" y2="108" stroke="#bc4c00" strokeWidth="1" opacity=".4"/>
           <text x="565" y="120" fontSize="8.5" fill="#bc4c00" fontFamily="DM Mono" textAnchor="middle" opacity=".9">Qprod 추가 — 내적 편향 제거</text>
-          <line x1="702" y1="60" x2="726" y2="60" style="stroke:var(--pt-bd)" strokeWidth="1.5" markerEnd="url(#arr)"/>
+          <line x1="702" y1="60" x2="726" y2="60" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5" markerEnd="url(#arr)"/>
           {/* OUTPUT */}
-          <rect x="728" y="24" width="88" height="72" rx="7" fill="var(--pt-bg)" style="stroke:var(--pt-bd)" strokeWidth="1.5"/>
+          <rect x="728" y="24" width="88" height="72" rx="7" fill="var(--pt-bg)" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5"/>
           <text x="772" y="42" fontSize="9" fill="var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle" letterSpacing=".08em">OUTPUT</text>
-          <text x="772" y="58" fontSize="9.5" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">idx</text>
-          <text x="772" y="72" fontSize="9.5" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">qjl</text>
-          <text x="772" y="86" fontSize="9.5" style="fill:var(--pt-tx)" fontFamily="DM Mono" textAnchor="middle" fontWeight="700">‖r‖</text>
+          <text x="772" y="58" fontSize="9.5" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">idx</text>
+          <text x="772" y="72" fontSize="9.5" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">qjl</text>
+          <text x="772" y="86" fontSize="9.5" style={{ fill: "var(--pt-tx)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="700">‖r‖</text>
         </svg>
 
         <FormulaBlock comment="MSE 양자화기 & 내적 양자화기">
@@ -242,7 +242,7 @@ const TurboQuantPost = () => {
               <rect x="126" y="75" width="14" height="15" fill="var(--pt-ac)" opacity=".35"/>
               <rect x="142" y="50" width="14" height="40" fill="var(--pt-ac)" opacity=".35"/>
               <rect x="158" y="35" width="14" height="55" fill="var(--pt-ac)" opacity=".35"/>
-              <text x="100" y="8" style="fill:var(--pt-tx2)" fontSize="8" textAnchor="middle" fontFamily="DM Mono">비균일, 예측 불가</text>
+              <text x="100" y="8" style={{ fill: "var(--pt-tx2)" }} fontSize="8" textAnchor="middle" fontFamily="DM Mono">비균일, 예측 불가</text>
             </svg>
             <p className="text-[12px] text-[#656d76] dark:text-[#8b949e] mt-2 mb-0">각 좌표가 어떤 분포를 따를지 알 수 없으므로 최적 스칼라 양자화기 설계 불가</p>
           </div>
@@ -316,7 +316,7 @@ const TurboQuantPost = () => {
           <div className="flex gap-5 mb-3.5 flex-wrap font-mono text-[11px] text-[#656d76] dark:text-[#8b949e]">
             <span className="flex items-center gap-1"><svg width="24" height="10"><line x1="0" y1="5" x2="24" y2="5" stroke="var(--pt-gn)" strokeWidth="2"/></svg>확률 분포 곡선 (Gaussian)</span>
             <span className="flex items-center gap-1"><svg width="16" height="10"><line x1="8" y1="0" x2="8" y2="10" stroke="#bc4c00" strokeWidth="1.5" strokeDasharray="3,2"/></svg>centroid</span>
-            <span className="flex items-center gap-1"><svg width="16" height="10"><line x1="8" y1="0" x2="8" y2="10" style="stroke:var(--pt-bd)" strokeWidth="1" strokeDasharray="4,2"/></svg>Voronoi 경계</span>
+            <span className="flex items-center gap-1"><svg width="16" height="10"><line x1="8" y1="0" x2="8" y2="10" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1" strokeDasharray="4,2"/></svg>Voronoi 경계</span>
           </div>
 
           {/* ① INIT */}
@@ -337,23 +337,23 @@ const TurboQuantPost = () => {
               <rect x="238" y="6" width="152" height="64" fill="#f9fafb" rx="4"/>
               {/* 확률 질량 라벨 */}
               <text x="86" y="60" fontSize="9" fill="var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">~16%</text>
-              <text x="181" y="34" fontSize="9" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle" fontWeight="600">~34%</text>
-              <text x="219" y="34" fontSize="9" style="fill:var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle" fontWeight="600">~34%</text>
+              <text x="181" y="34" fontSize="9" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="600">~34%</text>
+              <text x="219" y="34" fontSize="9" style={{ fill: "var(--pt-tx2)" }} fontFamily="DM Mono" textAnchor="middle" fontWeight="600">~34%</text>
               <text x="314" y="60" fontSize="9" fill="var(--pt-tx2)" fontFamily="DM Mono" textAnchor="middle" fontWeight="500">~16%</text>
               {/* Gaussian curve — GREEN */}
               <path d="M10,70 C40,70 70,66 100,54 C130,42 150,14 200,12 C250,14 270,42 300,54 C330,66 360,70 390,70" fill="url(#gA)"/>
               <path d="M10,70 C40,70 70,66 100,54 C130,42 150,14 200,12 C250,14 270,42 300,54 C330,66 360,70 390,70" fill="none" stroke="var(--pt-gn)" strokeWidth="2"/>
               {/* Voronoi 경계 */}
-              <line x1="162" y1="6" x2="162" y2="70" style="stroke:var(--pt-bd)" strokeWidth="1" strokeDasharray="4,3"/>
-              <line x1="200" y1="6" x2="200" y2="70" style="stroke:var(--pt-bd)" strokeWidth="1" strokeDasharray="4,3"/>
-              <line x1="238" y1="6" x2="238" y2="70" style="stroke:var(--pt-bd)" strokeWidth="1" strokeDasharray="4,3"/>
+              <line x1="162" y1="6" x2="162" y2="70" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1" strokeDasharray="4,3"/>
+              <line x1="200" y1="6" x2="200" y2="70" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1" strokeDasharray="4,3"/>
+              <line x1="238" y1="6" x2="238" y2="70" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1" strokeDasharray="4,3"/>
               {/* Centroid 선 — ORANGE */}
               <line x1="143" y1="8" x2="143" y2="70" stroke="#bc4c00" strokeWidth="1.5" strokeDasharray="3,3"/>
               <line x1="181" y1="8" x2="181" y2="70" stroke="#bc4c00" strokeWidth="1.5" strokeDasharray="3,3"/>
               <line x1="219" y1="8" x2="219" y2="70" stroke="#bc4c00" strokeWidth="1.5" strokeDasharray="3,3"/>
               <line x1="257" y1="8" x2="257" y2="70" stroke="#bc4c00" strokeWidth="1.5" strokeDasharray="3,3"/>
               {/* 축 */}
-              <line x1="10" y1="70" x2="390" y2="70" style="stroke:var(--pt-bd)" strokeWidth="1"/>
+              <line x1="10" y1="70" x2="390" y2="70" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1"/>
               {/* Centroid 라벨 */}
               {[["143","−0.75"],["181","−0.25"],["219","+0.25"],["257","+0.75"]].map(([x,v],i)=>(
                 <g key={i}>
@@ -393,14 +393,14 @@ const TurboQuantPost = () => {
               <path d="M10,70 C40,70 70,66 100,54 C130,42 150,14 200,12 C250,14 270,42 300,54 C330,66 360,70 390,70" fill="none" stroke="var(--pt-gn)" strokeWidth="2"/>
               {/* Voronoi 경계 */}
               {["125","200","275"].map((x,i)=>(
-                <line key={i} x1={x} y1="6" x2={x} y2="70" style="stroke:var(--pt-bd)" strokeWidth="1" strokeDasharray="4,3"/>
+                <line key={i} x1={x} y1="6" x2={x} y2="70" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1" strokeDasharray="4,3"/>
               ))}
               {/* Centroid 선 — GREEN 실선 */}
               {["85","166","234","315"].map((x,i)=>(
                 <line key={i} x1={x} y1="8" x2={x} y2="70" stroke="var(--pt-gn)" strokeWidth="1.5"/>
               ))}
               {/* 축 */}
-              <line x1="10" y1="70" x2="390" y2="70" style="stroke:var(--pt-bd)" strokeWidth="1"/>
+              <line x1="10" y1="70" x2="390" y2="70" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1"/>
               {/* Centroid 라벨 */}
               {[["85","−1.51/√d"],["166","−0.45/√d"],["234","+0.45/√d"],["315","+1.51/√d"]].map(([x,v],i)=>(
                 <g key={i}>
@@ -501,9 +501,9 @@ const TurboQuantPost = () => {
               <line x1="114" y1="8" x2="114" y2="80" stroke="var(--pt-ac)" strokeWidth="1.5" strokeDasharray="4,3"/>
               <text x="118" y="14" fill="var(--pt-ac)" fontSize="8" fontFamily="DM Mono" fontWeight="500">E[err]≠0</text>
               {/* Zero reference */}
-              <line x1="100" y1="82" x2="100" y2="88" style="stroke:var(--pt-bd)" strokeWidth="1.5"/>
+              <line x1="100" y1="82" x2="100" y2="88" style={{ stroke: "var(--pt-bd)" }} strokeWidth="1.5"/>
               <text x="100" y="96" fill="var(--pt-tx2)" fontSize="7" fontFamily="DM Mono" textAnchor="middle">0</text>
-              <text x="100" y="88" style="fill:var(--pt-tx2)" fontSize="7" fontFamily="DM Mono" textAnchor="middle" dy="8"/>
+              <text x="100" y="88" style={{ fill: "var(--pt-tx2)" }} fontSize="7" fontFamily="DM Mono" textAnchor="middle" dy="8"/>
             </svg>
             <div className="font-mono text-[10px] text-[#9ca3af] mt-2 text-center">내적 오차 분포 — 평균이 0에서 벗어남</div>
           </div>

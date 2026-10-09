@@ -7,8 +7,8 @@ test('structure examples link to existing records and represent stored edges', (
     expect(graph.nodes.some(n => n.id === id)).toBe(true);
   for (const {source,predicate,target} of ontologyExampleEdges)
     expect(graph.edges).toEqual(expect.arrayContaining([expect.objectContaining({source,predicate,target})]));
-  for (const a of ontologyExampleNodes) for (const b of ontologyExampleNodes) {
-    if (a.id !== b.id) expect(Math.hypot(a.x-b.x,a.y-b.y)).toBeGreaterThan(120);
+  for (const a of ontologyExampleNodes) for (const b of ontologyExampleNodes.filter(n => n.id !== a.id)) {
+    expect(Math.hypot(a.x-b.x,a.y-b.y)).toBeGreaterThan(120);
   }
 });
 

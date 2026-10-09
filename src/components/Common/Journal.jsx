@@ -101,7 +101,7 @@ const pages = [
   // Add more pages as needed
 ];
 
-const Journal = ({}) => {
+const Journal = () => {
   return (
     <Background>
       <Wrapper>
@@ -116,7 +116,7 @@ const Journal = ({}) => {
           {(() => {
             let coverJSX = [
               <div className="front-page">
-                <img src="https://i.pinimg.com/originals/39/e1/02/39e102f45cd92ae81b9909544959afa5.jpg" />
+                <img alt="" src="https://i.pinimg.com/originals/39/e1/02/39e102f45cd92ae81b9909544959afa5.jpg" />
                 <label className="next" htmlFor="checkbox-cover"></label>
               </div>,
             ];
@@ -135,7 +135,7 @@ const Journal = ({}) => {
                         <p>{page.content}</p>
                       </div>
                     ) : (
-                      <img src={page.image} />
+                      <img src={page.image} alt={page.title} />
                     )}
                     <label className="prev" htmlFor="checkbox-cover"></label>
                   </div>
@@ -150,7 +150,7 @@ const Journal = ({}) => {
                         <p>{page.content}</p>
                       </div>
                     ) : (
-                      <img src={page.image} />
+                      <img src={page.image} alt={page.title} />
                     )}
 
                     <label
@@ -170,7 +170,7 @@ const Journal = ({}) => {
                         <p>{page.content}</p>
                       </div>
                     ) : (
-                      <img src={page.image} />
+                      <img src={page.image} alt={page.title} />
                     )}
 
                     <label
@@ -189,7 +189,7 @@ const Journal = ({}) => {
                         <p>{page.content}</p>
                       </div>
                     ) : (
-                      <img src={page.image} />
+                      <img src={page.image} alt={page.title} />
                     )}
 
                     <label
