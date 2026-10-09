@@ -1,0 +1,5583 @@
+{
+  "schemaVersion": "0.5-relations",
+  "sources": {
+    "repo-projects": {
+      "label": "현재 블로그 프로젝트 원고",
+      "observedAt": "2026-10-08",
+      "visibility": "public"
+    },
+    "repo-profile": {
+      "label": "현재 블로그 About / Messages",
+      "observedAt": "2026-10-08",
+      "visibility": "public"
+    },
+    "repo-posts": {
+      "label": "현재 체크아웃 Freeform 원고 (배포 여부 미확인)",
+      "observedAt": "2026-10-08",
+      "visibility": "review"
+    },
+    "career": {
+      "label": "librarian 연결 경력 자료 / 2026-09 기록",
+      "observedAt": "2026-09-16",
+      "visibility": "review"
+    },
+    "atc": {
+      "label": "librarian / ATC 이식 및 Playground 기록",
+      "observedAt": "2026-09-18",
+      "visibility": "review"
+    },
+    "design": {
+      "label": "이번 온톨로지 모델링 제안",
+      "observedAt": "2026-10-08",
+      "visibility": "review"
+    },
+    "user": {
+      "label": "사용자 자기 정의 / 2026-10-08",
+      "observedAt": "2026-10-08",
+      "visibility": "review"
+    },
+    "linkedin": {
+      "label": "LinkedIn 프로필 직접 확인",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://www.linkedin.com/in/soyeong-kim/",
+      "verification": "profile-observed"
+    },
+    "linkedin-honors": {
+      "label": "LinkedIn honors 직접 확인",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://www.linkedin.com/in/soyeong-kim/details/honors/",
+      "verification": "profile-observed"
+    },
+    "linkedin-certs": {
+      "label": "LinkedIn certs 직접 확인",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://www.linkedin.com/in/soyeong-kim/details/certifications/",
+      "verification": "profile-observed"
+    },
+    "linkedin-projects": {
+      "label": "LinkedIn projects 직접 확인",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://www.linkedin.com/in/soyeong-kim/details/projects/",
+      "verification": "profile-observed"
+    },
+    "linkedin-video": {
+      "label": "본인의 Microsoft 영상 출연 게시물",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7493849734349004800/"
+    },
+    "kode-preflight": {
+      "label": "KT kode 공동 개발기 / 2026-05-20",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://kode.kt.com/blog/article/12108",
+      "verification": "primary-source"
+    },
+    "ms-tour": {
+      "label": "Microsoft AI Tour Seoul 개최 안내",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://news.microsoft.com/source/asia/2026/03/05/ai-tour-seoul-announcement/?lang=ko",
+      "verification": "primary-source"
+    },
+    "ms-video": {
+      "label": "Microsoft Korea YouTube / 본편 설명 및 챕터 확인",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://www.youtube.com/watch?v=oSdZnvZG0d4",
+      "verification": "publisher-page"
+    },
+    "har-bibliography": {
+      "label": "디지털집현전 학위논문 서지",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "url": "https://k-knowledge.kr/srch/read.jsp?id=265837811",
+      "verification": "public-bibliography"
+    },
+    "user-20261009": {
+      "label": "사용자 확인 / 저술 2건 및 PreFlight Pro-code 2등",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "verification": "user-confirmed"
+    },
+    "ms-preflight-session": {
+      "label": "Microsoft AI Tour Seoul / LTG137 공식 세션",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "verification": "primary-source",
+      "url": "https://aitour.microsoft.com/flow/microsoft/seoul26/sessioncatalog/page/sessioncatalog/session/1772128646313001DaY4"
+    },
+    "ms-linkedin": {
+      "label": "Microsoft 공식 LinkedIn / PreFlight 소개",
+      "observedAt": "2026-10-09",
+      "visibility": "review",
+      "verification": "primary-source",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7493592207258742784/"
+    },
+    "user-agent-lead": {
+      "label": "사용자 확인 / 에이전트 파트 소속, 9월 중순 시작 및 리딩 범위",
+      "observedAt": "2026-10-09",
+      "verification": "user-confirmed",
+      "visibility": "review"
+    },
+    "user-work-context": {
+      "label": "사용자 확인 / KT 주업무, 소속 대외 활동 및 역량",
+      "observedAt": "2026-10-09",
+      "verification": "user-confirmed",
+      "visibility": "review"
+    },
+    "user-project-context": {
+      "label": "사용자 확인 / 교내 대회, 캡스톤, 부트캠프와 개인 사이드 프로젝트",
+      "observedAt": "2026-10-09",
+      "verification": "user-confirmed",
+      "visibility": "review"
+    },
+    "tistory": {
+      "label": "소소한 코딩일지 / 본인 기술 블로그",
+      "url": "https://soso-cod3v.tistory.com/"
+    },
+    "tistory-copilot": {
+      "label": "GitHub Copilot SDK / 2026-03-13",
+      "url": "https://soso-cod3v.tistory.com/208"
+    },
+    "tistory-handbook": {
+      "label": "HANDBOOK.md 리뷰 / 2026-10-08",
+      "url": "https://soso-cod3v.tistory.com/209"
+    },
+    "user-channel": {
+      "label": "사용자 확인 / GitHub는 포트폴리오, Tistory는 기술 및 학습 기록 / 2026-10-09"
+    },
+    "user-preflight-capabilities": {
+      "label": "사용자 확인 / PreFlight 수행, Recon 및 통합 기여와 설계 및 SDK 활용 역량",
+      "observedAt": "2026-10-10",
+      "verification": "user-confirmed",
+      "visibility": "review"
+    },
+    "user-blog-ownership": {
+      "label": "사용자 확인 / 본인 소유 기술 블로그 및 개인 GitHub 포트폴리오",
+      "observedAt": "2026-10-10",
+      "verification": "user-confirmed",
+      "visibility": "review"
+    },
+    "user-har-followup": {
+      "label": "사용자 확인 / 서울대 연구원 HAR 후속 연구, 데이터 수집 플랫폼 구현 및 Garmin 앱 고도화",
+      "observedAt": "2026-10-10",
+      "verification": "user-confirmed",
+      "visibility": "review"
+    }
+  },
+  "nodes": [
+    {
+      "id": "person:soyeong",
+      "type": "Person",
+      "label": "Soyeong Kim",
+      "summary": "AI Agent 연구개발자이자 AI Native Engineer. AI, AI Agent, LLM을 연구하고 이를 활용한 시스템을 설계하고 개발합니다.",
+      "evidenceIds": [
+        "user",
+        "linkedin",
+        "career",
+        "atc",
+        "user-agent-lead"
+      ],
+      "visibility": "review",
+      "headline": "AI Research Engineer",
+      "location": "서울, 대한민국",
+      "url": "https://www.linkedin.com/in/soyeong-kim/",
+      "urlLabel": "LinkedIn 프로필",
+      "links": [
+        {
+          "label": "LinkedIn",
+          "url": "https://www.linkedin.com/in/soyeong-kim/"
+        },
+        {
+          "label": "GitHub",
+          "url": "https://github.com/kimsoyeong"
+        },
+        {
+          "label": "Email",
+          "url": "mailto:soyeong.kim9@gmail.com"
+        },
+        {
+          "label": "기술 블로그 / Tistory",
+          "url": "https://soso-cod3v.tistory.com/"
+        }
+      ],
+      "details": [
+        {
+          "title": "연구개발의 중심",
+          "paragraphs": [
+            "AI 에이전트와 LLM을 연구하고 실제 사용하는 시스템으로 설계하고 개발한다. 네트워크 원인분석, 에이전트 평가, 온톨로지 기반 업무 흐름을 주요 경험으로 연결하고 있다."
+          ]
+        },
+        {
+          "title": "연구에서 서비스까지",
+          "paragraphs": [
+            "웨어러블 시계열과 컴퓨터 비전 연구를 거쳐 에이전트 구조, 도구 실행, 평가 환경, API 및 프론트엔드 통합으로 작업 범위를 확장했다. 아래 이력과 프로젝트에서 각 경험의 근거를 확인할 수 있다."
+          ]
+        }
+      ],
+      "media": []
+    },
+    {
+      "id": "concept:agents",
+      "type": "Concept",
+      "label": "AI Agents",
+      "summary": "판단, 도구 실행, 상태와 평가를 함께 설계하는 연구 영역. 연구와 실제 구현 경험이 만나는 중심입니다.",
+      "evidenceIds": [
+        "design"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "concept:rca",
+      "type": "Concept",
+      "label": "Root Cause Analysis",
+      "summary": "관측된 현상에서 원인 가설을 검토하는 문제. 직접 개발한 원인분석 에이전트와 평가 프로젝트의 주제입니다.",
+      "evidenceIds": [
+        "design"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "concept:ontology",
+      "type": "Concept",
+      "label": "Ontology",
+      "summary": "개념, 관계, 제약을 명시해 시스템이 지식을 일관되게 다루도록 하는 모델링 관점.",
+      "evidenceIds": [
+        "design"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "concept:evaluation",
+      "type": "Concept",
+      "label": "Agent Evaluation",
+      "summary": "에이전트 실행과 판단을 재현 가능한 조건에서 평가하는 연구 관심사.",
+      "evidenceIds": [
+        "design"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "concept:timeseries",
+      "type": "Concept",
+      "label": "Time Series",
+      "summary": "다변량 센서 데이터에서 인간 활동을 인식하는 석사 연구의 기반.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "project:rca",
+      "type": "Project",
+      "label": "Network RCA Agent",
+      "summary": "네트워크 장애의 원인 가설을 검토하고 도구 실행 결과를 보고서로 연결한 에이전트.",
+      "role": "에이전트 구조와 도메인 도구를 직접 설계하고 개발. 사내 적용 후 실행 결과 분석.",
+      "status": "실서비스 적용 기록 / 2026-09",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "문제와 접근",
+          "paragraphs": [
+            "네트워크 장애의 원인 후보를 점검 도구에서 얻은 관측 결과와 연결해 검토하는 에이전트다. 가설 관리, 도구 실행, 보고서 작성의 책임을 분리했다."
+          ]
+        },
+        {
+          "title": "실행 구조",
+          "paragraphs": [
+            "Supervisor는 가설과 진행을 관리하고 Action은 장비 도구를 실행한다. Report는 관측 결과와 판단을 정리한다. 연결된 시스템과 에이전트 노드에서 각 책임을 탐색할 수 있다."
+          ]
+        },
+        {
+          "title": "기여와 확인 범위",
+          "paragraphs": [
+            "에이전트 구조와 도메인 도구를 설계하고 개발했으며 사내 적용 이후 실행 결과를 분석했다. 현재 설명은 연결 경력 기록 기준이며 공개 정량 성과를 추가로 주장하지 않는다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "project:tracebench",
+      "type": "Project",
+      "label": "TraceBench",
+      "summary": "원인분석 에이전트의 실행을 반복 가능한 조건에서 평가하기 위한 연구개발 프로젝트.",
+      "role": "평가 조건, 응답 일관성, 반복 가능한 실험 환경 설계 경험.",
+      "status": "연구개발 기록",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "평가 환경 연구",
+          "paragraphs": [
+            "원인분석 에이전트의 실행을 검토하고 비교할 수 있는 평가 환경을 연구했다."
+          ]
+        },
+        {
+          "title": "담당 역할",
+          "paragraphs": [
+            "평가 조건과 반복 가능한 실험 환경을 설계하는 업무를 수행했다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "project:preflight",
+      "type": "Project",
+      "label": "PreFlight",
+      "summary": "배포 전 아키텍처 정책과 실행 환경 리스크를 검토하는 멀티에이전트 프로젝트. Microsoft AI Agenthon Pro-code 2등, AI Tour Lightning Talk 발표 및 Microsoft Korea 영상으로 소개.",
+      "role": "2인 팀 공동 설계, Recon 에이전트 개발, FastAPI와 React 통합.",
+      "status": "팀 프로토타입",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "kode-preflight",
+        "user-20261009"
+      ],
+      "visibility": "review",
+      "url": "https://github.com/kimsoyeong/works-on-my-machine",
+      "details": [
+        {
+          "title": "개발 배경",
+          "paragraphs": [
+            "배포 이후에 정책 위반이나 설계 위험을 발견하면 수정과 재배포가 필요하다. 기존 아키텍처 다이어그램을 입력으로 받아 설계 과정에서 검토할 수 있는 흐름을 만들었다."
+          ]
+        },
+        {
+          "title": "에이전트 협업 구조",
+          "paragraphs": [
+            "다이어그램을 Bicep으로 구조화한 뒤 Policy가 정책 정합성을 검토하고 Recon이 잠재 위험과 검증 우선순위를 분석한다. Reporter는 두 결과를 통합해 보고서와 개선 방향을 제시한다.",
+            "Recon은 Docker Compose로 구성한 격리 재현 환경을 관찰하고 필요한 점검을 계획하며, 도구 실행 결과에 따라 추가 확인 여부를 결정한다. 실제 운영 환경을 공격하는 침투 테스트와는 구분한다."
+          ]
+        },
+        {
+          "title": "구현과 내 역할",
+          "paragraphs": [
+            "2인 팀에서 구조를 공동 설계하고 Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 분석 결과를 사용자가 확인할 수 있는 서비스 흐름으로 연결했다."
+          ]
+        },
+        {
+          "title": "발표와 성과",
+          "paragraphs": [
+            "Microsoft AI Agenthon Pro-code 2위를 수상했다. AI Tour Seoul의 LTG137 공동 발표, Microsoft Korea 마소코멘트 출연, KT kode 공동 개발기로 개발 경험을 공유했다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "youtube",
+          "url": "https://www.youtube.com/watch?v=oSdZnvZG0d4",
+          "videoId": "oSdZnvZG0d4",
+          "title": "Microsoft Korea 마소코멘트 / PreFlight",
+          "sourceId": "ms-video",
+          "featured": true,
+          "date": "2026-08-12",
+          "profilePriority": 1
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-895c71549e0346db92830ce478597692-052.jpg",
+          "title": "PreFlight / 시스템 아키텍처",
+          "sourceId": "kode-preflight",
+          "featured": true,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-f74cebb58b0c492faef83dd2966fb2d4-052.png",
+          "title": "PreFlight / 전체 파이프라인",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-2865ae2592fb469c8ee629574313d3eb-052.png",
+          "title": "PreFlight / Recon 에이전트 구조",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-62a73257b14641e7af8bc7f510ada6d0-052.png",
+          "title": "PreFlight / 분석 결과 화면",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        }
+      ]
+    },
+    {
+      "id": "project:har",
+      "type": "Project",
+      "label": "Human Activity Recognition",
+      "summary": "스마트워치의 다변량 센서 시계열을 이용한 인간 활동 인식 연구. 석사 연구 이후 데이터 수집 플랫폼 구현과 Garmin 수집 앱 고도화로 이어졌다.",
+      "role": "석사 과정의 데이터 수집과 전처리, 모델 비교, 학습과 평가 및 결과 분석. 연구원 경력의 후속 작업에서는 데이터 수집 플랫폼 설계와 구현 및 Garmin 스마트워치 앱 고도화.",
+      "status": "석사 연구 및 졸업 후 후속 연구",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "user-har-followup"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "연구 목표",
+          "paragraphs": [
+            "웨어러블 센서의 시간에 따른 변화를 활용해 인간 활동을 분류하는 연구다. 스마트워치 데이터 수집부터 딥러닝 모델의 학습과 평가까지 연결했다."
+          ]
+        },
+        {
+          "title": "연구 수행",
+          "paragraphs": [
+            "데이터 수집과 전처리, 모델 비교, 학습 및 평가, 결과 분석을 담당했다. 기존 포트폴리오에는 TensorFlow와 Garmin 기반 기술 구성이 기록되어 있다."
+          ]
+        },
+        {
+          "title": "연구 산출물",
+          "paragraphs": [
+            "연결된 석사 학위논문에서 실제 제목과 서지 정보를 확인할 수 있다. 정량 성능이나 모델 우월성은 현재 자료에 없는 수치를 추가하지 않았다."
+          ]
+        },
+        {
+          "title": "졸업 이후 후속 연구",
+          "paragraphs": [
+            "서울대학교 연구원으로 데이터 수집 플랫폼을 설계하고 구현했으며 Garmin 스마트워치 앱을 고도화했다. 석사 논문 연구와 후속 연구원 경력은 각각의 개인 기여 기록으로 연결된다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "project:sia",
+      "type": "Project",
+      "label": "Cloud Coverage Assessment",
+      "summary": "위성영상에서 구름의 위치와 양을 추정하기 위한 의미분할 모델 연구.",
+      "role": "SIAnalytics에서 모델과 학습 조건 비교, 추론 오류 분석.",
+      "status": "인턴 연구 기록",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "연구 주제",
+          "paragraphs": [
+            "위성영상의 각 위치가 구름에 해당하는지 분류하는 의미분할 연구다. 구름의 위치와 양을 추정하는 문제를 다뤘다."
+          ]
+        },
+        {
+          "title": "기여",
+          "paragraphs": [
+            "SI Analytics 인턴 기간에 모델 및 학습 조건을 비교하고 추론 오류를 분석했다. 해당 경력과 프로젝트를 연결해 소속, 기간과 연구 내용을 함께 읽을 수 있다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "project:yoco",
+      "type": "Project",
+      "label": "YOCO",
+      "summary": "Unbiased Teacher v2 기반으로 음식 재료의 익힘 상태를 탐지하는 AI 프로젝트.",
+      "role": "데이터 라벨링과 모델 학습. 반지도학습 적용 경험.",
+      "status": "팀 프로젝트",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "linkedin-projects",
+        "user-project-context"
+      ],
+      "visibility": "review",
+      "url": "https://github.com/SNU-YOCO/YOCO",
+      "startDate": "2023-02",
+      "endDate": "2023-02",
+      "details": [
+        {
+          "title": "활동 맥락",
+          "paragraphs": [
+            "서울대학교 데이터사이언스대학원이 주최한 교내 대회에 별도로 참가해 수행했다. 대학원 수업 및 소속 연구실 과제와는 별개다."
+          ]
+        },
+        {
+          "title": "사용자 문제",
+          "paragraphs": [
+            "요리 중 재료가 덜 익었는지, 익었는지, 과하게 익었는지 판단하도록 돕는 컴퓨터 비전 프로젝트다."
+          ]
+        },
+        {
+          "title": "데이터와 모델",
+          "paragraphs": [
+            "Unbiased Teacher v2의 반지도 객체 탐지 구조를 활용했다. 자체 데이터는 베이컨, 달걀, 팬케이크의 익힘 상태와 food, pan, others를 포함한 12개 클래스로 구성했다."
+          ]
+        },
+        {
+          "title": "수행과 결과",
+          "paragraphs": [
+            "데이터 라벨링과 모델 학습에 참여했다. 기존 프로젝트 원고에 학습 설정과 영상 추론 방법이 정리되어 있으며, 연결된 Ambient AI Competition 수상 기록에서 결과를 확인할 수 있다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/222368809-683b0c2e-0aca-4f7e-ac1e-eb8eef6e51d1.png",
+          "title": "YOCO 프로젝트 자료 1",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "date": "2023-02"
+        },
+        {
+          "kind": "image",
+          "url": "https://github.com/SNU-YOCO/YOCO/raw/main/teaser/pancake_raw.gif",
+          "title": "YOCO 프로젝트 자료 2",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2023-02"
+        },
+        {
+          "kind": "image",
+          "url": "https://github.com/SNU-YOCO/YOCO/raw/main/teaser/egg_cooked.gif",
+          "title": "YOCO 프로젝트 자료 3",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2023-02"
+        },
+        {
+          "kind": "image",
+          "url": "https://github.com/SNU-YOCO/YOCO/raw/main/teaser/bacon_overcooked.gif",
+          "title": "YOCO 프로젝트 자료 4",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2023-02"
+        },
+        {
+          "kind": "image",
+          "url": "https://github.com/SNU-YOCO/YOCO/raw/main/teaser/full.gif",
+          "title": "YOCO 프로젝트 자료 5",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "date": "2023-02"
+        },
+        {
+          "kind": "image",
+          "url": "https://github.com/SNU-YOCO/YOCO/raw/main/teaser/bacon_raw.gif",
+          "title": "YOCO 프로젝트 자료 6",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2023-02"
+        },
+        {
+          "kind": "image",
+          "url": "https://github.com/SNU-YOCO/YOCO/raw/main/teaser/bacon_cooked.gif",
+          "title": "YOCO 프로젝트 자료 7",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2023-02"
+        },
+        {
+          "kind": "image",
+          "url": "https://github.com/SNU-YOCO/YOCO/raw/main/teaser/teaser_utv2.png",
+          "title": "YOCO 프로젝트 자료 14",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2023-02"
+        }
+      ],
+      "activityKind": "수업 및 연구실과 별개인 교내 대회"
+    },
+    {
+      "id": "project:prupru",
+      "type": "Project",
+      "label": "PruPru",
+      "summary": "딥러닝 카메라를 활용해 분리배출을 안내하는 Android 앱.",
+      "status": "기존 포트폴리오",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects",
+        "user-project-context"
+      ],
+      "visibility": "public",
+      "url": "https://github.com/PA-roketdan/PruPru",
+      "startDate": "2021-03",
+      "endDate": "2021-12",
+      "role": "MobileNet SSD v2 전이학습, Firebase Storage 연동, Android 온디바이스 모델 로딩.",
+      "details": [
+        {
+          "title": "활동 맥락",
+          "paragraphs": [
+            "충남대학교 캡스톤 프로젝트로 수행했다."
+          ]
+        },
+        {
+          "title": "서비스 경험",
+          "paragraphs": [
+            "스마트폰 카메라로 쓰레기를 인식하고 분리배출 방법을 안내하는 Android 앱이다. 카메라 기반 안내와 검색 기능을 제공한다."
+          ]
+        },
+        {
+          "title": "구현",
+          "paragraphs": [
+            "MobileNet SSD v2 전이학습, Firebase Storage 연동, Android에서 모델을 불러오는 작업을 수행했다. TensorFlow/TFLite 기반 추론을 모바일 사용 흐름과 연결했다."
+          ]
+        },
+        {
+          "title": "결과",
+          "paragraphs": [
+            "프로젝트 소개 이미지와 데모 영상이 남아 있으며, 관련 수상 기록은 각각의 행사 노드로 연결했다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/143508106-19002018-3890-4fea-aadf-5030c56671ce.png",
+          "title": "PruPru / 서비스 소개",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2021-03"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/143507637-c0eb4eba-5b61-419c-9562-41995d45b78c.png",
+          "title": "PruPru / 분리배출 안내",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "date": "2021-03"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/143507619-73b819b4-9f82-4f9d-a7b9-1110ae878941.png",
+          "title": "PruPru / 검색",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "date": "2021-03"
+        }
+      ],
+      "activityKind": "충남대 캡스톤"
+    },
+    {
+      "id": "project:blooming",
+      "type": "Project",
+      "label": "Blooming",
+      "summary": "이미지를 다른 스타일로 변환하는 웹 서비스.",
+      "status": "기존 포트폴리오",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects",
+        "user-project-context"
+      ],
+      "visibility": "public",
+      "url": "https://github.com/SiliconValleyInternship-Lambda/Blooming",
+      "startDate": "2020-12",
+      "endDate": "2021-02",
+      "role": "Docker 구성, 클라우드 배포, React 프론트엔드.",
+      "details": [
+        {
+          "title": "활동 맥락",
+          "paragraphs": [
+            "실리콘밸리부트캠프 교육 프로그램에 참여해 그곳에서 구성된 팀과 수행한 팀 프로젝트다."
+          ]
+        },
+        {
+          "title": "서비스 경험",
+          "paragraphs": [
+            "내용 이미지와 원하는 스타일 이미지를 입력받아 두 특성을 결합한 결과를 생성하는 웹 서비스다. 결과 갤러리와 사진 검색 기능을 포함한다."
+          ]
+        },
+        {
+          "title": "구현",
+          "paragraphs": [
+            "TensorFlow Hub의 이미지 스타일 변환 모델을 사용했다. React 화면과 Flask API, MySQL, Gunicorn/Nginx 및 Docker 기반 구성을 사용했으며 내 역할은 프론트엔드와 배포 환경 구성이다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/44187125/105284787-82d4d200-5bf6-11eb-9b5e-51e74c648f91.JPG",
+          "title": "Blooming 프로젝트 자료 1",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "date": "2020-12"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/50094131/106714913-d6f0a500-663f-11eb-9637-f1baab736498.gif",
+          "title": "Blooming 프로젝트 자료 2",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "date": "2020-12"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/44187125/106837480-e9b9b700-66dd-11eb-91c8-498850709e1a.png",
+          "title": "Blooming 프로젝트 자료 3",
+          "sourceId": "repo-projects",
+          "featured": false,
+          "date": "2020-12"
+        }
+      ],
+      "activityKind": "실리콘밸리부트캠프 팀 프로젝트"
+    },
+    {
+      "id": "project:sobok",
+      "type": "Project",
+      "label": "소복소복",
+      "summary": "새해를 기념하는 롤링페이퍼 웹 서비스.",
+      "status": "기존 포트폴리오",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects",
+        "user-project-context"
+      ],
+      "visibility": "public",
+      "url": "https://github.com/horangtteok/sendmesobok",
+      "startDate": "2021-12",
+      "endDate": "2022-01",
+      "role": "React 프론트엔드, Node.js/Express/MongoDB 백엔드, Netlify/Heroku 배포, UI 디자인.",
+      "details": [
+        {
+          "title": "활동 맥락",
+          "paragraphs": [
+            "개인 사이드 프로젝트로 수행했다."
+          ]
+        },
+        {
+          "title": "서비스 경험",
+          "paragraphs": [
+            "새해 덕담과 복을 주고받는 롤링페이퍼 웹 서비스다. 메시지 보내기와 회원가입, 로그인 및 로그아웃 기능을 제공한다."
+          ]
+        },
+        {
+          "title": "구현과 역할",
+          "paragraphs": [
+            "React 프론트엔드, Node.js/Express API, MongoDB 저장소를 연결하고 UI 디자인과 Netlify/Heroku 배포를 담당했다. 기존 프로젝트 화면을 통해 메시지를 주고받는 경험을 확인할 수 있다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/157173283-16166091-79c5-4f7e-9b32-aaaa9d62c3f5.png",
+          "title": "소복소복 / 서비스 시작",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "layout": "mockup",
+          "date": "2021-12"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/157173261-67fbf881-31f7-4f19-a388-a0be4f4103ed.png",
+          "title": "소복소복 / 받은 복주머니",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "layout": "mockup",
+          "date": "2021-12"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/157173345-f2f789c6-d080-42be-834b-8e375537d966.png",
+          "title": "소복소복 / 복주머니 공유",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "layout": "mockup",
+          "date": "2021-12"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/157173468-acd661a8-5828-458d-bd3b-ddc1805ab50c.png",
+          "title": "소복소복 / 친구의 복주머니",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "layout": "mockup",
+          "date": "2021-12"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/157173392-e3465152-32a4-47af-b8c5-5435ed499373.png",
+          "title": "소복소복 / 선물 선택",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "layout": "mockup",
+          "date": "2021-12"
+        },
+        {
+          "kind": "image",
+          "url": "https://user-images.githubusercontent.com/43427380/157173421-ef6a2906-4a5c-406f-82d1-92326d53835e.png",
+          "title": "소복소복 / 덕담 작성",
+          "sourceId": "repo-projects",
+          "featured": true,
+          "layout": "mockup",
+          "date": "2021-12"
+        }
+      ],
+      "activityKind": "개인 사이드 프로젝트"
+    },
+    {
+      "id": "article:customize",
+      "type": "Writing",
+      "label": "AI 코딩 에이전트 커스터마이징",
+      "summary": "Instructions, Skills, Spec, Hooks의 차이와 관계를 정리한 공식문서 가이드.",
+      "category": "docs",
+      "date": "2026-05-08",
+      "slug": "agent-customize",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "contentKind": "guide",
+      "details": [
+        {
+          "title": "글의 목적",
+          "paragraphs": [
+            "AI 코딩 에이전트를 프로젝트에 맞게 구성할 때 혼동하기 쉬운 Instructions, Skills, Spec, Hooks의 역할과 관계를 정리한다."
+          ]
+        },
+        {
+          "title": "네 가지 구성 요소",
+          "paragraphs": [
+            "Instructions는 따라야 할 행동 규칙, Skills는 필요할 때 불러 쓰는 재사용 작업 절차다. Spec은 만들어야 할 결과와 요구사항을 정의하고 Hooks는 특정 시점의 동작을 연결한다.",
+            "원고는 파일 배치 예시와 비교를 통해 각 요소를 언제 사용할지 설명한다. 연결된 목차에서 주제별로 탐색할 수 있다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "image",
+          "url": "assets/agent-customize.svg",
+          "title": "AI 코딩 에이전트 커스터마이징",
+          "sourceId": "repo-posts",
+          "featured": true,
+          "date": "2026-05-08"
+        }
+      ]
+    },
+    {
+      "id": "capability:architecture",
+      "type": "Capability",
+      "label": "Agent Architecture",
+      "summary": "에이전트의 책임, 도구 입출력, 상태와 실행 흐름을 설계하는 역량.",
+      "evidenceIds": [
+        "career",
+        "atc",
+        "user-preflight-capabilities"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "에이전트 책임과 실행 계약",
+          "paragraphs": [
+            "에이전트가 담당할 역할과 도구의 입력 및 출력을 구분하고, 상태와 실행 결과가 다음 단계로 이어지는 구조를 다룬다.",
+            "에이전트 프레임워크 개발 경험에서 얻은 구조 설계 역량을 개인 역량으로 정리했다."
+          ]
+        },
+        {
+          "title": "PreFlight 수행 근거",
+          "paragraphs": [
+            "PreFlight에서 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 구체적인 수행 범위는 연결된 개인 기여 기록에서 확인할 수 있다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:integration",
+      "type": "Capability",
+      "label": "System Integration",
+      "summary": "실행 기능, API, 데이터 저장소와 사용자 화면을 연결하는 시스템 통합 역량.",
+      "evidenceIds": [
+        "career",
+        "atc",
+        "user-preflight-capabilities",
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "기능을 사용 경험으로 연결",
+          "paragraphs": [
+            "FastAPI와 React를 연결하는 경험을 바탕으로 생성, 구성, 실행 기능을 일관된 사용 흐름으로 통합한다.",
+            "도구 실행 결과와 상태가 API 및 사용자 화면에 전달되는 경계를 구분하고 통합 과정의 동작을 확인한다."
+          ]
+        },
+        {
+          "title": "PreFlight 수행 근거",
+          "paragraphs": [
+            "PreFlight에서 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 구체적인 수행 범위는 연결된 개인 기여 기록에서 확인할 수 있다."
+          ]
+        },
+        {
+          "title": "모바일과 웹 통합 경험",
+          "paragraphs": [
+            "PruPru의 Firebase Storage 및 온디바이스 모델 연동, 소복소복의 화면과 백엔드 구현도 통합 경험의 근거로 연결한다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contribution:rca",
+      "type": "Contribution",
+      "label": "RCA 구조와 도구 개발",
+      "summary": "Network RCA Agent의 구조와 실행 도구를 직접 설계하고 개발한 기여.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review",
+      "activityKind": "KT 주업무"
+    },
+    {
+      "id": "contribution:preflight",
+      "type": "Contribution",
+      "label": "PreFlight Recon 및 통합",
+      "summary": "PreFlight 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 이 기여에서 에이전트 구조 설계, 시스템 통합, SDK 활용 역량을 드러냈다.",
+      "evidenceIds": [
+        "career",
+        "user-preflight-capabilities"
+      ],
+      "visibility": "review",
+      "activityKind": "KT 소속 대외 활동",
+      "details": [
+        {
+          "title": "프로젝트에서 맡은 기여",
+          "paragraphs": [
+            "2인 팀에서 PreFlight의 에이전트 구조를 공동 설계하고 Recon 에이전트를 개발했다. 에이전트 실행 기능을 FastAPI와 React에 연결하는 통합에 기여했다.",
+            "프로젝트 전체의 성과와 개인의 담당 범위를 구분한다. Policy 에이전트 전체를 단독으로 개발했다는 의미는 아니다."
+          ]
+        },
+        {
+          "title": "수행으로 드러난 역량",
+          "paragraphs": [
+            "에이전트의 역할과 실행 흐름을 함께 설계한 경험은 에이전트 구조 설계 역량의 근거다. Recon과 API 및 화면을 연결한 경험은 시스템 통합 역량의 근거다.",
+            "프로젝트 기술 목록에 기록된 Microsoft Agent Framework와 GitHub Copilot SDK, 본인이 확인한 SDK 활용 경험을 연결한다. SDK의 모든 기능을 구현하거나 숙련했다는 의미로 확대하지 않는다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education:snu",
+      "type": "Education",
+      "label": "Seoul National University",
+      "summary": "서울대학교 석사. Computer Science & Engineering, Computer System and Platform Laboratory.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review",
+      "startDate": "2022-02",
+      "endDate": "2024-02",
+      "gpa": "3.34 / 4.3",
+      "status": "2022-02 — 2024-02",
+      "verification": "profile-observed",
+      "degreeName": "Master’s degree, Computer Engineering",
+      "details": [
+        {
+          "title": "이력과 연결되는 경험",
+          "paragraphs": [
+            "컴퓨터공학 석사 과정에서 다변량 시계열 기반 인간 활동 인식을 연구했다. 연구 프로젝트와 학위논문을 별도 산출물로 연결해 학위 정보와 수행 내용을 함께 탐색할 수 있다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education:cnu",
+      "type": "Education",
+      "label": "Chungnam National University",
+      "summary": "충남대학교 학사. Computer Vision Lab 및 Embedded System Lab 학부 인턴, S.P.G 활동.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review",
+      "startDate": "2018-03",
+      "endDate": "2022-02",
+      "gpa": "4.15 / 4.5",
+      "status": "2018-03 — 2022-02",
+      "verification": "profile-observed",
+      "degreeName": "Bachelor of Engineering, Computer Engineering",
+      "details": [
+        {
+          "title": "이력과 연결되는 경험",
+          "paragraphs": [
+            "컴퓨터공학 학부에서 Computer Vision Lab 및 Embedded System Lab 인턴 경험과 S.P.G 동아리 활동을 쌓았다. 모바일 비전과 웹 서비스 프로젝트의 기술적 배경이 되는 학부 경험이다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "system:rca",
+      "type": "AgentSystem",
+      "label": "RCA Agent System",
+      "summary": "Supervisor가 가설과 진행을 관리하고 Action이 도구를 실행하며 Report가 결과를 정리하는 시스템.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "agent:supervisor",
+      "type": "Agent",
+      "label": "Supervisor",
+      "summary": "가설 상태와 진행을 관리하고 후속 작업을 판단하는 책임.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "agent:action",
+      "type": "Agent",
+      "label": "Action",
+      "summary": "장비별 도구 실행과 결과 수집 책임.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "agent:report",
+      "type": "Agent",
+      "label": "Report",
+      "summary": "관측과 판단을 보고서로 정리하는 책임.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "tool:device",
+      "type": "Tool",
+      "label": "Device inspection tools",
+      "summary": "장비별 파라미터를 반영해 명령을 실행하고 반환 결과를 취합하는 도구.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "technology:langgraph",
+      "type": "Technology",
+      "label": "LangGraph",
+      "summary": "Network RCA Agent의 Supervisor 패턴 구현에 사용한 기술.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:kt",
+      "type": "Organization",
+      "label": "KT",
+      "summary": "현재 재직 조직.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:sia",
+      "type": "Organization",
+      "label": "SI Analytics",
+      "summary": "위성영상 의미분할 연구 인턴 경력의 소속.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:microsoft",
+      "type": "Organization",
+      "label": "Microsoft Korea",
+      "summary": "Agenthon 주최 및 PreFlight 소개 영상 발행 조직.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:snu",
+      "type": "Organization",
+      "label": "Seoul National University",
+      "summary": "석사 및 연구원 경력의 교육기관.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:cnu",
+      "type": "Organization",
+      "label": "Chungnam National University",
+      "summary": "학부 교육기관.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "experience:kt",
+      "type": "Experience",
+      "label": "KT / 선임",
+      "summary": "AI Agent와 LLM 기반 시스템 연구개발. Network RCA Agent와 TraceBench를 주업무로 수행하고, 에이전트 플랫폼 과제 및 KT 소속 대외 활동을 진행.",
+      "evidenceIds": [
+        "linkedin",
+        "user-work-context",
+        "user-agent-lead"
+      ],
+      "visibility": "review",
+      "startDate": "2024-08",
+      "endDate": null,
+      "status": "2024-08 — 현재",
+      "verification": "profile-observed",
+      "details": [
+        {
+          "title": "담당 직무",
+          "paragraphs": [
+            "KT에서 AI 에이전트의 구조 설계, 연구개발과 평가를 수행한다. 소속은 AX미래기술원 AX Data Lab 데이터Model팀이며, 에이전트 파트 리딩도 맡고 있다."
+          ]
+        },
+        {
+          "title": "주업무와 사내 과제",
+          "paragraphs": [
+            "Network RCA Agent와 TraceBench를 주업무로 수행했다. 에이전트 프레임워크와 온톨로지 기반 Workflow 과제에서는 에이전트와 플랫폼 구조 설계, 업무 흐름 구성, 시스템 통합 경험을 쌓았다."
+          ]
+        },
+        {
+          "title": "KT 소속 대외 활동",
+          "paragraphs": [
+            "PreFlight 개발, Microsoft AI Agenthon 참가, Microsoft AI Tour 발표와 Microsoft 영상 출연은 KT 소속으로 수행한 외부 활동이다. 이 경험을 사내 기술블로그 Kode의 공동 참여기로 게재했다."
+          ]
+        },
+        {
+          "title": "파트 리딩",
+          "paragraphs": [
+            "2026년 9월 중순부터 사내 기술 및 연구 전시회 준비를 총괄하고, 파트원 4명의 역량에 따른 업무 배분, 플랫폼 전체 구조 설계와 후년도 과제 제안을 맡았다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "experience:snu",
+      "type": "Experience",
+      "label": "SNU / Freelance Researcher",
+      "summary": "HAR 석사 연구의 후속 연구에서 데이터 수집 플랫폼을 설계하고 구현했으며 Garmin 스마트워치 수집 앱을 고도화했다.",
+      "evidenceIds": [
+        "linkedin",
+        "user-har-followup"
+      ],
+      "visibility": "review",
+      "startDate": "2024-03",
+      "endDate": "2024-07",
+      "status": "2024-03 — 2024-07",
+      "verification": "profile-observed",
+      "details": [
+        {
+          "title": "HAR 후속 연구와 데이터 수집",
+          "paragraphs": [
+            "2024년 3월부터 7월까지 서울대학교 Freelance Researcher로 HAR 후속 연구를 수행했다. 데이터 수집 플랫폼을 설계하고 실제로 구현했다.",
+            "데이터 수집을 위한 Garmin 스마트워치 앱을 고도화했다. 석사 과정의 연구 기여와 졸업 이후 연구원으로 수행한 기여를 별도 기록으로 구분한다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "experience:sia",
+      "type": "Experience",
+      "label": "SI Analytics / 연구 인턴",
+      "summary": "Semantic Segmentation 인턴. 위성영상 운량 산출을 위한 모델 연구개발.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review",
+      "startDate": "2021-06",
+      "endDate": "2021-08",
+      "status": "2021-06 — 2021-08",
+      "verification": "profile-observed",
+      "details": [
+        {
+          "title": "이력과 연결되는 경험",
+          "paragraphs": [
+            "위성영상 의미분할 모델을 연구한 인턴 경력이다. 운량 산출 프로젝트에서 모델과 학습 조건을 비교하고 추론 오류를 분석한 경험을 함께 탐색할 수 있다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "organization:spg",
+      "type": "Organization",
+      "label": "S.P.G / Embedded Systems Club",
+      "summary": "충남대학교 임베디드 시스템 동아리 활동. 2018-03 — 2021-12.",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "visibility": "review",
+      "startDate": "2018-03",
+      "endDate": "2021-12"
+    },
+    {
+      "id": "paper:har-thesis",
+      "type": "Paper",
+      "label": "Deep Learning-based Human Activity Recognition with Multivariate Time Series Data",
+      "summary": "다변량 시계열 데이터를 이용한 딥러닝 기반 인간 활동 인식. 웨어러블 센서 데이터와 딥러닝 모델을 활용한 석사 연구.",
+      "evidenceIds": [
+        "har-bibliography",
+        "user-20261009"
+      ],
+      "visibility": "review",
+      "fullTitle": "Deep Learning-based Human Activity Recognition with Multivariate Time Series Data",
+      "authors": [
+        "김소영"
+      ],
+      "date": "2024-02",
+      "status": "석사 학위논문 / 서울대학교 대학원",
+      "url": "https://k-knowledge.kr/srch/read.jsp?id=265837811",
+      "urlLabel": "학위논문 서지",
+      "verification": "public-bibliography",
+      "publicationType": "석사 학위논문",
+      "subtitle": "다변량 시계열 데이터를 이용한 딥러닝 기반 인간 활동 인식",
+      "details": [
+        {
+          "title": "연구 주제",
+          "paragraphs": [
+            "스마트워치에서 얻은 다변량 센서 시계열을 이용해 인간 활동을 인식하는 딥러닝 연구다. 데이터 수집과 전처리, 모델 학습과 비교, 평가 및 결과 분석으로 이어진다."
+          ]
+        },
+        {
+          "title": "학위 및 연구 맥락",
+          "paragraphs": [
+            "서울대학교 대학원 석사 학위논문으로 2024년 2월 작성되었다. 학위 유형은 제목과 별도로 표시하며, 연결된 Human Activity Recognition 프로젝트에서 연구 수행 내용을 확인할 수 있다."
+          ]
+        },
+        {
+          "title": "자료 범위",
+          "paragraphs": [
+            "현재 연결한 공개 자료는 학위논문 서지다. 본문 전체, 데이터셋 규모와 정량 성능은 확인된 원문을 확보한 뒤 추가한다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "event:agenthon2026",
+      "type": "Event",
+      "label": "Microsoft AI Agenthon 2026",
+      "summary": "Microsoft의 AI 에이전트 개발 대회. PreFlight가 Pro-code 트랙에 참여했다.",
+      "evidenceIds": [
+        "kode-preflight",
+        "user-20261009"
+      ],
+      "visibility": "review",
+      "date": "2026"
+    },
+    {
+      "id": "award:agenthon2026",
+      "type": "Award",
+      "label": "Agenthon / Pro-code 2등",
+      "summary": "PreFlight를 개발한 KT 내컴에선됨 팀의 Pro-code 트랙 2위 수상. Microsoft Korea 공식 영상 설명에서도 트랙과 순위를 확인했다.",
+      "evidenceIds": [
+        "kode-preflight",
+        "user-20261009",
+        "linkedin-honors",
+        "ms-video"
+      ],
+      "visibility": "review",
+      "date": "2026-03",
+      "rank": 2,
+      "track": "Pro-code"
+    },
+    {
+      "id": "event:ai-tour2026",
+      "type": "Event",
+      "label": "Microsoft AI Tour Seoul 2026",
+      "summary": "2026년 3월 26일 서울 코엑스에서 개최된 Microsoft AI Tour.",
+      "evidenceIds": [
+        "ms-tour"
+      ],
+      "visibility": "review",
+      "date": "2026-03-26",
+      "venue": "COEX, Seoul",
+      "url": "https://news.microsoft.com/source/asia/2026/03/05/ai-tour-seoul-announcement/?lang=ko",
+      "urlLabel": "Microsoft 행사 안내"
+    },
+    {
+      "id": "presentation:preflight",
+      "type": "Presentation",
+      "label": "PreFlight / AI Tour Lightning Talk",
+      "summary": "설계 단계에서 정책 준수 여부와 잠재 위험을 함께 검토하는 PreFlight의 개발 경험을 소개한 공동 발표.",
+      "evidenceIds": [
+        "kode-preflight",
+        "ms-tour",
+        "user-20261009",
+        "ms-preflight-session"
+      ],
+      "visibility": "review",
+      "date": "2026-03-26",
+      "venue": "코엑스 2층 컨퍼런스룸(북) 205",
+      "fullTitle": "배포 전에 끝내는 컴플라이언스: PreFlight로 설계 단계 리스크를 선제 차단",
+      "sessionCode": "LTG137",
+      "speakers": [
+        "Bomin Kim (KT 선임)",
+        "Soyeong Kim (KT 선임)"
+      ],
+      "time": "14:00–14:15 KST",
+      "url": "https://aitour.microsoft.com/flow/microsoft/seoul26/sessioncatalog/page/sessioncatalog/session/1772128646313001DaY4",
+      "urlLabel": "Microsoft 공식 세션 및 발표자료",
+      "verification": "primary-source",
+      "details": [
+        {
+          "title": "세션에서 다룬 내용",
+          "paragraphs": [
+            "클라우드 아키텍처 설계 중 사내 정책과 잠재 위험을 함께 확인하도록 만든 PreFlight를 소개했다. 컴플라이언스 검토를 설계 흐름에 포함한 개발 경험을 공유하는 Lightning Talk다."
+          ]
+        },
+        {
+          "title": "공식 발표 기록",
+          "paragraphs": [
+            "Microsoft 카탈로그에 LTG137, 한국어, Bomin Kim과 Soyeong Kim 공동 발표로 기재되어 있다. 2026-03-26 14:00–14:15 KST, 코엑스 2층 컨퍼런스룸(북) 205에서 진행한 세션이다."
+          ]
+        },
+        {
+          "title": "발표자료",
+          "paragraphs": [
+            "공식 세션의 리소스 영역에 LTG137_03262026_AI Tour Seoul_postshow.pptx가 제공된다. 아래 공식 세션 링크에서 원본 자료를 열 수 있다."
+          ]
+        }
+      ],
+      "activityKind": "KT 소속 대외 활동"
+    },
+    {
+      "id": "media:preflight",
+      "type": "Media",
+      "label": "Microsoft Korea / PreFlight 영상",
+      "summary": "Microsoft Korea의 마소코멘트 Agenthon편 KT 영상. 본인의 LinkedIn 게시물에서 출연을 직접 확인했다.",
+      "evidenceIds": [
+        "ms-video",
+        "linkedin-video",
+        "ms-linkedin"
+      ],
+      "visibility": "review",
+      "fullTitle": "Microsoft 고객이 직접 이야기해드립니다! | [마소코멘트] Agenthon편 – KT",
+      "url": "https://www.youtube.com/watch?v=oSdZnvZG0d4",
+      "urlLabel": "Microsoft Korea 영상 보기",
+      "verification": "publisher-metadata-and-self-report",
+      "date": "2026-08-12",
+      "duration": "9분 36초",
+      "links": [
+        {
+          "label": "YouTube 본편",
+          "url": "https://www.youtube.com/watch?v=oSdZnvZG0d4"
+        },
+        {
+          "label": "Microsoft 공식 LinkedIn 게시물",
+          "url": "https://www.linkedin.com/feed/update/urn:li:activity:7493592207258742784/"
+        }
+      ],
+      "details": [
+        {
+          "title": "영상 소개",
+          "paragraphs": [
+            "Microsoft Korea의 마소코멘트 Agenthon KT 편. PreFlight를 만든 계기, 멀티에이전트 구성, 도입 이후 기대하는 변화와 확장 계획을 소개한다."
+          ]
+        },
+        {
+          "title": "찾아볼 구간",
+          "paragraphs": [
+            "00:08 출연진 소개 / 01:08 현업에서의 AI 활용 / 02:20 개발 계기 / 03:18 이름의 의미",
+            "03:50 자동화 환경 구축 / 06:00 기대하는 변화 / 06:51 확장 계획 / 08:10 에이전톤에서 의미 있었던 부분"
+          ]
+        },
+        {
+          "title": "공식 배포",
+          "paragraphs": [
+            "YouTube 본편과 Microsoft 공식 LinkedIn 소개 게시물을 함께 연결했다. 플랫폼별 링크는 같은 영상 콘텐츠의 배포 경로이며 별개 출연으로 중복 집계하지 않는다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "youtube",
+          "url": "https://www.youtube.com/watch?v=oSdZnvZG0d4",
+          "videoId": "oSdZnvZG0d4",
+          "title": "Microsoft Korea 마소코멘트 / PreFlight",
+          "sourceId": "ms-video",
+          "featured": true,
+          "date": "2026-08-12",
+          "profilePriority": 1
+        }
+      ],
+      "activityKind": "KT 소속 대외 활동"
+    },
+    {
+      "id": "writing:preflight-kode",
+      "type": "Writing",
+      "label": "PreFlight 개발기 / KT kode",
+      "summary": "배포 전 정책 및 실행 환경 검토를 위한 멀티에이전트 프로젝트의 공동 개발기. 김보민, 김소영 공동 작성.",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "authors": [
+        "김보민",
+        "김소영"
+      ],
+      "date": "2026-05-20",
+      "contentKind": "project-story",
+      "url": "https://kode.kt.com/blog/article/12108",
+      "urlLabel": "KT kode 글 읽기",
+      "details": [
+        {
+          "title": "글의 주제",
+          "paragraphs": [
+            "설계 단계의 컴플라이언스 점검을 멀티에이전트 시스템으로 구현한 경험을 김보민, 김소영이 함께 정리한 개발기다."
+          ]
+        },
+        {
+          "title": "읽을 때 볼 부분",
+          "paragraphs": [
+            "아키텍처 입력을 분석 가능한 형태로 바꾸는 과정과 정책 검토, 위험 분석, 결과 통합으로 책임을 분리한 구조를 살펴볼 수 있다."
+          ]
+        },
+        {
+          "title": "Recon을 실행형 에이전트로 구성한 과정",
+          "paragraphs": [
+            "GitHub Copilot SDK를 Recon 내부의 실행 엔진으로 활용해 환경 관찰, 점검 계획, CLI 실행, 결과 해석의 반복 흐름을 구성했다. 글에서는 상태 관리와 실패 처리까지 직접 만드는 부담, 그리고 권한 범위와 감사 로그를 보강할 필요성을 설명한다."
+          ]
+        },
+        {
+          "title": "프로젝트와 이어 읽기",
+          "paragraphs": [
+            "PreFlight 프로젝트에서 내 구현 역할을, 공식 세션에서 발표 정보를, Microsoft Korea 영상에서 팀의 개발 계기와 확장 계획을 함께 확인할 수 있다."
+          ]
+        }
+      ],
+      "media": [
+        {
+          "kind": "youtube",
+          "url": "https://www.youtube.com/watch?v=oSdZnvZG0d4",
+          "videoId": "oSdZnvZG0d4",
+          "title": "Microsoft Korea 마소코멘트 / PreFlight",
+          "sourceId": "ms-video",
+          "featured": true,
+          "date": "2026-08-12",
+          "profilePriority": 1
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-895c71549e0346db92830ce478597692-052.jpg",
+          "title": "PreFlight / 시스템 아키텍처",
+          "sourceId": "kode-preflight",
+          "featured": true,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-f74cebb58b0c492faef83dd2966fb2d4-052.png",
+          "title": "PreFlight / 전체 파이프라인",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-2865ae2592fb469c8ee629574313d3eb-052.png",
+          "title": "PreFlight / Recon 에이전트 구조",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-62a73257b14641e7af8bc7f510ada6d0-052.png",
+          "title": "PreFlight / 분석 결과 화면",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        }
+      ],
+      "activityKind": "대외 활동 참여기"
+    },
+    {
+      "id": "award:ambient",
+      "type": "Award",
+      "label": "Ambient AI Competition / 최우수상",
+      "summary": "서울대학교 데이터사이언스대학원 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2023-03",
+      "issuer": "서울대학교 데이터사이언스대학원",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "award:cnu-sw",
+      "type": "Award",
+      "label": "CNU 창의SW축전 / 우수상",
+      "summary": "충남대학교 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2021-11",
+      "issuer": "충남대학교",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "award:cnu-capstone",
+      "type": "Award",
+      "label": "CNU Engineering Fair / 우수상",
+      "summary": "충남대학교 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2021-09",
+      "issuer": "충남대학교",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "award:tpc2021",
+      "type": "Award",
+      "label": "Thinking Programming Contest / 은상",
+      "summary": "충남대학교 AnA 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2021-09",
+      "issuer": "충남대학교 AnA",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "award:cnu-ai",
+      "type": "Award",
+      "label": "CNU AI/SW Project Fair / 2등",
+      "summary": "충남대학교 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2021-06",
+      "issuer": "충남대학교",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "award:tpc2020",
+      "type": "Award",
+      "label": "Thinking Programming Contest / 동상",
+      "summary": "충남대학교 AnA 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2020-09",
+      "issuer": "충남대학교 AnA",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "award:tpc2018",
+      "type": "Award",
+      "label": "Thinking Programming Contest / 신입생 2등",
+      "summary": "충남대학교 AnA 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2018-11",
+      "issuer": "충남대학교 AnA",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "award:kosaf",
+      "type": "Award",
+      "label": "국가우수장학금 / 이공계",
+      "summary": "KOSAF 수상 기록. LinkedIn 본인 기재 기준.",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "visibility": "review",
+      "date": "2018-05",
+      "issuer": "KOSAF",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "credential:ai900",
+      "type": "Credential",
+      "label": "AI-900 / Azure AI Fundamentals",
+      "summary": "Microsoft 발행. LinkedIn 자격증/수료증 항목 기준.",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "visibility": "review",
+      "date": "2025-09",
+      "expiresAt": null,
+      "issuer": "Microsoft",
+      "status": "취득 기록",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "credential:cospro",
+      "type": "Credential",
+      "label": "COS Pro 2급 / Python",
+      "summary": "YBM 발행. LinkedIn 자격증/수료증 항목 기준.",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "visibility": "review",
+      "date": "2025-09",
+      "expiresAt": null,
+      "issuer": "YBM",
+      "status": "취득 기록",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "credential:pcce",
+      "type": "Credential",
+      "label": "PCCE / Python3",
+      "summary": "그렙(프로그래머스) 발행. LinkedIn 자격증/수료증 항목 기준.",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "visibility": "review",
+      "date": "2025-06",
+      "expiresAt": null,
+      "issuer": "그렙(프로그래머스)",
+      "status": "취득 기록",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "credential:toeicspeaking",
+      "type": "Credential",
+      "label": "TOEIC Speaking / AL 160",
+      "summary": "YBM 발행. LinkedIn 자격증/수료증 항목 기준.",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "visibility": "review",
+      "date": "2026-09",
+      "expiresAt": "2028-09",
+      "issuer": "YBM",
+      "status": "기재 유효기간 내",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "credential:teps",
+      "type": "Credential",
+      "label": "TEPS / 358 (만료)",
+      "summary": "2023-09 유효기간이 만료된 과거 어학 성적. 현재 유효한 성적으로 제시하지 않는다.",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "visibility": "review",
+      "date": "2021-09",
+      "expiresAt": "2023-09",
+      "issuer": "서울대학교발전기금",
+      "status": "만료된 성적",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "credential:toeic",
+      "type": "Credential",
+      "label": "TOEIC / 860 (만료)",
+      "summary": "2023-03 유효기간이 만료된 과거 어학 성적. 현재 유효한 성적으로 제시하지 않는다.",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "visibility": "review",
+      "date": "2021-03",
+      "expiresAt": "2023-03",
+      "issuer": "YBM",
+      "status": "만료된 성적",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "credential:sqld",
+      "type": "Credential",
+      "label": "SQL Developer",
+      "summary": "한국데이터산업진흥원 발행. LinkedIn 자격증/수료증 항목 기준.",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "visibility": "review",
+      "date": "2020-06",
+      "expiresAt": null,
+      "issuer": "한국데이터산업진흥원",
+      "status": "취득 기록",
+      "verification": "profile-observed"
+    },
+    {
+      "id": "capability:workflow",
+      "type": "Capability",
+      "visibility": "review",
+      "label": "Ontology & Workflow Design",
+      "summary": "업무 기능과 절차를 Skill 및 Workflow로 구조화하고 실행 흐름을 설계하는 역량.",
+      "evidenceIds": [
+        "atc"
+      ],
+      "details": [
+        {
+          "title": "업무 기능에서 실행 절차까지",
+          "paragraphs": [
+            "업무 기능을 Skill 단위로 나누고 Workflow로 연결하며, 온톨로지 기반 업무 흐름을 구성하는 경험을 갖고 있다.",
+            "생성, 구성, 실행 확인을 구분하고 Playground에서 실행 상태를 확인할 수 있도록 제품 흐름을 연결한다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:agent-leadership",
+      "type": "Capability",
+      "visibility": "review",
+      "label": "에이전트 파트 리딩",
+      "summary": "파트원 4명의 역량에 따른 업무 배분과 사내 기술 및 연구 전시회 준비를 총괄하는 리딩 역량.",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "details": [
+        {
+          "title": "구성원의 능력을 업무에 연결",
+          "paragraphs": [
+            "파트원 4명 각각의 능력을 파악하고 그에 맞는 업무를 배분했다."
+          ]
+        },
+        {
+          "title": "전시 준비 총괄",
+          "paragraphs": [
+            "사내 기술 및 연구 전시회 준비를 총괄하며 에이전트 구조 설계, 연구개발과 평가를 수행하는 파트의 업무를 이끌었다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "organization:ax-institute",
+      "type": "Organization",
+      "label": "AX미래기술원",
+      "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:ax-data-lab",
+      "type": "Organization",
+      "label": "AX Data Lab",
+      "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:data-model",
+      "type": "Organization",
+      "label": "데이터Model팀",
+      "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "organization:agent-part",
+      "type": "Organization",
+      "label": "에이전트 파트",
+      "summary": "KT 내 에이전트 연구개발 업무의 소속 조직.",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "role:agent-lead",
+      "type": "RoleAssignment",
+      "label": "에이전트 파트 리딩",
+      "summary": "사내 기술 및 연구 전시회 준비 총괄과 파트원 4명의 역량에 따른 업무 배분, 플랫폼 전체 구조 설계, 후년도 과제 제안.",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "visibility": "review",
+      "startDate": "2026-09",
+      "startDateLabel": "2026-09 중순",
+      "endDate": null,
+      "status": "수행 중",
+      "roleKind": "담당 역할",
+      "teamMembers": 4,
+      "details": [
+        {
+          "title": "파트의 연구개발 범위",
+          "paragraphs": [
+            "AX미래기술원 AX Data Lab 데이터Model팀의 에이전트 파트에서 에이전트 구조 설계, 연구와 개발, 평가를 수행한다."
+          ]
+        },
+        {
+          "title": "전시 준비와 업무 배분",
+          "paragraphs": [
+            "사내 기술 및 연구 전시회를 위한 준비를 총괄했다. 파트원 4명의 능력을 파악하고 각자에게 적절한 업무를 배분했다."
+          ]
+        },
+        {
+          "title": "시스템 설계와 다음 과제",
+          "paragraphs": [
+            "플랫폼 전체 구조 설계와 후년도 과제 제안을 맡았다. 공식 인사 직책과 별개로 확인된 담당 역할을 기록한다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:platform-architecture",
+      "type": "Capability",
+      "label": "Agent Platform Architecture",
+      "summary": "에이전트 실행 기능을 플랫폼 전체 구조로 설계하는 역량.",
+      "evidenceIds": [
+        "user-work-context",
+        "user-agent-lead"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "플랫폼 전체를 설계",
+          "paragraphs": [
+            "개별 에이전트의 동작뿐 아니라 실행 기능, 업무 흐름, API와 사용자 화면이 이어지는 플랫폼 전체 구조를 설계한다."
+          ]
+        },
+        {
+          "title": "기능 경계와 연결",
+          "paragraphs": [
+            "기능별 책임과 입력 및 출력을 구분하고, 구성과 실행 결과가 시스템 사이에서 어떻게 전달되는지 설계한다. 전시 준비 과정에서 플랫폼 전체 구조 설계를 맡은 경험이 근거다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:agent-evaluation",
+      "type": "Capability",
+      "label": "Agent Evaluation",
+      "summary": "에이전트 실행 결과와 평가 조건을 다루고 재현 가능한 평가 환경을 설계하는 역량.",
+      "evidenceIds": [
+        "user-work-context",
+        "user-agent-lead",
+        "career"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "구조 설계부터 평가까지",
+          "paragraphs": [
+            "에이전트 파트의 업무 범위는 구조 설계, 연구개발, 평가까지 포함한다. TraceBench에서는 평가 조건과 응답 일관성, 반복 가능한 실험 환경을 다뤘다."
+          ]
+        },
+        {
+          "title": "실행 근거와 평가 환경",
+          "paragraphs": [
+            "에이전트 실행을 검토하고 반복 가능한 조건에서 평가하는 환경을 설계한 경험이 있다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:research-planning",
+      "type": "Capability",
+      "label": "Research & Task Planning",
+      "summary": "현재 연구개발 경험을 바탕으로 후년도 과제를 제안하는 역량.",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "후년도 과제 제안",
+          "paragraphs": [
+            "에이전트 파트 리딩 과정에서 후년도 과제 제안을 맡았다. 플랫폼 구조와 에이전트 연구개발 범위를 함께 고려해 다음 업무를 제안하는 역할이다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contribution:tracebench",
+      "type": "Contribution",
+      "label": "TraceBench / 수행 역할",
+      "summary": "평가 조건, 응답 일관성, 반복 가능한 실험 환경 설계 경험.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review",
+      "activityKind": "KT 주업무"
+    },
+    {
+      "id": "contribution:har",
+      "type": "Contribution",
+      "label": "Human Activity Recognition / 수행 역할",
+      "summary": "데이터 수집과 전처리, 모델 비교, 학습과 평가 및 결과 분석.",
+      "evidenceIds": [
+        "repo-projects",
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "contribution:sia",
+      "type": "Contribution",
+      "label": "Cloud Coverage Assessment / 수행 역할",
+      "summary": "SIAnalytics에서 모델과 학습 조건 비교, 추론 오류 분석.",
+      "evidenceIds": [
+        "career"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "contribution:yoco",
+      "type": "Contribution",
+      "label": "YOCO / 수행 역할",
+      "summary": "데이터 라벨링과 모델 학습. 반지도학습 적용 경험.",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "linkedin-projects"
+      ],
+      "visibility": "review",
+      "activityKind": "교내 대회 참가"
+    },
+    {
+      "id": "contribution:prupru",
+      "type": "Contribution",
+      "label": "PruPru / 수행 역할",
+      "summary": "MobileNet SSD v2 전이학습, Firebase Storage 연동, Android 온디바이스 모델 로딩.",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "visibility": "review",
+      "activityKind": "충남대 캡스톤"
+    },
+    {
+      "id": "contribution:blooming",
+      "type": "Contribution",
+      "label": "Blooming / 수행 역할",
+      "summary": "Docker 구성, 클라우드 배포, React 프론트엔드.",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "visibility": "review",
+      "activityKind": "부트캠프 팀 프로젝트"
+    },
+    {
+      "id": "contribution:sobok",
+      "type": "Contribution",
+      "label": "소복소복 / 수행 역할",
+      "summary": "React 프론트엔드, Node.js/Express/MongoDB 백엔드, Netlify/Heroku 배포, UI 디자인.",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "visibility": "review",
+      "activityKind": "개인 사이드 프로젝트"
+    },
+    {
+      "id": "contribution:agent-platform",
+      "type": "Contribution",
+      "label": "에이전트 플랫폼 설계 업무",
+      "summary": "사내 에이전트 플랫폼 및 온톨로지 기반 업무 자동화 과제에서 구조 설계와 기능 통합을 수행.",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "visibility": "review",
+      "activityKind": "KT 사내 과제",
+      "details": [
+        {
+          "title": "회사에서 맡은 업무",
+          "paragraphs": [
+            "에이전트 프레임워크와 온톨로지 기반 Workflow 관련 과제에서 에이전트 및 플랫폼 구조 설계와 시스템 통합 경험을 쌓았다."
+          ]
+        },
+        {
+          "title": "이 경험에서 얻은 역량",
+          "paragraphs": [
+            "에이전트의 책임과 실행 계약을 정리하고, 업무 기능을 실행 흐름으로 구성하며, 이를 플랫폼 API 및 화면과 연결하는 역량으로 정리한다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "participation:agenthon2026",
+      "type": "Participation",
+      "label": "MS AI Agenthon 참가 / KT 소속",
+      "summary": "KT 소속 내컴에선됨 팀으로 PreFlight를 개발하고 Pro-code 트랙에 참가한 대외 활동.",
+      "evidenceIds": [
+        "user-work-context",
+        "ms-video"
+      ],
+      "visibility": "review",
+      "activityKind": "KT 소속 대외 활동"
+    },
+    {
+      "id": "organization:snu-gsds",
+      "type": "Organization",
+      "label": "서울대학교 데이터사이언스대학원",
+      "summary": "YOCO가 참가한 교내 대회를 주최한 조직. 본인의 소속 연구실이나 대학원 수업과 구분한다.",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "event:ambient",
+      "type": "Event",
+      "label": "Ambient AI Competition",
+      "summary": "서울대학교 데이터사이언스대학원이 주최한 교내 대회.",
+      "evidenceIds": [
+        "user-project-context",
+        "linkedin-honors"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "participation:yoco",
+      "type": "Participation",
+      "label": "YOCO / 교내 대회 참가",
+      "summary": "대학원 수업 및 소속 연구실과 별개로 참가한 서울대 교내 대회에서 YOCO를 수행.",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "visibility": "review",
+      "activityKind": "교내 대회 참가",
+      "details": [
+        {
+          "title": "수업 및 연구실과 독립된 참가",
+          "paragraphs": [
+            "서울대학교 데이터사이언스대학원이 주최한 교내 대회에 별도로 참가했다. 소속 연구실 과제나 대학원 수업 프로젝트로 분류하지 않는다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "program:silicon-valley-bootcamp",
+      "type": "Program",
+      "label": "실리콘밸리부트캠프",
+      "summary": "팀을 구성해 프로젝트를 수행한 교육 프로그램.",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "visibility": "review"
+    },
+    {
+      "id": "participation:bootcamp",
+      "type": "Participation",
+      "label": "실리콘밸리부트캠프 참여",
+      "summary": "교육 프로그램에서 구성된 팀으로 Blooming 팀 프로젝트를 수행.",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "visibility": "review",
+      "activityKind": "교육 프로그램 팀 프로젝트"
+    },
+    {
+      "id": "channel:tistory",
+      "type": "PublicationChannel",
+      "label": "소소한 코딩일지 / Tistory",
+      "evidenceIds": [
+        "user-channel",
+        "user-blog-ownership"
+      ],
+      "visibility": "review",
+      "summary": "김소영이 소유하고 운영하는 최초의 개인 기술 블로그. 기술 학습, 논문 리뷰와 공부 과정을 기록한다.",
+      "url": "https://soso-cod3v.tistory.com/",
+      "urlLabel": "기술 블로그 방문",
+      "details": [
+        {
+          "title": "기술과 학습 기록",
+          "paragraphs": [
+            "논문 리뷰, 개발 도구와 공식 문서 정리, 알고리즘 및 학교 공부 기록을 모은다. 포트폴리오와 관련된 글을 선별해 이곳의 역량 및 지식 주제와 연결한다."
+          ]
+        },
+        {
+          "title": "포트폴리오와의 역할",
+          "paragraphs": [
+            "GitHub 사이트는 이력, 경력, 담당 직무, 수행한 기여와 역량을 중심으로 구성한다. 기존 GitHub 기술 글을 Tistory로 옮길지는 검토 중이며, 현재 글과 주소는 유지한다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "writing:tistory-copilot",
+      "type": "Writing",
+      "label": "GitHub Copilot SDK",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "visibility": "review",
+      "summary": "Copilot SDK의 에이전트 실행 구조, 사용자 도구, MCP 연결과 Microsoft Agent Framework 연동을 정리한 기술 글.",
+      "date": "2026-03-13",
+      "url": "https://soso-cod3v.tistory.com/208",
+      "urlLabel": "티스토리에서 읽기",
+      "details": [
+        {
+          "title": "다루는 내용",
+          "paragraphs": [
+            "Copilot CLI와 SDK 사이의 JSON-RPC 구조, 세션 생성, 사용자 도구와 MCP 서버 연결을 코드 예제로 정리했다."
+          ]
+        },
+        {
+          "title": "설계 관점",
+          "paragraphs": [
+            "Microsoft Agent Framework 연동과 LangGraph 비교를 통해 에이전트 실행 엔진을 애플리케이션에 통합하는 방식을 살펴본다. 기술 학습 기록이며, 이 글 자체를 프로젝트 납품이나 업무 성과로 간주하지 않는다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "review:tistory-handbook",
+      "type": "Review",
+      "label": "HANDBOOK.md / 논문 리뷰",
+      "evidenceIds": [
+        "tistory-handbook"
+      ],
+      "visibility": "review",
+      "summary": "장기 작업에서 에이전트가 정책과 상시 지침을 지키는지 평가하는 외부 연구를 읽고 정리한 리뷰.",
+      "date": "2026-10-08",
+      "url": "https://soso-cod3v.tistory.com/209",
+      "urlLabel": "티스토리에서 읽기",
+      "details": [
+        {
+          "title": "검토한 문제",
+          "paragraphs": [
+            "업무 완료와 규칙 준수를 구분하고, 긴 지침을 여러 단계의 도구 호출 동안 지속적으로 적용하는 문제를 정리했다."
+          ]
+        },
+        {
+          "title": "평가 관점",
+          "paragraphs": [
+            "최종 보고 대신 실제 환경 상태를 검증하는 채점 방식, 금지 행동 평가, 도구 호출 직전의 통제 장치와 대표 실패 유형을 살펴본다."
+          ]
+        }
+      ],
+      "references": [
+        {
+          "kind": "논문",
+          "title": "HANDBOOK.md: A Benchmark for Long-Context Agentic Instruction Following",
+          "authors": [
+            "Liudas Panavas",
+            "Sebastian Minus",
+            "Bradley Monton",
+            "Derek Ray",
+            "Suhaas Garre",
+            "Sushant Mehta",
+            "Edwin Chen"
+          ],
+          "url": "https://arxiv.org/abs/2607.25398"
+        }
+      ]
+    },
+    {
+      "id": "capability:agent-sdk",
+      "type": "Capability",
+      "label": "Agent SDK Integration",
+      "summary": "에이전트 SDK를 활용해 프로젝트의 에이전트 기능을 구현하고 시스템에 통합하는 역량.",
+      "evidenceIds": [
+        "user-preflight-capabilities",
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "PreFlight에서의 활용",
+          "paragraphs": [
+            "PreFlight의 Recon 및 통합 기여를 통해 드러난 SDK 활용 역량이다. 해당 프로젝트에는 Microsoft Agent Framework와 GitHub Copilot SDK가 사용 기술로 기록되어 있다.",
+            "SDK 사용 역량은 본인이 확인한 수행 경험을 근거로 연결한다. 기술 목록에 이름이 있다는 이유만으로 별도 기능의 구현이나 전문성을 추정하지 않는다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "channel:github",
+      "type": "PublicationChannel",
+      "label": "Soyeong / GitHub Portfolio",
+      "summary": "김소영이 소유하고 운영하는 개인 포트폴리오. 경력, 수행한 프로젝트, 개인 기여와 역량을 연결한다.",
+      "evidenceIds": [
+        "user-channel",
+        "user-blog-ownership"
+      ],
+      "visibility": "review",
+      "url": "https://kimsoyeong.github.io/",
+      "urlLabel": "포트폴리오 방문"
+    },
+    {
+      "id": "channel:kode",
+      "type": "PublicationChannel",
+      "label": "KT kode",
+      "summary": "KT의 기술 블로그. PreFlight 공동 개발기가 게시된 공간.",
+      "evidenceIds": [
+        "kode-preflight",
+        "user-work-context"
+      ],
+      "visibility": "review",
+      "url": "https://kode.kt.com/",
+      "urlLabel": "KT kode 방문"
+    },
+    {
+      "id": "contribution:har-followup",
+      "type": "Contribution",
+      "label": "HAR 후속 연구 / 데이터 수집 플랫폼",
+      "summary": "데이터 수집 플랫폼 설계와 구현, Garmin 스마트워치 데이터 수집 앱 고도화.",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "visibility": "review",
+      "activityKind": "서울대 연구원 후속 연구",
+      "startDate": "2024-03",
+      "endDate": "2024-07",
+      "details": [
+        {
+          "title": "데이터 수집 플랫폼 설계와 구현",
+          "paragraphs": [
+            "HAR 석사 연구의 후속 작업으로 데이터 수집 플랫폼을 설계하고 구현했다."
+          ]
+        },
+        {
+          "title": "웨어러블 수집 앱 고도화",
+          "paragraphs": [
+            "연구 데이터 수집을 위한 Garmin 스마트워치 앱을 고도화했다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:ml-research",
+      "type": "Capability",
+      "label": "ML Research & Experimentation",
+      "summary": "데이터 준비, 모델 학습과 비교, 추론 오류 및 실험 결과를 분석하는 역량.",
+      "evidenceIds": [
+        "career",
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "연구와 실험 수행",
+          "paragraphs": [
+            "HAR에서 데이터 수집과 전처리, 모델 비교와 평가를 수행했다. SI Analytics에서는 의미분할 모델과 학습 조건을 비교하고 추론 오류를 분석했다. YOCO에서는 데이터 라벨링과 모델 학습을, PruPru에서는 전이학습을 수행했다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:data-platform",
+      "type": "Capability",
+      "label": "Data Collection Platform",
+      "summary": "연구 데이터를 수집하기 위한 플랫폼을 설계하고 구현하는 역량.",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "HAR 후속 연구",
+          "paragraphs": [
+            "서울대 연구원 경력에서 HAR 후속 연구용 데이터 수집 플랫폼을 설계하고 실제로 구현했다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:wearable-app",
+      "type": "Capability",
+      "label": "Wearable App Development",
+      "summary": "스마트워치에서 연구 데이터를 수집하는 앱을 개선하는 역량.",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "Garmin 수집 앱 고도화",
+          "paragraphs": [
+            "HAR 후속 연구의 데이터 수집을 위해 Garmin 스마트워치 앱을 고도화했다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:web-development",
+      "type": "Capability",
+      "label": "Web Application Development",
+      "summary": "사용자 화면과 웹 API 및 데이터 저장 기능을 구현하는 역량.",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "웹 서비스 구현",
+          "paragraphs": [
+            "Blooming에서 React 프론트엔드를 담당했고, 소복소복에서 React 화면과 Node.js/Express/MongoDB 백엔드 및 UI 디자인을 수행했다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "capability:deployment",
+      "type": "Capability",
+      "label": "Application Deployment",
+      "summary": "애플리케이션의 실행 환경을 구성하고 서비스를 배포하는 역량.",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "visibility": "review",
+      "details": [
+        {
+          "title": "실행 환경과 배포",
+          "paragraphs": [
+            "Blooming에서 Docker 구성과 클라우드 배포를, 소복소복에서 Netlify/Heroku 배포를 수행했다."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "section:agent-customize/overview",
+      "type": "Section",
+      "label": "개요",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 개요 섹션.",
+      "articleId": "article:customize",
+      "anchor": "overview"
+    },
+    {
+      "id": "section:agent-customize/instructions",
+      "type": "Section",
+      "label": "Instructions",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Instructions 섹션.",
+      "articleId": "article:customize",
+      "anchor": "instructions"
+    },
+    {
+      "id": "section:agent-customize/skills",
+      "type": "Section",
+      "label": "Skills",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Skills 섹션.",
+      "articleId": "article:customize",
+      "anchor": "skills"
+    },
+    {
+      "id": "section:agent-customize/spec",
+      "type": "Section",
+      "label": "Spec",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Spec 섹션.",
+      "articleId": "article:customize",
+      "anchor": "spec"
+    },
+    {
+      "id": "section:agent-customize/hooks",
+      "type": "Section",
+      "label": "Hooks",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Hooks 섹션.",
+      "articleId": "article:customize",
+      "anchor": "hooks"
+    },
+    {
+      "id": "section:agent-customize/comparison",
+      "type": "Section",
+      "label": "한눈에 보기",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 한눈에 보기 섹션.",
+      "articleId": "article:customize",
+      "anchor": "comparison"
+    },
+    {
+      "id": "section:agent-customize/references",
+      "type": "Section",
+      "label": "참고 링크",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 참고 링크 섹션.",
+      "articleId": "article:customize",
+      "anchor": "references"
+    },
+    {
+      "id": "technology:microsoft-agent-framework",
+      "type": "Technology",
+      "label": "Microsoft Agent Framework",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Microsoft Agent Framework."
+    },
+    {
+      "id": "technology:github-copilot-sdk",
+      "type": "Technology",
+      "label": "Github Copilot SDK",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Github Copilot SDK."
+    },
+    {
+      "id": "technology:docker",
+      "type": "Technology",
+      "label": "Docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Docker."
+    },
+    {
+      "id": "technology:react",
+      "type": "Technology",
+      "label": "React",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 React."
+    },
+    {
+      "id": "technology:fastapi",
+      "type": "Technology",
+      "label": "FastAPI",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 FastAPI."
+    },
+    {
+      "id": "technology:tensorflow",
+      "type": "Technology",
+      "label": "Tensorflow",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Tensorflow."
+    },
+    {
+      "id": "technology:garmin",
+      "type": "Technology",
+      "label": "Garmin",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Garmin."
+    },
+    {
+      "id": "technology:ub-teacher-v2",
+      "type": "Technology",
+      "label": "ub-teacher v2",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 ub-teacher v2."
+    },
+    {
+      "id": "technology:tflite",
+      "type": "Technology",
+      "label": "TFLite",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 TFLite."
+    },
+    {
+      "id": "technology:firebase",
+      "type": "Technology",
+      "label": "Firebase",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Firebase."
+    },
+    {
+      "id": "technology:android-studio",
+      "type": "Technology",
+      "label": "Android Studio",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Android Studio."
+    },
+    {
+      "id": "technology:flask",
+      "type": "Technology",
+      "label": "Flask",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Flask."
+    },
+    {
+      "id": "technology:gunicorn",
+      "type": "Technology",
+      "label": "Gunicorn",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Gunicorn."
+    },
+    {
+      "id": "technology:mysql",
+      "type": "Technology",
+      "label": "MySQL",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 MySQL."
+    },
+    {
+      "id": "technology:nginx",
+      "type": "Technology",
+      "label": "Nginx",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Nginx."
+    },
+    {
+      "id": "technology:gcp",
+      "type": "Technology",
+      "label": "GCP",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 GCP."
+    },
+    {
+      "id": "technology:aws",
+      "type": "Technology",
+      "label": "AWS",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 AWS."
+    },
+    {
+      "id": "technology:node-js",
+      "type": "Technology",
+      "label": "Node.js",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Node.js."
+    },
+    {
+      "id": "technology:express",
+      "type": "Technology",
+      "label": "Express",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Express."
+    },
+    {
+      "id": "technology:mongodb",
+      "type": "Technology",
+      "label": "MongoDB",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 MongoDB."
+    },
+    {
+      "id": "system:preflight",
+      "type": "AgentSystem",
+      "label": "PreFlight Agent System",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-895c71549e0346db92830ce478597692-052.jpg",
+          "title": "PreFlight / 시스템 아키텍처",
+          "sourceId": "kode-preflight",
+          "featured": true,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-f74cebb58b0c492faef83dd2966fb2d4-052.png",
+          "title": "PreFlight / 전체 파이프라인",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        }
+      ],
+      "summary": "Bicep으로 구조화한 아키텍처를 Policy와 Recon이 분석하고 Reporter가 통합하는 시스템."
+    },
+    {
+      "id": "agent:policy",
+      "type": "Agent",
+      "label": "Policy",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "summary": "정책 정합성 검토"
+    },
+    {
+      "id": "agent:recon",
+      "type": "Agent",
+      "label": "Recon",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "summary": "잠재 위험 분석"
+    },
+    {
+      "id": "agent:reporter",
+      "type": "Agent",
+      "label": "Reporter",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "summary": "보고서 통합"
+    }
+  ],
+  "edges": [
+    {
+      "source": "project:rca",
+      "predicate": "about",
+      "target": "concept:agents",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:001"
+    },
+    {
+      "source": "project:preflight",
+      "predicate": "about",
+      "target": "concept:agents",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "kode-preflight",
+        "user-20261009"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:003"
+    },
+    {
+      "source": "article:customize",
+      "predicate": "about",
+      "target": "concept:agents",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:004"
+    },
+    {
+      "source": "concept:evaluation",
+      "predicate": "broader",
+      "target": "concept:agents",
+      "evidenceIds": [
+        "design"
+      ],
+      "assertionStatus": "proposed",
+      "visibility": "review",
+      "id": "relation:005"
+    },
+    {
+      "source": "project:rca",
+      "predicate": "about",
+      "target": "concept:rca",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:007"
+    },
+    {
+      "source": "project:tracebench",
+      "predicate": "about",
+      "target": "concept:rca",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:009"
+    },
+    {
+      "source": "project:tracebench",
+      "predicate": "about",
+      "target": "concept:evaluation",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:010"
+    },
+    {
+      "source": "project:har",
+      "predicate": "about",
+      "target": "concept:timeseries",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:014"
+    },
+    {
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:rca",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:015"
+    },
+    {
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:preflight",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:016"
+    },
+    {
+      "source": "contribution:rca",
+      "predicate": "inProject",
+      "target": "project:rca",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:017"
+    },
+    {
+      "source": "contribution:rca",
+      "predicate": "demonstrates",
+      "target": "capability:architecture",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:018"
+    },
+    {
+      "source": "contribution:preflight",
+      "predicate": "inProject",
+      "target": "project:preflight",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:019"
+    },
+    {
+      "source": "contribution:preflight",
+      "predicate": "demonstrates",
+      "target": "capability:integration",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:020"
+    },
+    {
+      "source": "person:soyeong",
+      "predicate": "hasEducation",
+      "target": "education:snu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:021"
+    },
+    {
+      "source": "person:soyeong",
+      "predicate": "hasEducation",
+      "target": "education:cnu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:022"
+    },
+    {
+      "source": "person:soyeong",
+      "predicate": "authored",
+      "target": "article:customize",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:024"
+    },
+    {
+      "source": "project:rca",
+      "predicate": "realizes",
+      "target": "system:rca",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:027"
+    },
+    {
+      "source": "system:rca",
+      "predicate": "hasAgent",
+      "target": "agent:supervisor",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:028"
+    },
+    {
+      "source": "system:rca",
+      "predicate": "hasAgent",
+      "target": "agent:action",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:029"
+    },
+    {
+      "source": "system:rca",
+      "predicate": "hasAgent",
+      "target": "agent:report",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:030"
+    },
+    {
+      "source": "agent:action",
+      "predicate": "invokes",
+      "target": "tool:device",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:031"
+    },
+    {
+      "source": "project:rca",
+      "predicate": "usesTechnology",
+      "target": "technology:langgraph",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "id": "relation:032"
+    },
+    {
+      "id": "relation:033",
+      "source": "person:soyeong",
+      "predicate": "hasExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:034",
+      "source": "experience:kt",
+      "predicate": "atOrganization",
+      "target": "organization:kt",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:035",
+      "source": "person:soyeong",
+      "predicate": "hasExperience",
+      "target": "experience:snu",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:036",
+      "source": "experience:snu",
+      "predicate": "atOrganization",
+      "target": "organization:snu",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:037",
+      "source": "person:soyeong",
+      "predicate": "hasExperience",
+      "target": "experience:sia",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:038",
+      "source": "experience:sia",
+      "predicate": "atOrganization",
+      "target": "organization:sia",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:039",
+      "source": "person:soyeong",
+      "predicate": "memberOf",
+      "target": "organization:spg",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:040",
+      "source": "person:soyeong",
+      "predicate": "authored",
+      "target": "paper:har-thesis",
+      "evidenceIds": [
+        "har-bibliography",
+        "user-20261009"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:041",
+      "source": "paper:har-thesis",
+      "predicate": "documents",
+      "target": "project:har",
+      "evidenceIds": [
+        "har-bibliography"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:042",
+      "source": "paper:har-thesis",
+      "predicate": "about",
+      "target": "concept:timeseries",
+      "evidenceIds": [
+        "har-bibliography"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:045",
+      "source": "project:preflight",
+      "predicate": "receivedAward",
+      "target": "award:agenthon2026",
+      "evidenceIds": [
+        "kode-preflight",
+        "user-20261009"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:046",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:agenthon2026",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:047",
+      "source": "award:agenthon2026",
+      "predicate": "atEvent",
+      "target": "event:agenthon2026",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:048",
+      "source": "event:agenthon2026",
+      "predicate": "organizedBy",
+      "target": "organization:microsoft",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:049",
+      "source": "person:soyeong",
+      "predicate": "presented",
+      "target": "presentation:preflight",
+      "evidenceIds": [
+        "kode-preflight",
+        "user-20261009",
+        "ms-preflight-session"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:050",
+      "source": "presentation:preflight",
+      "predicate": "presentsProject",
+      "target": "project:preflight",
+      "evidenceIds": [
+        "kode-preflight",
+        "ms-preflight-session"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:051",
+      "source": "presentation:preflight",
+      "predicate": "atEvent",
+      "target": "event:ai-tour2026",
+      "evidenceIds": [
+        "ms-tour",
+        "kode-preflight",
+        "ms-preflight-session"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:052",
+      "source": "person:soyeong",
+      "predicate": "appearedIn",
+      "target": "media:preflight",
+      "evidenceIds": [
+        "linkedin-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:053",
+      "source": "media:preflight",
+      "predicate": "featuresProject",
+      "target": "project:preflight",
+      "evidenceIds": [
+        "linkedin-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:054",
+      "source": "media:preflight",
+      "predicate": "publishedBy",
+      "target": "organization:microsoft",
+      "evidenceIds": [
+        "ms-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:055",
+      "source": "person:soyeong",
+      "predicate": "authored",
+      "target": "writing:preflight-kode",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:056",
+      "source": "writing:preflight-kode",
+      "predicate": "documents",
+      "target": "project:preflight",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:057",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:ambient",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:058",
+      "source": "project:yoco",
+      "predicate": "receivedAward",
+      "target": "award:ambient",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:059",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:cnu-sw",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:060",
+      "source": "project:prupru",
+      "predicate": "receivedAward",
+      "target": "award:cnu-sw",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:061",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:cnu-capstone",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:062",
+      "source": "project:prupru",
+      "predicate": "receivedAward",
+      "target": "award:cnu-capstone",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:063",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:tpc2021",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:064",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:cnu-ai",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:065",
+      "source": "project:prupru",
+      "predicate": "receivedAward",
+      "target": "award:cnu-ai",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:066",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:tpc2020",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:067",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:tpc2018",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:068",
+      "source": "person:soyeong",
+      "predicate": "receivedAward",
+      "target": "award:kosaf",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:069",
+      "source": "person:soyeong",
+      "predicate": "hasCredential",
+      "target": "credential:ai900",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:070",
+      "source": "person:soyeong",
+      "predicate": "hasCredential",
+      "target": "credential:cospro",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:071",
+      "source": "person:soyeong",
+      "predicate": "hasCredential",
+      "target": "credential:pcce",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:072",
+      "source": "person:soyeong",
+      "predicate": "hasCredential",
+      "target": "credential:toeicspeaking",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:073",
+      "source": "person:soyeong",
+      "predicate": "hasCredential",
+      "target": "credential:teps",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:074",
+      "source": "person:soyeong",
+      "predicate": "hasCredential",
+      "target": "credential:toeic",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:075",
+      "source": "person:soyeong",
+      "predicate": "hasCredential",
+      "target": "credential:sqld",
+      "evidenceIds": [
+        "linkedin-certs"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:076",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:architecture",
+      "evidenceIds": [
+        "career",
+        "atc"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:077",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:integration",
+      "evidenceIds": [
+        "career",
+        "atc"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:078",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:workflow",
+      "evidenceIds": [
+        "atc"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:079",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:agent-leadership",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:080",
+      "source": "organization:ax-institute",
+      "predicate": "partOf",
+      "target": "organization:kt",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:081",
+      "source": "organization:ax-data-lab",
+      "predicate": "partOf",
+      "target": "organization:ax-institute",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:082",
+      "source": "organization:data-model",
+      "predicate": "partOf",
+      "target": "organization:ax-data-lab",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:083",
+      "source": "organization:agent-part",
+      "predicate": "partOf",
+      "target": "organization:data-model",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:084",
+      "source": "person:soyeong",
+      "predicate": "hasRole",
+      "target": "role:agent-lead",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:085",
+      "source": "role:agent-lead",
+      "predicate": "atOrganization",
+      "target": "organization:agent-part",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:086",
+      "source": "role:agent-lead",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:087",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:platform-architecture",
+      "evidenceIds": [
+        "user-work-context",
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:088",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:agent-evaluation",
+      "evidenceIds": [
+        "user-work-context",
+        "user-agent-lead",
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:089",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:research-planning",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:090",
+      "source": "role:agent-lead",
+      "predicate": "demonstrates",
+      "target": "capability:agent-leadership",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:091",
+      "source": "role:agent-lead",
+      "predicate": "demonstrates",
+      "target": "capability:platform-architecture",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:092",
+      "source": "role:agent-lead",
+      "predicate": "demonstrates",
+      "target": "capability:research-planning",
+      "evidenceIds": [
+        "user-agent-lead"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:093",
+      "source": "capability:architecture",
+      "predicate": "appliesConcept",
+      "target": "concept:agents",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:094",
+      "source": "capability:workflow",
+      "predicate": "appliesConcept",
+      "target": "concept:ontology",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:095",
+      "source": "capability:agent-evaluation",
+      "predicate": "appliesConcept",
+      "target": "concept:evaluation",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:096",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:tracebench",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:097",
+      "source": "contribution:tracebench",
+      "predicate": "inProject",
+      "target": "project:tracebench",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:098",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:har",
+      "evidenceIds": [
+        "repo-projects",
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:099",
+      "source": "contribution:har",
+      "predicate": "inProject",
+      "target": "project:har",
+      "evidenceIds": [
+        "repo-projects",
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:100",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:sia",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:101",
+      "source": "contribution:sia",
+      "predicate": "inProject",
+      "target": "project:sia",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:102",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:yoco",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:103",
+      "source": "contribution:yoco",
+      "predicate": "inProject",
+      "target": "project:yoco",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:104",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:prupru",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:105",
+      "source": "contribution:prupru",
+      "predicate": "inProject",
+      "target": "project:prupru",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:106",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:blooming",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:107",
+      "source": "contribution:blooming",
+      "predicate": "inProject",
+      "target": "project:blooming",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:108",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:sobok",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:109",
+      "source": "contribution:sobok",
+      "predicate": "inProject",
+      "target": "project:sobok",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:110",
+      "source": "contribution:rca",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:111",
+      "source": "contribution:tracebench",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:112",
+      "source": "contribution:preflight",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:113",
+      "source": "contribution:sia",
+      "predicate": "duringExperience",
+      "target": "experience:sia",
+      "evidenceIds": [
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:114",
+      "source": "contribution:har",
+      "predicate": "duringEducation",
+      "target": "education:snu",
+      "evidenceIds": [
+        "career",
+        "har-bibliography"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:115",
+      "source": "paper:har-thesis",
+      "predicate": "producedDuring",
+      "target": "education:snu",
+      "evidenceIds": [
+        "har-bibliography"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:116",
+      "source": "contribution:tracebench",
+      "predicate": "demonstrates",
+      "target": "capability:agent-evaluation",
+      "evidenceIds": [
+        "user-work-context",
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:117",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:agent-platform",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:118",
+      "source": "contribution:agent-platform",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:119",
+      "source": "contribution:agent-platform",
+      "predicate": "demonstrates",
+      "target": "capability:architecture",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:120",
+      "source": "contribution:agent-platform",
+      "predicate": "demonstrates",
+      "target": "capability:platform-architecture",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:121",
+      "source": "contribution:agent-platform",
+      "predicate": "demonstrates",
+      "target": "capability:workflow",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:122",
+      "source": "contribution:agent-platform",
+      "predicate": "demonstrates",
+      "target": "capability:integration",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:123",
+      "source": "person:soyeong",
+      "predicate": "hasParticipation",
+      "target": "participation:agenthon2026",
+      "evidenceIds": [
+        "user-work-context",
+        "ms-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:124",
+      "source": "participation:agenthon2026",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context",
+        "ms-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:125",
+      "source": "participation:agenthon2026",
+      "predicate": "atEvent",
+      "target": "event:agenthon2026",
+      "evidenceIds": [
+        "user-work-context",
+        "ms-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:126",
+      "source": "participation:agenthon2026",
+      "predicate": "withProject",
+      "target": "project:preflight",
+      "evidenceIds": [
+        "user-work-context",
+        "ms-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:127",
+      "source": "participation:agenthon2026",
+      "predicate": "receivedAward",
+      "target": "award:agenthon2026",
+      "evidenceIds": [
+        "user-work-context",
+        "ms-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:128",
+      "source": "presentation:preflight",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:129",
+      "source": "media:preflight",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:130",
+      "source": "writing:preflight-kode",
+      "predicate": "duringExperience",
+      "target": "experience:kt",
+      "evidenceIds": [
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:131",
+      "source": "event:ai-tour2026",
+      "predicate": "organizedBy",
+      "target": "organization:microsoft",
+      "evidenceIds": [
+        "ms-tour"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:132",
+      "source": "organization:snu-gsds",
+      "predicate": "partOf",
+      "target": "organization:snu",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:133",
+      "source": "event:ambient",
+      "predicate": "organizedBy",
+      "target": "organization:snu-gsds",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:134",
+      "source": "award:ambient",
+      "predicate": "atEvent",
+      "target": "event:ambient",
+      "evidenceIds": [
+        "user-project-context",
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:135",
+      "source": "person:soyeong",
+      "predicate": "hasParticipation",
+      "target": "participation:yoco",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:136",
+      "source": "participation:yoco",
+      "predicate": "atEvent",
+      "target": "event:ambient",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:137",
+      "source": "participation:yoco",
+      "predicate": "withProject",
+      "target": "project:yoco",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:138",
+      "source": "participation:yoco",
+      "predicate": "receivedAward",
+      "target": "award:ambient",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:139",
+      "source": "contribution:yoco",
+      "predicate": "duringParticipation",
+      "target": "participation:yoco",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:140",
+      "source": "contribution:prupru",
+      "predicate": "duringEducation",
+      "target": "education:cnu",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:141",
+      "source": "person:soyeong",
+      "predicate": "hasParticipation",
+      "target": "participation:bootcamp",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:142",
+      "source": "participation:bootcamp",
+      "predicate": "inProgram",
+      "target": "program:silicon-valley-bootcamp",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:143",
+      "source": "participation:bootcamp",
+      "predicate": "withProject",
+      "target": "project:blooming",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:144",
+      "source": "contribution:blooming",
+      "predicate": "duringParticipation",
+      "target": "participation:bootcamp",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:145",
+      "source": "person:soyeong",
+      "predicate": "owns",
+      "target": "channel:tistory",
+      "evidenceIds": [
+        "user-channel",
+        "user-blog-ownership"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:146",
+      "source": "person:soyeong",
+      "predicate": "authored",
+      "target": "writing:tistory-copilot",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:147",
+      "source": "writing:tistory-copilot",
+      "predicate": "publishedIn",
+      "target": "channel:tistory",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:148",
+      "source": "person:soyeong",
+      "predicate": "authored",
+      "target": "review:tistory-handbook",
+      "evidenceIds": [
+        "tistory-handbook"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:149",
+      "source": "review:tistory-handbook",
+      "predicate": "publishedIn",
+      "target": "channel:tistory",
+      "evidenceIds": [
+        "tistory-handbook"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:150",
+      "source": "writing:tistory-copilot",
+      "predicate": "about",
+      "target": "concept:agents",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:151",
+      "source": "review:tistory-handbook",
+      "predicate": "about",
+      "target": "concept:evaluation",
+      "evidenceIds": [
+        "tistory-handbook"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:152",
+      "source": "contribution:preflight",
+      "predicate": "demonstrates",
+      "target": "capability:architecture",
+      "evidenceIds": [
+        "user-preflight-capabilities",
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:153",
+      "source": "contribution:preflight",
+      "predicate": "demonstrates",
+      "target": "capability:agent-sdk",
+      "evidenceIds": [
+        "user-preflight-capabilities",
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:154",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:agent-sdk",
+      "evidenceIds": [
+        "user-preflight-capabilities",
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:164",
+      "source": "person:soyeong",
+      "predicate": "owns",
+      "target": "channel:github",
+      "evidenceIds": [
+        "user-blog-ownership"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:165",
+      "source": "channel:kode",
+      "predicate": "publishedBy",
+      "target": "organization:kt",
+      "evidenceIds": [
+        "kode-preflight",
+        "user-work-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:166",
+      "source": "article:customize",
+      "predicate": "publishedIn",
+      "target": "channel:github",
+      "evidenceIds": [
+        "repo-posts",
+        "user-channel"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:167",
+      "source": "writing:preflight-kode",
+      "predicate": "publishedIn",
+      "target": "channel:kode",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:168",
+      "source": "person:soyeong",
+      "predicate": "hasContribution",
+      "target": "contribution:har-followup",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:169",
+      "source": "contribution:har-followup",
+      "predicate": "inProject",
+      "target": "project:har",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:170",
+      "source": "contribution:har-followup",
+      "predicate": "duringExperience",
+      "target": "experience:snu",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:171",
+      "source": "contribution:har",
+      "predicate": "demonstrates",
+      "target": "capability:ml-research",
+      "evidenceIds": [
+        "repo-projects",
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:172",
+      "source": "contribution:sia",
+      "predicate": "demonstrates",
+      "target": "capability:ml-research",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:173",
+      "source": "contribution:yoco",
+      "predicate": "demonstrates",
+      "target": "capability:ml-research",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:174",
+      "source": "contribution:prupru",
+      "predicate": "demonstrates",
+      "target": "capability:ml-research",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:175",
+      "source": "contribution:prupru",
+      "predicate": "demonstrates",
+      "target": "capability:integration",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:176",
+      "source": "contribution:blooming",
+      "predicate": "demonstrates",
+      "target": "capability:web-development",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:177",
+      "source": "contribution:blooming",
+      "predicate": "demonstrates",
+      "target": "capability:deployment",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:178",
+      "source": "contribution:sobok",
+      "predicate": "demonstrates",
+      "target": "capability:web-development",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:179",
+      "source": "contribution:sobok",
+      "predicate": "demonstrates",
+      "target": "capability:deployment",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:180",
+      "source": "contribution:sobok",
+      "predicate": "demonstrates",
+      "target": "capability:integration",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:181",
+      "source": "contribution:har-followup",
+      "predicate": "demonstrates",
+      "target": "capability:data-platform",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:182",
+      "source": "contribution:har-followup",
+      "predicate": "demonstrates",
+      "target": "capability:wearable-app",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:183",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:ml-research",
+      "evidenceIds": [
+        "career",
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:184",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:data-platform",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:185",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:wearable-app",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:186",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:web-development",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:187",
+      "source": "person:soyeong",
+      "predicate": "hasCapability",
+      "target": "capability:deployment",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:188",
+      "source": "organization:spg",
+      "predicate": "partOf",
+      "target": "organization:cnu",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:189",
+      "source": "award:ambient",
+      "predicate": "issuedBy",
+      "target": "organization:snu-gsds",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:190",
+      "source": "award:cnu-sw",
+      "predicate": "issuedBy",
+      "target": "organization:cnu",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:191",
+      "source": "award:cnu-capstone",
+      "predicate": "issuedBy",
+      "target": "organization:cnu",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:192",
+      "source": "award:cnu-ai",
+      "predicate": "issuedBy",
+      "target": "organization:cnu",
+      "evidenceIds": [
+        "linkedin-honors"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:193",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/overview",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:194",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/instructions",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:195",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/skills",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:196",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/spec",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:197",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/hooks",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:198",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/comparison",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:199",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/references",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:200",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:201",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:202",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:203",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:204",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:fastapi",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:205",
+      "source": "project:har",
+      "predicate": "usesTechnology",
+      "target": "technology:tensorflow",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:206",
+      "source": "project:har",
+      "predicate": "usesTechnology",
+      "target": "technology:garmin",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:207",
+      "source": "project:yoco",
+      "predicate": "usesTechnology",
+      "target": "technology:ub-teacher-v2",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:208",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:tensorflow",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:209",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:tflite",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:210",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:firebase",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:211",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:android-studio",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:212",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:213",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:214",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:flask",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:215",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:gunicorn",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:216",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:mysql",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:217",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:nginx",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:218",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:gcp",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:219",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:aws",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:220",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:221",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:node-js",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:222",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:express",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:223",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:mongodb",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:224",
+      "source": "education:snu",
+      "predicate": "atInstitution",
+      "target": "organization:snu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:225",
+      "source": "education:cnu",
+      "predicate": "atInstitution",
+      "target": "organization:cnu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:226",
+      "source": "education:snu",
+      "predicate": "researchProject",
+      "target": "project:har",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:227",
+      "source": "education:cnu",
+      "predicate": "researchProject",
+      "target": "project:prupru",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:228",
+      "source": "project:preflight",
+      "predicate": "realizes",
+      "target": "system:preflight",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:229",
+      "source": "system:preflight",
+      "predicate": "hasAgent",
+      "target": "agent:policy",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:230",
+      "source": "system:preflight",
+      "predicate": "hasAgent",
+      "target": "agent:recon",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:231",
+      "source": "system:preflight",
+      "predicate": "hasAgent",
+      "target": "agent:reporter",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:232",
+      "source": "contribution:rca",
+      "predicate": "usesTechnology",
+      "target": "technology:langgraph",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:233",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:fastapi",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:234",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:235",
+      "source": "contribution:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:firebase",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:236",
+      "source": "contribution:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:237",
+      "source": "contribution:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:238",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:239",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:node-js",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:240",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:express",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:241",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:mongodb",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:242",
+      "source": "contribution:har-followup",
+      "predicate": "usesTechnology",
+      "target": "technology:garmin",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:243",
+      "source": "contribution:rca",
+      "predicate": "implemented",
+      "target": "system:rca",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:244",
+      "source": "contribution:rca",
+      "predicate": "implemented",
+      "target": "tool:device",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:245",
+      "source": "contribution:preflight",
+      "predicate": "implemented",
+      "target": "agent:recon",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:246",
+      "source": "writing:tistory-copilot",
+      "predicate": "coversTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:247",
+      "source": "capability:agent-sdk",
+      "predicate": "appliesTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:248",
+      "source": "writing:tistory-copilot",
+      "predicate": "coversTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:249",
+      "source": "capability:agent-sdk",
+      "predicate": "appliesTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:250",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:rca",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:015",
+          "relation:017"
+        ]
+      ]
+    },
+    {
+      "id": "relation:251",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:preflight",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:016",
+          "relation:019"
+        ]
+      ]
+    },
+    {
+      "id": "relation:252",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:tracebench",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:096",
+          "relation:097"
+        ]
+      ]
+    },
+    {
+      "id": "relation:253",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:har",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:098",
+          "relation:099"
+        ],
+        [
+          "relation:168",
+          "relation:169"
+        ]
+      ]
+    },
+    {
+      "id": "relation:254",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:sia",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:100",
+          "relation:101"
+        ]
+      ]
+    },
+    {
+      "id": "relation:255",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:yoco",
+      "evidenceIds": [
+        "repo-projects",
+        "career",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:102",
+          "relation:103"
+        ]
+      ]
+    },
+    {
+      "id": "relation:256",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:prupru",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:104",
+          "relation:105"
+        ]
+      ]
+    },
+    {
+      "id": "relation:257",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:blooming",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:106",
+          "relation:107"
+        ]
+      ]
+    },
+    {
+      "id": "relation:258",
+      "source": "person:soyeong",
+      "predicate": "workedOn",
+      "target": "project:sobok",
+      "evidenceIds": [
+        "repo-projects",
+        "linkedin-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:108",
+          "relation:109"
+        ]
+      ]
+    },
+    {
+      "id": "relation:259",
+      "source": "person:soyeong",
+      "predicate": "workedAt",
+      "target": "organization:kt",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:033",
+          "relation:034"
+        ]
+      ]
+    },
+    {
+      "id": "relation:260",
+      "source": "person:soyeong",
+      "predicate": "workedAt",
+      "target": "organization:snu",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:035",
+          "relation:036"
+        ]
+      ]
+    },
+    {
+      "id": "relation:261",
+      "source": "person:soyeong",
+      "predicate": "workedAt",
+      "target": "organization:sia",
+      "evidenceIds": [
+        "linkedin"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:037",
+          "relation:038"
+        ]
+      ]
+    },
+    {
+      "id": "relation:262",
+      "source": "person:soyeong",
+      "predicate": "studiedAt",
+      "target": "organization:snu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:021",
+          "relation:224"
+        ]
+      ]
+    },
+    {
+      "id": "relation:263",
+      "source": "person:soyeong",
+      "predicate": "studiedAt",
+      "target": "organization:cnu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:022",
+          "relation:225"
+        ]
+      ]
+    },
+    {
+      "id": "relation:264",
+      "source": "person:soyeong",
+      "predicate": "participatedIn",
+      "target": "event:agenthon2026",
+      "evidenceIds": [
+        "user-work-context",
+        "ms-video"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:123",
+          "relation:125"
+        ]
+      ]
+    },
+    {
+      "id": "relation:265",
+      "source": "person:soyeong",
+      "predicate": "participatedIn",
+      "target": "event:ambient",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:135",
+          "relation:136"
+        ]
+      ]
+    },
+    {
+      "id": "relation:266",
+      "source": "person:soyeong",
+      "predicate": "participatedIn",
+      "target": "program:silicon-valley-bootcamp",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:141",
+          "relation:142"
+        ]
+      ]
+    },
+    {
+      "id": "relation:267",
+      "source": "person:soyeong",
+      "predicate": "participatedIn",
+      "target": "event:ai-tour2026",
+      "evidenceIds": [
+        "kode-preflight",
+        "user-20261009",
+        "ms-preflight-session",
+        "ms-tour"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review",
+      "basisPaths": [
+        [
+          "relation:049",
+          "relation:051"
+        ]
+      ]
+    }
+  ],
+  "note": "Local review fixture. Decorative stars are not graph entities. Unreviewed career data must not be published."
+}
