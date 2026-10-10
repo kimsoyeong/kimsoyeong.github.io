@@ -1,0 +1,1568 @@
+{
+  "@context": {
+    "@vocab": "https://kimsoyeong.github.io/ontology/",
+    "label": "http://www.w3.org/2000/01/rdf-schema#label"
+  },
+  "@graph": [
+    {
+      "@id": "person:soyeong",
+      "@type": "Person",
+      "appearedIn": [
+        {
+          "@id": "media:preflight"
+        }
+      ],
+      "authored": [
+        {
+          "@id": "article:customize"
+        },
+        {
+          "@id": "paper:har-thesis"
+        },
+        {
+          "@id": "writing:preflight-kode"
+        },
+        {
+          "@id": "writing:tistory-copilot"
+        },
+        {
+          "@id": "review:tistory-handbook"
+        }
+      ],
+      "hasCapability": [
+        {
+          "@id": "capability:architecture"
+        },
+        {
+          "@id": "capability:integration"
+        },
+        {
+          "@id": "capability:agent-evaluation"
+        },
+        {
+          "@id": "capability:research-planning"
+        },
+        {
+          "@id": "capability:ml-research"
+        },
+        {
+          "@id": "capability:data-platform"
+        },
+        {
+          "@id": "capability:wearable-app"
+        },
+        {
+          "@id": "capability:web-development"
+        },
+        {
+          "@id": "capability:deployment"
+        }
+      ],
+      "hasContribution": [
+        {
+          "@id": "contribution:rca"
+        },
+        {
+          "@id": "contribution:preflight"
+        },
+        {
+          "@id": "contribution:tracebench"
+        },
+        {
+          "@id": "contribution:har"
+        },
+        {
+          "@id": "contribution:sia"
+        },
+        {
+          "@id": "contribution:yoco"
+        },
+        {
+          "@id": "contribution:prupru"
+        },
+        {
+          "@id": "contribution:blooming"
+        },
+        {
+          "@id": "contribution:sobok"
+        },
+        {
+          "@id": "contribution:agent-platform"
+        },
+        {
+          "@id": "contribution:har-followup"
+        }
+      ],
+      "hasCredential": [
+        {
+          "@id": "credential:ai900"
+        },
+        {
+          "@id": "credential:cospro"
+        },
+        {
+          "@id": "credential:pcce"
+        },
+        {
+          "@id": "credential:toeicspeaking"
+        },
+        {
+          "@id": "credential:sqld"
+        }
+      ],
+      "hasEducation": [
+        {
+          "@id": "education:snu"
+        },
+        {
+          "@id": "education:cnu"
+        }
+      ],
+      "hasExperience": [
+        {
+          "@id": "experience:kt"
+        },
+        {
+          "@id": "experience:snu"
+        },
+        {
+          "@id": "experience:sia"
+        }
+      ],
+      "hasParticipation": [
+        {
+          "@id": "participation:agenthon2026"
+        },
+        {
+          "@id": "participation:yoco"
+        },
+        {
+          "@id": "participation:bootcamp"
+        }
+      ],
+      "label": "Soyeong Kim",
+      "memberOf": [
+        {
+          "@id": "organization:spg"
+        }
+      ],
+      "owns": [
+        {
+          "@id": "channel:tistory"
+        },
+        {
+          "@id": "channel:github"
+        }
+      ],
+      "participatedIn": [
+        {
+          "@id": "event:agenthon2026"
+        },
+        {
+          "@id": "event:ai-tour2026"
+        },
+        {
+          "@id": "event:ambient"
+        },
+        {
+          "@id": "program:silicon-valley-bootcamp"
+        }
+      ],
+      "presented": [
+        {
+          "@id": "presentation:preflight"
+        }
+      ],
+      "receivedAward": [
+        {
+          "@id": "award:agenthon2026"
+        },
+        {
+          "@id": "award:ambient"
+        },
+        {
+          "@id": "award:cnu-sw"
+        },
+        {
+          "@id": "award:cnu-capstone"
+        },
+        {
+          "@id": "award:tpc2021"
+        },
+        {
+          "@id": "award:cnu-ai"
+        },
+        {
+          "@id": "award:tpc2020"
+        },
+        {
+          "@id": "award:tpc2018"
+        },
+        {
+          "@id": "award:kosaf"
+        }
+      ],
+      "studiedAt": [
+        {
+          "@id": "organization:cnu"
+        },
+        {
+          "@id": "organization:snu"
+        }
+      ],
+      "usesTechnology": [
+        {
+          "@id": "technology:python"
+        },
+        {
+          "@id": "technology:langgraph"
+        }
+      ],
+      "workedAt": [
+        {
+          "@id": "organization:kt"
+        },
+        {
+          "@id": "organization:sia"
+        },
+        {
+          "@id": "organization:snu"
+        }
+      ],
+      "workedOn": [
+        {
+          "@id": "project:blooming"
+        },
+        {
+          "@id": "project:har"
+        },
+        {
+          "@id": "project:preflight"
+        },
+        {
+          "@id": "project:prupru"
+        },
+        {
+          "@id": "project:rca"
+        },
+        {
+          "@id": "project:sia"
+        },
+        {
+          "@id": "project:sobok"
+        },
+        {
+          "@id": "project:tracebench"
+        },
+        {
+          "@id": "project:yoco"
+        }
+      ]
+    },
+    {
+      "@id": "concept:agents",
+      "@type": "Concept",
+      "label": "AI Agents"
+    },
+    {
+      "@id": "concept:rca",
+      "@type": "Concept",
+      "label": "Root Cause Analysis"
+    },
+    {
+      "@id": "concept:ontology",
+      "@type": "Concept",
+      "label": "Ontology"
+    },
+    {
+      "@id": "concept:evaluation",
+      "@type": "Concept",
+      "label": "Agent Evaluation"
+    },
+    {
+      "@id": "concept:timeseries",
+      "@type": "Concept",
+      "label": "Time Series"
+    },
+    {
+      "@id": "project:rca",
+      "@type": "Project",
+      "about": [
+        {
+          "@id": "concept:agents"
+        },
+        {
+          "@id": "concept:rca"
+        }
+      ],
+      "label": "Network RCA Agent",
+      "realizes": [
+        {
+          "@id": "system:rca"
+        }
+      ]
+    },
+    {
+      "@id": "project:tracebench",
+      "@type": "Project",
+      "about": [
+        {
+          "@id": "concept:rca"
+        },
+        {
+          "@id": "concept:evaluation"
+        }
+      ],
+      "label": "TraceBench"
+    },
+    {
+      "@id": "project:preflight",
+      "@type": "Project",
+      "about": [
+        {
+          "@id": "concept:agents"
+        }
+      ],
+      "label": "PreFlight",
+      "realizes": [
+        {
+          "@id": "system:preflight"
+        }
+      ],
+      "receivedAward": [
+        {
+          "@id": "award:agenthon2026"
+        }
+      ],
+      "usesTechnology": [
+        {
+          "@id": "technology:microsoft-agent-framework"
+        },
+        {
+          "@id": "technology:github-copilot-sdk"
+        },
+        {
+          "@id": "technology:docker"
+        },
+        {
+          "@id": "technology:react"
+        },
+        {
+          "@id": "technology:fastapi"
+        }
+      ]
+    },
+    {
+      "@id": "project:har",
+      "@type": "Project",
+      "about": [
+        {
+          "@id": "concept:timeseries"
+        }
+      ],
+      "label": "Human Activity Recognition",
+      "usesTechnology": [
+        {
+          "@id": "technology:tensorflow"
+        },
+        {
+          "@id": "technology:garmin"
+        }
+      ]
+    },
+    {
+      "@id": "project:sia",
+      "@type": "Project",
+      "label": "Cloud Coverage Assessment"
+    },
+    {
+      "@id": "project:yoco",
+      "@type": "Project",
+      "label": "YOCO",
+      "receivedAward": [
+        {
+          "@id": "award:ambient"
+        }
+      ],
+      "usesTechnology": [
+        {
+          "@id": "technology:ub-teacher-v2"
+        }
+      ]
+    },
+    {
+      "@id": "project:prupru",
+      "@type": "Project",
+      "label": "PruPru",
+      "receivedAward": [
+        {
+          "@id": "award:cnu-sw"
+        },
+        {
+          "@id": "award:cnu-capstone"
+        },
+        {
+          "@id": "award:cnu-ai"
+        }
+      ],
+      "usesTechnology": [
+        {
+          "@id": "technology:tensorflow"
+        },
+        {
+          "@id": "technology:tflite"
+        },
+        {
+          "@id": "technology:firebase"
+        },
+        {
+          "@id": "technology:android-studio"
+        }
+      ]
+    },
+    {
+      "@id": "project:blooming",
+      "@type": "Project",
+      "label": "Blooming",
+      "usesTechnology": [
+        {
+          "@id": "technology:docker"
+        },
+        {
+          "@id": "technology:react"
+        },
+        {
+          "@id": "technology:flask"
+        },
+        {
+          "@id": "technology:gunicorn"
+        },
+        {
+          "@id": "technology:mysql"
+        },
+        {
+          "@id": "technology:nginx"
+        },
+        {
+          "@id": "technology:gcp"
+        },
+        {
+          "@id": "technology:aws"
+        }
+      ]
+    },
+    {
+      "@id": "project:sobok",
+      "@type": "Project",
+      "label": "소복소복",
+      "usesTechnology": [
+        {
+          "@id": "technology:react"
+        },
+        {
+          "@id": "technology:node-js"
+        },
+        {
+          "@id": "technology:express"
+        },
+        {
+          "@id": "technology:mongodb"
+        }
+      ]
+    },
+    {
+      "@id": "article:customize",
+      "@type": "Writing",
+      "about": [
+        {
+          "@id": "concept:agents"
+        }
+      ],
+      "hasSection": [
+        {
+          "@id": "section:agent-customize/overview"
+        },
+        {
+          "@id": "section:agent-customize/instructions"
+        },
+        {
+          "@id": "section:agent-customize/skills"
+        },
+        {
+          "@id": "section:agent-customize/spec"
+        },
+        {
+          "@id": "section:agent-customize/hooks"
+        },
+        {
+          "@id": "section:agent-customize/comparison"
+        },
+        {
+          "@id": "section:agent-customize/references"
+        }
+      ],
+      "label": "AI 코딩 에이전트 커스터마이징",
+      "publishedIn": [
+        {
+          "@id": "channel:github"
+        }
+      ]
+    },
+    {
+      "@id": "capability:architecture",
+      "@type": "Capability",
+      "appliesConcept": [
+        {
+          "@id": "concept:agents"
+        },
+        {
+          "@id": "concept:ontology"
+        }
+      ],
+      "appliesTechnology": [
+        {
+          "@id": "technology:github-copilot-sdk"
+        },
+        {
+          "@id": "technology:microsoft-agent-framework"
+        }
+      ],
+      "label": "Agent Design & Development"
+    },
+    {
+      "@id": "capability:integration",
+      "@type": "Capability",
+      "label": "AI Platform & System Integration"
+    },
+    {
+      "@id": "contribution:rca",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:architecture"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "implemented": [
+        {
+          "@id": "system:rca"
+        },
+        {
+          "@id": "tool:device"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:rca"
+        }
+      ],
+      "label": "RCA 구조와 도구 개발"
+    },
+    {
+      "@id": "contribution:preflight",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:integration"
+        },
+        {
+          "@id": "capability:architecture"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "implemented": [
+        {
+          "@id": "agent:recon"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:preflight"
+        }
+      ],
+      "label": "PreFlight Recon 및 통합",
+      "usesTechnology": [
+        {
+          "@id": "technology:fastapi"
+        },
+        {
+          "@id": "technology:react"
+        },
+        {
+          "@id": "technology:github-copilot-sdk"
+        },
+        {
+          "@id": "technology:microsoft-agent-framework"
+        }
+      ]
+    },
+    {
+      "@id": "education:snu",
+      "@type": "Education",
+      "atInstitution": [
+        {
+          "@id": "organization:snu"
+        }
+      ],
+      "label": "Seoul National University",
+      "researchProject": [
+        {
+          "@id": "project:har"
+        }
+      ]
+    },
+    {
+      "@id": "education:cnu",
+      "@type": "Education",
+      "atInstitution": [
+        {
+          "@id": "organization:cnu"
+        }
+      ],
+      "label": "Chungnam National University",
+      "researchProject": [
+        {
+          "@id": "project:prupru"
+        }
+      ]
+    },
+    {
+      "@id": "system:rca",
+      "@type": "AgentSystem",
+      "hasAgent": [
+        {
+          "@id": "agent:supervisor"
+        },
+        {
+          "@id": "agent:action"
+        },
+        {
+          "@id": "agent:report"
+        }
+      ],
+      "label": "RCA Agent System"
+    },
+    {
+      "@id": "agent:supervisor",
+      "@type": "Agent",
+      "label": "Supervisor"
+    },
+    {
+      "@id": "agent:action",
+      "@type": "Agent",
+      "invokes": [
+        {
+          "@id": "tool:device"
+        }
+      ],
+      "label": "Action"
+    },
+    {
+      "@id": "agent:report",
+      "@type": "Agent",
+      "label": "Report"
+    },
+    {
+      "@id": "tool:device",
+      "@type": "Tool",
+      "label": "Device inspection tools"
+    },
+    {
+      "@id": "technology:langgraph",
+      "@type": "Technology",
+      "label": "LangGraph"
+    },
+    {
+      "@id": "organization:kt",
+      "@type": "Organization",
+      "label": "KT"
+    },
+    {
+      "@id": "organization:sia",
+      "@type": "Organization",
+      "label": "SI Analytics"
+    },
+    {
+      "@id": "organization:microsoft",
+      "@type": "Organization",
+      "label": "Microsoft Korea"
+    },
+    {
+      "@id": "organization:snu",
+      "@type": "Organization",
+      "label": "Seoul National University"
+    },
+    {
+      "@id": "organization:cnu",
+      "@type": "Organization",
+      "label": "Chungnam National University"
+    },
+    {
+      "@id": "experience:kt",
+      "@type": "Experience",
+      "atOrganization": [
+        {
+          "@id": "organization:kt"
+        }
+      ],
+      "demonstrates": [
+        {
+          "@id": "capability:research-planning"
+        }
+      ],
+      "label": "KT / 선임"
+    },
+    {
+      "@id": "experience:snu",
+      "@type": "Experience",
+      "atOrganization": [
+        {
+          "@id": "organization:snu"
+        }
+      ],
+      "label": "SNU / Freelance Researcher"
+    },
+    {
+      "@id": "experience:sia",
+      "@type": "Experience",
+      "atOrganization": [
+        {
+          "@id": "organization:sia"
+        }
+      ],
+      "label": "SI Analytics / 연구 인턴"
+    },
+    {
+      "@id": "organization:spg",
+      "@type": "Organization",
+      "label": "S.P.G / Embedded Systems Club",
+      "partOf": [
+        {
+          "@id": "organization:cnu"
+        }
+      ]
+    },
+    {
+      "@id": "paper:har-thesis",
+      "@type": "Paper",
+      "about": [
+        {
+          "@id": "concept:timeseries"
+        }
+      ],
+      "documents": [
+        {
+          "@id": "project:har"
+        }
+      ],
+      "label": "Deep Learning-based Human Activity Recognition with Multivariate Time Series Data",
+      "producedDuring": [
+        {
+          "@id": "education:snu"
+        }
+      ]
+    },
+    {
+      "@id": "event:agenthon2026",
+      "@type": "Event",
+      "label": "Microsoft AI Agenthon 2026",
+      "organizedBy": [
+        {
+          "@id": "organization:microsoft"
+        }
+      ]
+    },
+    {
+      "@id": "award:agenthon2026",
+      "@type": "Award",
+      "atEvent": [
+        {
+          "@id": "event:agenthon2026"
+        }
+      ],
+      "label": "Agenthon / Pro-code 2등"
+    },
+    {
+      "@id": "event:ai-tour2026",
+      "@type": "Event",
+      "label": "Microsoft AI Tour Seoul 2026",
+      "organizedBy": [
+        {
+          "@id": "organization:microsoft"
+        }
+      ]
+    },
+    {
+      "@id": "presentation:preflight",
+      "@type": "Presentation",
+      "atEvent": [
+        {
+          "@id": "event:ai-tour2026"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "label": "PreFlight / AI Tour Lightning Talk",
+      "presentsProject": [
+        {
+          "@id": "project:preflight"
+        }
+      ]
+    },
+    {
+      "@id": "media:preflight",
+      "@type": "Media",
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "featuresProject": [
+        {
+          "@id": "project:preflight"
+        }
+      ],
+      "label": "Microsoft Korea / PreFlight 영상",
+      "publishedBy": [
+        {
+          "@id": "organization:microsoft"
+        }
+      ]
+    },
+    {
+      "@id": "writing:preflight-kode",
+      "@type": "Writing",
+      "documents": [
+        {
+          "@id": "project:preflight"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "label": "PreFlight 개발기 / KT kode",
+      "publishedIn": [
+        {
+          "@id": "channel:kode"
+        }
+      ]
+    },
+    {
+      "@id": "award:ambient",
+      "@type": "Award",
+      "atEvent": [
+        {
+          "@id": "event:ambient"
+        }
+      ],
+      "issuedBy": [
+        {
+          "@id": "organization:snu-gsds"
+        }
+      ],
+      "label": "Ambient AI Competition / 최우수상"
+    },
+    {
+      "@id": "award:cnu-sw",
+      "@type": "Award",
+      "issuedBy": [
+        {
+          "@id": "organization:cnu"
+        }
+      ],
+      "label": "CNU 창의SW축전 / 우수상"
+    },
+    {
+      "@id": "award:cnu-capstone",
+      "@type": "Award",
+      "issuedBy": [
+        {
+          "@id": "organization:cnu"
+        }
+      ],
+      "label": "CNU Engineering Fair / 우수상"
+    },
+    {
+      "@id": "award:tpc2021",
+      "@type": "Award",
+      "label": "Thinking Programming Contest / 은상"
+    },
+    {
+      "@id": "award:cnu-ai",
+      "@type": "Award",
+      "issuedBy": [
+        {
+          "@id": "organization:cnu"
+        }
+      ],
+      "label": "CNU AI/SW Project Fair / 2등"
+    },
+    {
+      "@id": "award:tpc2020",
+      "@type": "Award",
+      "label": "Thinking Programming Contest / 동상"
+    },
+    {
+      "@id": "award:tpc2018",
+      "@type": "Award",
+      "label": "Thinking Programming Contest / 신입생 2등"
+    },
+    {
+      "@id": "award:kosaf",
+      "@type": "Award",
+      "label": "국가우수장학금 / 이공계"
+    },
+    {
+      "@id": "credential:ai900",
+      "@type": "Credential",
+      "label": "AI-900 / Azure AI Fundamentals"
+    },
+    {
+      "@id": "credential:cospro",
+      "@type": "Credential",
+      "label": "COS Pro 2급 / Python"
+    },
+    {
+      "@id": "credential:pcce",
+      "@type": "Credential",
+      "label": "PCCE / Python3"
+    },
+    {
+      "@id": "credential:toeicspeaking",
+      "@type": "Credential",
+      "label": "TOEIC Speaking / AL 160"
+    },
+    {
+      "@id": "credential:sqld",
+      "@type": "Credential",
+      "label": "SQL Developer"
+    },
+    {
+      "@id": "organization:ax-institute",
+      "@type": "Organization",
+      "label": "AX미래기술원",
+      "partOf": [
+        {
+          "@id": "organization:kt"
+        }
+      ]
+    },
+    {
+      "@id": "organization:ax-data-lab",
+      "@type": "Organization",
+      "label": "AX Data Lab",
+      "partOf": [
+        {
+          "@id": "organization:ax-institute"
+        }
+      ]
+    },
+    {
+      "@id": "organization:data-model",
+      "@type": "Organization",
+      "label": "데이터Model팀",
+      "partOf": [
+        {
+          "@id": "organization:ax-data-lab"
+        }
+      ]
+    },
+    {
+      "@id": "organization:agent-part",
+      "@type": "Organization",
+      "label": "에이전트 파트",
+      "partOf": [
+        {
+          "@id": "organization:data-model"
+        }
+      ]
+    },
+    {
+      "@id": "capability:agent-evaluation",
+      "@type": "Capability",
+      "appliesConcept": [
+        {
+          "@id": "concept:evaluation"
+        }
+      ],
+      "label": "Agent Evaluation"
+    },
+    {
+      "@id": "capability:research-planning",
+      "@type": "Capability",
+      "label": "Research & Task Planning"
+    },
+    {
+      "@id": "contribution:tracebench",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:agent-evaluation"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:tracebench"
+        }
+      ],
+      "label": "TraceBench / 수행 역할"
+    },
+    {
+      "@id": "contribution:har",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:ml-research"
+        }
+      ],
+      "duringEducation": [
+        {
+          "@id": "education:snu"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:har"
+        }
+      ],
+      "label": "Human Activity Recognition / 수행 역할"
+    },
+    {
+      "@id": "contribution:sia",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:ml-research"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:sia"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:sia"
+        }
+      ],
+      "label": "Cloud Coverage Assessment / 수행 역할"
+    },
+    {
+      "@id": "contribution:yoco",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:ml-research"
+        }
+      ],
+      "duringParticipation": [
+        {
+          "@id": "participation:yoco"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:yoco"
+        }
+      ],
+      "label": "YOCO / 수행 역할"
+    },
+    {
+      "@id": "contribution:prupru",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:ml-research"
+        },
+        {
+          "@id": "capability:integration"
+        }
+      ],
+      "duringEducation": [
+        {
+          "@id": "education:cnu"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:prupru"
+        }
+      ],
+      "label": "PruPru / 수행 역할",
+      "usesTechnology": [
+        {
+          "@id": "technology:firebase"
+        }
+      ]
+    },
+    {
+      "@id": "contribution:blooming",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:web-development"
+        },
+        {
+          "@id": "capability:deployment"
+        }
+      ],
+      "duringParticipation": [
+        {
+          "@id": "participation:bootcamp"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:blooming"
+        }
+      ],
+      "label": "Blooming / 수행 역할",
+      "usesTechnology": [
+        {
+          "@id": "technology:docker"
+        },
+        {
+          "@id": "technology:react"
+        }
+      ]
+    },
+    {
+      "@id": "contribution:sobok",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:web-development"
+        },
+        {
+          "@id": "capability:deployment"
+        },
+        {
+          "@id": "capability:integration"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:sobok"
+        }
+      ],
+      "label": "소복소복 / 수행 역할",
+      "usesTechnology": [
+        {
+          "@id": "technology:react"
+        },
+        {
+          "@id": "technology:node-js"
+        },
+        {
+          "@id": "technology:express"
+        },
+        {
+          "@id": "technology:mongodb"
+        }
+      ]
+    },
+    {
+      "@id": "contribution:agent-platform",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:architecture"
+        },
+        {
+          "@id": "capability:integration"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "label": "에이전트 플랫폼 설계 업무"
+    },
+    {
+      "@id": "participation:agenthon2026",
+      "@type": "Participation",
+      "atEvent": [
+        {
+          "@id": "event:agenthon2026"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:kt"
+        }
+      ],
+      "label": "MS AI Agenthon 참가 / KT 소속",
+      "receivedAward": [
+        {
+          "@id": "award:agenthon2026"
+        }
+      ],
+      "withProject": [
+        {
+          "@id": "project:preflight"
+        }
+      ]
+    },
+    {
+      "@id": "organization:snu-gsds",
+      "@type": "Organization",
+      "label": "서울대학교 데이터사이언스대학원",
+      "partOf": [
+        {
+          "@id": "organization:snu"
+        }
+      ]
+    },
+    {
+      "@id": "event:ambient",
+      "@type": "Event",
+      "label": "Ambient AI Competition",
+      "organizedBy": [
+        {
+          "@id": "organization:snu-gsds"
+        }
+      ]
+    },
+    {
+      "@id": "participation:yoco",
+      "@type": "Participation",
+      "atEvent": [
+        {
+          "@id": "event:ambient"
+        }
+      ],
+      "label": "YOCO / 교내 대회 참가",
+      "receivedAward": [
+        {
+          "@id": "award:ambient"
+        }
+      ],
+      "withProject": [
+        {
+          "@id": "project:yoco"
+        }
+      ]
+    },
+    {
+      "@id": "program:silicon-valley-bootcamp",
+      "@type": "Program",
+      "label": "실리콘밸리부트캠프"
+    },
+    {
+      "@id": "participation:bootcamp",
+      "@type": "Participation",
+      "inProgram": [
+        {
+          "@id": "program:silicon-valley-bootcamp"
+        }
+      ],
+      "label": "실리콘밸리부트캠프 참여",
+      "withProject": [
+        {
+          "@id": "project:blooming"
+        }
+      ]
+    },
+    {
+      "@id": "channel:tistory",
+      "@type": "PublicationChannel",
+      "label": "소소한 코딩일지 / Tistory"
+    },
+    {
+      "@id": "writing:tistory-copilot",
+      "@type": "Writing",
+      "about": [
+        {
+          "@id": "concept:agents"
+        }
+      ],
+      "coversTechnology": [
+        {
+          "@id": "technology:github-copilot-sdk"
+        },
+        {
+          "@id": "technology:microsoft-agent-framework"
+        }
+      ],
+      "label": "GitHub Copilot SDK",
+      "publishedIn": [
+        {
+          "@id": "channel:tistory"
+        }
+      ]
+    },
+    {
+      "@id": "review:tistory-handbook",
+      "@type": "Review",
+      "about": [
+        {
+          "@id": "concept:evaluation"
+        }
+      ],
+      "label": "HANDBOOK.md / 논문 리뷰",
+      "publishedIn": [
+        {
+          "@id": "channel:tistory"
+        }
+      ]
+    },
+    {
+      "@id": "channel:github",
+      "@type": "PublicationChannel",
+      "label": "Soyeong / GitHub Portfolio"
+    },
+    {
+      "@id": "channel:kode",
+      "@type": "PublicationChannel",
+      "label": "KT kode",
+      "publishedBy": [
+        {
+          "@id": "organization:kt"
+        }
+      ]
+    },
+    {
+      "@id": "contribution:har-followup",
+      "@type": "Contribution",
+      "demonstrates": [
+        {
+          "@id": "capability:data-platform"
+        },
+        {
+          "@id": "capability:wearable-app"
+        }
+      ],
+      "duringExperience": [
+        {
+          "@id": "experience:snu"
+        }
+      ],
+      "inProject": [
+        {
+          "@id": "project:har"
+        }
+      ],
+      "label": "HAR 후속 연구 / 데이터 수집 플랫폼",
+      "usesTechnology": [
+        {
+          "@id": "technology:garmin"
+        }
+      ]
+    },
+    {
+      "@id": "capability:ml-research",
+      "@type": "Capability",
+      "label": "ML Research & Experimentation"
+    },
+    {
+      "@id": "capability:data-platform",
+      "@type": "Capability",
+      "label": "Data Collection Platform"
+    },
+    {
+      "@id": "capability:wearable-app",
+      "@type": "Capability",
+      "label": "Wearable App Development"
+    },
+    {
+      "@id": "capability:web-development",
+      "@type": "Capability",
+      "label": "Web Application Development"
+    },
+    {
+      "@id": "capability:deployment",
+      "@type": "Capability",
+      "label": "Application Deployment"
+    },
+    {
+      "@id": "technology:python",
+      "@type": "Technology",
+      "label": "Python"
+    },
+    {
+      "@id": "section:agent-customize/overview",
+      "@type": "Section",
+      "label": "개요"
+    },
+    {
+      "@id": "section:agent-customize/instructions",
+      "@type": "Section",
+      "label": "Instructions"
+    },
+    {
+      "@id": "section:agent-customize/skills",
+      "@type": "Section",
+      "label": "Skills"
+    },
+    {
+      "@id": "section:agent-customize/spec",
+      "@type": "Section",
+      "label": "Spec"
+    },
+    {
+      "@id": "section:agent-customize/hooks",
+      "@type": "Section",
+      "label": "Hooks"
+    },
+    {
+      "@id": "section:agent-customize/comparison",
+      "@type": "Section",
+      "label": "한눈에 보기"
+    },
+    {
+      "@id": "section:agent-customize/references",
+      "@type": "Section",
+      "label": "참고 링크"
+    },
+    {
+      "@id": "technology:microsoft-agent-framework",
+      "@type": "Technology",
+      "label": "Microsoft Agent Framework"
+    },
+    {
+      "@id": "technology:github-copilot-sdk",
+      "@type": "Technology",
+      "label": "Github Copilot SDK"
+    },
+    {
+      "@id": "technology:docker",
+      "@type": "Technology",
+      "label": "Docker"
+    },
+    {
+      "@id": "technology:react",
+      "@type": "Technology",
+      "label": "React"
+    },
+    {
+      "@id": "technology:fastapi",
+      "@type": "Technology",
+      "label": "FastAPI"
+    },
+    {
+      "@id": "technology:tensorflow",
+      "@type": "Technology",
+      "label": "Tensorflow"
+    },
+    {
+      "@id": "technology:garmin",
+      "@type": "Technology",
+      "label": "Garmin"
+    },
+    {
+      "@id": "technology:ub-teacher-v2",
+      "@type": "Technology",
+      "label": "ub-teacher v2"
+    },
+    {
+      "@id": "technology:tflite",
+      "@type": "Technology",
+      "label": "TFLite"
+    },
+    {
+      "@id": "technology:firebase",
+      "@type": "Technology",
+      "label": "Firebase"
+    },
+    {
+      "@id": "technology:android-studio",
+      "@type": "Technology",
+      "label": "Android Studio"
+    },
+    {
+      "@id": "technology:flask",
+      "@type": "Technology",
+      "label": "Flask"
+    },
+    {
+      "@id": "technology:gunicorn",
+      "@type": "Technology",
+      "label": "Gunicorn"
+    },
+    {
+      "@id": "technology:mysql",
+      "@type": "Technology",
+      "label": "MySQL"
+    },
+    {
+      "@id": "technology:nginx",
+      "@type": "Technology",
+      "label": "Nginx"
+    },
+    {
+      "@id": "technology:gcp",
+      "@type": "Technology",
+      "label": "GCP"
+    },
+    {
+      "@id": "technology:aws",
+      "@type": "Technology",
+      "label": "AWS"
+    },
+    {
+      "@id": "technology:node-js",
+      "@type": "Technology",
+      "label": "Node.js"
+    },
+    {
+      "@id": "technology:express",
+      "@type": "Technology",
+      "label": "Express"
+    },
+    {
+      "@id": "technology:mongodb",
+      "@type": "Technology",
+      "label": "MongoDB"
+    },
+    {
+      "@id": "system:preflight",
+      "@type": "AgentSystem",
+      "hasAgent": [
+        {
+          "@id": "agent:policy"
+        },
+        {
+          "@id": "agent:recon"
+        },
+        {
+          "@id": "agent:reporter"
+        }
+      ],
+      "label": "PreFlight Agent System"
+    },
+    {
+      "@id": "agent:policy",
+      "@type": "Agent",
+      "label": "Policy"
+    },
+    {
+      "@id": "agent:recon",
+      "@type": "Agent",
+      "label": "Recon"
+    },
+    {
+      "@id": "agent:reporter",
+      "@type": "Agent",
+      "label": "Reporter"
+    }
+  ]
+}
