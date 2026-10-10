@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "source": "design/ontology-cosmos/ontology.sample.json",
+  "enrichment": "cosmos/legacy-enrichment.json",
+  "records": "cosmos/records",
+  "inbox": "cosmos/inbox",
+  "state": ".cosmos",
+  "graph": "src/components/Cosmos/graph.json",
+  "public": "public/cosmos",
+  "policy": "cosmos/policy.json",
+  "schema": "cosmos/schema.json"
+}

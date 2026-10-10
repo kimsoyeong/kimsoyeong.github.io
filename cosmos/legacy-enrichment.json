@@ -1,0 +1,991 @@
+{
+  "sources": {},
+  "nodes": [
+    {
+      "id": "section:agent-customize/overview",
+      "type": "Section",
+      "label": "개요",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 개요 섹션.",
+      "articleId": "article:customize",
+      "anchor": "overview"
+    },
+    {
+      "id": "section:agent-customize/instructions",
+      "type": "Section",
+      "label": "Instructions",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Instructions 섹션.",
+      "articleId": "article:customize",
+      "anchor": "instructions"
+    },
+    {
+      "id": "section:agent-customize/skills",
+      "type": "Section",
+      "label": "Skills",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Skills 섹션.",
+      "articleId": "article:customize",
+      "anchor": "skills"
+    },
+    {
+      "id": "section:agent-customize/spec",
+      "type": "Section",
+      "label": "Spec",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Spec 섹션.",
+      "articleId": "article:customize",
+      "anchor": "spec"
+    },
+    {
+      "id": "section:agent-customize/hooks",
+      "type": "Section",
+      "label": "Hooks",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 Hooks 섹션.",
+      "articleId": "article:customize",
+      "anchor": "hooks"
+    },
+    {
+      "id": "section:agent-customize/comparison",
+      "type": "Section",
+      "label": "한눈에 보기",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 한눈에 보기 섹션.",
+      "articleId": "article:customize",
+      "anchor": "comparison"
+    },
+    {
+      "id": "section:agent-customize/references",
+      "type": "Section",
+      "label": "참고 링크",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "visibility": "review",
+      "summary": "agent-customize 글의 참고 링크 섹션.",
+      "articleId": "article:customize",
+      "anchor": "references"
+    },
+    {
+      "id": "technology:microsoft-agent-framework",
+      "type": "Technology",
+      "label": "Microsoft Agent Framework",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Microsoft Agent Framework."
+    },
+    {
+      "id": "technology:github-copilot-sdk",
+      "type": "Technology",
+      "label": "Github Copilot SDK",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Github Copilot SDK."
+    },
+    {
+      "id": "technology:docker",
+      "type": "Technology",
+      "label": "Docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Docker."
+    },
+    {
+      "id": "technology:react",
+      "type": "Technology",
+      "label": "React",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 React."
+    },
+    {
+      "id": "technology:fastapi",
+      "type": "Technology",
+      "label": "FastAPI",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 FastAPI."
+    },
+    {
+      "id": "technology:tensorflow",
+      "type": "Technology",
+      "label": "Tensorflow",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Tensorflow."
+    },
+    {
+      "id": "technology:garmin",
+      "type": "Technology",
+      "label": "Garmin",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Garmin."
+    },
+    {
+      "id": "technology:ub-teacher-v2",
+      "type": "Technology",
+      "label": "ub-teacher v2",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 ub-teacher v2."
+    },
+    {
+      "id": "technology:tflite",
+      "type": "Technology",
+      "label": "TFLite",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 TFLite."
+    },
+    {
+      "id": "technology:firebase",
+      "type": "Technology",
+      "label": "Firebase",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Firebase."
+    },
+    {
+      "id": "technology:android-studio",
+      "type": "Technology",
+      "label": "Android Studio",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Android Studio."
+    },
+    {
+      "id": "technology:flask",
+      "type": "Technology",
+      "label": "Flask",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Flask."
+    },
+    {
+      "id": "technology:gunicorn",
+      "type": "Technology",
+      "label": "Gunicorn",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Gunicorn."
+    },
+    {
+      "id": "technology:mysql",
+      "type": "Technology",
+      "label": "MySQL",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 MySQL."
+    },
+    {
+      "id": "technology:nginx",
+      "type": "Technology",
+      "label": "Nginx",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Nginx."
+    },
+    {
+      "id": "technology:gcp",
+      "type": "Technology",
+      "label": "GCP",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 GCP."
+    },
+    {
+      "id": "technology:aws",
+      "type": "Technology",
+      "label": "AWS",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 AWS."
+    },
+    {
+      "id": "technology:node-js",
+      "type": "Technology",
+      "label": "Node.js",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Node.js."
+    },
+    {
+      "id": "technology:express",
+      "type": "Technology",
+      "label": "Express",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 Express."
+    },
+    {
+      "id": "technology:mongodb",
+      "type": "Technology",
+      "label": "MongoDB",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "visibility": "review",
+      "summary": "현재 블로그의 프로젝트 기술 목록에 기록된 MongoDB."
+    },
+    {
+      "id": "system:preflight",
+      "type": "AgentSystem",
+      "label": "PreFlight Agent System",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "media": [
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-895c71549e0346db92830ce478597692-052.jpg",
+          "title": "PreFlight / 시스템 아키텍처",
+          "sourceId": "kode-preflight",
+          "featured": true,
+          "date": "2026-05-20"
+        },
+        {
+          "kind": "image",
+          "url": "https://kode.kt.com/api/v1/files/download/f1o-f74cebb58b0c492faef83dd2966fb2d4-052.png",
+          "title": "PreFlight / 전체 파이프라인",
+          "sourceId": "kode-preflight",
+          "featured": false,
+          "date": "2026-05-20"
+        }
+      ],
+      "summary": "Bicep으로 구조화한 아키텍처를 Policy와 Recon이 분석하고 Reporter가 통합하는 시스템."
+    },
+    {
+      "id": "agent:policy",
+      "type": "Agent",
+      "label": "Policy",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "summary": "정책 정합성 검토"
+    },
+    {
+      "id": "agent:recon",
+      "type": "Agent",
+      "label": "Recon",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "summary": "잠재 위험 분석"
+    },
+    {
+      "id": "agent:reporter",
+      "type": "Agent",
+      "label": "Reporter",
+      "evidenceIds": [
+        "kode-preflight"
+      ],
+      "visibility": "review",
+      "summary": "보고서 통합"
+    }
+  ],
+  "edges": [
+    {
+      "id": "relation:195",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/overview",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:196",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/instructions",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:197",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/skills",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:198",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/spec",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:199",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/hooks",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:200",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/comparison",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:201",
+      "source": "article:customize",
+      "predicate": "hasSection",
+      "target": "section:agent-customize/references",
+      "evidenceIds": [
+        "repo-posts"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:202",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:203",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:204",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:205",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:206",
+      "source": "project:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:fastapi",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:207",
+      "source": "project:har",
+      "predicate": "usesTechnology",
+      "target": "technology:tensorflow",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:208",
+      "source": "project:har",
+      "predicate": "usesTechnology",
+      "target": "technology:garmin",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:209",
+      "source": "project:yoco",
+      "predicate": "usesTechnology",
+      "target": "technology:ub-teacher-v2",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:210",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:tensorflow",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:211",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:tflite",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:212",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:firebase",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:213",
+      "source": "project:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:android-studio",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:214",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:215",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:216",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:flask",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:217",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:gunicorn",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:218",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:mysql",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:219",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:nginx",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:220",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:gcp",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:221",
+      "source": "project:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:aws",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:222",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:223",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:node-js",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:224",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:express",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:225",
+      "source": "project:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:mongodb",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:226",
+      "source": "education:snu",
+      "predicate": "atInstitution",
+      "target": "organization:snu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:227",
+      "source": "education:cnu",
+      "predicate": "atInstitution",
+      "target": "organization:cnu",
+      "evidenceIds": [
+        "repo-profile"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:228",
+      "source": "education:snu",
+      "predicate": "researchProject",
+      "target": "project:har",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:229",
+      "source": "education:cnu",
+      "predicate": "researchProject",
+      "target": "project:prupru",
+      "evidenceIds": [
+        "user-project-context"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:230",
+      "source": "project:preflight",
+      "predicate": "realizes",
+      "target": "system:preflight",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:231",
+      "source": "system:preflight",
+      "predicate": "hasAgent",
+      "target": "agent:policy",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:232",
+      "source": "system:preflight",
+      "predicate": "hasAgent",
+      "target": "agent:recon",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:233",
+      "source": "system:preflight",
+      "predicate": "hasAgent",
+      "target": "agent:reporter",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:235",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:fastapi",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:236",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:237",
+      "source": "contribution:prupru",
+      "predicate": "usesTechnology",
+      "target": "technology:firebase",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:238",
+      "source": "contribution:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:docker",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:239",
+      "source": "contribution:blooming",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:240",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:react",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:241",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:node-js",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:242",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:express",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:243",
+      "source": "contribution:sobok",
+      "predicate": "usesTechnology",
+      "target": "technology:mongodb",
+      "evidenceIds": [
+        "repo-projects"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:244",
+      "source": "contribution:har-followup",
+      "predicate": "usesTechnology",
+      "target": "technology:garmin",
+      "evidenceIds": [
+        "user-har-followup"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:245",
+      "source": "contribution:rca",
+      "predicate": "implemented",
+      "target": "system:rca",
+      "evidenceIds": [
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:246",
+      "source": "contribution:rca",
+      "predicate": "implemented",
+      "target": "tool:device",
+      "evidenceIds": [
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:247",
+      "source": "contribution:preflight",
+      "predicate": "implemented",
+      "target": "agent:recon",
+      "evidenceIds": [
+        "career"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:248",
+      "source": "writing:tistory-copilot",
+      "predicate": "coversTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:249",
+      "source": "capability:architecture",
+      "predicate": "appliesTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:250",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:github-copilot-sdk",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:251",
+      "source": "writing:tistory-copilot",
+      "predicate": "coversTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "tistory-copilot"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:252",
+      "source": "capability:architecture",
+      "predicate": "appliesTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:253",
+      "source": "contribution:preflight",
+      "predicate": "usesTechnology",
+      "target": "technology:microsoft-agent-framework",
+      "evidenceIds": [
+        "user-preflight-capabilities"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    }
+  ]
+}

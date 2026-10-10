@@ -32,7 +32,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src --ext .js,.jsx --max-warnings 0"
+    "lint": "eslint src --ext .js,.jsx --max-warnings 0",
+    "cosmos:update": "python3 packages/cosmos-engine/run.py update",
+    "cosmos:review": "python3 packages/cosmos-engine/run.py review",
+    "cosmos:query": "python3 packages/cosmos-engine/run.py query",
+    "cosmos:validate": "python3 packages/cosmos-engine/run.py validate",
+    "cosmos:test": "python3 -m unittest discover -s packages/cosmos-engine/tests -v",
+    "prebuild": "npm run cosmos:update -- --no-extract",
+    "cosmos:studio": "python3 packages/cosmos-engine/run.py studio"
   },
   "eslintConfig": {
     "extends": [
@@ -54,6 +61,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@openai/codex-sdk": "^0.162.0",
     "@tailwindcss/typography": "^0.5.16",
     "gh-pages": "^6.3.0",
     "tailwindcss": "^3.4.17"

@@ -174,6 +174,39 @@
       "observedAt": "2026-10-09",
       "verification": "user-confirmed",
       "visibility": "review"
+    },
+    "user-work-results-20261010": {
+      "label": "본인 확인 / RCA 사내 적용 성과 및 연구개발 진행 상태",
+      "observedAt": "2026-10-10",
+      "verification": "user-confirmed",
+      "visibility": "review"
+    },
+    "kt-kode-aionet-20260305": {
+      "label": "담당 업무의 구현 근거 / KT kode AIONet 장애 진단 개발기 / 2026-03-05",
+      "url": "https://kode.kt.com/blog/article/11854",
+      "observedAt": "2026-10-10",
+      "verification": "official-publication",
+      "visibility": "review"
+    },
+    "kt-kode-detection-20250703": {
+      "label": "같은 과제의 전체 배경 / KT kode IP코어망 장애 선감지 개발기 / 2025-07-03",
+      "url": "https://kode.kt.com/blog/article/1659",
+      "observedAt": "2026-10-10",
+      "verification": "official-publication",
+      "visibility": "review"
+    },
+    "kt-esg-meister-2024": {
+      "label": "관련 기술 배경 / KT ESG Report 2024 AI Meister / p.69",
+      "url": "https://corp.kt.com/archive/ipgrpt/attach/now/FACTBOOK.pdf",
+      "observedAt": "2026-10-10",
+      "verification": "official-publication",
+      "visibility": "review"
+    },
+    "user-rca-ser-20261010": {
+      "label": "본인 확인 / 동일 과제 내 AIONet SER 장애 진단 담당 및 구조 설계와 개발, 도구 구성",
+      "observedAt": "2026-10-10",
+      "verification": "user-confirmed",
+      "visibility": "review"
     }
   },
   "nodes": [
@@ -181,16 +214,18 @@
       "id": "person:soyeong",
       "type": "Person",
       "label": "Soyeong Kim",
-      "summary": "AI Agent 연구개발자이자 AI Native Engineer. AI, AI Agent, LLM을 연구하고 이를 활용한 시스템을 설계하고 개발합니다.",
+      "summary": "AI Agent 연구개발자이자 AI Native Engineer. 에이전트의 역할과 도구, 실행 흐름을 설계하고 평가 환경과 플랫폼 구현으로 연결합니다.",
       "evidenceIds": [
         "user",
         "linkedin",
         "career",
         "atc",
-        "user-agent-work"
+        "user-agent-work",
+        "user-work-results-20261010",
+        "user-rca-ser-20261010"
       ],
       "visibility": "review",
-      "headline": "AI Research Engineer",
+      "headline": "AI Agent Researcher & Developer / AI Native Engineer",
       "location": "서울, 대한민국",
       "url": "https://www.linkedin.com/in/soyeong-kim/",
       "urlLabel": "LinkedIn 프로필",
@@ -214,15 +249,21 @@
       ],
       "details": [
         {
-          "title": "연구개발의 중심",
+          "title": "에이전트 설계에서 사내 적용까지",
           "paragraphs": [
-            "AI 에이전트와 LLM을 연구하고 실제 사용하는 시스템으로 설계하고 개발한다. 네트워크 원인분석, 에이전트 평가, 온톨로지 기반 업무 흐름을 주요 경험으로 연결하고 있다."
+            "KT AIONet에서 SER 장비 대상 장애 진단 에이전트의 구조와 도구를 설계하고 개발했다. 네트워크 관제 운용자의 원인 분석을 지원하는 업무를 수행했다."
           ]
         },
         {
-          "title": "연구에서 서비스까지",
+          "title": "평가와 플랫폼으로 확장",
           "paragraphs": [
-            "웨어러블 시계열과 컴퓨터 비전 연구를 거쳐 에이전트 구조, 도구 실행, 평가 환경, API 및 프론트엔드 통합으로 작업 범위를 확장했다. 아래 이력과 프로젝트에서 각 경험의 근거를 확인할 수 있다."
+            "TraceBench에서는 평가 조건과 반복 가능한 실행 환경을 설계하고 있다. 사내 플랫폼 과제에서는 에이전트 실행 기능, 업무 흐름, API와 사용자 화면을 연결하는 구조를 개발하고 있다."
+          ]
+        },
+        {
+          "title": "연구와 협업의 기반",
+          "paragraphs": [
+            "스마트워치 시계열 기반 HAR 석사 연구에서 데이터 수집, 전처리, 모델 학습과 비교 평가를 수행했다. PreFlight에서는 2인 팀의 구조 공동 설계와 Recon 개발 및 서비스 통합을 담당했고, 팀은 Microsoft AI Agenthon Pro-code 트랙 2위를 수상했다."
           ]
         }
       ],
@@ -282,31 +323,71 @@
       "id": "project:rca",
       "type": "Project",
       "label": "Network RCA Agent",
-      "summary": "네트워크 장애의 원인 가설을 검토하고 도구 실행 결과를 보고서로 연결한 에이전트.",
-      "role": "에이전트 구조와 도메인 도구를 직접 설계하고 개발. 사내 적용 후 실행 결과 분석.",
-      "status": "실서비스 적용 기록 / 2026-09",
+      "summary": "KT AIONet에서 SER(Service Edge Router) 장비의 장애 원인을 진단하는 에이전트를 담당. 네트워크 관제 운용자의 원인 분석을 지원한다.",
+      "role": "SER 장애 진단의 Supervisor / Action / Report 구조 설계와 개발, 진단 도구 구성.",
+      "status": "사내 적용",
       "evidenceIds": [
-        "career"
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010",
+        "kt-kode-detection-20250703",
+        "kt-esg-meister-2024",
+        "career",
+        "user-work-results-20261010"
       ],
       "visibility": "review",
       "details": [
         {
-          "title": "문제와 접근",
+          "title": "과제 내 담당 영역",
           "paragraphs": [
-            "네트워크 장애의 원인 후보를 점검 도구에서 얻은 관측 결과와 연결해 검토하는 에이전트다. 가설 관리, 도구 실행, 보고서 작성의 책임을 분리했다."
+            "네트워크 장애 선감지와 AIONet의 장애 진단은 같은 과제 안의 세부 업무다. 이 중 AIONet에서 SER(Service Edge Router) 장비의 장애 진단 에이전트를 담당했다.",
+            "전체 과제의 배경은 장애 선감지 개발기를 참고하고, 직접 수행한 에이전트 구조 설계와 개발 및 도구 구성은 AIONet 개발기에 공개된 구현을 기준으로 설명한다."
           ]
         },
         {
-          "title": "실행 구조",
+          "title": "문제와 목적",
           "paragraphs": [
-            "Supervisor는 가설과 진행을 관리하고 Action은 장비 도구를 실행한다. Report는 관측 결과와 판단을 정리한다. 연결된 시스템과 에이전트 노드에서 각 책임을 탐색할 수 있다."
+            "SER(Service Edge Router) 장비의 이상 징후에 대해 원인 가설을 검토하고 장비 상태를 점검하는 장애 진단 업무를 지원한다."
           ]
         },
         {
-          "title": "기여와 확인 범위",
+          "title": "개인 기여",
           "paragraphs": [
-            "에이전트 구조와 도메인 도구를 설계하고 개발했으며 사내 적용 이후 실행 결과를 분석했다. 현재 설명은 연결 경력 기록 기준이며 공개 정량 성과를 추가로 주장하지 않는다."
+            "KT kode AIONet 개발기에 공개된 Supervisor / Action / Report 에이전트 구조를 설계하고 개발했다. SER 진단에 필요한 도구 구성과 구현을 담당했으며, 사내 적용 이후 실행 결과를 분석했다."
           ]
+        },
+        {
+          "title": "설계와 구현",
+          "paragraphs": [
+            "Supervisor의 진단 조율, Action의 SOP 기반 도구 실행, Report의 결과 정리로 역할을 나눴다. 원인 가설과 점검 결과를 연결해 운용자가 판단 근거를 확인하도록 구성했다.",
+            "진단 도구에는 장비 명령어 실행, 점검 기준에 따른 정상/비정상 판단, 판단 근거 반환과 장비별 파라미터 조회를 구성했다. 구현 설명은 KT kode에 공개된 범위로 정리했다."
+          ]
+        },
+        {
+          "title": "공식 발표 성과",
+          "paragraphs": [
+            "KT kode는 2026년 3월 공개 글에서 AIONet의 장애 진단 시간이 20분에서 4분으로 단축되었다고 밝혔다. 이는 전체 시스템에 대한 팀 성과이며, 개인 또는 SER 전용 성능 지표로 해석하지 않는다."
+          ]
+        },
+        {
+          "title": "관련 공개 자료",
+          "paragraphs": [
+            "2025년 7월 장애 선감지 개발기는 같은 과제의 목적과 IP코어망 이상 징후 탐지 및 원인 분석 연계를 설명하는 배경 자료다. 개인 수행 업무와 구현 내용의 주된 근거는 2026년 3월 AIONet 장애 진단 개발기다.",
+            "KT ESG Report 2024는 AI Meister를 네트워크 지식과 LLM을 활용하는 운용 지원 시스템으로 소개한다. 관련 기술 배경으로 참고하며, AI Meister 자체의 개발 참여를 주장하지 않는다."
+          ]
+        }
+      ],
+      "subtitle": "AIONet / SER 장애 진단 에이전트",
+      "statusAsOf": "2026-10-10",
+      "url": "https://kode.kt.com/blog/article/11854",
+      "urlLabel": "KT kode / AIONet 개발기 — 담당 업무와 구현",
+      "links": [
+        {
+          "label": "KT kode / 장애 선감지 개발기 — 전체 과제 배경",
+          "url": "https://kode.kt.com/blog/article/1659"
+        },
+        {
+          "label": "KT 공식 보고서 / AI Meister — 관련 기술 배경",
+          "url": "https://corp.kt.com/archive/ipgrpt/attach/now/FACTBOOK.pdf"
         }
       ]
     },
@@ -314,33 +395,41 @@
       "id": "project:tracebench",
       "type": "Project",
       "label": "TraceBench",
-      "summary": "원인분석 에이전트의 실행을 반복 가능한 조건에서 평가하기 위한 연구개발 프로젝트.",
-      "role": "평가 조건, 응답 일관성, 반복 가능한 실험 환경 설계 경험.",
-      "status": "연구개발 기록",
+      "summary": "원인분석 에이전트를 반복 가능한 조건에서 검토하기 위한 평가 환경 연구개발. 현재 평가 조건과 실행 환경을 설계하는 단계다.",
+      "role": "평가 조건, 응답 일관성 검토와 반복 가능한 실행 환경 설계.",
+      "status": "평가 환경 설계 중 / 평가 케이스 구성 전",
       "evidenceIds": [
-        "career"
+        "career",
+        "user-work-results-20261010"
       ],
       "visibility": "review",
       "details": [
         {
-          "title": "평가 환경 연구",
+          "title": "문제와 목적",
           "paragraphs": [
-            "원인분석 에이전트의 실행을 검토하고 비교할 수 있는 평가 환경을 연구했다."
+            "원인분석 에이전트의 실행 결과를 검토할 때 비교 가능한 조건과 반복 실행 환경이 필요하다. 이를 마련하기 위한 평가 환경을 설계하고 있다."
           ]
         },
         {
-          "title": "담당 역할",
+          "title": "개인 기여",
           "paragraphs": [
-            "평가 조건과 반복 가능한 실험 환경을 설계하는 업무를 수행했다."
+            "평가 조건과 응답 일관성을 검토하고, 반복 가능한 실행 환경의 구조를 설계하는 업무를 수행한다."
+          ]
+        },
+        {
+          "title": "현재 진행 단계",
+          "paragraphs": [
+            "현재 평가 케이스는 아직 구성되지 않았다. 공개된 벤치마크 점수나 모델 간 우열을 제시하는 단계에 앞서 평가 환경을 설계하고 있다."
           ]
         }
-      ]
+      ],
+      "statusAsOf": "2026-10-10"
     },
     {
       "id": "project:preflight",
       "type": "Project",
       "label": "PreFlight",
-      "summary": "배포 전 아키텍처 정책과 실행 환경 리스크를 검토하는 멀티에이전트 프로젝트. Microsoft AI Agenthon Pro-code 2등, AI Tour Lightning Talk 발표 및 Microsoft Korea 영상으로 소개.",
+      "summary": "배포 전에 아키텍처 정책과 실행 환경 리스크를 검토하는 멀티에이전트 프로토타입. 2인 팀에서 Recon 개발과 서비스 통합을 담당했다.",
       "role": "2인 팀 공동 설계, Recon 에이전트 개발, FastAPI와 React 통합.",
       "status": "팀 프로토타입",
       "evidenceIds": [
@@ -353,26 +442,26 @@
       "url": "https://github.com/kimsoyeong/works-on-my-machine",
       "details": [
         {
-          "title": "개발 배경",
+          "title": "문제와 목적",
           "paragraphs": [
             "배포 이후에 정책 위반이나 설계 위험을 발견하면 수정과 재배포가 필요하다. 기존 아키텍처 다이어그램을 입력으로 받아 설계 과정에서 검토할 수 있는 흐름을 만들었다."
           ]
         },
         {
-          "title": "에이전트 협업 구조",
+          "title": "개인 기여",
+          "paragraphs": [
+            "2인 팀에서 구조를 공동 설계하고 Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 분석 결과를 사용자가 확인할 수 있는 서비스 흐름으로 연결했다."
+          ]
+        },
+        {
+          "title": "설계와 구현",
           "paragraphs": [
             "다이어그램을 Bicep으로 구조화한 뒤 Policy가 정책 정합성을 검토하고 Recon이 잠재 위험과 검증 우선순위를 분석한다. Reporter는 두 결과를 통합해 보고서와 개선 방향을 제시한다.",
             "Recon은 Docker Compose로 구성한 격리 재현 환경을 관찰하고 필요한 점검을 계획하며, 도구 실행 결과에 따라 추가 확인 여부를 결정한다. 실제 운영 환경을 공격하는 침투 테스트와는 구분한다."
           ]
         },
         {
-          "title": "구현과 내 역할",
-          "paragraphs": [
-            "2인 팀에서 구조를 공동 설계하고 Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 분석 결과를 사용자가 확인할 수 있는 서비스 흐름으로 연결했다."
-          ]
-        },
-        {
-          "title": "발표와 성과",
+          "title": "팀 성과와 발표",
           "paragraphs": [
             "Microsoft AI Agenthon Pro-code 2위를 수상했다. AI Tour Seoul의 LTG137 공동 발표, Microsoft Korea 마소코멘트 출연, KT kode 공동 개발기로 개발 경험을 공유했다."
           ]
@@ -421,7 +510,8 @@
           "featured": false,
           "date": "2026-05-20"
         }
-      ]
+      ],
+      "subtitle": "Microsoft AI Agenthon 2026 / Pro-code 트랙 2위"
     },
     {
       "id": "project:har",
@@ -439,29 +529,29 @@
       "visibility": "review",
       "details": [
         {
-          "title": "연구 목표",
+          "title": "문제와 목적",
           "paragraphs": [
             "웨어러블 센서의 시간에 따른 변화를 활용해 인간 활동을 분류하는 연구다. 스마트워치 데이터 수집부터 딥러닝 모델의 학습과 평가까지 연결했다."
           ]
         },
         {
-          "title": "연구 수행",
+          "title": "개인 기여",
           "paragraphs": [
             "데이터 수집과 전처리, 모델 비교, 학습 및 평가, 결과 분석을 담당했다. 기존 포트폴리오에는 TensorFlow와 Garmin 기반 기술 구성이 기록되어 있다."
           ]
         },
         {
-          "title": "석사 학위논문",
+          "title": "후속 연구와 구현",
+          "paragraphs": [
+            "서울대학교 연구원으로 데이터 수집 플랫폼을 설계하고 구현했으며 Garmin 스마트워치 앱을 고도화했다. 석사 논문 연구와 후속 연구원 경력은 각각의 개인 기여 기록으로 연결된다."
+          ]
+        },
+        {
+          "title": "연구 결과 / 석사 학위논문",
           "paragraphs": [
             "Deep Learning-based Human Activity Recognition with Multivariate Time Series Data",
             "다변량 시계열 데이터를 이용한 딥러닝 기반 인간 활동 인식",
             "서울대학교 대학원, 2024년 2월. 연결된 논문 항목에서 서지 정보를 확인할 수 있다."
-          ]
-        },
-        {
-          "title": "졸업 이후 후속 연구",
-          "paragraphs": [
-            "서울대학교 연구원으로 데이터 수집 플랫폼을 설계하고 구현했으며 Garmin 스마트워치 앱을 고도화했다. 석사 논문 연구와 후속 연구원 경력은 각각의 개인 기여 기록으로 연결된다."
           ]
         }
       ]
@@ -479,15 +569,15 @@
       "visibility": "review",
       "details": [
         {
-          "title": "연구 주제",
+          "title": "문제와 목적",
           "paragraphs": [
             "위성영상의 각 위치가 구름에 해당하는지 분류하는 의미분할 연구다. 구름의 위치와 양을 추정하는 문제를 다뤘다."
           ]
         },
         {
-          "title": "기여",
+          "title": "개인 기여",
           "paragraphs": [
-            "SI Analytics 인턴 기간에 모델 및 학습 조건을 비교하고 추론 오류를 분석했다. 해당 경력과 프로젝트를 연결해 소속, 기간과 연구 내용을 함께 읽을 수 있다."
+            "SI Analytics 인턴 기간에 의미분할 모델 및 학습 조건을 비교하고 추론 오류를 분석했다."
           ]
         }
       ]
@@ -511,27 +601,27 @@
       "endDate": "2023-02",
       "details": [
         {
-          "title": "활동 맥락",
-          "paragraphs": [
-            "서울대학교 데이터사이언스대학원이 주최한 교내 대회에 별도로 참가해 수행했다. 대학원 수업 및 소속 연구실 과제와는 별개다."
-          ]
-        },
-        {
-          "title": "사용자 문제",
+          "title": "문제와 목적",
           "paragraphs": [
             "요리 중 재료가 덜 익었는지, 익었는지, 과하게 익었는지 판단하도록 돕는 컴퓨터 비전 프로젝트다."
           ]
         },
         {
-          "title": "데이터와 모델",
+          "title": "개인 기여",
+          "paragraphs": [
+            "데이터 라벨링과 모델 학습에 참여했다. 반지도 객체 탐지 모델을 적용하고 학습 결과를 확인했다."
+          ]
+        },
+        {
+          "title": "설계와 구현",
           "paragraphs": [
             "Unbiased Teacher v2의 반지도 객체 탐지 구조를 활용했다. 자체 데이터는 베이컨, 달걀, 팬케이크의 익힘 상태와 food, pan, others를 포함한 12개 클래스로 구성했다."
           ]
         },
         {
-          "title": "수행과 결과",
+          "title": "활동 맥락과 결과",
           "paragraphs": [
-            "데이터 라벨링과 모델 학습에 참여했다. 기존 프로젝트 원고에 학습 설정과 영상 추론 방법이 정리되어 있으며, 연결된 Ambient AI Competition 수상 기록에서 결과를 확인할 수 있다."
+            "서울대학교 데이터사이언스대학원이 주최한 교내 대회에 별도로 참가했다. 대학원 수업 및 소속 연구실 과제와는 별개이며, 연결된 Ambient AI Competition 수상 기록에서 결과를 확인할 수 있다."
           ]
         }
       ],
@@ -621,27 +711,21 @@
       "role": "MobileNet SSD v2 전이학습, Firebase Storage 연동, Android 온디바이스 모델 로딩.",
       "details": [
         {
-          "title": "활동 맥락",
-          "paragraphs": [
-            "충남대학교 캡스톤 프로젝트로 수행했다."
-          ]
-        },
-        {
-          "title": "서비스 경험",
+          "title": "문제와 목적",
           "paragraphs": [
             "스마트폰 카메라로 쓰레기를 인식하고 분리배출 방법을 안내하는 Android 앱이다. 카메라 기반 안내와 검색 기능을 제공한다."
           ]
         },
         {
-          "title": "구현",
+          "title": "개인 기여",
           "paragraphs": [
             "MobileNet SSD v2 전이학습, Firebase Storage 연동, Android에서 모델을 불러오는 작업을 수행했다. TensorFlow/TFLite 기반 추론을 모바일 사용 흐름과 연결했다."
           ]
         },
         {
-          "title": "결과",
+          "title": "활동 맥락과 결과",
           "paragraphs": [
-            "프로젝트 소개 이미지와 데모 영상이 남아 있으며, 관련 수상 기록은 각각의 행사 노드로 연결했다."
+            "충남대학교 캡스톤 프로젝트로 수행했다. 프로젝트 소개 이미지와 앱 화면에서 구현 결과를 확인할 수 있으며, 관련 수상 기록은 각각의 행사 노드로 연결했다."
           ]
         }
       ],
@@ -691,21 +775,27 @@
       "role": "Docker 구성, 클라우드 배포, React 프론트엔드.",
       "details": [
         {
-          "title": "활동 맥락",
-          "paragraphs": [
-            "실리콘밸리부트캠프 교육 프로그램에 참여해 그곳에서 구성된 팀과 수행한 팀 프로젝트다."
-          ]
-        },
-        {
-          "title": "서비스 경험",
+          "title": "문제와 목적",
           "paragraphs": [
             "내용 이미지와 원하는 스타일 이미지를 입력받아 두 특성을 결합한 결과를 생성하는 웹 서비스다. 결과 갤러리와 사진 검색 기능을 포함한다."
           ]
         },
         {
-          "title": "구현",
+          "title": "개인 기여",
           "paragraphs": [
-            "TensorFlow Hub의 이미지 스타일 변환 모델을 사용했다. React 화면과 Flask API, MySQL, Gunicorn/Nginx 및 Docker 기반 구성을 사용했으며 내 역할은 프론트엔드와 배포 환경 구성이다."
+            "React 프론트엔드와 Docker 구성, 클라우드 배포를 담당했다. 이미지 입력부터 변환 결과 확인까지 이어지는 사용자 화면과 배포 환경을 구성했다."
+          ]
+        },
+        {
+          "title": "팀의 설계와 구현",
+          "paragraphs": [
+            "팀은 TensorFlow Hub의 이미지 스타일 변환 모델과 Flask API, MySQL, Gunicorn/Nginx 및 Docker 구성을 사용했다. 내 담당 범위는 프론트엔드와 배포 환경이다."
+          ]
+        },
+        {
+          "title": "활동 맥락",
+          "paragraphs": [
+            "실리콘밸리부트캠프 교육 프로그램에 참여해 그곳에서 구성된 팀과 수행한 팀 프로젝트다."
           ]
         }
       ],
@@ -755,21 +845,21 @@
       "role": "React 프론트엔드, Node.js/Express/MongoDB 백엔드, Netlify/Heroku 배포, UI 디자인.",
       "details": [
         {
-          "title": "활동 맥락",
-          "paragraphs": [
-            "개인 사이드 프로젝트로 수행했다."
-          ]
-        },
-        {
-          "title": "서비스 경험",
+          "title": "문제와 목적",
           "paragraphs": [
             "새해 덕담과 복을 주고받는 롤링페이퍼 웹 서비스다. 메시지 보내기와 회원가입, 로그인 및 로그아웃 기능을 제공한다."
           ]
         },
         {
-          "title": "구현과 역할",
+          "title": "개인 기여",
           "paragraphs": [
             "React 프론트엔드, Node.js/Express API, MongoDB 저장소를 연결하고 UI 디자인과 Netlify/Heroku 배포를 담당했다. 기존 프로젝트 화면을 통해 메시지를 주고받는 경험을 확인할 수 있다."
+          ]
+        },
+        {
+          "title": "활동 맥락",
+          "paragraphs": [
+            "개인 사이드 프로젝트로 수행했다."
           ]
         }
       ],
@@ -881,7 +971,10 @@
         "user-preflight-capabilities",
         "user-work-context",
         "user-agent-work",
-        "repo-projects"
+        "repo-projects",
+        "user-work-results-20261010",
+        "user-rca-ser-20261010",
+        "kt-kode-aionet-20260305"
       ],
       "visibility": "review",
       "details": [
@@ -895,14 +988,13 @@
         {
           "title": "Network RCA Agent에서의 기여",
           "paragraphs": [
-            "네트워크 원인분석을 위한 에이전트 구조와 도메인 도구를 직접 설계하고 개발했다. Supervisor, Action, Report의 역할을 나누고 가설 검토, 도구 실행과 보고서 작성의 흐름을 연결했다.",
-            "LangGraph를 활용한 구현과 사내 적용 이후의 실행 결과 분석이 이 역량의 수행 근거다."
+            "AIONet의 SER 진단을 위한 Supervisor / Action / Report 구조를 설계하고 개발했다. 도구 구성과 구현을 맡아 가설 검토, 장비 점검과 결과 보고를 연결했다."
           ]
         },
         {
           "title": "사내 에이전트 플랫폼 설계 업무",
           "paragraphs": [
-            "KT 사내 과제에서 개별 에이전트의 동작을 넘어 실행 기능, 업무 흐름과 플랫폼 구성의 전체 구조를 설계했다.",
+            "KT 사내 과제에서 실행 기능, 업무 흐름과 플랫폼 구성의 전체 구조를 설계하고 개발하고 있다. 사내 플랫폼은 현재 개발 중이다.",
             "업무 기능을 Skill 단위로 구분하고 Workflow로 연결하며, 온톨로지 기반 실행 흐름과 Playground의 실행 상태 확인을 구성했다. 시스템 간 API와 화면 연결은 별도의 시스템 통합 역량으로도 연결한다."
           ]
         },
@@ -918,34 +1010,40 @@
     {
       "id": "capability:integration",
       "type": "Capability",
-      "label": "System Integration",
-      "summary": "실행 기능, API, 데이터 저장소와 사용자 화면을 연결하는 시스템 통합 역량.",
+      "label": "AI Platform & System Integration",
+      "summary": "에이전트 실행 기능과 업무 흐름을 API, 데이터 저장소, 사용자 화면으로 연결하는 플랫폼 및 시스템 통합 역량.",
       "evidenceIds": [
         "career",
         "atc",
         "user-preflight-capabilities",
         "repo-projects",
-        "linkedin-projects"
+        "linkedin-projects",
+        "user-work-results-20261010"
       ],
       "visibility": "review",
       "details": [
         {
-          "title": "기능을 사용 경험으로 연결",
+          "title": "실행 기능을 사용 흐름으로 연결",
           "paragraphs": [
-            "FastAPI와 React를 연결하는 경험을 바탕으로 생성, 구성, 실행 기능을 일관된 사용 흐름으로 통합한다.",
-            "도구 실행 결과와 상태가 API 및 사용자 화면에 전달되는 경계를 구분하고 통합 과정의 동작을 확인한다."
+            "실행 상태와 결과가 API 및 사용자 화면에 전달되는 경계를 설계하고 통합 동작을 확인한다."
           ]
         },
         {
-          "title": "PreFlight 수행 근거",
+          "title": "KT 사내 플랫폼 개발",
           "paragraphs": [
-            "PreFlight에서 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 구체적인 수행 범위는 연결된 개인 기여 기록에서 확인할 수 있다."
+            "에이전트 실행 기능과 온톨로지 기반 Workflow를 플랫폼 API 및 화면으로 연결하는 구조를 설계하고 개발하고 있다. 사내 플랫폼은 아직 개발 중이다."
           ]
         },
         {
-          "title": "모바일과 웹 통합 경험",
+          "title": "PreFlight 구현 사례",
           "paragraphs": [
-            "PruPru의 Firebase Storage 및 온디바이스 모델 연동, 소복소복의 화면과 백엔드 구현도 통합 경험의 근거로 연결한다."
+            "2인 팀에서 에이전트 구조를 공동 설계하고 Recon을 개발했다. FastAPI와 React를 통합해 분석 결과를 사용자가 확인하는 흐름으로 연결했다."
+          ]
+        },
+        {
+          "title": "모바일과 웹의 기반 경험",
+          "paragraphs": [
+            "PruPru의 Firebase Storage 및 온디바이스 모델 연동, 소복소복의 React와 Node.js/Express/MongoDB 구현은 데이터와 실행 기능을 사용자 화면에 연결한 경험이다."
           ]
         }
       ]
@@ -954,12 +1052,22 @@
       "id": "contribution:rca",
       "type": "Contribution",
       "label": "RCA 구조와 도구 개발",
-      "summary": "Network RCA Agent의 구조와 실행 도구를 직접 설계하고 개발한 기여.",
+      "summary": "AIONet SER 진단의 Supervisor / Action / Report 구조 설계와 개발, 진단 도구 구성 및 구현을 담당.",
       "evidenceIds": [
-        "career"
+        "career",
+        "user-rca-ser-20261010",
+        "kt-kode-aionet-20260305"
       ],
       "visibility": "review",
-      "activityKind": "KT 주업무"
+      "activityKind": "KT 주업무",
+      "details": [
+        {
+          "title": "담당 범위",
+          "paragraphs": [
+            "동일 과제의 세부 업무 중 AIONet의 SER 장애 진단을 담당했다. AIONet 개발기에 공개된 Supervisor / Action / Report 에이전트 구조 설계와 개발, 진단 도구 구성 및 구현이 직접 수행한 업무다."
+          ]
+        }
+      ]
     },
     {
       "id": "contribution:preflight",
@@ -1041,9 +1149,11 @@
       "id": "system:rca",
       "type": "AgentSystem",
       "label": "RCA Agent System",
-      "summary": "Supervisor가 가설과 진행을 관리하고 Action이 도구를 실행하며 Report가 결과를 정리하는 시스템.",
+      "summary": "SER 장비 원인 분석을 위해 진단 조율, SOP 기반 점검과 결과 보고를 연결하는 에이전트 시스템.",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "visibility": "review"
     },
@@ -1053,7 +1163,9 @@
       "label": "Supervisor",
       "summary": "가설 상태와 진행을 관리하고 후속 작업을 판단하는 책임.",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "visibility": "review"
     },
@@ -1063,7 +1175,9 @@
       "label": "Action",
       "summary": "장비별 도구 실행과 결과 수집 책임.",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "visibility": "review"
     },
@@ -1073,7 +1187,9 @@
       "label": "Report",
       "summary": "관측과 판단을 보고서로 정리하는 책임.",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "visibility": "review"
     },
@@ -1083,7 +1199,9 @@
       "label": "Device inspection tools",
       "summary": "장비별 파라미터를 반영해 명령을 실행하고 반환 결과를 취합하는 도구.",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "visibility": "review"
     },
@@ -1091,7 +1209,7 @@
       "id": "technology:langgraph",
       "type": "Technology",
       "label": "LangGraph",
-      "summary": "Network RCA Agent의 Supervisor 패턴 구현에 사용한 기술.",
+      "summary": "상태와 실행 흐름을 그래프로 구성하는 에이전트 개발 프레임워크. 개인 활용 기술.",
       "evidenceIds": [
         "career"
       ],
@@ -1155,7 +1273,9 @@
       "evidenceIds": [
         "linkedin",
         "user-work-context",
-        "user-agent-work"
+        "user-agent-work",
+        "user-work-results-20261010",
+        "user-rca-ser-20261010"
       ],
       "visibility": "review",
       "startDate": "2024-08",
@@ -1166,25 +1286,25 @@
         {
           "title": "담당 직무",
           "paragraphs": [
-            "KT에서 AI 에이전트의 구조 설계, 연구개발과 평가를 수행한다. 소속은 AX미래기술원 AX Data Lab 데이터Model팀이다."
+            "AX미래기술원 AX Data Lab 데이터Model팀에서 AI 에이전트의 구조 설계, 연구개발과 평가를 수행한다."
           ]
         },
         {
-          "title": "주업무와 사내 과제",
+          "title": "사내 적용 업무",
           "paragraphs": [
-            "Network RCA Agent와 TraceBench를 주업무로 수행했다. 에이전트 프레임워크와 온톨로지 기반 Workflow 과제에서는 에이전트와 플랫폼 구조 설계, 업무 흐름 구성, 시스템 통합 경험을 쌓았다."
+            "AIONet의 SER 장애 진단 에이전트 구조와 도구를 설계하고 개발했다. 상세 프로젝트에서 공개된 시스템 구조와 공식 발표 성과를 확인할 수 있다."
+          ]
+        },
+        {
+          "title": "진행 중인 연구개발",
+          "paragraphs": [
+            "TraceBench의 평가 조건과 반복 가능한 실행 환경을 설계하고 있다. 평가 케이스는 아직 구성되지 않았다. 사내 에이전트 플랫폼 과제는 구조 설계와 개발 및 기능 통합을 진행 중이다."
           ]
         },
         {
           "title": "KT 소속 대외 활동",
           "paragraphs": [
-            "PreFlight 개발, Microsoft AI Agenthon 참가, Microsoft AI Tour 발표와 Microsoft 영상 출연은 KT 소속으로 수행한 외부 활동이다. 이 경험을 사내 기술블로그 Kode의 공동 참여기로 게재했다."
-          ]
-        },
-        {
-          "title": "연구 과제 제안",
-          "paragraphs": [
-            "플랫폼 구조와 에이전트 연구개발 경험을 바탕으로 후년도 과제를 제안했다."
+            "PreFlight에서 구조 공동 설계, Recon 개발과 FastAPI/React 통합을 맡았다. Microsoft AI Agenthon Pro-code 2위 수상, AI Tour Seoul 공동 발표와 Microsoft Korea 영상 출연으로 이어졌고 KT kode에 공동 개발기를 게재했다."
           ]
         }
       ]
@@ -1751,24 +1871,25 @@
       "id": "capability:agent-evaluation",
       "type": "Capability",
       "label": "Agent Evaluation",
-      "summary": "에이전트 실행 결과와 평가 조건을 다루고 재현 가능한 평가 환경을 설계하는 역량.",
+      "summary": "에이전트의 평가 조건과 반복 가능한 실행 환경을 설계하고, 실행 결과를 검토하는 역량.",
       "evidenceIds": [
         "user-work-context",
         "user-agent-work",
-        "career"
+        "career",
+        "user-work-results-20261010"
       ],
       "visibility": "review",
       "details": [
         {
-          "title": "구조 설계부터 평가까지",
+          "title": "평가 조건과 실행 환경 설계",
           "paragraphs": [
-            "에이전트 파트의 업무 범위는 구조 설계, 연구개발, 평가까지 포함한다. TraceBench에서는 평가 조건과 응답 일관성, 반복 가능한 실험 환경을 다뤘다."
+            "TraceBench에서 원인분석 에이전트의 응답 일관성과 평가 조건을 검토하고 반복 가능한 실행 환경을 설계한다."
           ]
         },
         {
-          "title": "실행 근거와 평가 환경",
+          "title": "현재 경험의 범위",
           "paragraphs": [
-            "에이전트 실행을 검토하고 반복 가능한 조건에서 평가하는 환경을 설계한 경험이 있다."
+            "평가 환경 설계 단계이며 평가 케이스는 아직 구성되지 않았다. 완성된 벤치마크 운영이나 모델 성능 비교 결과와 구분해 설계 경험을 제시한다."
           ]
         }
       ]
@@ -1795,9 +1916,10 @@
       "id": "contribution:tracebench",
       "type": "Contribution",
       "label": "TraceBench / 수행 역할",
-      "summary": "평가 조건, 응답 일관성, 반복 가능한 실험 환경 설계 경험.",
+      "summary": "원인분석 에이전트의 평가 조건과 반복 가능한 실행 환경 설계. 평가 케이스 구성 전 단계.",
       "evidenceIds": [
-        "career"
+        "career",
+        "user-work-results-20261010"
       ],
       "visibility": "review",
       "activityKind": "KT 주업무"
@@ -1876,26 +1998,41 @@
       "id": "contribution:agent-platform",
       "type": "Contribution",
       "label": "에이전트 플랫폼 설계 업무",
-      "summary": "사내 에이전트 플랫폼 및 온톨로지 기반 업무 자동화 과제에서 구조 설계와 기능 통합을 수행.",
+      "summary": "KT 사내 과제에서 에이전트 실행 기능과 업무 흐름, API와 사용자 화면을 연결하는 플랫폼 구조를 설계하고 개발.",
       "evidenceIds": [
-        "user-work-context"
+        "user-work-context",
+        "user-work-results-20261010"
       ],
       "visibility": "review",
       "activityKind": "KT 사내 과제",
       "details": [
         {
-          "title": "회사에서 맡은 업무",
+          "title": "문제와 목적",
           "paragraphs": [
-            "에이전트 프레임워크와 온톨로지 기반 Workflow 관련 과제에서 에이전트 및 플랫폼 구조 설계와 시스템 통합 경험을 쌓았다."
+            "에이전트의 실행 기능을 업무 흐름으로 구성하고 사용자가 실행 상태와 결과를 확인할 수 있는 플랫폼을 개발하고 있다."
           ]
         },
         {
-          "title": "이 경험에서 얻은 역량",
+          "title": "개인 기여",
           "paragraphs": [
-            "에이전트의 책임과 실행 계약을 정리하고, 업무 기능을 실행 흐름으로 구성하며, 이를 플랫폼 API 및 화면과 연결하는 역량으로 정리한다."
+            "에이전트와 플랫폼의 전체 구조 설계, 실행 기능과 업무 흐름 구성, 시스템 간 API와 화면의 통합을 수행한다."
+          ]
+        },
+        {
+          "title": "설계와 구현",
+          "paragraphs": [
+            "업무 기능을 Skill 단위로 구분하고 Workflow로 연결한다. 도구의 입출력과 실행 상태를 정리하고, 온톨로지 기반 업무 흐름과 Playground의 실행 상태 확인을 구성한다."
+          ]
+        },
+        {
+          "title": "현재 진행 단계",
+          "paragraphs": [
+            "사내 플랫폼은 개발 중이다. 현재까지의 기여는 구조 설계와 개발 및 기능 통합이며, 운영 규모나 사용자 도입 성과는 아직 제시하지 않는다."
           ]
         }
-      ]
+      ],
+      "status": "사내 플랫폼 개발 중",
+      "statusAsOf": "2026-10-10"
     },
     {
       "id": "participation:agenthon2026",
@@ -2420,7 +2557,9 @@
       "predicate": "realizes",
       "target": "system:rca",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "assertionStatus": "sourced",
       "visibility": "review",
@@ -2431,7 +2570,9 @@
       "predicate": "hasAgent",
       "target": "agent:supervisor",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "assertionStatus": "sourced",
       "visibility": "review",
@@ -2442,7 +2583,9 @@
       "predicate": "hasAgent",
       "target": "agent:action",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "assertionStatus": "sourced",
       "visibility": "review",
@@ -2453,7 +2596,9 @@
       "predicate": "hasAgent",
       "target": "agent:report",
       "evidenceIds": [
-        "career"
+        "career",
+        "kt-kode-aionet-20260305",
+        "user-rca-ser-20261010"
       ],
       "assertionStatus": "sourced",
       "visibility": "review",
@@ -2469,17 +2614,6 @@
       "assertionStatus": "sourced",
       "visibility": "review",
       "id": "relation:031"
-    },
-    {
-      "source": "project:rca",
-      "predicate": "usesTechnology",
-      "target": "technology:langgraph",
-      "evidenceIds": [
-        "career"
-      ],
-      "assertionStatus": "sourced",
-      "visibility": "review",
-      "id": "relation:032"
     },
     {
       "id": "relation:033",
@@ -4026,6 +4160,17 @@
       "target": "capability:research-planning",
       "evidenceIds": [
         "user-agent-work"
+      ],
+      "assertionStatus": "sourced",
+      "visibility": "review"
+    },
+    {
+      "id": "relation:personal-langgraph",
+      "source": "person:soyeong",
+      "predicate": "usesTechnology",
+      "target": "technology:langgraph",
+      "evidenceIds": [
+        "career"
       ],
       "assertionStatus": "sourced",
       "visibility": "review"

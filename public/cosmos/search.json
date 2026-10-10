@@ -1,0 +1,722 @@
+[
+  {
+    "id": "person:soyeong",
+    "label": "Soyeong Kim",
+    "text": "Soyeong Kim AI Agent 연구개발자이자 AI Native Engineer. 에이전트의 역할과 도구, 실행 흐름을 설계하고 평가 환경과 플랫폼 구현으로 연결합니다. KT AIONet에서 SER 장비 대상 장애 진단 에이전트의 구조와 도구를 설계하고 개발했다. 네트워크 관제 운용자의 원인 분석을 지원하는 업무를 수행했다. TraceBench에서는 평가 조건과 반복 가능한 실행 환경을 설계하고 있다. 사내 플랫폼 과제에서는 에이전트 실행 기능, 업무 흐름, API와 사용자 화면을 연결하는 구조를 개발하고 있다. 스마트워치 시계열 기반 HAR 석사 연구에서 데이터 수집, 전처리, 모델 학습과 비교 평가를 수행했다. PreFlight에서는 2인 팀의 구조 공동 설계와 Recon 개발 및 서비스 통합을 담당했고, 팀은 Microsoft AI Agenthon Pro-code 트랙 2위를 수상했다.",
+    "type": "Person"
+  },
+  {
+    "id": "concept:agents",
+    "label": "AI Agents",
+    "text": "AI Agents 판단, 도구 실행, 상태와 평가를 함께 설계하는 연구 영역. 연구와 실제 구현 경험이 만나는 중심입니다.",
+    "type": "Concept"
+  },
+  {
+    "id": "concept:rca",
+    "label": "Root Cause Analysis",
+    "text": "Root Cause Analysis 관측된 현상에서 원인 가설을 검토하는 문제. 직접 개발한 원인분석 에이전트와 평가 프로젝트의 주제입니다.",
+    "type": "Concept"
+  },
+  {
+    "id": "concept:ontology",
+    "label": "Ontology",
+    "text": "Ontology 개념, 관계, 제약을 명시해 시스템이 지식을 일관되게 다루도록 하는 모델링 관점.",
+    "type": "Concept"
+  },
+  {
+    "id": "concept:evaluation",
+    "label": "Agent Evaluation",
+    "text": "Agent Evaluation 에이전트 실행과 판단을 재현 가능한 조건에서 평가하는 연구 관심사.",
+    "type": "Concept"
+  },
+  {
+    "id": "concept:timeseries",
+    "label": "Time Series",
+    "text": "Time Series 다변량 센서 데이터에서 인간 활동을 인식하는 석사 연구의 기반.",
+    "type": "Concept"
+  },
+  {
+    "id": "project:rca",
+    "label": "Network RCA Agent",
+    "text": "Network RCA Agent KT AIONet에서 SER(Service Edge Router) 장비의 장애 원인을 진단하는 에이전트를 담당. 네트워크 관제 운용자의 원인 분석을 지원한다. 네트워크 장애 선감지와 AIONet의 장애 진단은 같은 과제 안의 세부 업무다. 이 중 AIONet에서 SER(Service Edge Router) 장비의 장애 진단 에이전트를 담당했다. 전체 과제의 배경은 장애 선감지 개발기를 참고하고, 직접 수행한 에이전트 구조 설계와 개발 및 도구 구성은 AIONet 개발기에 공개된 구현을 기준으로 설명한다. SER(Service Edge Router) 장비의 이상 징후에 대해 원인 가설을 검토하고 장비 상태를 점검하는 장애 진단 업무를 지원한다. KT kode AIONet 개발기에 공개된 Supervisor / Action / Report 에이전트 구조를 설계하고 개발했다. SER 진단에 필요한 도구 구성과 구현을 담당했으며, 사내 적용 이후 실행 결과를 분석했다. Supervisor의 진단 조율, Action의 SOP 기반 도구 실행, Report의 결과 정리로 역할을 나눴다. 원인 가설과 점검 결과를 연결해 운용자가 판단 근거를 확인하도록 구성했다. 진단 도구에는 장비 명령어 실행, 점검 기준에 따른 정상/비정상 판단, 판단 근거 반환과 장비별 파라미터 조회를 구성했다. 구현 설명은 KT kode에 공개된 범위로 정리했다. KT kode는 2026년 3월 공개 글에서 AIONet의 장애 진단 시간이 20분에서 4분으로 단축되었다고 밝혔다. 이는 전체 시스템에 대한 팀 성과이며, 개인 또는 SER 전용 성능 지표로 해석하지 않는다. 2025년 7월 장애 선감지 개발기는 같은 과제의 목적과 IP코어망 이상 징후 탐지 및 원인 분석 연계를 설명하는 배경 자료다. 개인 수행 업무와 구현 내용의 주된 근거는 2026년 3월 AIONet 장애 진단 개발기다. KT ESG Report 2024는 AI Meister를 네트워크 지식과 LLM을 활용하는 운용 지원 시스템으로 소개한다. 관련 기술 배경으로 참고하며, AI Meister 자체의 개발 참여를 주장하지 않는다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:tracebench",
+    "label": "TraceBench",
+    "text": "TraceBench 원인분석 에이전트를 반복 가능한 조건에서 검토하기 위한 평가 환경 연구개발. 현재 평가 조건과 실행 환경을 설계하는 단계다. 원인분석 에이전트의 실행 결과를 검토할 때 비교 가능한 조건과 반복 실행 환경이 필요하다. 이를 마련하기 위한 평가 환경을 설계하고 있다. 평가 조건과 응답 일관성을 검토하고, 반복 가능한 실행 환경의 구조를 설계하는 업무를 수행한다. 현재 평가 케이스는 아직 구성되지 않았다. 공개된 벤치마크 점수나 모델 간 우열을 제시하는 단계에 앞서 평가 환경을 설계하고 있다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:preflight",
+    "label": "PreFlight",
+    "text": "PreFlight 배포 전에 아키텍처 정책과 실행 환경 리스크를 검토하는 멀티에이전트 프로토타입. 2인 팀에서 Recon 개발과 서비스 통합을 담당했다. 배포 이후에 정책 위반이나 설계 위험을 발견하면 수정과 재배포가 필요하다. 기존 아키텍처 다이어그램을 입력으로 받아 설계 과정에서 검토할 수 있는 흐름을 만들었다. 2인 팀에서 구조를 공동 설계하고 Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 분석 결과를 사용자가 확인할 수 있는 서비스 흐름으로 연결했다. 다이어그램을 Bicep으로 구조화한 뒤 Policy가 정책 정합성을 검토하고 Recon이 잠재 위험과 검증 우선순위를 분석한다. Reporter는 두 결과를 통합해 보고서와 개선 방향을 제시한다. Recon은 Docker Compose로 구성한 격리 재현 환경을 관찰하고 필요한 점검을 계획하며, 도구 실행 결과에 따라 추가 확인 여부를 결정한다. 실제 운영 환경을 공격하는 침투 테스트와는 구분한다. Microsoft AI Agenthon Pro-code 2위를 수상했다. AI Tour Seoul의 LTG137 공동 발표, Microsoft Korea 마소코멘트 출연, KT kode 공동 개발기로 개발 경험을 공유했다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:har",
+    "label": "Human Activity Recognition",
+    "text": "Human Activity Recognition 스마트워치의 다변량 센서 시계열을 이용한 인간 활동 인식 연구. 석사 연구 이후 데이터 수집 플랫폼 구현과 Garmin 수집 앱 고도화로 이어졌다. 웨어러블 센서의 시간에 따른 변화를 활용해 인간 활동을 분류하는 연구다. 스마트워치 데이터 수집부터 딥러닝 모델의 학습과 평가까지 연결했다. 데이터 수집과 전처리, 모델 비교, 학습 및 평가, 결과 분석을 담당했다. 기존 포트폴리오에는 TensorFlow와 Garmin 기반 기술 구성이 기록되어 있다. 서울대학교 연구원으로 데이터 수집 플랫폼을 설계하고 구현했으며 Garmin 스마트워치 앱을 고도화했다. 석사 논문 연구와 후속 연구원 경력은 각각의 개인 기여 기록으로 연결된다. Deep Learning-based Human Activity Recognition with Multivariate Time Series Data 다변량 시계열 데이터를 이용한 딥러닝 기반 인간 활동 인식 서울대학교 대학원, 2024년 2월. 연결된 논문 항목에서 서지 정보를 확인할 수 있다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:sia",
+    "label": "Cloud Coverage Assessment",
+    "text": "Cloud Coverage Assessment 위성영상에서 구름의 위치와 양을 추정하기 위한 의미분할 모델 연구. 위성영상의 각 위치가 구름에 해당하는지 분류하는 의미분할 연구다. 구름의 위치와 양을 추정하는 문제를 다뤘다. SI Analytics 인턴 기간에 의미분할 모델 및 학습 조건을 비교하고 추론 오류를 분석했다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:yoco",
+    "label": "YOCO",
+    "text": "YOCO Unbiased Teacher v2 기반으로 음식 재료의 익힘 상태를 탐지하는 AI 프로젝트. 요리 중 재료가 덜 익었는지, 익었는지, 과하게 익었는지 판단하도록 돕는 컴퓨터 비전 프로젝트다. 데이터 라벨링과 모델 학습에 참여했다. 반지도 객체 탐지 모델을 적용하고 학습 결과를 확인했다. Unbiased Teacher v2의 반지도 객체 탐지 구조를 활용했다. 자체 데이터는 베이컨, 달걀, 팬케이크의 익힘 상태와 food, pan, others를 포함한 12개 클래스로 구성했다. 서울대학교 데이터사이언스대학원이 주최한 교내 대회에 별도로 참가했다. 대학원 수업 및 소속 연구실 과제와는 별개이며, 연결된 Ambient AI Competition 수상 기록에서 결과를 확인할 수 있다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:prupru",
+    "label": "PruPru",
+    "text": "PruPru 딥러닝 카메라를 활용해 분리배출을 안내하는 Android 앱. 스마트폰 카메라로 쓰레기를 인식하고 분리배출 방법을 안내하는 Android 앱이다. 카메라 기반 안내와 검색 기능을 제공한다. MobileNet SSD v2 전이학습, Firebase Storage 연동, Android에서 모델을 불러오는 작업을 수행했다. TensorFlow/TFLite 기반 추론을 모바일 사용 흐름과 연결했다. 충남대학교 캡스톤 프로젝트로 수행했다. 프로젝트 소개 이미지와 앱 화면에서 구현 결과를 확인할 수 있으며, 관련 수상 기록은 각각의 행사 노드로 연결했다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:blooming",
+    "label": "Blooming",
+    "text": "Blooming 이미지를 다른 스타일로 변환하는 웹 서비스. 내용 이미지와 원하는 스타일 이미지를 입력받아 두 특성을 결합한 결과를 생성하는 웹 서비스다. 결과 갤러리와 사진 검색 기능을 포함한다. React 프론트엔드와 Docker 구성, 클라우드 배포를 담당했다. 이미지 입력부터 변환 결과 확인까지 이어지는 사용자 화면과 배포 환경을 구성했다. 팀은 TensorFlow Hub의 이미지 스타일 변환 모델과 Flask API, MySQL, Gunicorn/Nginx 및 Docker 구성을 사용했다. 내 담당 범위는 프론트엔드와 배포 환경이다. 실리콘밸리부트캠프 교육 프로그램에 참여해 그곳에서 구성된 팀과 수행한 팀 프로젝트다.",
+    "type": "Project"
+  },
+  {
+    "id": "project:sobok",
+    "label": "소복소복",
+    "text": "소복소복 새해를 기념하는 롤링페이퍼 웹 서비스. 새해 덕담과 복을 주고받는 롤링페이퍼 웹 서비스다. 메시지 보내기와 회원가입, 로그인 및 로그아웃 기능을 제공한다. React 프론트엔드, Node.js/Express API, MongoDB 저장소를 연결하고 UI 디자인과 Netlify/Heroku 배포를 담당했다. 기존 프로젝트 화면을 통해 메시지를 주고받는 경험을 확인할 수 있다. 개인 사이드 프로젝트로 수행했다.",
+    "type": "Project"
+  },
+  {
+    "id": "article:customize",
+    "label": "AI 코딩 에이전트 커스터마이징",
+    "text": "AI 코딩 에이전트 커스터마이징 Instructions, Skills, Spec, Hooks의 차이와 관계를 정리한 공식문서 가이드. AI 코딩 에이전트를 프로젝트에 맞게 구성할 때 혼동하기 쉬운 Instructions, Skills, Spec, Hooks의 역할과 관계를 정리한다. Instructions는 따라야 할 행동 규칙, Skills는 필요할 때 불러 쓰는 재사용 작업 절차다. Spec은 만들어야 할 결과와 요구사항을 정의하고 Hooks는 특정 시점의 동작을 연결한다. 원고는 파일 배치 예시와 비교를 통해 각 요소를 언제 사용할지 설명한다. 연결된 목차에서 주제별로 탐색할 수 있다.",
+    "type": "Writing"
+  },
+  {
+    "id": "capability:architecture",
+    "label": "Agent Design & Development",
+    "text": "Agent Design & Development 에이전트의 역할, 도구 계약, 상태와 실행 흐름을 설계하고 SDK 기반 구현부터 플랫폼 구성까지 연결하는 역량. 에이전트별 책임과 도구 입출력, 공유할 상태와 실행 흐름을 설계하고 실제 동작하는 시스템으로 구현한다. 프레임워크와 SDK 활용은 이 역량을 구현하는 방법으로 다룬다. 플랫폼 구조와 온톨로지 기반 Skill 및 Workflow 구성도 같은 설계 및 개발 역량 안에서 설명한다. 사용 기술과 구체적인 수행 범위는 각 개인 기여 기록에 연결한다. AIONet의 SER 진단을 위한 Supervisor / Action / Report 구조를 설계하고 개발했다. 도구 구성과 구현을 맡아 가설 검토, 장비 점검과 결과 보고를 연결했다. KT 사내 과제에서 실행 기능, 업무 흐름과 플랫폼 구성의 전체 구조를 설계하고 개발하고 있다. 사내 플랫폼은 현재 개발 중이다. 업무 기능을 Skill 단위로 구분하고 Workflow로 연결하며, 온톨로지 기반 실행 흐름과 Playground의 실행 상태 확인을 구성했다. 시스템 간 API와 화면 연결은 별도의 시스템 통합 역량으로도 연결한다. 2인 팀에서 구조를 공동 설계하고 Recon 에이전트 개발과 FastAPI 및 React 통합을 담당했다. Microsoft Agent Framework와 GitHub Copilot SDK 활용은 이 프로젝트에서의 설계 및 구현 경험에 연결한다. 다른 프로젝트에도 같은 SDK를 사용했다고 추정하지 않는다.",
+    "type": "Capability"
+  },
+  {
+    "id": "capability:integration",
+    "label": "AI Platform & System Integration",
+    "text": "AI Platform & System Integration 에이전트 실행 기능과 업무 흐름을 API, 데이터 저장소, 사용자 화면으로 연결하는 플랫폼 및 시스템 통합 역량. 실행 상태와 결과가 API 및 사용자 화면에 전달되는 경계를 설계하고 통합 동작을 확인한다. 에이전트 실행 기능과 온톨로지 기반 Workflow를 플랫폼 API 및 화면으로 연결하는 구조를 설계하고 개발하고 있다. 사내 플랫폼은 아직 개발 중이다. 2인 팀에서 에이전트 구조를 공동 설계하고 Recon을 개발했다. FastAPI와 React를 통합해 분석 결과를 사용자가 확인하는 흐름으로 연결했다. PruPru의 Firebase Storage 및 온디바이스 모델 연동, 소복소복의 React와 Node.js/Express/MongoDB 구현은 데이터와 실행 기능을 사용자 화면에 연결한 경험이다.",
+    "type": "Capability"
+  },
+  {
+    "id": "contribution:rca",
+    "label": "RCA 구조와 도구 개발",
+    "text": "RCA 구조와 도구 개발 AIONet SER 진단의 Supervisor / Action / Report 구조 설계와 개발, 진단 도구 구성 및 구현을 담당. 동일 과제의 세부 업무 중 AIONet의 SER 장애 진단을 담당했다. AIONet 개발기에 공개된 Supervisor / Action / Report 에이전트 구조 설계와 개발, 진단 도구 구성 및 구현이 직접 수행한 업무다.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:preflight",
+    "label": "PreFlight Recon 및 통합",
+    "text": "PreFlight Recon 및 통합 PreFlight 구조 공동 설계, Recon 에이전트 개발과 FastAPI/React 통합을 담당했다. 에이전트 설계 및 개발과 시스템 통합 경험의 근거다. 2인 팀에서 PreFlight의 에이전트 구조를 공동 설계하고 Recon 에이전트를 개발했다. 에이전트 실행 기능을 FastAPI와 React에 연결하는 통합에 기여했다. 프로젝트 전체의 성과와 개인의 담당 범위를 구분한다. Policy 에이전트 전체를 단독으로 개발했다는 의미는 아니다. 에이전트의 역할과 실행 흐름을 함께 설계한 경험은 에이전트 구조 설계 역량의 근거다. Recon과 API 및 화면을 연결한 경험은 시스템 통합 역량의 근거다. 프로젝트 기술 목록에 기록된 Microsoft Agent Framework와 GitHub Copilot SDK, 본인이 확인한 SDK 활용 경험을 연결한다. SDK의 모든 기능을 구현하거나 숙련했다는 의미로 확대하지 않는다.",
+    "type": "Contribution"
+  },
+  {
+    "id": "education:snu",
+    "label": "Seoul National University",
+    "text": "Seoul National University 서울대학교 석사. Computer Science & Engineering, Computer System and Platform Laboratory. 컴퓨터공학 석사 과정에서 다변량 시계열 기반 인간 활동 인식을 연구했다. 연구 프로젝트와 학위논문을 별도 산출물로 연결해 학위 정보와 수행 내용을 함께 탐색할 수 있다.",
+    "type": "Education"
+  },
+  {
+    "id": "education:cnu",
+    "label": "Chungnam National University",
+    "text": "Chungnam National University 충남대학교 학사. Computer Vision Lab 및 Embedded System Lab 학부 인턴, S.P.G 활동. 컴퓨터공학 학부에서 Computer Vision Lab 및 Embedded System Lab 인턴 경험과 S.P.G 동아리 활동을 쌓았다. 모바일 비전과 웹 서비스 프로젝트의 기술적 배경이 되는 학부 경험이다.",
+    "type": "Education"
+  },
+  {
+    "id": "system:rca",
+    "label": "RCA Agent System",
+    "text": "RCA Agent System SER 장비 원인 분석을 위해 진단 조율, SOP 기반 점검과 결과 보고를 연결하는 에이전트 시스템.",
+    "type": "AgentSystem"
+  },
+  {
+    "id": "agent:supervisor",
+    "label": "Supervisor",
+    "text": "Supervisor 가설 상태와 진행을 관리하고 후속 작업을 판단하는 책임.",
+    "type": "Agent"
+  },
+  {
+    "id": "agent:action",
+    "label": "Action",
+    "text": "Action 장비별 도구 실행과 결과 수집 책임.",
+    "type": "Agent"
+  },
+  {
+    "id": "agent:report",
+    "label": "Report",
+    "text": "Report 관측과 판단을 보고서로 정리하는 책임.",
+    "type": "Agent"
+  },
+  {
+    "id": "tool:device",
+    "label": "Device inspection tools",
+    "text": "Device inspection tools 장비별 파라미터를 반영해 명령을 실행하고 반환 결과를 취합하는 도구.",
+    "type": "Tool"
+  },
+  {
+    "id": "technology:langgraph",
+    "label": "LangGraph",
+    "text": "LangGraph 상태와 실행 흐름을 그래프로 구성하는 에이전트 개발 프레임워크. 개인 활용 기술.",
+    "type": "Technology"
+  },
+  {
+    "id": "organization:kt",
+    "label": "KT",
+    "text": "KT 현재 재직 조직.",
+    "type": "Organization"
+  },
+  {
+    "id": "organization:sia",
+    "label": "SI Analytics",
+    "text": "SI Analytics 위성영상 의미분할 연구 인턴 경력의 소속.",
+    "type": "Organization"
+  },
+  {
+    "id": "organization:microsoft",
+    "label": "Microsoft Korea",
+    "text": "Microsoft Korea Agenthon 주최 및 PreFlight 소개 영상 발행 조직.",
+    "type": "Organization"
+  },
+  {
+    "id": "organization:snu",
+    "label": "Seoul National University",
+    "text": "Seoul National University 석사 및 연구원 경력의 교육기관.",
+    "type": "Organization"
+  },
+  {
+    "id": "organization:cnu",
+    "label": "Chungnam National University",
+    "text": "Chungnam National University 학부 교육기관.",
+    "type": "Organization"
+  },
+  {
+    "id": "experience:kt",
+    "label": "KT / 선임",
+    "text": "KT / 선임 AI Agent와 LLM 기반 시스템 연구개발. Network RCA Agent와 TraceBench를 주업무로 수행하고, 에이전트 플랫폼 과제 및 KT 소속 대외 활동을 진행. AX미래기술원 AX Data Lab 데이터Model팀에서 AI 에이전트의 구조 설계, 연구개발과 평가를 수행한다. AIONet의 SER 장애 진단 에이전트 구조와 도구를 설계하고 개발했다. 상세 프로젝트에서 공개된 시스템 구조와 공식 발표 성과를 확인할 수 있다. TraceBench의 평가 조건과 반복 가능한 실행 환경을 설계하고 있다. 평가 케이스는 아직 구성되지 않았다. 사내 에이전트 플랫폼 과제는 구조 설계와 개발 및 기능 통합을 진행 중이다. PreFlight에서 구조 공동 설계, Recon 개발과 FastAPI/React 통합을 맡았다. Microsoft AI Agenthon Pro-code 2위 수상, AI Tour Seoul 공동 발표와 Microsoft Korea 영상 출연으로 이어졌고 KT kode에 공동 개발기를 게재했다.",
+    "type": "Experience"
+  },
+  {
+    "id": "experience:snu",
+    "label": "SNU / Freelance Researcher",
+    "text": "SNU / Freelance Researcher HAR 석사 연구의 후속 연구에서 데이터 수집 플랫폼을 설계하고 구현했으며 Garmin 스마트워치 수집 앱을 고도화했다. 2024년 3월부터 7월까지 서울대학교 Freelance Researcher로 HAR 후속 연구를 수행했다. 데이터 수집 플랫폼을 설계하고 실제로 구현했다. 데이터 수집을 위한 Garmin 스마트워치 앱을 고도화했다. 석사 과정의 연구 기여와 졸업 이후 연구원으로 수행한 기여를 별도 기록으로 구분한다.",
+    "type": "Experience"
+  },
+  {
+    "id": "experience:sia",
+    "label": "SI Analytics / 연구 인턴",
+    "text": "SI Analytics / 연구 인턴 Semantic Segmentation 인턴. 위성영상 운량 산출을 위한 모델 연구개발. 위성영상 의미분할 모델을 연구한 인턴 경력이다. 운량 산출 프로젝트에서 모델과 학습 조건을 비교하고 추론 오류를 분석한 경험을 함께 탐색할 수 있다.",
+    "type": "Experience"
+  },
+  {
+    "id": "organization:spg",
+    "label": "S.P.G / Embedded Systems Club",
+    "text": "S.P.G / Embedded Systems Club 충남대학교 임베디드 시스템 동아리 활동. 2018-03 — 2021-12.",
+    "type": "Organization"
+  },
+  {
+    "id": "paper:har-thesis",
+    "label": "Deep Learning-based Human Activity Recognition with Multivariate Time Series Data",
+    "text": "Deep Learning-based Human Activity Recognition with Multivariate Time Series Data 다변량 시계열 데이터를 이용한 딥러닝 기반 인간 활동 인식. 웨어러블 센서 데이터와 딥러닝 모델을 활용한 석사 연구. 스마트워치에서 얻은 다변량 센서 시계열을 이용해 인간 활동을 인식하는 딥러닝 연구다. 데이터 수집과 전처리, 모델 학습과 비교, 평가 및 결과 분석으로 이어진다. 서울대학교 대학원 석사 학위논문으로 2024년 2월 작성되었다. 학위 유형은 제목과 별도로 표시하며, 연결된 Human Activity Recognition 프로젝트에서 연구 수행 내용을 확인할 수 있다. 현재 연결한 공개 자료는 학위논문 서지다. 본문 전체, 데이터셋 규모와 정량 성능은 확인된 원문을 확보한 뒤 추가한다.",
+    "type": "Paper"
+  },
+  {
+    "id": "event:agenthon2026",
+    "label": "Microsoft AI Agenthon 2026",
+    "text": "Microsoft AI Agenthon 2026 Microsoft의 AI 에이전트 개발 대회. PreFlight가 Pro-code 트랙에 참여했다.",
+    "type": "Event"
+  },
+  {
+    "id": "award:agenthon2026",
+    "label": "Agenthon / Pro-code 2등",
+    "text": "Agenthon / Pro-code 2등 PreFlight를 개발한 KT 내컴에선됨 팀의 Pro-code 트랙 2위 수상. Microsoft Korea 공식 영상 설명에서도 트랙과 순위를 확인했다.",
+    "type": "Award"
+  },
+  {
+    "id": "event:ai-tour2026",
+    "label": "Microsoft AI Tour Seoul 2026",
+    "text": "Microsoft AI Tour Seoul 2026 2026년 3월 26일 서울 코엑스에서 개최된 Microsoft AI Tour.",
+    "type": "Event"
+  },
+  {
+    "id": "presentation:preflight",
+    "label": "PreFlight / AI Tour Lightning Talk",
+    "text": "PreFlight / AI Tour Lightning Talk 설계 단계에서 정책 준수 여부와 잠재 위험을 함께 검토하는 PreFlight의 개발 경험을 소개한 공동 발표. 클라우드 아키텍처 설계 중 사내 정책과 잠재 위험을 함께 확인하도록 만든 PreFlight를 소개했다. 컴플라이언스 검토를 설계 흐름에 포함한 개발 경험을 공유하는 Lightning Talk다. Microsoft 카탈로그에 LTG137, 한국어, Bomin Kim과 Soyeong Kim 공동 발표로 기재되어 있다. 2026-03-26 14:00–14:15 KST, 코엑스 2층 컨퍼런스룸(북) 205에서 진행한 세션이다. 공식 세션의 리소스 영역에 LTG137_03262026_AI Tour Seoul_postshow.pptx가 제공된다. 상단 공식 세션 링크에서 원본 자료를 열 수 있다.",
+    "type": "Presentation"
+  },
+  {
+    "id": "media:preflight",
+    "label": "Microsoft Korea / PreFlight 영상",
+    "text": "Microsoft Korea / PreFlight 영상 Microsoft Korea의 마소코멘트 Agenthon편 KT 영상. 본인의 LinkedIn 게시물에서 출연을 직접 확인했다. Microsoft Korea의 마소코멘트 Agenthon KT 편. PreFlight를 만든 계기, 멀티에이전트 구성, 도입 이후 기대하는 변화와 확장 계획을 소개한다. 00:08 출연진 소개 / 01:08 현업에서의 AI 활용 / 02:20 개발 계기 / 03:18 이름의 의미 03:50 자동화 환경 구축 / 06:00 기대하는 변화 / 06:51 확장 계획 / 08:10 에이전톤에서 의미 있었던 부분 YouTube 본편과 Microsoft 공식 LinkedIn 소개 게시물을 함께 연결했다. 플랫폼별 링크는 같은 영상 콘텐츠의 배포 경로이며 별개 출연으로 중복 집계하지 않는다.",
+    "type": "Media"
+  },
+  {
+    "id": "writing:preflight-kode",
+    "label": "PreFlight 개발기 / KT kode",
+    "text": "PreFlight 개발기 / KT kode 배포 전 정책 및 실행 환경 검토를 위한 멀티에이전트 프로젝트의 공동 개발기. 김보민, 김소영 공동 작성. 설계 단계의 컴플라이언스 점검을 멀티에이전트 시스템으로 구현한 경험을 김보민, 김소영이 함께 정리한 개발기다. 아키텍처 입력을 분석 가능한 형태로 바꾸는 과정과 정책 검토, 위험 분석, 결과 통합으로 책임을 분리한 구조를 살펴볼 수 있다. GitHub Copilot SDK를 Recon 내부의 실행 엔진으로 활용해 환경 관찰, 점검 계획, CLI 실행, 결과 해석의 반복 흐름을 구성했다. 글에서는 상태 관리와 실패 처리까지 직접 만드는 부담, 그리고 권한 범위와 감사 로그를 보강할 필요성을 설명한다. PreFlight 프로젝트에서 내 구현 역할을, 공식 세션에서 발표 정보를, Microsoft Korea 영상에서 팀의 개발 계기와 확장 계획을 함께 확인할 수 있다.",
+    "type": "Writing"
+  },
+  {
+    "id": "award:ambient",
+    "label": "Ambient AI Competition / 최우수상",
+    "text": "Ambient AI Competition / 최우수상 서울대학교 데이터사이언스대학원 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "award:cnu-sw",
+    "label": "CNU 창의SW축전 / 우수상",
+    "text": "CNU 창의SW축전 / 우수상 충남대학교 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "award:cnu-capstone",
+    "label": "CNU Engineering Fair / 우수상",
+    "text": "CNU Engineering Fair / 우수상 충남대학교 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "award:tpc2021",
+    "label": "Thinking Programming Contest / 은상",
+    "text": "Thinking Programming Contest / 은상 충남대학교 AnA 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "award:cnu-ai",
+    "label": "CNU AI/SW Project Fair / 2등",
+    "text": "CNU AI/SW Project Fair / 2등 충남대학교 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "award:tpc2020",
+    "label": "Thinking Programming Contest / 동상",
+    "text": "Thinking Programming Contest / 동상 충남대학교 AnA 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "award:tpc2018",
+    "label": "Thinking Programming Contest / 신입생 2등",
+    "text": "Thinking Programming Contest / 신입생 2등 충남대학교 AnA 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "award:kosaf",
+    "label": "국가우수장학금 / 이공계",
+    "text": "국가우수장학금 / 이공계 KOSAF 수상 기록. LinkedIn 본인 기재 기준.",
+    "type": "Award"
+  },
+  {
+    "id": "credential:ai900",
+    "label": "AI-900 / Azure AI Fundamentals",
+    "text": "AI-900 / Azure AI Fundamentals Microsoft 발행. LinkedIn 자격증/수료증 항목 기준.",
+    "type": "Credential"
+  },
+  {
+    "id": "credential:cospro",
+    "label": "COS Pro 2급 / Python",
+    "text": "COS Pro 2급 / Python YBM 발행. LinkedIn 자격증/수료증 항목 기준.",
+    "type": "Credential"
+  },
+  {
+    "id": "credential:pcce",
+    "label": "PCCE / Python3",
+    "text": "PCCE / Python3 그렙(프로그래머스) 발행. LinkedIn 자격증/수료증 항목 기준.",
+    "type": "Credential"
+  },
+  {
+    "id": "credential:toeicspeaking",
+    "label": "TOEIC Speaking / AL 160",
+    "text": "TOEIC Speaking / AL 160 YBM 발행. LinkedIn 자격증/수료증 항목 기준.",
+    "type": "Credential"
+  },
+  {
+    "id": "credential:sqld",
+    "label": "SQL Developer",
+    "text": "SQL Developer 한국데이터산업진흥원 발행. LinkedIn 자격증/수료증 항목 기준.",
+    "type": "Credential"
+  },
+  {
+    "id": "organization:ax-institute",
+    "label": "AX미래기술원",
+    "text": "AX미래기술원 KT 내 에이전트 연구개발 업무의 소속 조직.",
+    "type": "Organization"
+  },
+  {
+    "id": "organization:ax-data-lab",
+    "label": "AX Data Lab",
+    "text": "AX Data Lab KT 내 에이전트 연구개발 업무의 소속 조직.",
+    "type": "Organization"
+  },
+  {
+    "id": "organization:data-model",
+    "label": "데이터Model팀",
+    "text": "데이터Model팀 KT 내 에이전트 연구개발 업무의 소속 조직.",
+    "type": "Organization"
+  },
+  {
+    "id": "organization:agent-part",
+    "label": "에이전트 파트",
+    "text": "에이전트 파트 KT 내 에이전트 연구개발 업무의 소속 조직.",
+    "type": "Organization"
+  },
+  {
+    "id": "capability:agent-evaluation",
+    "label": "Agent Evaluation",
+    "text": "Agent Evaluation 에이전트의 평가 조건과 반복 가능한 실행 환경을 설계하고, 실행 결과를 검토하는 역량. TraceBench에서 원인분석 에이전트의 응답 일관성과 평가 조건을 검토하고 반복 가능한 실행 환경을 설계한다. 평가 환경 설계 단계이며 평가 케이스는 아직 구성되지 않았다. 완성된 벤치마크 운영이나 모델 성능 비교 결과와 구분해 설계 경험을 제시한다.",
+    "type": "Capability"
+  },
+  {
+    "id": "capability:research-planning",
+    "label": "Research & Task Planning",
+    "text": "Research & Task Planning 현재 연구개발 경험을 바탕으로 후년도 과제를 제안하는 역량. KT 재직 중 후년도 과제 제안을 맡았다. 플랫폼 구조와 에이전트 연구개발 범위를 함께 고려해 다음 업무를 제안하는 역할이다.",
+    "type": "Capability"
+  },
+  {
+    "id": "contribution:tracebench",
+    "label": "TraceBench / 수행 역할",
+    "text": "TraceBench / 수행 역할 원인분석 에이전트의 평가 조건과 반복 가능한 실행 환경 설계. 평가 케이스 구성 전 단계.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:har",
+    "label": "Human Activity Recognition / 수행 역할",
+    "text": "Human Activity Recognition / 수행 역할 데이터 수집과 전처리, 모델 비교, 학습과 평가 및 결과 분석.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:sia",
+    "label": "Cloud Coverage Assessment / 수행 역할",
+    "text": "Cloud Coverage Assessment / 수행 역할 SIAnalytics에서 모델과 학습 조건 비교, 추론 오류 분석.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:yoco",
+    "label": "YOCO / 수행 역할",
+    "text": "YOCO / 수행 역할 데이터 라벨링과 모델 학습. 반지도학습 적용 경험.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:prupru",
+    "label": "PruPru / 수행 역할",
+    "text": "PruPru / 수행 역할 MobileNet SSD v2 전이학습, Firebase Storage 연동, Android 온디바이스 모델 로딩.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:blooming",
+    "label": "Blooming / 수행 역할",
+    "text": "Blooming / 수행 역할 Docker 구성, 클라우드 배포, React 프론트엔드.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:sobok",
+    "label": "소복소복 / 수행 역할",
+    "text": "소복소복 / 수행 역할 React 프론트엔드, Node.js/Express/MongoDB 백엔드, Netlify/Heroku 배포, UI 디자인.",
+    "type": "Contribution"
+  },
+  {
+    "id": "contribution:agent-platform",
+    "label": "에이전트 플랫폼 설계 업무",
+    "text": "에이전트 플랫폼 설계 업무 KT 사내 과제에서 에이전트 실행 기능과 업무 흐름, API와 사용자 화면을 연결하는 플랫폼 구조를 설계하고 개발. 에이전트의 실행 기능을 업무 흐름으로 구성하고 사용자가 실행 상태와 결과를 확인할 수 있는 플랫폼을 개발하고 있다. 에이전트와 플랫폼의 전체 구조 설계, 실행 기능과 업무 흐름 구성, 시스템 간 API와 화면의 통합을 수행한다. 업무 기능을 Skill 단위로 구분하고 Workflow로 연결한다. 도구의 입출력과 실행 상태를 정리하고, 온톨로지 기반 업무 흐름과 Playground의 실행 상태 확인을 구성한다. 사내 플랫폼은 개발 중이다. 현재까지의 기여는 구조 설계와 개발 및 기능 통합이며, 운영 규모나 사용자 도입 성과는 아직 제시하지 않는다.",
+    "type": "Contribution"
+  },
+  {
+    "id": "participation:agenthon2026",
+    "label": "MS AI Agenthon 참가 / KT 소속",
+    "text": "MS AI Agenthon 참가 / KT 소속 KT 소속 내컴에선됨 팀으로 PreFlight를 개발하고 Pro-code 트랙에 참가한 대외 활동.",
+    "type": "Participation"
+  },
+  {
+    "id": "organization:snu-gsds",
+    "label": "서울대학교 데이터사이언스대학원",
+    "text": "서울대학교 데이터사이언스대학원 YOCO가 참가한 교내 대회를 주최한 조직. 본인의 소속 연구실이나 대학원 수업과 구분한다.",
+    "type": "Organization"
+  },
+  {
+    "id": "event:ambient",
+    "label": "Ambient AI Competition",
+    "text": "Ambient AI Competition 서울대학교 데이터사이언스대학원이 주최한 교내 대회.",
+    "type": "Event"
+  },
+  {
+    "id": "participation:yoco",
+    "label": "YOCO / 교내 대회 참가",
+    "text": "YOCO / 교내 대회 참가 대학원 수업 및 소속 연구실과 별개로 참가한 서울대 교내 대회에서 YOCO를 수행. 서울대학교 데이터사이언스대학원이 주최한 교내 대회에 별도로 참가했다. 소속 연구실 과제나 대학원 수업 프로젝트로 분류하지 않는다.",
+    "type": "Participation"
+  },
+  {
+    "id": "program:silicon-valley-bootcamp",
+    "label": "실리콘밸리부트캠프",
+    "text": "실리콘밸리부트캠프 팀을 구성해 프로젝트를 수행한 교육 프로그램.",
+    "type": "Program"
+  },
+  {
+    "id": "participation:bootcamp",
+    "label": "실리콘밸리부트캠프 참여",
+    "text": "실리콘밸리부트캠프 참여 교육 프로그램에서 구성된 팀으로 Blooming 팀 프로젝트를 수행.",
+    "type": "Participation"
+  },
+  {
+    "id": "channel:tistory",
+    "label": "소소한 코딩일지 / Tistory",
+    "text": "소소한 코딩일지 / Tistory 김소영이 소유하고 운영하는 최초의 개인 기술 블로그. 기술 학습, 논문 리뷰와 공부 과정을 기록한다. 논문 리뷰, 개발 도구와 공식 문서 정리, 알고리즘 및 학교 공부 기록을 모은다. 포트폴리오와 관련된 글을 선별해 이곳의 역량 및 지식 주제와 연결한다. GitHub 사이트는 이력, 경력, 담당 직무, 수행한 기여와 역량을 중심으로 구성한다. 기존 GitHub 기술 글을 Tistory로 옮길지는 검토 중이며, 현재 글과 주소는 유지한다.",
+    "type": "PublicationChannel"
+  },
+  {
+    "id": "writing:tistory-copilot",
+    "label": "GitHub Copilot SDK",
+    "text": "GitHub Copilot SDK Copilot SDK의 에이전트 실행 구조, 사용자 도구, MCP 연결과 Microsoft Agent Framework 연동을 정리한 기술 글. Copilot CLI와 SDK 사이의 JSON-RPC 구조, 세션 생성, 사용자 도구와 MCP 서버 연결을 코드 예제로 정리했다. Microsoft Agent Framework 연동과 LangGraph 비교를 통해 에이전트 실행 엔진을 애플리케이션에 통합하는 방식을 살펴본다. 기술 학습 기록이며, 이 글 자체를 프로젝트 납품이나 업무 성과로 간주하지 않는다.",
+    "type": "Writing"
+  },
+  {
+    "id": "review:tistory-handbook",
+    "label": "HANDBOOK.md / 논문 리뷰",
+    "text": "HANDBOOK.md / 논문 리뷰 장기 작업에서 에이전트가 정책과 상시 지침을 지키는지 평가하는 외부 연구를 읽고 정리한 리뷰. 업무 완료와 규칙 준수를 구분하고, 긴 지침을 여러 단계의 도구 호출 동안 지속적으로 적용하는 문제를 정리했다. 최종 보고 대신 실제 환경 상태를 검증하는 채점 방식, 금지 행동 평가, 도구 호출 직전의 통제 장치와 대표 실패 유형을 살펴본다.",
+    "type": "Review"
+  },
+  {
+    "id": "channel:github",
+    "label": "Soyeong / GitHub Portfolio",
+    "text": "Soyeong / GitHub Portfolio 김소영이 소유하고 운영하는 개인 포트폴리오. 경력, 수행한 프로젝트, 개인 기여와 역량을 연결한다.",
+    "type": "PublicationChannel"
+  },
+  {
+    "id": "channel:kode",
+    "label": "KT kode",
+    "text": "KT kode KT의 기술 블로그. PreFlight 공동 개발기가 게시된 공간.",
+    "type": "PublicationChannel"
+  },
+  {
+    "id": "contribution:har-followup",
+    "label": "HAR 후속 연구 / 데이터 수집 플랫폼",
+    "text": "HAR 후속 연구 / 데이터 수집 플랫폼 데이터 수집 플랫폼 설계와 구현, Garmin 스마트워치 데이터 수집 앱 고도화. HAR 석사 연구의 후속 작업으로 데이터 수집 플랫폼을 설계하고 구현했다. 연구 데이터 수집을 위한 Garmin 스마트워치 앱을 고도화했다.",
+    "type": "Contribution"
+  },
+  {
+    "id": "capability:ml-research",
+    "label": "ML Research & Experimentation",
+    "text": "ML Research & Experimentation 데이터 준비, 모델 학습과 비교, 추론 오류 및 실험 결과를 분석하는 역량. HAR에서 데이터 수집과 전처리, 모델 비교와 평가를 수행했다. SI Analytics에서는 의미분할 모델과 학습 조건을 비교하고 추론 오류를 분석했다. YOCO에서는 데이터 라벨링과 모델 학습을, PruPru에서는 전이학습을 수행했다.",
+    "type": "Capability"
+  },
+  {
+    "id": "capability:data-platform",
+    "label": "Data Collection Platform",
+    "text": "Data Collection Platform 연구 데이터를 수집하기 위한 플랫폼을 설계하고 구현하는 역량. 서울대 연구원 경력에서 HAR 후속 연구용 데이터 수집 플랫폼을 설계하고 실제로 구현했다.",
+    "type": "Capability"
+  },
+  {
+    "id": "capability:wearable-app",
+    "label": "Wearable App Development",
+    "text": "Wearable App Development 스마트워치에서 연구 데이터를 수집하는 앱을 개선하는 역량. HAR 후속 연구의 데이터 수집을 위해 Garmin 스마트워치 앱을 고도화했다.",
+    "type": "Capability"
+  },
+  {
+    "id": "capability:web-development",
+    "label": "Web Application Development",
+    "text": "Web Application Development 사용자 화면과 웹 API 및 데이터 저장 기능을 구현하는 역량. Blooming에서 React 프론트엔드를 담당했고, 소복소복에서 React 화면과 Node.js/Express/MongoDB 백엔드 및 UI 디자인을 수행했다.",
+    "type": "Capability"
+  },
+  {
+    "id": "capability:deployment",
+    "label": "Application Deployment",
+    "text": "Application Deployment 애플리케이션의 실행 환경을 구성하고 서비스를 배포하는 역량. Blooming에서 Docker 구성과 클라우드 배포를, 소복소복에서 Netlify/Heroku 배포를 수행했다.",
+    "type": "Capability"
+  },
+  {
+    "id": "technology:python",
+    "label": "Python",
+    "text": "Python 연구개발과 구현에 활용하는 프로그래밍 언어.",
+    "type": "Technology"
+  },
+  {
+    "id": "section:agent-customize/overview",
+    "label": "개요",
+    "text": "개요 agent-customize 글의 개요 섹션.",
+    "type": "Section"
+  },
+  {
+    "id": "section:agent-customize/instructions",
+    "label": "Instructions",
+    "text": "Instructions agent-customize 글의 Instructions 섹션.",
+    "type": "Section"
+  },
+  {
+    "id": "section:agent-customize/skills",
+    "label": "Skills",
+    "text": "Skills agent-customize 글의 Skills 섹션.",
+    "type": "Section"
+  },
+  {
+    "id": "section:agent-customize/spec",
+    "label": "Spec",
+    "text": "Spec agent-customize 글의 Spec 섹션.",
+    "type": "Section"
+  },
+  {
+    "id": "section:agent-customize/hooks",
+    "label": "Hooks",
+    "text": "Hooks agent-customize 글의 Hooks 섹션.",
+    "type": "Section"
+  },
+  {
+    "id": "section:agent-customize/comparison",
+    "label": "한눈에 보기",
+    "text": "한눈에 보기 agent-customize 글의 한눈에 보기 섹션.",
+    "type": "Section"
+  },
+  {
+    "id": "section:agent-customize/references",
+    "label": "참고 링크",
+    "text": "참고 링크 agent-customize 글의 참고 링크 섹션.",
+    "type": "Section"
+  },
+  {
+    "id": "technology:microsoft-agent-framework",
+    "label": "Microsoft Agent Framework",
+    "text": "Microsoft Agent Framework 현재 블로그의 프로젝트 기술 목록에 기록된 Microsoft Agent Framework.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:github-copilot-sdk",
+    "label": "Github Copilot SDK",
+    "text": "Github Copilot SDK 현재 블로그의 프로젝트 기술 목록에 기록된 Github Copilot SDK.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:docker",
+    "label": "Docker",
+    "text": "Docker 현재 블로그의 프로젝트 기술 목록에 기록된 Docker.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:react",
+    "label": "React",
+    "text": "React 현재 블로그의 프로젝트 기술 목록에 기록된 React.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:fastapi",
+    "label": "FastAPI",
+    "text": "FastAPI 현재 블로그의 프로젝트 기술 목록에 기록된 FastAPI.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:tensorflow",
+    "label": "Tensorflow",
+    "text": "Tensorflow 현재 블로그의 프로젝트 기술 목록에 기록된 Tensorflow.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:garmin",
+    "label": "Garmin",
+    "text": "Garmin 현재 블로그의 프로젝트 기술 목록에 기록된 Garmin.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:ub-teacher-v2",
+    "label": "ub-teacher v2",
+    "text": "ub-teacher v2 현재 블로그의 프로젝트 기술 목록에 기록된 ub-teacher v2.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:tflite",
+    "label": "TFLite",
+    "text": "TFLite 현재 블로그의 프로젝트 기술 목록에 기록된 TFLite.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:firebase",
+    "label": "Firebase",
+    "text": "Firebase 현재 블로그의 프로젝트 기술 목록에 기록된 Firebase.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:android-studio",
+    "label": "Android Studio",
+    "text": "Android Studio 현재 블로그의 프로젝트 기술 목록에 기록된 Android Studio.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:flask",
+    "label": "Flask",
+    "text": "Flask 현재 블로그의 프로젝트 기술 목록에 기록된 Flask.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:gunicorn",
+    "label": "Gunicorn",
+    "text": "Gunicorn 현재 블로그의 프로젝트 기술 목록에 기록된 Gunicorn.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:mysql",
+    "label": "MySQL",
+    "text": "MySQL 현재 블로그의 프로젝트 기술 목록에 기록된 MySQL.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:nginx",
+    "label": "Nginx",
+    "text": "Nginx 현재 블로그의 프로젝트 기술 목록에 기록된 Nginx.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:gcp",
+    "label": "GCP",
+    "text": "GCP 현재 블로그의 프로젝트 기술 목록에 기록된 GCP.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:aws",
+    "label": "AWS",
+    "text": "AWS 현재 블로그의 프로젝트 기술 목록에 기록된 AWS.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:node-js",
+    "label": "Node.js",
+    "text": "Node.js 현재 블로그의 프로젝트 기술 목록에 기록된 Node.js.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:express",
+    "label": "Express",
+    "text": "Express 현재 블로그의 프로젝트 기술 목록에 기록된 Express.",
+    "type": "Technology"
+  },
+  {
+    "id": "technology:mongodb",
+    "label": "MongoDB",
+    "text": "MongoDB 현재 블로그의 프로젝트 기술 목록에 기록된 MongoDB.",
+    "type": "Technology"
+  },
+  {
+    "id": "system:preflight",
+    "label": "PreFlight Agent System",
+    "text": "PreFlight Agent System Bicep으로 구조화한 아키텍처를 Policy와 Recon이 분석하고 Reporter가 통합하는 시스템.",
+    "type": "AgentSystem"
+  },
+  {
+    "id": "agent:policy",
+    "label": "Policy",
+    "text": "Policy 정책 정합성 검토",
+    "type": "Agent"
+  },
+  {
+    "id": "agent:recon",
+    "label": "Recon",
+    "text": "Recon 잠재 위험 분석",
+    "type": "Agent"
+  },
+  {
+    "id": "agent:reporter",
+    "label": "Reporter",
+    "text": "Reporter 보고서 통합",
+    "type": "Agent"
+  }
+]

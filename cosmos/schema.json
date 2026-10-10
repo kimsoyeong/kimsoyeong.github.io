@@ -1,0 +1,577 @@
+{
+  "version": "1.0",
+  "types": [
+    "Agent",
+    "AgentSystem",
+    "Award",
+    "Capability",
+    "Concept",
+    "Contribution",
+    "Credential",
+    "Education",
+    "Event",
+    "Experience",
+    "ExternalPublication",
+    "ExternalWriting",
+    "Media",
+    "Organization",
+    "Paper",
+    "Participation",
+    "Patent",
+    "Person",
+    "Presentation",
+    "Program",
+    "Project",
+    "PublicationChannel",
+    "Review",
+    "RoleAssignment",
+    "Section",
+    "Technology",
+    "Tool",
+    "Writing"
+  ],
+  "predicates": {
+    "owns": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "PublicationChannel"
+      ]
+    },
+    "workedAt": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "studiedAt": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "participatedIn": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Event",
+        "Program"
+      ]
+    },
+    "atInstitution": {
+      "domain": [
+        "Education"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "researchProject": {
+      "domain": [
+        "Education"
+      ],
+      "range": [
+        "Project"
+      ]
+    },
+    "hasSection": {
+      "domain": [
+        "Review",
+        "Writing"
+      ],
+      "range": [
+        "Section"
+      ]
+    },
+    "issuedBy": {
+      "domain": [
+        "Award",
+        "Credential"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "implemented": {
+      "domain": [
+        "Contribution"
+      ],
+      "range": [
+        "Agent",
+        "AgentSystem",
+        "Tool"
+      ]
+    },
+    "coversTechnology": {
+      "domain": [
+        "Review",
+        "Writing"
+      ],
+      "range": [
+        "Technology"
+      ]
+    },
+    "appliesTechnology": {
+      "domain": [
+        "Capability"
+      ],
+      "range": [
+        "Technology"
+      ]
+    },
+    "publishedIn": {
+      "domain": [
+        "Review",
+        "Writing"
+      ],
+      "range": [
+        "PublicationChannel"
+      ]
+    },
+    "partOf": {
+      "domain": [
+        "Organization"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "hasRole": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "RoleAssignment"
+      ]
+    },
+    "hasParticipation": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Participation"
+      ]
+    },
+    "duringExperience": {
+      "domain": [
+        "Contribution",
+        "Media",
+        "Participation",
+        "Presentation",
+        "RoleAssignment",
+        "Writing"
+      ],
+      "range": [
+        "Experience"
+      ]
+    },
+    "duringEducation": {
+      "domain": [
+        "Contribution"
+      ],
+      "range": [
+        "Education"
+      ]
+    },
+    "duringParticipation": {
+      "domain": [
+        "Contribution"
+      ],
+      "range": [
+        "Participation"
+      ]
+    },
+    "producedDuring": {
+      "domain": [
+        "Paper"
+      ],
+      "range": [
+        "Education"
+      ]
+    },
+    "withProject": {
+      "domain": [
+        "Participation"
+      ],
+      "range": [
+        "Project"
+      ]
+    },
+    "inProgram": {
+      "domain": [
+        "Participation"
+      ],
+      "range": [
+        "Program"
+      ]
+    },
+    "appliesConcept": {
+      "domain": [
+        "Capability"
+      ],
+      "range": [
+        "Concept"
+      ]
+    },
+    "about": {
+      "domain": [
+        "Paper",
+        "Project",
+        "Review",
+        "Writing"
+      ],
+      "range": [
+        "Concept"
+      ]
+    },
+    "broader": {
+      "domain": [
+        "Concept"
+      ],
+      "range": [
+        "Concept"
+      ]
+    },
+    "hasContribution": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Contribution"
+      ]
+    },
+    "workedOn": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Project"
+      ]
+    },
+    "inProject": {
+      "domain": [
+        "Contribution"
+      ],
+      "range": [
+        "Project"
+      ]
+    },
+    "hasCapability": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Capability"
+      ]
+    },
+    "demonstrates": {
+      "domain": [
+        "Contribution",
+        "Experience",
+        "RoleAssignment"
+      ],
+      "range": [
+        "Capability"
+      ]
+    },
+    "hasEducation": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Education"
+      ]
+    },
+    "authored": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Paper",
+        "Review",
+        "Writing"
+      ]
+    },
+    "realizes": {
+      "domain": [
+        "Project"
+      ],
+      "range": [
+        "AgentSystem"
+      ]
+    },
+    "hasAgent": {
+      "domain": [
+        "AgentSystem"
+      ],
+      "range": [
+        "Agent"
+      ]
+    },
+    "invokes": {
+      "domain": [
+        "Agent"
+      ],
+      "range": [
+        "Tool"
+      ]
+    },
+    "usesTechnology": {
+      "domain": [
+        "AgentSystem",
+        "Contribution",
+        "Person",
+        "Project",
+        "Tool"
+      ],
+      "range": [
+        "Technology"
+      ]
+    },
+    "reviews": {
+      "domain": [
+        "Review"
+      ],
+      "range": [
+        "ExternalPublication",
+        "ExternalWriting"
+      ]
+    },
+    "preparedDisclosure": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Patent"
+      ]
+    },
+    "documents": {
+      "domain": [
+        "Paper",
+        "Patent",
+        "Writing"
+      ],
+      "range": [
+        "Project"
+      ]
+    },
+    "hasExperience": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Experience"
+      ]
+    },
+    "atOrganization": {
+      "domain": [
+        "Experience",
+        "RoleAssignment"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "memberOf": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "receivedAward": {
+      "domain": [
+        "Participation",
+        "Person",
+        "Project"
+      ],
+      "range": [
+        "Award"
+      ]
+    },
+    "atEvent": {
+      "domain": [
+        "Award",
+        "Participation",
+        "Presentation"
+      ],
+      "range": [
+        "Event"
+      ]
+    },
+    "organizedBy": {
+      "domain": [
+        "Event"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "presented": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Presentation"
+      ]
+    },
+    "presentsProject": {
+      "domain": [
+        "Presentation"
+      ],
+      "range": [
+        "Project"
+      ]
+    },
+    "appearedIn": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Media"
+      ]
+    },
+    "featuresProject": {
+      "domain": [
+        "Media"
+      ],
+      "range": [
+        "Project"
+      ]
+    },
+    "publishedBy": {
+      "domain": [
+        "Media",
+        "PublicationChannel"
+      ],
+      "range": [
+        "Organization"
+      ]
+    },
+    "hasCredential": {
+      "domain": [
+        "Person"
+      ],
+      "range": [
+        "Credential"
+      ]
+    }
+  },
+  "nodeFields": [
+    "activityKind",
+    "aliases",
+    "anchor",
+    "applicationNumber",
+    "articleId",
+    "authors",
+    "category",
+    "contentKind",
+    "date",
+    "datePrecision",
+    "degreeName",
+    "details",
+    "duration",
+    "endDate",
+    "evidenceIds",
+    "expiresAt",
+    "fullTitle",
+    "gpa",
+    "headline",
+    "id",
+    "issuer",
+    "label",
+    "links",
+    "location",
+    "media",
+    "observedAt",
+    "origin",
+    "patentNumber",
+    "publicationType",
+    "rank",
+    "references",
+    "role",
+    "sessionCode",
+    "slug",
+    "speakers",
+    "startDate",
+    "startDateLabel",
+    "status",
+    "statusAsOf",
+    "subtitle",
+    "summary",
+    "supersedes",
+    "teamMembers",
+    "time",
+    "track",
+    "type",
+    "url",
+    "urlLabel",
+    "validFrom",
+    "validTo",
+    "venue",
+    "verification",
+    "visibility"
+  ],
+  "edgeFields": [
+    "assertionStatus",
+    "basisPaths",
+    "evidenceIds",
+    "id",
+    "observedAt",
+    "origin",
+    "predicate",
+    "source",
+    "supersedes",
+    "target",
+    "validFrom",
+    "validTo",
+    "visibility"
+  ],
+  "sourceFields": [
+    "label",
+    "observedAt",
+    "visibility",
+    "url",
+    "verification",
+    "sha256",
+    "sourceHash",
+    "path",
+    "kind",
+    "status",
+    "version",
+    "span"
+  ],
+  "detailFields": [
+    "title",
+    "paragraphs"
+  ],
+  "mediaFields": [
+    "date",
+    "featured",
+    "kind",
+    "layout",
+    "playbackVerified",
+    "profilePriority",
+    "sourceId",
+    "title",
+    "url",
+    "videoId"
+  ],
+  "linkFields": [
+    "label",
+    "url"
+  ],
+  "referenceFields": [
+    "authors",
+    "kind",
+    "title",
+    "url"
+  ]
+}

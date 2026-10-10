@@ -27,3 +27,10 @@ yarn-error.log*
 
 SKILL.md
 CLAUDE.md
+# Local ontology input, review and history (never publish)
+.cosmos/
+cosmos/inbox/
+**/__pycache__/
+*.egg-info/
+**/.pytest_cache/
+/packages/cosmos-engine/build/

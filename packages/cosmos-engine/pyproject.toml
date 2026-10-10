@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "soyeong-cosmos-engine"
+version = "1.0.0"
+description = "Evidence-backed ontology updates for static Cosmos portfolios"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+cosmos = "cosmos_engine.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["cosmos_engine*"]
+
+[tool.setuptools.package-data]
+cosmos_engine = ["codex-extract.mjs", "studio/*.html", "studio/*.css", "studio/*.js"]
