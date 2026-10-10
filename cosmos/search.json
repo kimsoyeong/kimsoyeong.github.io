@@ -92,7 +92,7 @@
   {
     "id": "article:customize",
     "label": "AI 코딩 에이전트 커스터마이징",
-    "text": "AI 코딩 에이전트 커스터마이징 Instructions, Skills, Spec, Hooks의 차이와 관계를 정리한 공식문서 가이드. AI 코딩 에이전트를 프로젝트에 맞게 구성할 때 혼동하기 쉬운 Instructions, Skills, Spec, Hooks의 역할과 관계를 정리한다. Instructions는 따라야 할 행동 규칙, Skills는 필요할 때 불러 쓰는 재사용 작업 절차다. Spec은 만들어야 할 결과와 요구사항을 정의하고 Hooks는 특정 시점의 동작을 연결한다. 원고는 파일 배치 예시와 비교를 통해 각 요소를 언제 사용할지 설명한다. 연결된 목차에서 주제별로 탐색할 수 있다.",
+    "text": "AI 코딩 에이전트 커스터마이징 Instructions, Skills, Spec, Hooks의 차이와 관계를 정리한 공식문서 가이드. AI 코딩 에이전트를 프로젝트에 맞게 구성할 때 혼동하기 쉬운 Instructions, Skills, Spec, Hooks의 역할과 관계를 정리한다. Instructions는 따라야 할 행동 규칙, Skills는 필요할 때 불러 쓰는 재사용 작업 절차다. Spec은 만들어야 할 결과와 요구사항을 정의하고 Hooks는 특정 시점의 동작을 연결한다. 원고는 파일 배치 예시와 비교를 통해 각 요소를 언제 사용할지 설명한다. 이 포트폴리오에는 작성 기록과 요약을 남기며, 본문은 공개하지 않는다.",
     "type": "Writing"
   },
   {
@@ -532,48 +532,6 @@
     "label": "Python",
     "text": "Python 연구개발과 구현에 활용하는 프로그래밍 언어.",
     "type": "Technology"
-  },
-  {
-    "id": "section:agent-customize/overview",
-    "label": "개요",
-    "text": "개요 agent-customize 글의 개요 섹션.",
-    "type": "Section"
-  },
-  {
-    "id": "section:agent-customize/instructions",
-    "label": "Instructions",
-    "text": "Instructions agent-customize 글의 Instructions 섹션.",
-    "type": "Section"
-  },
-  {
-    "id": "section:agent-customize/skills",
-    "label": "Skills",
-    "text": "Skills agent-customize 글의 Skills 섹션.",
-    "type": "Section"
-  },
-  {
-    "id": "section:agent-customize/spec",
-    "label": "Spec",
-    "text": "Spec agent-customize 글의 Spec 섹션.",
-    "type": "Section"
-  },
-  {
-    "id": "section:agent-customize/hooks",
-    "label": "Hooks",
-    "text": "Hooks agent-customize 글의 Hooks 섹션.",
-    "type": "Section"
-  },
-  {
-    "id": "section:agent-customize/comparison",
-    "label": "한눈에 보기",
-    "text": "한눈에 보기 agent-customize 글의 한눈에 보기 섹션.",
-    "type": "Section"
-  },
-  {
-    "id": "section:agent-customize/references",
-    "label": "참고 링크",
-    "text": "참고 링크 agent-customize 글의 참고 링크 섹션.",
-    "type": "Section"
   },
   {
     "id": "technology:microsoft-agent-framework",

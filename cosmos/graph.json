@@ -1805,83 +1805,6 @@
     {
       "assertionStatus": "sourced",
       "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "relation:195",
-      "predicate": "hasSection",
-      "source": "article:customize",
-      "target": "section:agent-customize/overview",
-      "visibility": "public"
-    },
-    {
-      "assertionStatus": "sourced",
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "relation:196",
-      "predicate": "hasSection",
-      "source": "article:customize",
-      "target": "section:agent-customize/instructions",
-      "visibility": "public"
-    },
-    {
-      "assertionStatus": "sourced",
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "relation:197",
-      "predicate": "hasSection",
-      "source": "article:customize",
-      "target": "section:agent-customize/skills",
-      "visibility": "public"
-    },
-    {
-      "assertionStatus": "sourced",
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "relation:198",
-      "predicate": "hasSection",
-      "source": "article:customize",
-      "target": "section:agent-customize/spec",
-      "visibility": "public"
-    },
-    {
-      "assertionStatus": "sourced",
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "relation:199",
-      "predicate": "hasSection",
-      "source": "article:customize",
-      "target": "section:agent-customize/hooks",
-      "visibility": "public"
-    },
-    {
-      "assertionStatus": "sourced",
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "relation:200",
-      "predicate": "hasSection",
-      "source": "article:customize",
-      "target": "section:agent-customize/comparison",
-      "visibility": "public"
-    },
-    {
-      "assertionStatus": "sourced",
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "relation:201",
-      "predicate": "hasSection",
-      "source": "article:customize",
-      "target": "section:agent-customize/references",
-      "visibility": "public"
-    },
-    {
-      "assertionStatus": "sourced",
-      "evidenceIds": [
         "repo-projects"
       ],
       "id": "relation:202",
@@ -3515,7 +3438,7 @@
         {
           "paragraphs": [
             "Instructions는 따라야 할 행동 규칙, Skills는 필요할 때 불러 쓰는 재사용 작업 절차다. Spec은 만들어야 할 결과와 요구사항을 정의하고 Hooks는 특정 시점의 동작을 연결한다.",
-            "원고는 파일 배치 예시와 비교를 통해 각 요소를 언제 사용할지 설명한다. 연결된 목차에서 주제별로 탐색할 수 있다."
+            "원고는 파일 배치 예시와 비교를 통해 각 요소를 언제 사용할지 설명한다. 이 포트폴리오에는 작성 기록과 요약을 남기며, 본문은 공개하지 않는다."
           ],
           "title": "네 가지 구성 요소"
         }
@@ -3535,7 +3458,6 @@
           "url": "assets/agent-customize.svg"
         }
       ],
-      "slug": "agent-customize",
       "summary": "Instructions, Skills, Spec, Hooks의 차이와 관계를 정리한 공식문서 가이드.",
       "type": "Writing",
       "visibility": "public"
@@ -4988,97 +4910,6 @@
       "visibility": "public"
     },
     {
-      "anchor": "overview",
-      "articleId": "article:customize",
-      "details": [],
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "section:agent-customize/overview",
-      "label": "개요",
-      "summary": "agent-customize 글의 개요 섹션.",
-      "type": "Section",
-      "visibility": "public"
-    },
-    {
-      "anchor": "instructions",
-      "articleId": "article:customize",
-      "details": [],
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "section:agent-customize/instructions",
-      "label": "Instructions",
-      "summary": "agent-customize 글의 Instructions 섹션.",
-      "type": "Section",
-      "visibility": "public"
-    },
-    {
-      "anchor": "skills",
-      "articleId": "article:customize",
-      "details": [],
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "section:agent-customize/skills",
-      "label": "Skills",
-      "summary": "agent-customize 글의 Skills 섹션.",
-      "type": "Section",
-      "visibility": "public"
-    },
-    {
-      "anchor": "spec",
-      "articleId": "article:customize",
-      "details": [],
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "section:agent-customize/spec",
-      "label": "Spec",
-      "summary": "agent-customize 글의 Spec 섹션.",
-      "type": "Section",
-      "visibility": "public"
-    },
-    {
-      "anchor": "hooks",
-      "articleId": "article:customize",
-      "details": [],
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "section:agent-customize/hooks",
-      "label": "Hooks",
-      "summary": "agent-customize 글의 Hooks 섹션.",
-      "type": "Section",
-      "visibility": "public"
-    },
-    {
-      "anchor": "comparison",
-      "articleId": "article:customize",
-      "details": [],
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "section:agent-customize/comparison",
-      "label": "한눈에 보기",
-      "summary": "agent-customize 글의 한눈에 보기 섹션.",
-      "type": "Section",
-      "visibility": "public"
-    },
-    {
-      "anchor": "references",
-      "articleId": "article:customize",
-      "details": [],
-      "evidenceIds": [
-        "repo-posts"
-      ],
-      "id": "section:agent-customize/references",
-      "label": "참고 링크",
-      "summary": "agent-customize 글의 참고 링크 섹션.",
-      "type": "Section",
-      "visibility": "public"
-    },
-    {
       "details": [],
       "evidenceIds": [
         "repo-projects"
@@ -5476,7 +5307,7 @@
       "visibility": "public"
     },
     "repo-posts": {
-      "label": "현재 체크아웃 Freeform 원고 (배포 여부 미확인)",
+      "label": "기존 블로그 원고 (로컬 보관)",
       "observedAt": "2026-10-08",
       "visibility": "public"
     },
