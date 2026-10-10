@@ -130,3 +130,5 @@
 .cosmos-page .detail-section h3{font-size:14px;color:#695587}.cosmos-page .technology-tags{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 18px}.cosmos-page .technology-tags button{padding:5px 10px;border-radius:20px;background:#eeebf3;color:#5e5072;font-size:11px}
 
 .cosmos-page .profile-links .resource-link{color:#7352ad;text-decoration:underline;text-underline-offset:4px}
+
+.cosmos-page .spacing-control{display:flex;align-items:center;gap:7px;padding:0 8px;font-size:9px;color:var(--muted);white-space:nowrap}.cosmos-page .spacing-control input{width:86px;accent-color:#bda7f5}.cosmos-page .spacing-control output{min-width:32px;text-align:right;color:var(--fg);font:9px monospace}@media(max-width:760px){.cosmos-page .spacing-control{order:1;width:100%;justify-content:center;padding:2px 8px}.cosmos-page .spacing-control input{width:min(38vw,140px)}}

@@ -15,15 +15,18 @@ export function randomGenerator(seed = 29) {
     return seed / 4294967296;
   };
 }
-export function project(p, yaw, pitch, zoom, width, height, centerX = width / 2, centerY = height / 2) {
+export function project(p, yaw, pitch, zoom, width, height, centerX = width / 2, centerY = height / 2, pointScale = 1) {
   const cy = Math.cos(yaw),
     sy = Math.sin(yaw),
     cx = Math.cos(pitch),
     sx = Math.sin(pitch);
-  const x = p.x * cy + p.z * sy,
-    z = -p.x * sy + p.z * cy,
-    y = p.y * cx - z * sx,
-    depth = p.y * sx + z * cx;
+  const px = p.x * pointScale,
+    py = p.y * pointScale,
+    pz = p.z * pointScale,
+    x = px * cy + pz * sy,
+    z = -px * sy + pz * cy,
+    y = py * cx - z * sx,
+    depth = py * sx + z * cx;
   const scale = 900 / (900 + depth) * zoom;
   return {
     x: centerX + x * scale,
@@ -33,9 +36,9 @@ export function project(p, yaw, pitch, zoom, width, height, centerX = width / 2,
   };
 }
 // Invert camera rotation at fixed depth so a node follows the pointer at any viewpoint.
-export function moveInView(node, dx, dy, yaw, pitch, scale) {
-  const x = dx / scale,
-    y = dy / scale;
+export function moveInView(node, dx, dy, yaw, pitch, scale, pointScale = 1) {
+  const x = dx / (scale * pointScale),
+    y = dy / (scale * pointScale);
   node.x += x * Math.cos(yaw) + y * Math.sin(pitch) * Math.sin(yaw);
   node.y += y * Math.cos(pitch);
   node.z += x * Math.sin(yaw) - y * Math.sin(pitch) * Math.cos(yaw);

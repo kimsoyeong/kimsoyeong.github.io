@@ -42,7 +42,7 @@ const markup = `
  </aside>
  <aside id="inspector" hidden aria-label="선택한 노드의 상세 정보"></aside>
  <div id="node-tooltip" role="status" hidden></div>
- <div class="graph-tools" aria-label="시점 조작"><button data-action="left" aria-label="왼쪽으로 회전">↶</button><button data-action="right" aria-label="오른쪽으로 회전">↷</button><span></span><button data-action="zoom-in" aria-label="확대">+</button><button data-action="zoom-out" aria-label="축소">−</button><span></span><button data-action="reset">시점 초기화</button><button data-action="spin" aria-pressed="false">자동 회전</button><button data-action="edges" aria-pressed="true">연결선 켜짐</button><button data-action="list">목록 보기</button></div>
+ <div class="graph-tools" aria-label="시점 조작"><button data-action="left" aria-label="왼쪽으로 회전">↶</button><button data-action="right" aria-label="오른쪽으로 회전">↷</button><span></span><button data-action="zoom-in" aria-label="확대">+</button><button data-action="zoom-out" aria-label="축소">−</button><label class="spacing-control"><span>노드 간격</span><input id="node-spacing" type="range" min="60" max="160" step="5" value="100" aria-label="노드 간격 배율"><output for="node-spacing">100%</output></label><span></span><button data-action="reset">시점 초기화</button><button data-action="spin" aria-pressed="false">자동 회전</button><button data-action="edges" aria-pressed="true">연결선 켜짐</button><button data-action="list">목록 보기</button></div>
  <div class="graph-help">DRAG NODE TO MOVE <span>/</span> DRAG SPACE TO ORBIT <span>/</span> SCROLL TO ZOOM</div>
 </section>
 <footer><span class="footer-state"><i></i><span id="footer-caption">SOYEONG'S PERSONAL UNIVERSE</span></span><span id="graph-count">LOCAL DESIGN PREVIEW</span><button data-action="motion" aria-pressed="false">모션 끄기</button></footer>

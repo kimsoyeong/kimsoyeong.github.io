@@ -27,6 +27,7 @@ export function mountCosmos(root, navigate) {
     yaw: -.22,
     pitch: .16,
     zoom: 1,
+    spacing: 1,
     spin: false,
     edgesVisible: true,
     motion: !reduced.matches,
@@ -391,7 +392,7 @@ function referenceSection(n) {
       cy
     } = sceneGeometry();
     projected = data.nodes.map(n => ({
-      ...project(n, view.yaw, view.pitch, zoom, w, h, cx + view.offsetX, cy + view.offsetY),
+      ...project(n, view.yaw, view.pitch, zoom, w, h, cx + view.offsetX, cy + view.offsetY, state.spacing),
       node: n
     }));
     const positions = new Map(projected.map(p => [p.node.id, p]));
@@ -524,6 +525,7 @@ function referenceSection(n) {
         yaw: view.yaw,
         pitch: view.pitch,
         scale: node ? projected.find(p => p.node === node).scale : 1,
+        spacing: state.spacing,
         x: e.clientX,
         y: e.clientY,
         startX: e.clientX,
@@ -559,7 +561,7 @@ function referenceSection(n) {
       drag.moved = true;
       const dx = e.clientX - drag.x,
         dy = e.clientY - drag.y;
-      if (drag.node) moveInView(drag.node, dx, dy, drag.yaw, drag.pitch, drag.scale);else {
+      if (drag.node) moveInView(drag.node, dx, dy, drag.yaw, drag.pitch, drag.scale, drag.spacing);else {
         state.yaw += dx * .006;
         state.pitch = clamp(state.pitch + dy * .006, -1.25, 1.25);
         orbit.vx = clamp(dx * .0015, -.04, .04);
@@ -642,6 +644,11 @@ function referenceSection(n) {
   on($('#search'), 'input', e => {
     state.query = e.target.value;
     renderList();
+  });
+  on($('#node-spacing'), 'input', e => {
+    state.spacing = Number(e.target.value) / 100;
+    e.target.nextElementSibling.value = `${e.target.value}%`;
+    draw(performance.now());
   });
   function updateToc() {
     const article = $('#reader-content');
@@ -745,6 +752,9 @@ function referenceSection(n) {
         state.yaw = -.22;
         state.pitch = .16;
         state.zoom = 1;
+        state.spacing = 1;
+        $('#node-spacing').value = '100';
+        $('#node-spacing').nextElementSibling.value = '100%';
         orbit.vx = orbit.vy = 0;
         break;
       case 'edges':
