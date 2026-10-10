@@ -97,6 +97,7 @@ export const categories = {
   }
 };
 export function categoryFor(type) {
+  if (type === 'Patent') return 'Paper';
   if (type === 'Section') return 'Writing';
   if (['ExternalPublication', 'ExternalWriting'].includes(type)) return 'Review';
   if (['Award', 'Presentation', 'Media', 'Event', 'Participation'].includes(type)) return 'Achievement';
@@ -117,7 +118,7 @@ export function assignPositions(nodes, edges) {
   const roots = new Map([['article:customize', [-245, -185, 100]]]);
   for (const n of nodes) {
     const id = n.id;
-    n.cluster = categoryFor(n.type) === 'Person' ? 'person' : ['Paper', 'Writing', 'Review', 'Section'].includes(n.type) ? 'papers' : /har|yoco|sia|timeseries|tensor|garmin|teacher/.test(id) ? 'models' : /prupru|blooming|sobok|firebase|mysql|nginx|gcp|aws|mongodb/.test(id) ? 'web' : 'agents';
+    n.cluster = categoryFor(n.type) === 'Person' ? 'person' : ['Paper', 'Patent', 'Writing', 'Review', 'Section'].includes(n.type) ? 'papers' : /har|yoco|sia|timeseries|tensor|garmin|teacher/.test(id) ? 'models' : /prupru|blooming|sobok|firebase|mysql|nginx|gcp|aws|mongodb/.test(id) ? 'web' : 'agents';
     let center = clusters[n.cluster],
       spread = 100;
     if (categoryFor(n.type) === 'Achievement') {

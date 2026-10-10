@@ -1,6 +1,6 @@
 import { ontologyGuide } from './ontologyGuide';
 import { mountConnectedGraph } from './connectedGraph';
-import { relationLabel, contextPaths, newestFirst, mediaOrder, profileMedia, mediaOwners, profileTechnologies } from './relations';
+import { relationLabel, contextPaths, newestFirst, mediaOrder, profileMedia, mediaOwners, profileTechnologies, coreCapabilities, workRecords, capabilityEvidence } from './relations';
 import { clamp, randomGenerator, project, assignPositions, moveInView, categories, categoryFor, cursorView } from './spatial';
 import graph from './graph.json';
 import customizeImage from './assets/agent-customize.svg';
@@ -100,6 +100,7 @@ export function mountCosmos(root, navigate) {
   const typeName = t => ({
     Writing: 'Writing / 본인 작성 글',
     Paper: 'Paper / 본인 저술 논문',
+    Patent: 'Patent / 본인 발명 및 출원 기록',
     Review: 'Review / 본인 작성 리뷰',
     ExternalPublication: 'External paper / 타인 저술 논문',
     ExternalWriting: 'External writing / 타인 작성 글',
@@ -237,23 +238,53 @@ function referenceSection(n) {
       m
     }) => m.kind === 'youtube') ? 'Images & video' : 'Images'}</h2>${grid(main)}${extra.length ? `<details class="more-media"><summary>이미지와 관련 자료 더 보기 (${extra.length})</summary>${grid(extra)}</details>` : ''}</section>`;
   }
+  function collectionRecords(type) {
+    if (type === 'Project') return workRecords('person:soyeong', data.nodes, data.edges);
+    return data.nodes.filter(n => type === 'all' || (type === 'Research' ? n.type === 'Paper' : type === 'Writing' ? ['Writing', 'Review', 'PublicationChannel'].includes(n.type) : n.type === type));
+  }
+  function workHighlights() {
+    return `<section class="work-highlights" aria-label="대표 업무"><h2>Selected work</h2><p>사내 적용, 진행 중인 연구개발과 KT 소속 대외 활동</p><div class="work-grid">${collectionRecords('Project').slice(0, 4).map(n => `<button data-open="${esc(n.id)}"><small>${esc(n.status || n.activityKind)}</small><strong>${esc(n.label)} ↗</strong><span>${esc(n.subtitle || n.summary)}</span></button>`).join('')}</div></section>`;
+  }
+  function appliedEvidence(n) {
+    const records = n.type === 'Capability' ? capabilityEvidence(n.id, data.nodes, data.edges) : [];
+    if (records.length) return `<section class="capability-evidence"><h2>Experience & evidence</h2><div class="evidence-records">${records.map(({contribution, project, technologies}) => `<div><button class="evidence-title" data-read="${esc(contribution.id)}">${esc(contribution.label)} ↗</button><p>${esc(contribution.summary)}</p>${project ? `<button class="evidence-project" data-open="${esc(project.id)}">프로젝트: ${esc(project.label)} ↗</button>` : ''}${technologies.length ? `<div class="technology-tags" role="group" aria-label="${esc(contribution.label)} 사용 기술">${technologies.map(t => `<button data-read="${esc(t.id)}">${esc(t.label)}</button>`).join('')}</div>` : ''}</div>`).join('')}</div></section>`;
+    if (n.type === 'Technology') {
+      const usages = related(n.id).filter(r => !r.out && r.edge.predicate === 'usesTechnology' && r.edge.assertionStatus === 'sourced');
+      return [['직접 사용한 기여', 'Contribution'], ['프로젝트 기술 구성', 'Project']].map(([title, type]) => {
+        const items = usages.filter(r => r.node.type === type);
+        return items.length ? `<section><h2>${title}</h2><div class="profile-records">${items.map(({node}) => `<button data-read="${esc(node.id)}"><strong>${esc(node.label)} ↗</strong><small>${esc(node.summary)}</small></button>`).join('')}</div></section>` : '';
+      }).join('');
+    }
+    if (!['Project', 'Contribution'].includes(n.type)) return '';
+    const ids = new Set(n.type === 'Contribution' ? [n.id] : data.edges.filter(e => e.target === n.id && e.predicate === 'inProject' && e.assertionStatus === 'sourced').map(e => e.source));
+    const capabilities = new Set(data.edges.filter(e => ids.has(e.source) && e.predicate === 'demonstrates' && e.assertionStatus === 'sourced').map(e => e.target));
+    const technologyIds = new Set(data.edges.filter(e => ids.has(e.source) && e.predicate === 'usesTechnology' && e.assertionStatus === 'sourced').map(e => e.target));
+    return [['기여로 드러난 역량', capabilities], ['직접 사용한 기술', technologyIds]].map(([title, values]) => values.size ? `<section><h2>${title}</h2><div class="technology-tags" role="group" aria-label="${title}">${[...values].map(id => `<button data-read="${esc(id)}">${esc(byId.get(id).label)} ↗</button>`).join('')}</div></section>` : '').join('');
+  }
   function renderReader(id) {
     const n = byId.get(id);
     if (!n) return;
     disposeConnected(); readerId = id;
-    const items = n.type === 'Person' ? [n] : readerType === 'all' ? data.nodes : data.nodes.filter(x => readerType === 'Research' ? ['Paper'].includes(x.type) : readerType === 'Writing' ? ['Writing', 'Review', 'PublicationChannel'].includes(x.type) : x.type === readerType);
+    const items = n.type === 'Person' ? [n] : collectionRecords(readerType);
     $('#reader-list').innerHTML = items.map(x => `<button data-read="${esc(x.id)}" class="${id === x.id ? 'active' : ''}">${swatch(x.type)}${esc(x.label)}</button>`).join('');
     const rels = related(id),
       person = n.type === 'Person';
     const article = n.slug ? n : byId.get(n.articleId);
     const articlePath = article?.slug ? `/freeform/${article.slug}${n.anchor ? '#' + n.anchor : ''}` : null;
-    const groups = person ? [['Capabilities', ['Capability']], ['Roles & responsibilities', ['RoleAssignment']], ['Career', ['Experience']], ['Education', ['Education']], ['Research', ['Paper']], ['Activities', ['Participation']], ['Awards & speaking', ['Award', 'Presentation', 'Media']], ['Credentials', ['Credential']]] : [];
+    const groups = person ? [['Capabilities', ['Capability']], ['Roles & responsibilities', ['RoleAssignment']], ['Career', ['Experience']], ['Education', ['Education']], ['Research', ['Paper', 'Patent']], ['Activities', ['Participation']], ['Awards & speaking', ['Award', 'Presentation', 'Media']], ['Credentials', ['Credential']]] : [];
     const techTags = person ? `<div class="technology-tags" role="group" aria-label="활용 기술">${profileTechnologies(n.id, data.nodes, data.edges).map(t => `<button data-read="${esc(t.id)}">${esc(t.label)}</button>`).join('')}</div>` : '';
     const timeline = groups.map(([label, types]) => {
-      const records = rels.map(r => r.node).filter(x => types.includes(x.type)).sort(newestFirst);
-      return records.length ? `<h2>${label}</h2>${types.includes('Capability') ? techTags : ''}<div class="profile-records" role="group" aria-label="${label}">${records.map(x => `<button data-read="${esc(x.id)}">${swatch(x.type)}<strong>${esc(x.label)}</strong><small>${esc(x.startDate ? `${x.startDateLabel || x.startDate} — ${x.endDate || '현재'}` : x.date || x.status || (x.type === 'Capability' ? x.summary : ''))}</small></button>`).join('')}</div>` : '';
+      const records = [...new Map(rels.map(r => r.node).filter(x => types.includes(x.type)).map(x => [x.id, x])).values()].sort((a, b) => {
+        const rank = id => coreCapabilities.includes(id) ? coreCapabilities.indexOf(id) : coreCapabilities.length;
+        return types.includes('Capability') ? rank(a.id) - rank(b.id) || newestFirst(a, b) : newestFirst(a, b);
+      });
+      const recordButton = x => `<button data-read="${esc(x.id)}">${swatch(x.type)}<strong>${esc(x.label)}</strong><small>${esc(x.startDate ? `${x.startDateLabel || x.startDate} — ${x.endDate || '현재'}` : x.date || x.status || (x.type === 'Capability' ? x.summary : ''))}</small></button>`;
+      const capabilities = types.includes('Capability');
+      const primary = capabilities ? records.filter(x => coreCapabilities.includes(x.id)) : records;
+      const extra = capabilities ? records.filter(x => !coreCapabilities.includes(x.id)) : [];
+      return records.length ? `<h2>${label}</h2><div class="profile-records" role="group" aria-label="${label}">${primary.map(recordButton).join('')}</div>${extra.length ? `<details class="additional-capabilities"><summary>연구와 개발 기반 역량 ${extra.length}개 더 보기</summary><div class="profile-records">${extra.map(recordButton).join('')}</div></details>` : ''}${capabilities ? techTags : ''}` : '';
     });
-    $('#reader-content').innerHTML = `<p class="eyebrow">${swatch(n.type)}${esc(typeName(n.type))}</p><h1 id="reader-title">${esc(n.label)}</h1>${n.publicationType ? `<span class="record-badge">${esc(n.publicationType)}</span>` : ''}${n.subtitle ? `<p class="subtitle">${esc(n.subtitle)}</p>` : ''}<p>${esc(n.summary)}</p>${['Project', 'Presentation'].includes(n.type) && n.url ? `<div class="profile-links"><a class="resource-link" href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">${esc(n.urlLabel || '프로젝트 저장소')} ↗</a></div>` : ''}${recordFacts(n)}${n.links ? `<div class="profile-links">${n.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div>` : ''}${articlePath ? `<button class="inspector-action" data-route="${esc(articlePath)}">글 본문 읽기 ↗</button>` : ''}${n.role ? `<h2>My contribution</h2><p>${esc(n.role)}</p>` : ''}${readerType === 'Writing' ? '<div class="profile-links"><button data-route="/freeform">전체 글 목록 ↗</button></div>' : ''}${person ? `${timeline[0]}${detailSections(n)}${mediaGallery(n)}${timeline.slice(1).join('')}` : `${mediaGallery(n)}${detailSections(n)}`}${referenceSection(n)}${contextMarkup(n.id)}<h2>Connected knowledge</h2><div class="connection-switch" role="group" aria-label="연결 보기 방식"><button data-connection-view="list" aria-pressed="true">목록</button><button data-connection-view="graph" aria-pressed="false">그래프</button></div><div id="connected-list" class="reader-chips" role="group" aria-label="직접 연결된 지식 목록">${rels.map(r => `<button data-read="${esc(r.node.id)}"><small>${r.out ? '→' : '←'} ${esc(relationLabel(r.edge.predicate))}</small><strong>${esc(r.node.label)} ↗</strong><span>${esc(r.node.summary)}</span></button>`).join('') || '<p>연결 근거 정리 중</p>'}</div><div id="connected-graph-panel" hidden><p class="connected-help">직접 연결된 항목만 표시합니다. 빈 공간 드래그로 회전, 노드 드래그로 이동, 클릭으로 상세 보기.</p><div id="connected-graph" class="connected-graph" role="group" aria-label="직접 연결된 지식 그래프"></div></div><button class="reader-cta" data-node="${esc(id)}">이 지식의 연결 탐색하기 ↗</button>${n.url && !['Project', 'Presentation'].includes(n.type) && !n.links?.some(l => l.url === n.url) ? `<a href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">${esc(n.urlLabel || '프로젝트 저장소')} ↗</a>` : ''}<h2>Sources</h2><p class="source-note">${evidence(n)}</p>`;
+    $('#reader-content').innerHTML = `<p class="eyebrow">${swatch(n.type)}${esc(typeName(n.type))}</p><h1 id="reader-title">${esc(n.label)}</h1>${n.publicationType ? `<span class="record-badge">${esc(n.publicationType)}</span>` : ''}${n.subtitle ? `<p class="subtitle">${esc(n.subtitle)}</p>` : ''}<p>${esc(n.summary)}</p>${['Project', 'Presentation'].includes(n.type) && n.url ? `<div class="profile-links"><a class="resource-link" href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">${esc(n.urlLabel || '프로젝트 저장소')} ↗</a></div>` : ''}${recordFacts(n)}${n.links ? `<div class="profile-links">${n.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${esc(l.label)} ↗</a>`).join('')}</div>` : ''}${articlePath ? `<button class="inspector-action" data-route="${esc(articlePath)}">글 본문 읽기 ↗</button>` : ''}${n.role && !n.details?.some(section => section.title === '개인 기여') ? `<h2>My contribution</h2><p>${esc(n.role)}</p>` : ''}${readerType === 'Writing' ? '<div class="profile-links"><button data-route="/freeform">전체 글 목록 ↗</button></div>' : ''}${person ? `${timeline[0]}${workHighlights()}${detailSections(n)}${timeline.slice(1).join('')}${mediaGallery(n)}` : `${detailSections(n)}${appliedEvidence(n)}${mediaGallery(n)}`}${referenceSection(n)}${contextMarkup(n.id)}<div class="connection-header"><h2>Connected knowledge</h2><div class="connection-switch" role="group" aria-label="연결 보기 방식"><button data-connection-view="graph" aria-pressed="true" aria-controls="connected-graph-panel"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="m5 5 10 2M5 5l3 10m7-8-7 8"/><circle cx="5" cy="5" r="2"/><circle cx="15" cy="7" r="2"/><circle cx="8" cy="15" r="2"/></svg><span>그래프</span></button><button data-connection-view="list" aria-pressed="false" aria-controls="connected-list"><svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M8 5h8M8 10h8M8 15h8M4 5h.01M4 10h.01M4 15h.01"/></svg><span>목록</span></button></div></div><div id="connected-list" class="reader-chips" role="group" aria-label="직접 연결된 지식 목록">${rels.map(r => `<button data-read="${esc(r.node.id)}"><small>${r.out ? '→' : '←'} ${esc(relationLabel(r.edge.predicate))}</small><strong>${esc(r.node.label)} ↗</strong><span>${esc(r.node.summary)}</span></button>`).join('') || '<p>연결 근거 정리 중</p>'}</div><div id="connected-graph-panel" hidden><p class="connected-help">직접 연결된 항목만 표시합니다. 빈 공간 드래그로 회전, 노드 드래그로 이동, 클릭으로 상세 보기.</p><div id="connected-graph" class="connected-graph" role="group" aria-label="직접 연결된 지식 그래프"></div></div><button class="reader-cta" data-node="${esc(id)}">이 지식의 연결 탐색하기 ↗</button>${n.url && !['Project', 'Presentation'].includes(n.type) && !n.links?.some(l => l.url === n.url) ? `<a href="${esc(n.url)}" target="_blank" rel="noopener noreferrer">${esc(n.urlLabel || '프로젝트 저장소')} ↗</a>` : ''}<h2>Sources</h2><p class="source-note">${evidence(n)}</p>`;
     if (person) {
       const toc = document.createElement('div'); toc.className = 'reader-toc';
       toc.setAttribute('role','navigation'); toc.setAttribute('aria-label','소개 목차');
@@ -289,7 +320,7 @@ function referenceSection(n) {
     updateToc();
   }
   function openReader(id, type) {
-    readerType = type || byId.get(id)?.type || 'all';
+    readerType = type || (collectionRecords('Project').some(n => n.id === id) ? 'Project' : byId.get(id)?.type) || 'all';
     renderReader(id);
     if (!$('#reader').open) $('#reader').showModal();
     updateToc();
@@ -707,7 +738,7 @@ function referenceSection(n) {
       return;
     }
     if (b.dataset.collection) {
-      const n = data.nodes.find(n => b.dataset.collection === 'Research' ? ['Paper'].includes(n.type) : n.type === b.dataset.collection);
+      const n = collectionRecords(b.dataset.collection)[0];
       if (n) openReader(n.id, b.dataset.collection);
       return;
     }

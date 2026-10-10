@@ -15,6 +15,37 @@ const relationLabels = {
 };
 export const relationLabel = predicate => relationLabels[predicate] || predicate;
 
+export const coreCapabilities = ['capability:architecture', 'capability:agent-evaluation', 'capability:integration'];
+const featuredWork = ['project:rca', 'contribution:agent-platform', 'project:tracebench', 'project:preflight'];
+
+// Work is a view of confirmed employment contributions, not a new ownership claim.
+export function workRecords(personId, nodes, edges) {
+  const confirmed = edges.filter(e => e.assertionStatus === 'sourced');
+  const owned = new Set(confirmed.filter(e => e.source === personId && e.predicate === 'hasContribution').map(e => e.target));
+  const ids = new Set();
+  for (const id of owned) {
+    if (!confirmed.some(e => e.source === id && e.predicate === 'duringExperience')) continue;
+    const projects = confirmed.filter(e => e.source === id && e.predicate === 'inProject');
+    if (projects.length) projects.forEach(e => ids.add(e.target));
+    else ids.add(id);
+  }
+  const rank = id => featuredWork.includes(id) ? featuredWork.indexOf(id) : featuredWork.length;
+  return nodes.filter(n => ids.has(n.id)).sort((a, b) => rank(a.id) - rank(b.id) || newestFirst(a, b));
+}
+
+export function capabilityEvidence(id, nodes, edges) {
+  const byId = new Map(nodes.map(n => [n.id, n]));
+  const confirmed = edges.filter(e => e.assertionStatus === 'sourced');
+  const owned = new Set(confirmed.filter(e => e.source === 'person:soyeong' && e.predicate === 'hasContribution').map(e => e.target));
+  return confirmed.filter(e => e.target === id && e.predicate === 'demonstrates' && owned.has(e.source))
+    .map(e => {
+      const contribution = byId.get(e.source);
+      const project = byId.get(confirmed.find(x => x.source === e.source && x.predicate === 'inProject')?.target);
+      const technologyIds = new Set(confirmed.filter(x => x.source === e.source && x.predicate === 'usesTechnology').map(x => x.target));
+      return { contribution, project, technologies: nodes.filter(n => n.type === 'Technology' && technologyIds.has(n.id)) };
+    }).filter(item => item.contribution);
+}
+
 const contextPredicates = new Set(['atOrganization', 'partOf', 'duringExperience', 'duringEducation', 'duringParticipation', 'inProject', 'demonstrates', 'atEvent', 'withProject', 'inProgram', 'receivedAward', 'organizedBy', 'presentsProject', 'featuresProject', 'producedDuring', 'documents', 'publishedIn', 'reviews', 'about', 'appliesConcept', 'owns', 'workedOn', 'workedAt', 'studiedAt', 'participatedIn', 'atInstitution', 'researchProject', 'realizes', 'hasAgent', 'invokes', 'implemented', 'usesTechnology', 'coversTechnology', 'appliesTechnology', 'publishedBy', 'issuedBy']);
 const expandableTypes = new Set(['Organization', 'Experience', 'Contribution', 'RoleAssignment', 'Participation', 'Education', 'Program', 'PublicationChannel', 'Writing', 'Review', 'AgentSystem']);
 

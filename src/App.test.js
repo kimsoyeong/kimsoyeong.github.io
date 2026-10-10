@@ -104,3 +104,35 @@ test('intro customization card opens architecture capability instead of a blog p
   expect(screen.getByRole('heading',{name:'Agent Design & Development',level:1})).toBeInTheDocument();
   expect(screen.queryByRole('button',{name:'글 본문 읽기 ↗'})).not.toBeInTheDocument();
 });
+
+test('Work leads with the applied RCA case and keeps development stages distinct', () => {
+  render(<CosmosPage />);
+  fireEvent.click(screen.getByRole('button', {name:'Work', exact:true}));
+  const article = within(screen.getByRole('article'));
+  expect(article.getByRole('heading', {name:'Network RCA Agent', level:1})).toBeInTheDocument();
+  expect(article.getByText('AIONet / SER 장애 진단 에이전트')).toBeInTheDocument();
+  expect(article.queryByText(/30분 이상/)).not.toBeInTheDocument();
+  expect(article.getByRole('link', {name:'KT kode / AIONet 개발기 — 담당 업무와 구현 ↗'})).toHaveAttribute('href','https://kode.kt.com/blog/article/11854');
+  const menu = within(screen.getByRole('navigation', {name:'콘텐츠 목록'}));
+  expect(menu.queryByRole('button', {name:'소복소복', exact:true})).not.toBeInTheDocument();
+  fireEvent.click(menu.getByRole('button', {name:'에이전트 플랫폼 설계 업무', exact:true}));
+  expect(article.getByText('사내 플랫폼 개발 중', {exact:true})).toBeInTheDocument();
+  fireEvent.click(menu.getByRole('button', {name:'TraceBench', exact:true}));
+  expect(article.getByText('평가 환경 설계 중 / 평가 케이스 구성 전')).toBeInTheDocument();
+});
+
+test('About prioritizes core capabilities and work before media, with a top-level index', () => {
+  render(<CosmosPage />);
+  fireEvent.click(screen.getByRole('button', {name:'About', exact:true}));
+  const article = screen.getByRole('article');
+  const capabilities = within(screen.getByRole('group', {name:'Capabilities',exact:true})).getAllByRole('button');
+  expect(capabilities.slice(0,3).map(b => b.dataset.read)).toEqual(['capability:architecture','capability:agent-evaluation','capability:integration']);
+  const headings = within(article).getAllByRole('heading', {level:2}).map(h => h.textContent);
+  expect(headings.indexOf('Selected work')).toBeLessThan(headings.indexOf('Photos & media'));
+  expect(headings.indexOf('Career')).toBeLessThan(headings.indexOf('Photos & media'));
+  expect(within(screen.getByRole('navigation',{name:'소개 목차'})).getByRole('button',{name:'Selected work'})).toBeInTheDocument();
+  fireEvent.click(within(screen.getByRole('region', {name:'대표 업무'})).getByRole('button',{name:/PreFlight/}));
+  const projectHeadings = within(article).getAllByRole('heading', {level:2}).map(h => h.textContent);
+  expect(projectHeadings.indexOf('개인 기여')).toBeLessThan(projectHeadings.indexOf('Images & video'));
+  expect(projectHeadings.indexOf('Images & video')).toBeGreaterThan(-1);
+});

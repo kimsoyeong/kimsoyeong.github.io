@@ -11,10 +11,14 @@ GitHub 포트폴리오는 **어떤 일을 했고, 무엇에 기여했으며, 어
 
 - **Intro**: 커서에 반응하는 별 배경과 대표 작업으로 진입한다.
 - **Cosmos**: 노드 선택, 검색과 카테고리 필터, 노드 드래그, 시점 회전, 확대 및 축소, 연결선 토글을 제공한다. 자동 회전 중에는 커서 기반 시점 반응을 끈다.
-- **Work / Research / About**: 프로젝트, 본인 논문 및 발명 기록, 경력과 역량을 읽는다.
+- **Work / Research / About**: 재직 중 수행한 업무, 본인 논문, 경력과 역량을 읽는다. Work는 확인된 `duringExperience` 기여에서 구성하며, 독립 프로젝트가 아닌 사내 플랫폼 설계 업무도 포함한다.
 - **Connected knowledge**: 선택한 항목의 직접 이웃을 그래프로 보여준다. 목록 보기로 전환할 수 있다.
 - **Ontology**: 실제 사례를 통해 노드, 속성, 관계와 해석 기준을 설명한다.
 - **상세 보기**: 근거 자료, 이미지와 영상, 연결 경로를 제공한다. About과 Ontology의 목차는 본문과 독립적으로 유지되며 현재 섹션을 강조한다.
+
+About에서는 에이전트 설계, 평가, 플랫폼 통합의 세 가지 핵심 역량과 대표 업무를 먼저 제시한다. 나머지 기반 역량은 펼쳐 볼 수 있으며, 이미지와 영상보다 경력 및 역할을 앞에 둔다. 역량 상세의 `Experience & evidence`는 확인된 개인 기여와 해당 기여의 사용 기술을 연결한다. 프로젝트 기술 목록 전체를 개인 사용 경험으로 확대하지 않는다.
+
+프로젝트 상세는 문제, 개인 기여, 설계와 구현, 결과 또는 현재 진행 단계 순서로 읽는다. 사내 적용, 개발 중, 평가 케이스 구성 전과 팀 프로토타입을 구분한다. 성과 수치에는 적용 맥락과 출처를 붙이며, 기술 블로그 이전 계획과 미확인 경험은 공개 성과에 포함하지 않는다.
 
 별 배경은 장식이고 지식 노드가 아니다. 화면에서 노드를 이동하거나 연결선을 숨겨도 온톨로지 데이터는 변하지 않는다.
 
@@ -32,7 +36,7 @@ React 18, React Router, Create React App을 사용한다. Cosmos는 Canvas 2D에
 
 ## 로컬 실행
 
-Node.js와 npm이 필요하다. 온톨로지 데이터를 재생성하거나 검증할 때는 Python 3.9 이상을 사용한다.
+Node.js 18 이상, npm과 Python 3.10 이상이 필요하다. 빌드 전에 Cosmos Engine이 승인된 온톨로지 데이터로 정적 그래프를 생성한다.
 
 ```bash
 npm ci
@@ -62,29 +66,28 @@ Writing / Review → publishedIn → PublicationChannel
 
 `Paper`는 본인 저술 논문, `Review`는 외부 자료에 대한 본인 리뷰, `Writing`은 본인 기술 글이다. 리뷰한 원논문은 필요에 따라 리뷰의 `references` 속성으로 보관한다.
 
-각 기록의 `evidenceIds`는 근거 출처를 가리킨다. 관계의 `assertionStatus`는 `sourced`, `proposed`, `disputed`를 구분한다. `visibility`는 검토 메타데이터이며 현재 앱의 접근 제어 기능은 아니다. 앱에 포함되는 JSON에는 공개 가능한 내용만 넣어야 한다.
+각 기록의 `evidenceIds`는 근거 출처를 가리킨다. 관계의 `assertionStatus`는 `sourced`, `proposed`, `disputed`를 구분한다. `visibility`와 내용별 승인 해시를 사용해 공개할 기록을 빌드 시점에 선별한다. 비공개 원문, 추출 후보, 로컬 이력은 사이트에 포함하지 않는다. 정적 사이트에 게시된 JSON은 누구나 읽을 수 있다.
 
 ### 데이터 갱신
 
 원본은 `design/ontology-cosmos/ontology.sample.json`이다. 파일명에 sample이 있지만 현재 앱 데이터를 만드는 편집 원본이다. `src/components/Cosmos/graph.json`만 직접 수정하면 재생성할 때 덮어써진다.
 
 1. 원본의 노드, 기본 관계, 출처 및 상태를 수정한다. 기존 항목의 ID는 유지한다.
-2. 앱 데이터를 재생성한다.
-3. 원본과 생성 결과를 검증하고 테스트한다.
-4. 원본, 생성된 앱 데이터, 관련 코드만 변경 범위에 맞춰 커밋한다.
+2. 변경 내용을 검토하고 해당 기록의 공개 승인을 갱신한다. 기존 승인 해시는 내용이 바뀌면 유효하지 않다.
+3. 승인된 자료로 앱 그래프와 검색 데이터를 생성하고 검증한다.
+4. 원본, 공개 정책, 생성 결과와 관련 코드를 함께 커밋한다.
 
 ```bash
-python3 design/ontology-cosmos/cosmos-3d/build_data.py --app
-python3 design/ontology-cosmos/validate_sample.py
-python3 design/ontology-cosmos/validate_sample.py src/components/Cosmos/graph.json
-python3 design/ontology-cosmos/cosmos-3d/test_relation_rules.py
+npm run cosmos:update -- --no-extract
+npm run cosmos:validate
+npm run cosmos:test
 ```
 
-생성기는 포함하기로 한 Freeform 글의 목차를 `src/components/Freeform/posts.js`에서, 기존 프로젝트의 기술 목록을 `src/components/Main/MainPage.js`에서 읽는다. 새 타입이나 관계를 추가하면 검증기의 domain/range 및 관련 검사도 함께 갱신한다.
+`cosmos/schema.json`은 타입과 관계 계약, `cosmos/policy.json`은 공개 승인과 제외 정책이다. `cosmos/legacy-enrichment.json`은 기존 자료의 확정된 보완 정보다. 새 입력과 추출 후보는 Git에서 제외되는 `cosmos/inbox/`와 `.cosmos/`에 보관한다. [Cosmos Engine 사용법](packages/cosmos-engine/README.md)에서 자료 추가와 검토 절차를 확인할 수 있다.
 
-`workedOn`, `workedAt`, `studiedAt`, `participatedIn`은 확인된 두 단계 관계에서 생성되는 직접 탐색 관계다. 원본에 수동으로 추가하지 않는다. `basisPaths`에 근거 관계 ID를 보존하고, 근거가 삭제되거나 확인 상태가 바뀌면 다시 계산한다. 이는 정해진 규칙에 따른 데이터 생성이며, 임의 문서를 자동으로 온톨로지화하는 엔진은 아니다.
+`workedOn`, `workedAt`, `studiedAt`, `participatedIn`은 확인된 두 단계 관계에서 생성되는 직접 탐색 관계다. 원본에 수동으로 추가하지 않는다. `basisPaths`에 근거 관계 ID를 보존하고, 근거가 삭제되거나 확인 상태가 바뀌면 다시 계산한다. 이는 정해진 규칙에 따른 파생 관계이며, 문서에서 추출한 후보는 별도의 검토와 공개 승인이 필요하다.
 
-생성 과정의 비교용 `design/ontology-cosmos/cosmos-3d/graph.json`은 앱에서 읽지 않는다. 배포에는 `src/components/Cosmos/graph.json`이 사용된다.
+생성 과정의 비교용 `design/ontology-cosmos/cosmos-3d/graph.json`은 앱에서 읽지 않는다. 앱은 `src/components/Cosmos/graph.json`을 사용하고, 공개 그래프와 검색 색인, JSON-LD는 `public/cosmos/`에 생성된다. 로컬 관리 도구는 GitHub Pages에 포함하지 않는다.
 
 ## 검증
 

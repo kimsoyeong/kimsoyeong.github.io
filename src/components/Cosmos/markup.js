@@ -11,8 +11,9 @@ const markup = `
   <p class="eyebrow">A CONNECTED UNIVERSE OF EXPERIENCE</p>
   <h1>Everything<br>is <em>connected.</em></h1>
   <p class="identity">AI Agent Researcher & Developer<br><span>AI Native Engineer</span></p>
-  <p class="intro-copy">에이전트를 연구하고, 시스템을 설계합니다.<br>경험과 역할, 그 안에서 쌓아 온 역량의 연결.</p>
-  <button class="enter" data-action="graph">Explore my cosmos <span>↗</span></button>
+  <p class="intro-copy">에이전트를 설계하고, 평가 환경을 만들고,<br>실행 가능한 시스템으로 연결합니다.</p>
+  <div class="hero-capabilities" role="group" aria-label="대표 역량"><button data-open="capability:architecture">Agent 설계와 구현</button><button data-open="capability:agent-evaluation">평가와 실험</button><button data-open="capability:integration">플랫폼과 시스템 통합</button></div>
+  <div class="hero-actions"><button class="enter" data-collection="Project">대표 업무 보기 <span>↗</span></button><button class="cosmos-entry" data-action="graph">Explore my cosmos ↗</button></div>
   <span class="hint">MOVE YOUR CURSOR. FIND A CONNECTION.</span>
  </div>
  <button class="floating-card card-rca" data-open="project:rca" aria-label="Network RCA Agent 프로젝트 보기">
@@ -25,8 +26,8 @@ const markup = `
   <div class="paper-lines" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="paper-plot" aria-hidden="true"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
   <span class="card-foot">AGENT DESIGN &amp; DEVELOPMENT</span>
  </button>
- <button class="floating-card card-framework" data-open="person:soyeong" aria-label="에이전트 설계 역량 보기">
-  <span class="card-kicker">ENGINEERING <span>↗</span></span><strong>Knowledge<br>into action.</strong><div class="framework-flow"><span>Skill</span><i>→</i><span>Workflow</span><i>→</i><span>Playground</span></div><span class="card-foot">AGENT DESIGN / ENGINEERING</span>
+ <button class="floating-card card-framework" data-open="contribution:agent-platform" aria-label="사내 에이전트 플랫폼 설계 업무 보기">
+  <span class="card-kicker">PLATFORM ENGINEERING <span>↗</span></span><strong>Knowledge<br>into action.</strong><div class="framework-flow"><span>Skill</span><i>→</i><span>Workflow</span><i>→</i><span>Playground</span></div><span class="card-foot">KT / IN DEVELOPMENT</span>
  </button>
  <button class="floating-card card-identity" data-collection="Person" aria-label="Soyeong 소개 보기">
   <span class="card-kicker">THE HUMAN IN THE LOOP <span>↗</span></span><span class="profile-mark">S<span>K</span></span><strong>Soyeong Kim</strong><span class="card-foot">RESEARCH / BUILD / EVALUATE</span>

@@ -1,7 +1,36 @@
 import graph from './graph.json';
-import { contextPaths, newestFirst, mediaOrder, profileMedia, mediaOwners, profileTechnologies } from './relations';
+import { contextPaths, newestFirst, mediaOrder, profileMedia, mediaOwners, profileTechnologies, workRecords, capabilityEvidence } from './relations';
 import { categories, categoryFor } from './spatial';
 import { connectedSubgraph } from './connectedGraph';
+
+test('RCA uses public sources and bounds personal contribution to SER', () => {
+  const project=graph.nodes.find(n=>n.id==='project:rca');
+  expect(project.summary).toContain('SER');
+  expect(project.evidenceIds).toEqual(expect.arrayContaining(['kt-kode-aionet-20260305','kt-kode-detection-20250703','user-rca-ser-20261010']));
+  expect(JSON.stringify(graph)).not.toMatch(/30분 이상|5분 이내/);
+  expect(graph.edges.some(e=>['project:rca','contribution:rca'].includes(e.source)&&e.target==='technology:langgraph')).toBe(false);
+  expect(graph.edges.filter(e=>e.source==='contribution:rca'&&e.predicate==='implemented').map(e=>e.target).sort()).toEqual(['system:rca','tool:device']);
+});
+
+test('Work follows employment contributions and includes platform work without turning it into a project', () => {
+  const work = workRecords('person:soyeong', graph.nodes, graph.edges);
+  expect(work.slice(0, 4).map(n => n.id)).toEqual(['project:rca', 'contribution:agent-platform', 'project:tracebench', 'project:preflight']);
+  expect(work.map(n => n.id)).toEqual(expect.arrayContaining(['project:har', 'project:sia']));
+  expect(work.some(n => ['project:yoco', 'project:sobok', 'project:blooming', 'project:prupru'].includes(n.id))).toBe(false);
+  const proposed = graph.edges.map(e => e.source === 'contribution:rca' && e.predicate === 'duringExperience' ? {...e, assertionStatus:'proposed'} : e);
+  expect(workRecords('person:soyeong', graph.nodes, proposed).some(n => n.id === 'project:rca')).toBe(false);
+});
+
+test('capability evidence preserves personal technology usage and does not borrow from a team or article', () => {
+  const evidence = capabilityEvidence('capability:architecture', graph.nodes, graph.edges);
+  expect(evidence.map(e => e.contribution.id)).toEqual(expect.arrayContaining(['contribution:rca', 'contribution:preflight', 'contribution:agent-platform']));
+  const rca = evidence.find(e => e.contribution.id === 'contribution:rca');
+  expect(rca.technologies).toEqual([]);
+  expect(profileTechnologies('person:soyeong',graph.nodes,graph.edges).map(n=>n.id)).toContain('technology:langgraph');
+  expect(evidence.find(e => e.contribution.id === 'contribution:preflight').project.id).toBe('project:preflight');
+  const noOwner = graph.edges.filter(e => !(e.source === 'person:soyeong' && e.target === 'contribution:rca'));
+  expect(capabilityEvidence('capability:architecture', graph.nodes, noOwner).some(e => e.contribution.id === 'contribution:rca')).toBe(false);
+});
 
 test('KT context reaches confirmed duties and external activities without unrelated side projects', () => {
   const paths = contextPaths('organization:kt', graph.nodes, graph.edges);
@@ -116,7 +145,7 @@ test('HAR project displays the actual thesis title separately from its degree ty
   const project = graph.nodes.find(n => n.id === 'project:har');
   const thesis = graph.nodes.find(n => n.id === 'paper:har-thesis');
   expect(project.details).toContainEqual(expect.objectContaining({
-    title: '석사 학위논문',
+    title: expect.stringContaining('석사 학위논문'),
     paragraphs: expect.arrayContaining([thesis.fullTitle]),
   }));
 });
