@@ -5,7 +5,7 @@ AI Agent 연구개발자이자 AI Native Engineer 김소영의 개인 포트폴�
 - 포트폴리오: [kimsoyeong.github.io](https://kimsoyeong.github.io/)
 - 기술 학습과 논문 리뷰: [소소한 코딩일지](https://soso-cod3v.tistory.com/)
 
-GitHub 포트폴리오는 **어떤 일을 했고, 무엇에 기여했으며, 어떤 역량을 갖췄는지**를 보여준다. Tistory는 기술, 논문 리뷰와 공부 과정을 기록한다. 기존 Freeform 글의 주소도 유지한다.
+GitHub 포트폴리오는 **어떤 일을 했고, 무엇에 기여했으며, 어떤 역량을 갖췄는지**를 보여준다. Tistory는 기술, 논문 리뷰와 공부 과정을 기록한다. Freeform 글 목록과 본문은 운영을 종료했다. 원고와 이미지는 저장소 밖에 로컬 백업하며 배포에 포함하지 않는다. Tistory로의 글 이전은 별도로 진행한다.
 
 ## 화면과 탐색
 
@@ -29,10 +29,9 @@ React 18, React Router, Create React App을 사용한다. Cosmos는 Canvas 2D에
 | 경로 | 역할 |
 |---|---|
 | `/` | Knowledge Cosmos 포트폴리오 |
-| `/freeform` | 기존 기술 글 목록 |
-| `/freeform/:slug` | 기존 글 본문 |
+| 그 외 경로 | 포트폴리오 홈으로 이동 |
 
-`public/404.html`과 `public/index.html`은 GitHub Pages에서 SPA의 직접 URL 진입을 복원한다.
+`public/404.html`과 `public/index.html`은 GitHub Pages에서 SPA의 직접 URL 진입을 복원한다. 이전 `/freeform` 및 `/freeform/:slug` 주소로 들어와도 홈으로 이동한다. 온톨로지에는 작성 기록과 요약을 남기되, 종료된 본문 링크와 본문 섹션 노드는 제공하지 않는다.
 
 ## 로컬 실행
 
@@ -98,7 +97,7 @@ npm run build
 ```
 
 - lint는 `src`의 JavaScript와 JSX 전체를 검사하며 경고도 실패로 처리한다.
-- 테스트는 그래프 연결, 근거 경로, 미디어 선택, 상세 보기, 목차와 기존 글 이동을 검증한다.
+- 테스트는 그래프 연결, 근거 경로, 미디어 선택, 상세 보기, 목차와 종료된 글 링크의 제거를 검증한다.
 - Python 검증기는 관계 타입, 참조, 근거, 저술 구분, 기여와 역량, 게시 공간 및 생성된 직접 관계를 검사한다.
 
 ## GitHub Pages 배포
@@ -120,7 +119,7 @@ npm run deploy -- --nojekyll -u "kimsoyeong <soyeong.kim9@gmail.com>" -m "Deploy
 npx --no-install gh-pages -d build --nojekyll -u "kimsoyeong <soyeong.kim9@gmail.com>" -m "Deploy Knowledge Cosmos"
 ```
 
-출력 폴더를 바꾸려면 `BUILD_PATH` 환경 변수로 빌드하고 `gh-pages -d`에 같은 경로를 지정한다. 배포 후 GitHub Pages 빌드 성공과 실제 사이트의 새 화면 및 직접 글 URL을 확인한다.
+출력 폴더를 바꾸려면 `BUILD_PATH` 환경 변수로 빌드하고 `gh-pages -d`에 같은 경로를 지정한다. 배포 후 GitHub Pages 빌드 성공, 실제 사이트의 새 화면과 이전 글 URL의 홈 이동을 확인한다.
 
 ## 변경 및 커밋 규칙
 

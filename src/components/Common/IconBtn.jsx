@@ -32,8 +32,6 @@ const IconBtn = ({ title, func }) => {
         navigate(
           title === "Notes"
             ? "/about"
-            : title === "Freeform"
-            ? "/freeform"
             : "/info"
         )
       }

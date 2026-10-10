@@ -16,7 +16,6 @@ import { IoSearch, IoBatteryFull } from "react-icons/io5";
 import ProjectThumb from "../Common/ProjectThumb";
 import TopButtons from "../Common/TopButtons";
 import ProjectBody from "../Common/ProjectBody";
-import RecentPosts from "./RecentPosts";
 
 const MainPage = () => {
   const [formattedDate, setFormattedDate] = useState("");
@@ -25,7 +24,6 @@ const MainPage = () => {
   const [finderVisible, setFinderVisible] = useState(false);
   const [terminalVisible, setTerminalVisible] = useState(false);
   const [messagesVisible, setMessagesVisible] = useState(true);
-  const [recentPostsVisible, setRecentPostsVisible] = useState(true);
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem("theme");
     return saved === "dark";
@@ -335,7 +333,6 @@ const MainPage = () => {
         <div className="flex justify-center items-center gap-2 fixed bottom-2 left-1/2 transform -translate-x-1/2 text-center px-2.5 h-[70px] bg-white bg-opacity-30 dark:bg-gray-800 dark:bg-opacity-50 shadow-xl border border-white border-opacity-10 dark:border-gray-600/30 rounded-3xl z-20">
           <IconBtn title={"Finder"} func={showFinderBox} />
           <IconBtn title={"Launchpad"} />
-          <IconBtn title={"Freeform"} />
           <IconBtn title={"Mail"} />
           <IconBtn title={"Notes"} func={showNotesBox} />
           <IconBtn title={"Messages"} func={showMessages} />
@@ -343,12 +340,6 @@ const MainPage = () => {
           <IconBtn title={"Portfolio"} />
         </div>
 
-        {recentPostsVisible && (
-          <RecentPosts
-            count={3}
-            onClose={() => setRecentPostsVisible(!recentPostsVisible)}
-          />
-        )}
         {messagesVisible && <Messages func={showMessages} />}
         {terminalVisible ? <Terminal func={showTerminal} /> : null}
       </div>

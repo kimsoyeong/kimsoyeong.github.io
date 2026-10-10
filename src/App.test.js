@@ -1,8 +1,6 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import { StrictMode } from 'react';
 import CosmosPage from './components/Cosmos/CosmosPage';
-const mockNavigate = jest.fn();
-jest.mock('react-router-dom', () => ({ useNavigate: () => mockNavigate }), { virtual: true });
 
 
 
@@ -19,7 +17,7 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
-test('Cosmos toggles edges and preserves article routes across remounts', () => {
+test('Cosmos toggles edges and keeps writing records without retired article navigation', () => {
   const { unmount } = render(<StrictMode><CosmosPage /></StrictMode>);
   fireEvent.click(screen.getByRole('button', { name: 'Cosmos', exact: true }));
   fireEvent.click(screen.getByRole('button', { name: '연결선 켜짐' }));
@@ -27,8 +25,12 @@ test('Cosmos toggles edges and preserves article routes across remounts', () => 
   expect(within(screen.getByRole('navigation',{name:'주 메뉴'})).queryByRole('button',{name:'Writing',exact:true})).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole('button',{name:'AI 코딩 에이전트 커스터마이징',exact:true}));
   fireEvent.click(screen.getByRole('button',{name:'내용 살펴보기 ↗'}));
-  fireEvent.click(screen.getByRole('button', { name: '글 본문 읽기 ↗' }));
-  expect(mockNavigate).toHaveBeenCalledWith('/freeform/agent-customize');
+  expect(screen.getByRole('heading', { name: 'AI 코딩 에이전트 커스터마이징', level: 1 })).toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: '글 본문 읽기 ↗' })).not.toBeInTheDocument();
+  expect(screen.queryByRole('button', { name: '전체 글 목록 ↗' })).not.toBeInTheDocument();
+  for (const link of screen.queryAllByRole('link')) {
+    expect(link).not.toHaveAttribute('href', expect.stringContaining('/freeform'));
+  }
   unmount();
   expect(window.cancelAnimationFrame).toHaveBeenCalled();
 });
