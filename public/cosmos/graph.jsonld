@@ -478,29 +478,6 @@
           "@id": "concept:agents"
         }
       ],
-      "hasSection": [
-        {
-          "@id": "section:agent-customize/overview"
-        },
-        {
-          "@id": "section:agent-customize/instructions"
-        },
-        {
-          "@id": "section:agent-customize/skills"
-        },
-        {
-          "@id": "section:agent-customize/spec"
-        },
-        {
-          "@id": "section:agent-customize/hooks"
-        },
-        {
-          "@id": "section:agent-customize/comparison"
-        },
-        {
-          "@id": "section:agent-customize/references"
-        }
-      ],
       "label": "AI 코딩 에이전트 커스터마이징",
       "publishedIn": [
         {
@@ -1397,41 +1374,6 @@
       "@id": "technology:python",
       "@type": "Technology",
       "label": "Python"
-    },
-    {
-      "@id": "section:agent-customize/overview",
-      "@type": "Section",
-      "label": "개요"
-    },
-    {
-      "@id": "section:agent-customize/instructions",
-      "@type": "Section",
-      "label": "Instructions"
-    },
-    {
-      "@id": "section:agent-customize/skills",
-      "@type": "Section",
-      "label": "Skills"
-    },
-    {
-      "@id": "section:agent-customize/spec",
-      "@type": "Section",
-      "label": "Spec"
-    },
-    {
-      "@id": "section:agent-customize/hooks",
-      "@type": "Section",
-      "label": "Hooks"
-    },
-    {
-      "@id": "section:agent-customize/comparison",
-      "@type": "Section",
-      "label": "한눈에 보기"
-    },
-    {
-      "@id": "section:agent-customize/references",
-      "@type": "Section",
-      "label": "참고 링크"
     },
     {
       "@id": "technology:microsoft-agent-framework",

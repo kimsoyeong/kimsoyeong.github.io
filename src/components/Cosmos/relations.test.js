@@ -55,13 +55,15 @@ test('dated records sort newest first, undated last, with requested profile vide
   expect(graph.nodes.find(n => n.type === 'Person').media).toEqual([]);
 });
 
-test('technical archive separates reviewed work and preserves existing article routes', () => {
+test('technical archive separates reviewed work and retires local article routes and sections', () => {
   expect(graph.edges).toEqual(expect.arrayContaining([
     expect.objectContaining({source:'writing:tistory-copilot', predicate:'publishedIn', target:'channel:tistory'})
   ]));
   expect(graph.nodes.some(n => n.id === 'publication:handbook')).toBe(false);
   expect(graph.nodes.find(n => n.id === 'review:tistory-handbook').references[0].title).toContain('HANDBOOK.md:');
-  expect(graph.nodes.find(n => n.id === 'article:customize').slug).toBe('agent-customize');
+  expect(graph.nodes.find(n => n.id === 'article:customize')).toMatchObject({type: 'Writing'});
+  expect(graph.nodes.find(n => n.id === 'article:customize').slug).toBeUndefined();
+  expect(graph.nodes.some(n => n.id.startsWith('section:agent-customize/'))).toBe(false);
   expect(graph.edges.some(e => e.source === 'contribution:yoco' && e.predicate === 'duringEducation')).toBe(false);
 });
 
