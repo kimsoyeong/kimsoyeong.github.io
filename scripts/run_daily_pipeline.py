@@ -62,7 +62,7 @@ def publish(root: Path = ROOT, *, day: str | None = None, generate: Callable[[],
         if generate is not None:
             generate()
         else:
-            subprocess.run([sys.executable, str(root / 'scripts/generate_report.py')], cwd=root, check=True, timeout=900)
+            subprocess.run([sys.executable, str(root / 'scripts/generate_report.py'), '--history-dir', str(checkout / 'public/daily-reports')], cwd=root, check=True, timeout=900)
         if target.is_symlink() or not target.is_file() or not target.stat().st_size:
             raise RuntimeError(f'Generator did not produce a nonempty regular report: {relative}')
         remote_target.parent.mkdir(parents=True, exist_ok=True)

@@ -1,4 +1,4 @@
-import { Children, useEffect, useId, useRef, useState } from "react";
+import { Children, useEffect, useId, useMemo, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -17,6 +17,26 @@ export function isReportDate(value) {
 
 function kstToday() {
   return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+}
+
+export function reportHeadings(content) {
+  const headings = [];
+  let fence = null;
+  content.split("\n").forEach((line, index) => {
+    const marker = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+    if (marker) {
+      if (!fence) fence = { character: marker[1][0], length: marker[1].length };
+      else if (marker[1][0] === fence.character && marker[1].length >= fence.length && !marker[2].trim()) fence = null;
+      return;
+    }
+    if (fence) return;
+    const heading = line.match(/^ {0,3}(#{2,3})[ \t]+(.+?)\s*#*\s*$/);
+    if (heading) headings.push({
+      id: `section-${index + 1}`, depth: heading[1].length,
+      label: heading[2].replace(/!?\[([^\]]+)\]\([^)]*\)/g, "$1").replace(/[*_`]/g, ""),
+    });
+  });
+  return headings;
 }
 
 export function validateDiagram(source) {
@@ -76,7 +96,8 @@ export default function DailyReport() {
   const [index, setIndex] = useState({ status: "loading", dates: [] });
   const [report, setReport] = useState({ status: "loading", content: "" });
   const [retry, setRetry] = useState(0);
-  const selectedDate = date || index.dates[0];
+  const selectedDate = date;
+  const headings = useMemo(() => reportHeadings(report.content), [report.content]);
   const invalidDate = date !== undefined && !isReportDate(date);
   const today = kstToday();
 
@@ -121,16 +142,20 @@ export default function DailyReport() {
       <div className="daily-kicker">AI / AGENTS / ARCHITECTURE</div>
       <h1>Daily Report</h1>
       <p className="daily-subtitle">출근길에 읽는 에이전트 기술 동향</p>
-      <div className="daily-properties"><span>발행 기준</span><strong>매일 07:00 KST / 최근 24시간</strong><span>리포트 날짜</span><time dateTime={selectedDate}>{selectedDate || "발행 대기"}</time></div>
-      <nav className="daily-datebar" aria-label="리포트 날짜 선택"><Link to="/daily" aria-current={!date ? "page" : undefined}>최신 리포트</Link><label>날짜<input type="date" value={isReportDate(selectedDate) ? selectedDate : ""} max={today} onChange={(event) => { if (isReportDate(event.target.value)) navigate(`/daily/${event.target.value}`); }} /></label></nav>
+      <div className="daily-properties"><span>발행 기준</span><strong>매일 07:00 KST / 최근 24시간</strong><span>{date ? "리포트 날짜" : "발행된 리포트"}</span>{date ? <time dateTime={selectedDate}>{selectedDate}</time> : <span className="daily-report-count">{index.status === "ready" ? `${index.dates.length}개` : "확인 중"}</span>}</div>
+      <nav className="daily-datebar" aria-label="리포트 날짜 선택"><Link to="/daily" aria-current={!date ? "page" : undefined}>← 리포트 목록</Link><label>날짜<input type="date" value={isReportDate(selectedDate) ? selectedDate : ""} max={today} onChange={(event) => { if (isReportDate(event.target.value)) navigate(`/daily/${event.target.value}`); }} /></label></nav>
       {invalidDate ? <div className="daily-message" role="alert">올바른 날짜가 아닙니다. YYYY-MM-DD 형식의 날짜를 선택하세요.</div>
-        : !selectedDate ? <div className="daily-message" role="status">{index.status === "loading" ? "리포트 목록을 불러오는 중…" : index.status === "error" ? "리포트 목록을 불러오지 못했습니다." : "아직 발행된 리포트가 없습니다. 첫 자동 발행 후 여기에 표시됩니다."}{index.status === "error" && <button onClick={reload}>다시 불러오기</button>}</div>
-        : <>
-          {!date && selectedDate < today && <aside className="daily-notice">오늘 리포트는 아직 발행되지 않았습니다. 최근 리포트({selectedDate})를 표시합니다.</aside>}
-          {report.status === "ready" ? <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{ pre: MarkdownPre, a: ({ node, children, ...props }) => <a {...props} target="_blank" rel="noopener noreferrer">{children}</a>, img: () => null }}>{report.content}</ReactMarkdown></article>
-            : <div className="daily-message" role="status">{report.status === "loading" ? "리포트를 불러오는 중…" : report.status === "missing" ? "선택한 날짜에 발행된 리포트가 없습니다." : "리포트를 불러오지 못했습니다."}{report.status !== "loading" && <button onClick={reload}>다시 불러오기</button>}</div>}
-        </>}
-      {index.dates.length > 0 && <details className="daily-archive"><summary>지난 리포트 ({index.dates.length})</summary><div>{index.dates.map((item) => <Link key={item} to={`/daily/${item}`} aria-current={item === selectedDate ? "page" : undefined}>{item}</Link>)}</div></details>}
+        : !date ? <section className="daily-archive-list" aria-label="날짜별 데일리 리포트">
+          {index.status !== "ready" || index.dates.length === 0 ? <div className="daily-message" role="status">{index.status === "loading" ? "리포트 목록을 불러오는 중…" : index.status === "error" ? "리포트 목록을 불러오지 못했습니다." : "아직 발행된 리포트가 없습니다. 첫 자동 발행 후 여기에 표시됩니다."}{index.status === "error" && <button onClick={reload}>다시 불러오기</button>}</div>
+            : <><h2>날짜별 리포트 <span>{index.dates.length}</span></h2><p className="daily-archive-description">읽을 날짜를 선택하세요. 최신순으로 표시합니다.</p><ol>{index.dates.map((item, position) => <li key={item}><Link to={`/daily/${item}`}><div className="daily-archive-meta"><time dateTime={item}>{item}</time>{item === today ? <span className="daily-badge">오늘</span> : position === 0 ? <span className="daily-badge">최신</span> : null}</div><div className="daily-archive-title"><strong>Daily Report</strong><span aria-hidden="true">↗</span></div><p>AI Agent / LLM / Architecture</p></Link></li>)}</ol></>}
+        </section>
+        : report.status === "ready" ? <>
+          {headings.length > 0 && <nav className="daily-toc" aria-label="리포트 목차"><h2>이 리포트의 목차</h2><ol>{headings.map((heading) => <li key={heading.id} className={heading.depth === 3 ? "daily-toc-subsection" : undefined}><a href={`#${heading.id}`}>{heading.label}</a></li>)}</ol></nav>}
+          <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{ pre: MarkdownPre,
+            h2: ({ node, children }) => <h2 id={`section-${node.position.start.line}`}>{children}</h2>,
+            h3: ({ node, children }) => <h3 id={`section-${node.position.start.line}`}>{children}</h3>,
+            a: ({ node, children, href, ...props }) => <a {...props} href={href} target={href?.startsWith("#") ? undefined : "_blank"} rel={href?.startsWith("#") ? undefined : "noopener noreferrer"}>{children}</a>, img: () => null }}>{report.content}</ReactMarkdown></article>
+        </> : <div className="daily-message" role="status">{report.status === "loading" ? "리포트를 불러오는 중…" : report.status === "missing" ? "선택한 날짜에 발행된 리포트가 없습니다." : "리포트를 불러오지 못했습니다."}{report.status !== "loading" && <button onClick={reload}>다시 불러오기</button>}</div>}
       <footer className="daily-footer">인터넷 공개 자료 기반 / 출처는 각 리포트에서 확인</footer>
     </main>
   </div>;

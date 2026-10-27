@@ -22,7 +22,7 @@ import subprocess
 import tempfile
 import time
 import urllib.error
-from urllib.parse import quote, urlparse
+from urllib.parse import parse_qsl, quote, urlencode, urlparse, urlunparse
 from urllib.request import Request, urlopen
 import xml.etree.ElementTree as ET
 from zoneinfo import ZoneInfo
@@ -48,6 +48,10 @@ SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 AI 기술 리포트 �
 흐름이 기사에 명시되지 않았으면 flow_steps 첫 노드를 '개념적 해석'으로 두어 추론임을 드러낸다.
 flow_steps는 렌더러가 graph TD 다이어그램으로 변환한다. 노드 라벨에 따옴표, HTML, Mermaid 문법을 넣지 않는다.
 GitHub Trending은 수집 시점 스냅샷일 뿐 지난 24시간에 발표된 뉴스로 주장하지 않는다.
+previous_reports는 중복 제외용 과거 보도 이력이며 오늘의 사실 근거로 사용하지 않는다.
+이미 다룬 동일 사건은 제목/URL/매체가 달라도 제외한다. AI/LLM 등 일반 주제 자체를 제외하지 않는다.
+동일 사건에 실질적인 신규 발표/변경이 있는 경우에만 다시 다루고, 첫 불릿을 '새 변화:'로 시작해 이전 보도와 무엇이 달라졌는지 밝힌다.
+중복을 제외한 서로 다른 신규 사건이 2개 미만이면 내용을 억지로 만들지 말고 빈 trends를 반환한다.
 JSON 스키마에 맞는 결과만 반환한다.'''
 
 
@@ -114,22 +118,75 @@ class TrendingParser(HTMLParser):
                     self.rows.append(repository)
 
 
-def collect(now: datetime) -> dict:
+def normalize_title(title: str) -> str:
+    title = re.sub(r'\\([\\*_\[\]#|`])', r'\1', title)
+    return re.sub(r'\W+', '', unescape(title).rsplit(' - ', 1)[0].casefold())
+
+
+def canonical_url(url: str) -> str:
+    parsed = urlparse(unescape(url).strip())
+    host = (parsed.hostname or '').lower().removeprefix('www.')
+    path = parsed.path.rstrip('/')
+    if host == 'github.com':
+        # Repository identity survives /tree/main, .git, fragments and case changes.
+        parts = path.strip('/').split('/')
+        path = '/' + '/'.join(parts[:2]).removesuffix('.git').casefold()
+        query = ''
+    elif host == 'news.google.com' and '/articles/' in path:
+        query = ''  # oc, hl, gl and ceid do not change the article identity.
+    else:
+        query = urlencode(sorted((key, value) for key, value in parse_qsl(parsed.query)
+                                 if not key.lower().startswith('utm_') and key.lower() not in ('ref', 'fbclid', 'gclid')))
+    return urlunparse(('https', host, path, '', query, ''))
+
+
+def load_history(directory: Path, before_day: str) -> dict:
+    history = {'urls': set(), 'titles': set(), 'repositories': set(), 'headlines': set(), 'recent_reports': []}
+    for path in sorted(directory.glob('????-??-??.md'), reverse=True):
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}\.md', path.name) or path.stem >= before_day:
+            continue
+        content = path.read_text(encoding='utf-8')
+        headlines = re.findall(r'^## \d+\. (.+)$', content, re.M)
+        history['headlines'].update(normalize_title(title) for title in headlines)
+        article_titles = []
+        for title, url in re.findall(r'\[((?:\\.|[^\]])*)\]\((https?://[^\s)]+)\)', content):
+            canonical = canonical_url(url)
+            history['urls'].add(canonical)
+            if urlparse(canonical).hostname == 'github.com':
+                history['repositories'].add(canonical)
+            else:
+                history['titles'].add(normalize_title(title))
+                article_titles.append(title[:200])
+        if len(history['recent_reports']) < 30:
+            history['recent_reports'].append({'date': path.stem, 'headlines': headlines[:5], 'source_titles': article_titles[:9]})
+    return history
+
+
+def exclude_history(rows: list[dict], history: dict) -> list[dict]:
+    return [row for row in rows if canonical_url(row['url']) not in history['urls']
+            and normalize_title(row['title']) not in history['titles']]
+
+
+def collect(now: datetime, history_dir: Path | None = None) -> dict:
     candidates, errors = [], []
+    successful_feeds = 0
+    history = load_history(history_dir or ROOT / 'public' / 'daily-reports', now.astimezone(KST).date().isoformat())
     with ThreadPoolExecutor(max_workers=5) as pool:
         pending = {pool.submit(fetch, url): name for name, url in FEEDS.items()}
         for task in as_completed(pending):
             name = pending[task]
             try:
                 candidates.extend(parse_feed(task.result(), name, now))
+                successful_feeds += 1
             except Exception as exc:
                 errors.append(f'{name}: {type(exc).__name__}')
     seen_urls, seen_titles, unique = set(), set(), []
-    for row in sorted(candidates, key=lambda row: row['published_at'], reverse=True):
-        normalized_title = re.sub(r'\W+', '', row['title'].rsplit(' - ', 1)[0].lower())
-        if row['url'] in seen_urls or normalized_title in seen_titles:
+    for row in sorted(exclude_history(candidates, history), key=lambda row: row['published_at'], reverse=True):
+        normalized_title = normalize_title(row['title'])
+        url_identity = canonical_url(row['url'])
+        if url_identity in seen_urls or normalized_title in seen_titles:
             continue
-        seen_urls.add(row['url'])
+        seen_urls.add(url_identity)
         seen_titles.add(normalized_title)
         unique.append(row)
     # Balanced selection avoids letting a single busy aggregator query fill the prompt.
@@ -143,10 +200,14 @@ def collect(now: datetime) -> dict:
     try:
         parser = TrendingParser()
         parser.feed(fetch('https://github.com/trending?since=daily').decode('utf-8'))
-        trending = [{'repository': repo, 'url': f'https://github.com/{repo}'} for repo in parser.rows[:10]]
+        trending = [{'repository': repo, 'url': f'https://github.com/{repo}'} for repo in parser.rows
+                    if canonical_url(f'https://github.com/{repo}') not in history['repositories']][:10]
     except Exception as exc:
         errors.append(f'GitHub Trending: {type(exc).__name__}')
-    return {'collected_at': now.isoformat(), 'window_start': (now - timedelta(hours=24)).isoformat(), 'evidence': selected, 'github_trending_snapshot': trending, 'collection_warnings': sorted(errors)}
+    return {'collected_at': now.isoformat(), 'window_start': (now - timedelta(hours=24)).isoformat(), 'evidence': selected, 'github_trending_snapshot': trending, 'collection_warnings': sorted(errors),
+            'successful_feeds': successful_feeds, 'dated_candidates_count': len(candidates),
+            'previous_reports': history['recent_reports'],
+            '_historical_exclusions': {key: sorted(value) for key, value in history.items() if key != 'recent_reports'}}
 
 
 def report_schema() -> dict:
@@ -160,16 +221,21 @@ def report_schema() -> dict:
         'flow_steps': {'type': 'array', 'items': string, 'minItems': 3, 'maxItems': 5},
     }}
     trend['required'] = list(trend['properties'])
-    return {'type': 'object', 'additionalProperties': False, 'properties': {'trends': {'type': 'array', 'items': trend, 'minItems': 2, 'maxItems': 3}}, 'required': ['trends']}
+    return {'type': 'object', 'additionalProperties': False, 'properties': {'trends': {'type': 'array', 'items': trend, 'minItems': 0, 'maxItems': 3}}, 'required': ['trends']}
 
 
-def validate_result(result: dict, evidence: list[dict]) -> None:
+def validate_result(result: dict, evidence: list[dict], history: dict | None = None) -> None:
+    history = history or {'urls': [], 'titles': [], 'headlines': []}
+    if any(canonical_url(row['url']) in history['urls'] or normalize_title(row['title']) in history['titles'] for row in evidence):
+        raise ValueError('Previously reported source supplied to generation')
     trends = result.get('trends', [])
     if not 2 <= len(trends) <= 3:
         raise ValueError('Expected 2–3 evidence-backed trends')
     known_ids = {row['source_id'] for row in evidence}
     used_ids = set()
     for trend in trends:
+        if normalize_title(trend.get('headline', '')) in history['headlines']:
+            raise ValueError('Previously reported headline repeated')
         ids = trend.get('source_ids', [])
         if not ids or any(source_id not in known_ids for source_id in ids):
             raise ValueError('Unknown or missing source citation')
@@ -190,6 +256,9 @@ def validate_result(result: dict, evidence: list[dict]) -> None:
 
 
 def generate(bundle: dict) -> dict:
+    history = bundle.get('_historical_exclusions')
+    if history and len(exclude_history(bundle['evidence'], history)) != len(bundle['evidence']):
+        raise ValueError('Previously reported evidence must be excluded before model generation')
     if len(bundle['evidence']) < 2:
         raise ValueError('Fewer than two dated sources in the last 24 hours; refusing to invent a report')
     configured = os.environ.get('CODEX_BIN')
@@ -217,7 +286,7 @@ def generate(bundle: dict) -> dict:
                    '--sandbox', 'read-only', '--ephemeral', '--ignore-user-config',
                    '--skip-git-repo-check', '--color', 'never',
                    '--output-schema', str(schema_path), '--output-last-message', str(output_path), '-']
-        prompt = SYSTEM_PROMPT + '\n도구를 호출하지 말고 아래 evidence만 분석해 JSON을 출력한다.\n' + json.dumps(bundle, ensure_ascii=False)
+        prompt = SYSTEM_PROMPT + '\n도구를 호출하지 말고 아래 evidence만 분석해 JSON을 출력한다.\n' + json.dumps({key: value for key, value in bundle.items() if not key.startswith('_')}, ensure_ascii=False)
         try:
             completed = subprocess.run(command, input=prompt, text=True, capture_output=True,
                                        cwd=workspace, env=environment, timeout=180, check=False)
@@ -237,7 +306,9 @@ def generate(bundle: dict) -> dict:
                 trend[field] = clean(value)
             elif isinstance(value, list):
                 trend[field] = [clean(text) if isinstance(text, str) else text for text in value]
-    validate_result(result, bundle['evidence'])
+    if result.get('trends') == []:
+        return result  # Honest semantic-dedup refusal: main publishes a no-new-trends status.
+    validate_result(result, bundle['evidence'], bundle.get('_historical_exclusions'))
     return result
 
 
@@ -250,6 +321,9 @@ def render(result: dict, bundle: dict, day: str) -> str:
     lines = [f'# Daily Report / {day}', '', '> AI Agent / Agentic AI / LLM / Architecture / Framework / Pattern', '',
              f"- 수집: {datetime.fromisoformat(bundle['collected_at']).astimezone(KST).strftime('%Y-%m-%d %H:%M KST')}",
              '- 범위: 수집 시각 기준 지난 24시간 / RSS 제목과 발췌문 기반', '- 사실 요약과 해석은 출처 원문으로 재확인', '']
+    if not result['trends']:
+        lines.extend(['## 오늘의 새 동향', '', '- 새롭게 확인된 동향이 2개 미만이라 핵심 요약을 생략했다.',
+                      '- 기존 리포트에서 소개한 기사와 저장소는 제외했다.', ''])
     for index, trend in enumerate(result['trends'], 1):
         lines.extend([f"## {index}. {safe_text(trend['headline'])}", ''])
         lines.extend(f'- {safe_text(bullet)}' for bullet in trend['bullets'])
@@ -267,10 +341,13 @@ def render(result: dict, bundle: dict, day: str) -> str:
             lines.append(f"- [{safe_text(row['title'])}]({row['url']}) / {published}")
         lines.append('')
     lines.extend(['## GitHub Trending / 수집 시점 스냅샷', '', '- 지난 24시간 내 신규 발표를 뜻하지 않는다. 순위는 수집 시점에 따라 달라진다.', ''])
-    for row in bundle['github_trending_snapshot'][:5]:
+    previous_repositories = bundle.get('_historical_exclusions', {}).get('repositories', [])
+    new_repositories = [row for row in bundle['github_trending_snapshot']
+                        if canonical_url(row['url']) not in previous_repositories]
+    for row in new_repositories[:5]:
         lines.append(f"- [{row['repository']}]({row['url']})")
-    if not bundle['github_trending_snapshot']:
-        lines.append('- 이번 수집에서 GitHub Trending을 읽지 못했다.')
+    if not new_repositories:
+        lines.append('- 오늘 새롭게 소개할 미소개 저장소가 없다.' if not any(warning.startswith('GitHub Trending:') for warning in bundle['collection_warnings']) else '- 이번 수집에서 GitHub Trending을 읽지 못했다.')
     if bundle['collection_warnings']:
         lines.extend(['', '## 수집 상태', '', '- 일부 피드 수집 실패. 성공한 피드의 지난 24시간 자료만 반영.', *[f'- {warning}' for warning in bundle['collection_warnings']]])
     return '\n'.join(lines) + '\n'
@@ -290,7 +367,8 @@ def write_report(path: Path, content: str) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--collect-only', action='store_true', help='Print live dated evidence without calling OpenAI or writing files')
+    parser.add_argument('--collect-only', action='store_true', help='Print live dated evidence without running Codex or writing files')
+    parser.add_argument('--history-dir', type=Path, help='Prior report directory, e.g. the freshly fetched remote checkout')
     args = parser.parse_args()
     now = datetime.now(timezone.utc)
     day = now.astimezone(KST).date().isoformat()
@@ -298,13 +376,17 @@ def main() -> int:
     if target.exists() and not args.collect_only:
         print(f'Report already exists: {target.relative_to(ROOT)}')
         return 0
-    bundle = collect(now)
+    bundle = collect(now, args.history_dir)
     if args.collect_only:
         print(json.dumps(bundle, ensure_ascii=False, indent=2))
         return 0 if len(bundle['evidence']) >= 2 else 1
-    result = generate(bundle)
+    if not bundle['successful_feeds']:
+        raise RuntimeError('All news feeds failed; refusing to publish an unverified no-news status')
+    used_model = len(bundle['evidence']) >= 2
+    result = generate(bundle) if used_model else {'trends': []}
     write_report(target, render(result, bundle, day))
-    print(f'Created {target.relative_to(ROOT)} / {len(result["trends"])} trends / {MODEL} / reasoning=low')
+    generation = f'{MODEL} / reasoning=low' if used_model else 'no model call'
+    print(f'Created {target.relative_to(ROOT)} / {len(result["trends"])} trends / {generation}')
     return 0
 
 
