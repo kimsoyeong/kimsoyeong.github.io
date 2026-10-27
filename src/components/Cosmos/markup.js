@@ -3,7 +3,7 @@ const markup = `
 <div class="vignette" aria-hidden="true"></div>
 <header>
  <button class="brand" data-action="home" aria-label="인트로로 돌아가기"><span class="brand-symbol">✳</span> SOYEONG KIM <span class="brand-caption">KNOWLEDGE COSMOS</span></button>
- <nav aria-label="주 메뉴"><button data-action="graph">Cosmos</button><button data-collection="Project">Work</button><button data-collection="Research">Research</button><button data-collection="Person">About</button><button data-action="ontology">Ontology</button><a href="https://soso-cod3v.tistory.com/" target="_blank" rel="noopener noreferrer">Tech blog ↗</a></nav>
+ <nav aria-label="주 메뉴"><button data-action="graph">Cosmos</button><button data-collection="Project">Work</button><button data-collection="Research">Research</button><button data-collection="Person">About</button><button data-action="ontology">Ontology</button><a href="/daily" data-daily-link>Daily Report</a><a href="https://soso-cod3v.tistory.com/" target="_blank" rel="noopener noreferrer">Tech blog ↗</a></nav>
  <button class="theme-button" data-action="theme" aria-label="라이트 모드로 전환">◐ <span>Light</span></button>
 </header>
 <main id="intro">

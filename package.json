@@ -9,9 +9,11 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "cra-template": "1.2.0",
+    "dompurify": "^3.4.17",
     "framer-motion": "^12.8.0",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.45",
+    "mermaid": "^11.17.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-draggable": "^4.4.6",
@@ -38,8 +40,12 @@
     "cosmos:query": "python3 packages/cosmos-engine/run.py query",
     "cosmos:validate": "python3 packages/cosmos-engine/run.py validate",
     "cosmos:test": "python3 -m unittest discover -s packages/cosmos-engine/tests -v",
-    "prebuild": "npm run cosmos:update -- --no-extract",
-    "cosmos:studio": "python3 packages/cosmos-engine/run.py studio"
+    "prebuild": "node scripts/build_report_index.cjs && npm run cosmos:update -- --no-extract",
+    "cosmos:studio": "python3 packages/cosmos-engine/run.py studio",
+    "prestart": "node scripts/build_report_index.cjs",
+    "daily:generate": "python3 scripts/generate_report.py",
+    "daily:test": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
+    "daily:publish": "python3 scripts/run_daily_pipeline.py"
   },
   "eslintConfig": {
     "extends": [

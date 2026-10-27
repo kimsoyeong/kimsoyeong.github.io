@@ -1,0 +1,70 @@
+name: Daily Report
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'packages/**'
+      - 'cosmos/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tailwind.config.js'
+      - '.github/workflows/daily-post.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-report-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      pages: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Test report pipeline
+        run: python -m unittest discover -s scripts -p 'test_*.py' -v
+      - run: npm ci --no-audit --no-fund
+      - name: Production build and derived report index
+        run: npm run build
+        env:
+          CI: 'true'
+          GENERATE_SOURCEMAP: 'false'
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy viewer and reports together
+        id: deployment
+        uses: actions/deploy-pages@v4

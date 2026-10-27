@@ -34,3 +34,6 @@ cosmos/inbox/
 *.egg-info/
 **/.pytest_cache/
 /packages/cosmos-engine/build/
+
+# Generated daily report navigation (created by prestart/prebuild)
+/public/daily-reports/index.json

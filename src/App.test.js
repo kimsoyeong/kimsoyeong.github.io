@@ -17,6 +17,17 @@ beforeEach(() => {
 
 afterEach(() => jest.restoreAllMocks());
 
+test('Daily Report uses SPA navigation and preserves modified-click browser behavior', () => {
+  const navigate = jest.fn();
+  render(<CosmosPage onDailyNavigate={navigate} />);
+  const link = screen.getByRole('link', { name: 'Daily Report' });
+  expect(link).toHaveAttribute('href', '/daily');
+  fireEvent.click(link, { ctrlKey: true });
+  expect(navigate).not.toHaveBeenCalled();
+  fireEvent.click(link);
+  expect(navigate).toHaveBeenCalledTimes(1);
+});
+
 test('Cosmos toggles edges and keeps writing records without retired article navigation', () => {
   const { unmount } = render(<StrictMode><CosmosPage /></StrictMode>);
   fireEvent.click(screen.getByRole('button', { name: 'Cosmos', exact: true }));
