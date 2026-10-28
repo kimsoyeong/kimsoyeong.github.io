@@ -85,6 +85,8 @@ SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 기술 인사이트 �
 findings의 status는 confirmed(원문에서 직접 확인한 구조/사실), reported(발표자의 성능 주장), uncertain(가설/미확인), limited(명시된 한계) 중 하나다. 주장을 검증 완료 사실로 바꾸지 않는다. 모든 카드가 같은 뜻을 반복하지 않도록 주장/근거/한계를 나눈다.
 chart는 동일 평가/조건/단위로 비교한 수치가 원문에 있을 때만 쓴다. title, unit, note(평가 조건과 해석 한계), rows의 label/value를 제공하며, 없으면 null이다. 다른 벤치마크나 가격 조건을 섞지 않는다. 숫자/비율/실험 조건을 추정하거나 예시에서 복사하지 않는다. explainer.source_ids는 그 트렌드에서 인용한 원문만 연결한다.
 도표 선택은 정보의 관계에 따른다. 성능/비용은 비교, 구현 변화는 기존/새 구조, 경쟁 가설은 근거별 판단으로 표현한다. 일반적인 A→B→C 화살표로 내용을 반복하는 도표는 생략한다. 원문 핵심 도표가 있으면 원본을 우선 포함하고 explainer는 읽는 데 필요한 맥락만 보완한다.
+각 트렌드에는 시각 자료가 반드시 있어야 한다. 해당 내용을 직접 설명하는 원본 이미지/다이어그램이 있으면 visual_asset_ids로 원본을 그대로 첨부한다. 적절한 원본이 없으면 원문의 내용/구조/흐름을 분석해 explainer의 비교도/근거 카드/수치 그래프 또는 실제 관계를 설명하는 flow_steps 도식을 생성한다.
+원본 없는 트렌드에서 visual_asset_ids=[], explainer=null, flow_steps=[]를 동시에 반환하지 않는다. 숫자가 없으면 수치 그래프 대신 구조 비교나 근거별 판단을 사용한다. 원문에 없는 연결/인과관계/수치/성능은 시각화를 채우기 위해 만들지 않는다. 근거로 유의미한 도식을 구성할 수 없으면 그 트렌드를 선정하지 않는다.
 AI가 바꾸는 개발 인프라(버전 관리/모노레포/코드 리뷰/CI), 추론/서빙/양자화/증류, 평가/재현성, 새로운 모델 구조와 멀티모달/월드 모델 연구도 탐색한다. 특정 기업명이나 제품명 자체를 필수 검색 조건으로 삼지 않는다.
 개발 인프라의 성과는 저장소 규모/동시 에이전트 수/변경량/비교 환경을 명시하고 일반 개발팀에도 필수인 것처럼 쓰지 않는다. 코드 작성 자동화와 인간 검토 불필요, AGI 도래 시점은 서로 다른 주장이다.
 학습 알고리즘/사전학습/역전파 대안/0차 최적화/학습 시스템 효율 연구, 개인 에이전트가 소비/가격/광고/플랫폼/경쟁/신뢰에 미치는 시장 구조 분석도 탐색 범위다.
@@ -121,7 +123,7 @@ repository_summaries에는 github_trending_snapshot의 각 저장소를 reposito
 원문의 visual_assets 중 핵심 결과/아키텍처를 설명하는 이미지가 있으면 관련 asset_id를 visual_asset_ids에 최대 2개 선택한다. 없거나 장식/로고이면 빈 배열이다.
 이미지는 본문 주장을 직접 설명할 때만 선택하고, 해당 이미지의 source_id를 source_ids에도 포함한다. URL/캡션/이미지를 새로 만들지 않는다. 원본 이미지를 Mermaid로 대체하거나 다시 그리지 않는다. URL이나 마크다운 링크는 출력하지 않는다.
 실제 시스템/구조 변화가 있는 트렌드에만 flow_steps에 짧은 노드 라벨 3~5개를 넣어 세로형 Mermaid graph TD로 표현한다. 인수합병/사업 사건 등 구조도가 부적절한 경우 flow_steps=[]로 둔다. 근거 없는 인과관계나 거래 절차를 만들지 않는다.
-흐름이 기사에 명시되지 않았으면 flow_steps 첫 노드를 '개념적 해석'으로 두어 추론임을 드러낸다.
+흐름이 기사에 명시되지 않았으면 flow_steps=[]로 두고 explainer에서 확인된 사실과 적용 한계를 비교한다. '개념적 해석' 같은 빈 노드로 도식을 채우지 않는다.
 flow_steps는 렌더러가 graph TD 다이어그램으로 변환한다. 노드 라벨에 따옴표, HTML, Mermaid 문법을 넣지 않는다.
 GitHub Trending은 수집 시점 스냅샷일 뿐 지난 24시간에 발표된 뉴스로 주장하지 않는다.
 previous_reports는 중복 제외용 과거 보도 이력이며 오늘의 사실 근거로 사용하지 않는다.
@@ -881,6 +883,8 @@ def validate_result(result: dict, evidence: list[dict], history: dict | None = N
         steps = trend.get('flow_steps', [])
         if not isinstance(steps, list) or (steps and not 3 <= len(steps) <= 5):
             raise ValueError('Expected no diagram or 3–5 evidence-backed vertical flow steps')
+        if not image_ids and not steps and not trend.get('explainer'):
+            raise ValueError('A trend without an original figure needs an evidence-backed generated visual')
         if not 2 <= len(trend.get('bullets', [])) <= 3:
             raise ValueError('Expected 2–3 concise bullets')
         values = [trend.get('headline'), *trend['bullets'], trend.get('why_it_matters'), trend.get('next_action'), trend.get('caveat'), *steps]
@@ -988,7 +992,7 @@ def render(result: dict, bundle: dict, day: str) -> str:
             lines.extend(['', '```report-panel', json.dumps(rendered, ensure_ascii=False, indent=2), '```', ''])
         lines.extend([f"- **기술/산업 영향:** {safe_text(trend['why_it_matters'])}", f"- **검증 행동:** {safe_text(trend['next_action'])}", f"- **한계:** {safe_text(trend.get('caveat', '원문과 실제 환경에서 재검증 필요'))}", ''])
         if trend['flow_steps']:
-            lines.extend(['```mermaid', 'graph TD'])
+            lines.extend(['> 원문 근거로 재구성한 흐름도', '', '```mermaid', 'graph TD'])
             for i, label in enumerate(trend['flow_steps']):
                 # Labels are always plain text, never executable Mermaid directives.
                 label = re.sub(r'[^\w\s가-힣/.,:()+-]', '', label)[:60]

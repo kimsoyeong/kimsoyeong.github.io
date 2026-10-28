@@ -499,6 +499,9 @@ class ReportTests(unittest.TestCase):
         result = copy.deepcopy(self.result)
         for trend in result['trends']:
             trend['flow_steps'] = []
+            panel = self.explainer_fixture()
+            panel.update(metrics=[], comparisons=[], chart=None, source_ids=trend['source_ids'])
+            trend['explainer'] = panel
         report.validate_result(result, self.evidence)
         text = report.render(result, self.bundle, '2026-10-27')
         self.assertNotIn('```mermaid', text)
@@ -507,6 +510,28 @@ class ReportTests(unittest.TestCase):
         result['trends'][0]['flow_steps'] = ['unsupported', 'two nodes']
         with self.assertRaises(ValueError):
             report.validate_result(result, self.evidence)
+
+    def test_missing_original_requires_a_generated_visual(self):
+        result = copy.deepcopy(self.result)
+        result['trends'][0].update(flow_steps=[], visual_asset_ids=[], explainer=None)
+        with self.assertRaisesRegex(ValueError, 'needs an evidence-backed generated visual'):
+            report.validate_result(result, self.evidence)
+        result['trends'][0]['explainer'] = self.explainer_fixture()
+        report.validate_result(result, self.evidence)
+        rendered = report.render(result, self.bundle, '2026-10-27')
+        self.assertIn('```report-panel', rendered)
+        self.assertIn('원문 근거로 재구성한 흐름도', rendered)
+
+    def test_original_figure_can_be_used_without_a_generated_replacement(self):
+        evidence = copy.deepcopy(self.evidence)
+        evidence[0]['visual_assets'] = [{'asset_id': 'S1I1', 'source_id': 'S1', 'url': 'https://cdn.example.org/original.png', 'alt': 'Original architecture', 'caption': 'Publisher figure', 'source_url': evidence[0]['url']}]
+        result = copy.deepcopy(self.result)
+        result['trends'][0].update(flow_steps=[], visual_asset_ids=['S1I1'], explainer=None)
+        report.validate_result(result, evidence)
+        rendered = report.render(result, {**self.bundle, 'evidence': evidence}, '2026-10-27')
+        first = rendered.split('## 2.')[0]
+        self.assertIn('https://cdn.example.org/original.png', first)
+        self.assertNotIn('```mermaid', first)
 
     def test_trending_snapshot_repositories(self):
         parser = report.TrendingParser()

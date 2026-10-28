@@ -27,7 +27,7 @@ export default function ReportPanel({ source }) {
   try { panel = parseReportPanel(source); } catch { return <p className="daily-panel-error" role="status">시각 요약을 표시하지 못했습니다. 아래 본문과 출처를 확인하세요.</p>; }
   const maximum = panel.chart ? Math.max(...panel.chart.rows.map((row) => row.value), 1) : 1;
   return <section className="daily-panel" aria-label={panel.title}>
-    <header className="daily-panel-heading"><span>핵심을 한눈에</span><h3>{panel.title}</h3></header>
+    <header className="daily-panel-heading"><span>원문 근거로 재구성 / 핵심을 한눈에</span><h3>{panel.title}</h3></header>
     {panel.metrics.length > 0 && <dl className="daily-panel-metrics">{panel.metrics.map((row, index) => <div key={index}><dt>{row.label}</dt><dd><strong>{row.value}</strong><span>{row.detail}</span></dd></div>)}</dl>}
     {panel.chart && <figure className="daily-panel-chart"><figcaption>{panel.chart.title}<span>단위: {panel.chart.unit} / 막대 시작점: 0</span></figcaption><ol>{panel.chart.rows.map((row, index) => <li key={index}><span className="daily-chart-label">{row.label}</span><span className="daily-chart-track" aria-hidden="true"><span style={{ width: `${row.value / maximum * 100}%` }} /></span><strong>{row.value.toLocaleString("ko-KR")}</strong></li>)}</ol><p>{panel.chart.note}</p></figure>}
     {panel.comparisons.length > 0 && <div className="daily-panel-comparisons">{panel.comparisons.map((row, index) => <section key={index}><h4>{row.label}</h4><dl><div><dt>비교 기준</dt><dd>{row.before}</dd></div><div><dt>이번 변화</dt><dd>{row.after}</dd></div></dl><p>{row.detail}</p></section>)}</div>}
