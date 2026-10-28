@@ -60,6 +60,8 @@
 .daily-content li {padding-inline-start:3px;margin:9px 0}
 .daily-content li>p {margin:6px 0}
 .daily-repo-description {display:block;color:var(--daily-muted);font-size:14px;line-height:1.85;margin:6px 0 12px}
+.daily-repo-korean {display:block;font-size:15px;line-height:1.85;margin:0 0 20px;color:var(--daily-fg)}
+.daily-repo-label {display:block;font-size:11px;font-weight:650;color:var(--daily-muted);margin-bottom:3px}
 .daily-content strong {font-weight:650}
 .daily-content li.daily-note {list-style:none;margin:14px 0;padding:14px 16px;border-inline-start:2px solid var(--daily-control-border);background:var(--daily-surface);border-radius:0 5px 5px 0}
 .daily-content .daily-note-tag {display:table;margin:0 0 8px;padding:2px 9px;border:1px solid var(--daily-control-border);border-radius:4px;background:var(--daily-bg);color:var(--daily-fg);font-size:13px;font-weight:700;line-height:1.6;letter-spacing:.01em}

@@ -17,13 +17,15 @@
       "spec-driven-development",
       "vibe-coding",
       "vibecoding"
-    ]
+    ],
+    "summary_ko": "pi 에이전트와 코딩하며 작업 방식에 맞춰 구성되는 경량 개발 환경."
   },
   "Nutlope/hallmark": {
     "description": "Anti-AI-slop design skill for Claude Code, Cursor, and Codex.",
     "html_url": "https://github.com/Nutlope/hallmark",
     "language": "CSS",
-    "topics": []
+    "topics": [],
+    "summary_ko": "상투적인 AI 디자인을 줄이기 위한 Claude Code, Cursor, Codex용 디자인 스킬."
   },
   "TauricResearch/TradingAgents": {
     "description": "TradingAgents: Multi-Agents LLM Financial Trading Framework",
@@ -35,7 +37,8 @@
       "llm",
       "multiagent",
       "trading"
-    ]
+    ],
+    "summary_ko": "여러 LLM 에이전트를 결합해 금융 트레이딩 작업을 구성하는 프레임워크."
   },
   "affaan-m/ECC": {
     "description": "The agent harness performance optimization system. Skills, instincts, memory, security, and research-first development for Claude Code, Codex, Opencode, Cursor and beyond.",
@@ -50,13 +53,15 @@
       "llm",
       "mcp",
       "productivity"
-    ]
+    ],
+    "summary_ko": "코딩 에이전트의 스킬, 메모리, 보안, 리서치 등을 다뤄 실행 환경을 최적화하는 시스템."
   },
   "elayadesign/ai-design-skills": {
     "description": null,
     "html_url": "https://github.com/elayadesign/ai-design-skills",
     "language": null,
-    "topics": []
+    "topics": [],
+    "summary_ko": "공개된 설명이 없어 저장소 이름만으로 구체적인 기능을 단정할 수 없다."
   },
   "gitroomhq/postiz-app": {
     "description": "📨 The ultimate agentic social media scheduling tool 🤖",
@@ -73,7 +78,8 @@
       "scheduling-tool",
       "social-media-scheduling-tool",
       "typescript"
-    ]
+    ],
+    "summary_ko": "AI 에이전트를 활용한 소셜 미디어 게시 일정 관리 도구."
   },
   "makecindy/cindy": {
     "description": "Consider it done. The open-source AI agent that works out of the box · 想到，就能做到。开源、开箱即用的 AI Agent。",
@@ -93,7 +99,8 @@
       "react-native",
       "typescript",
       "windows"
-    ]
+    ],
+    "summary_ko": "바로 사용할 수 있는 사용성을 표방하는 오픈소스 AI 에이전트."
   },
   "nightly-labs/openbot": {
     "description": "A local-first desktop workspace for persistent AI teammates. Run Codex, Claude, and Grok with dedicated workspaces, task queues, file sharing, browser control, and agent-to-agent collaboration.",
@@ -108,7 +115,8 @@
       "macos",
       "solidjs",
       "typescript"
-    ]
+    ],
+    "summary_ko": "여러 AI 팀원에게 독립된 작업 공간과 대기열, 파일 공유, 브라우저 제어를 제공하는 로컬 데스크톱 환경."
   },
   "obra/superpowers": {
     "description": "An agentic skills framework & software development methodology that works.",
@@ -123,12 +131,14 @@
       "skills",
       "subagent-driven-development",
       "superpowers"
-    ]
+    ],
+    "summary_ko": "AI 에이전트의 작업에 적용하는 스킬 프레임워크와 소프트웨어 개발 방법론."
   },
   "pbakaus/impeccable": {
     "description": "The design language that makes your AI harness better at design.",
     "html_url": "https://github.com/pbakaus/impeccable",
     "language": "Rust",
-    "topics": []
+    "topics": [],
+    "summary_ko": "AI 에이전트가 더 나은 디자인을 만들도록 돕는 디자인 언어와 지침."
   }
 }

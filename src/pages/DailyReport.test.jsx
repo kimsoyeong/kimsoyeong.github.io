@@ -225,13 +225,15 @@ test("new summary blocks render once and leave section line anchors unchanged", 
 test("legacy GitHub section gets a clear heading and verified repository descriptions", async () => {
   useParams.mockReturnValue({ date: "2026-01-01" });
   const body = "# Daily Report\n## GitHub Trending / 수집 시점 스냅샷\n\n- 지난 24시간 내 신규 발표를 뜻하지 않는다. 순위는 수집 시점에 따라 달라진다.\n\n- [owner/repo](https://github.com/owner/repo)\n- [Issues](https://github.com/owner/repo/issues)";
-  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: [], repositories: { "owner/repo": { description: "Verified repository purpose", language: "Python" } } }) : response(body));
+  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: [], repositories: { "owner/repo": { description: "Verified repository purpose", summary_ko: "여러 에이전트의 작업을 연결하는 도구.", language: "Python" } } }) : response(body));
   render(<DailyReport />);
   const article = await screen.findByRole("article");
   expect(within(article).getByRole("heading", { name: "오늘 살펴볼 인기 오픈소스" })).toHaveAttribute("id", "section-2");
   expect(within(screen.getByRole("navigation", { name: "리포트 목차" })).getByRole("link", { name: "오늘 살펴볼 인기 오픈소스" })).toHaveAttribute("href", "#section-2");
   expect(within(article).getByText(/GitHub의 일간 Trending에 오른 저장소 중 이전 리포트에서 소개하지 않은 항목입니다/)).toBeInTheDocument();
   expect(within(article).getAllByText("Verified repository purpose")).toHaveLength(1);
+  expect(within(article).getAllByText("여러 에이전트의 작업을 연결하는 도구.")).toHaveLength(1);
+  expect(within(article).getByText("한국어 요약")).toBeInTheDocument();
   expect(fetch).toHaveBeenCalledTimes(2);
 });
 

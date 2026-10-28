@@ -381,7 +381,8 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(repository['description'], metadata['description'])
         bundle = {**self.bundle, 'github_trending_snapshot': [repository]}
         text = report.render(self.result, bundle, '2026-10-27')
-        self.assertIn('용도: Framework for AI agents', text)
+        self.assertIn('원문 설명: Framework for AI agents', text)
+        self.assertIn('한국어 요약: 한국어 요약이 아직 생성되지 않았다.', text)
         self.assertIn('주제 ai-agent, llm / 주 언어 Python', text)
         self.assertIn('신규 출시를 뜻하지 않는다.', text)
 
@@ -392,6 +393,35 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(repository['description'], '')
         text = report.render(self.result, {**self.bundle, 'github_trending_snapshot': [repository]}, '2026-10-27')
         self.assertIn('저장소 메타데이터 수집 실패', text)
+
+    def test_repository_korean_summary_keeps_original_and_validates_real_identity(self):
+        repository = {'repository': 'Org/Agent', 'url': 'https://github.com/Org/Agent', 'description': 'Framework for AI agents', 'metadata_status': 'success'}
+        result = {**self.result, 'repository_summaries': [{'repository': 'org/agent', 'summary_ko': 'AI 에이전트를 만드는 프레임워크.'}]}
+        report.validate_repository_summaries(result, [repository])
+        text = report.render(result, {**self.bundle, 'github_trending_snapshot': [repository]}, '2026-10-27')
+        self.assertIn('원문 설명: Framework for AI agents', text)
+        self.assertIn('한국어 요약: AI 에이전트를 만드는 프레임워크.', text)
+        for entries in [
+            [{'repository': 'Unknown/Repo', 'summary_ko': '알 수 없는 저장소.'}],
+            result['repository_summaries'] * 2,
+            [{'repository': 'org/agent', 'summary_ko': 'Agent framework.'}],
+            [{'repository': 'org/agent', 'summary_ko': '설명 <script>오류</script>'}],
+            [{'repository': 'org/agent', 'summary_ko': '설명 https://example.org'}],
+            [],
+        ]:
+            with self.assertRaises(ValueError):
+                report.validate_repository_summaries({'repository_summaries': entries}, [repository])
+        self.assertEqual(report.validate_repository_summaries(self.result, [repository]), {})
+
+    def test_missing_repository_description_cannot_be_guessed_in_korean(self):
+        repository = {'repository': 'org/repo', 'url': 'https://github.com/org/repo', 'description': '', 'metadata_status': 'success'}
+        result = {**self.result, 'repository_summaries': [{'repository': 'org/repo', 'summary_ko': '원문 설명이 없어 용도를 확인할 수 없다.'}]}
+        text = report.render(result, {**self.bundle, 'github_trending_snapshot': [repository]}, '2026-10-27')
+        self.assertIn('원문 설명: 저장소에 공개된 설명 없음', text)
+        self.assertIn('한국어 요약: 원문 설명이 없어 용도를 확인할 수 없다.', text)
+        result['repository_summaries'][0]['summary_ko'] = '강력한 AI 자동화 도구.'
+        with self.assertRaisesRegex(ValueError, 'missing description'):
+            report.validate_repository_summaries(result, [repository])
 
     def test_gzip_feed_and_official_redirect_guard(self):
         response = MagicMock()

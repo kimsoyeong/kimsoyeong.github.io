@@ -272,7 +272,11 @@ export default function DailyReport() {
         });
         const repositories = {};
         if (payload.repositories && typeof payload.repositories === "object" && !Array.isArray(payload.repositories)) Object.entries(payload.repositories).forEach(([key, repository]) => {
-          if (/^[\w.-]+\/[\w.-]+$/.test(key) && repository && typeof repository.description === "string" && repository.description.trim()) repositories[key.toLowerCase()] = repository.description.trim().slice(0, 600);
+          if (/^[\w.-]+\/[\w.-]+$/.test(key) && repository) {
+            const description = typeof repository.description === "string" ? repository.description.trim().slice(0, 600) : "";
+            const summaryKo = typeof repository.summary_ko === "string" ? repository.summary_ko.trim().slice(0, 200) : "";
+            if (description || summaryKo) repositories[key.toLowerCase()] = { description, summaryKo };
+          }
         });
         if (!controller.signal.aborted) setIndex({ status: "ready", dates: [...new Set(payload.dates)].sort().reverse(), titles, repositories, summaries });
       }).catch(() => { if (!controller.signal.aborted) setIndex({ status: "error", dates: [], titles: {}, repositories: {}, summaries: {} }); });
@@ -324,8 +328,8 @@ export default function DailyReport() {
             a: ({ node, children, href, ...props }) => {
               if (node?.children?.some((child) => child.tagName === "img")) return <span>{children}<a href={href} target="_blank" rel="noopener noreferrer">원문에서 보기 ↗</a></span>;
               const repository = href?.match(/^https:\/\/github\.com\/([\w.-]+\/[\w.-]+)\/?$/i)?.[1].toLowerCase();
-              const description = repository && !markdown.includes("  - 용도:") ? index.repositories[repository] : undefined;
-              return <><a {...props} href={href} target={href?.startsWith("#") ? undefined : "_blank"} rel={href?.startsWith("#") ? undefined : "noopener noreferrer"}>{children}</a>{description && <span className="daily-repo-description">{description}</span>}</>;
+              const metadata = repository && !/^\s{2}- (?:용도|원문 설명|한국어 요약):/m.test(markdown) ? index.repositories[repository] : undefined;
+              return <><a {...props} href={href} target={href?.startsWith("#") ? undefined : "_blank"} rel={href?.startsWith("#") ? undefined : "noopener noreferrer"}>{children}</a>{metadata && <><span className="daily-repo-description"><span className="daily-repo-label">원문</span>{metadata.description || "저장소에 공개된 설명 없음"}</span>{metadata.summaryKo && <span className="daily-repo-korean"><span className="daily-repo-label">한국어 요약</span>{metadata.summaryKo}</span>}</>}</>;
             }, img: ({ src, alt, title }) => <SourceImage key={src} src={src} alt={alt} title={title} /> }}>{markdown}</ReactMarkdown></article>
         </> : <div className="daily-message" role="status">{report.status === "loading" ? "리포트를 불러오는 중…" : report.status === "missing" ? "선택한 날짜에 발행된 리포트가 없습니다. 목록에서 다른 날짜를 선택하세요." : "리포트를 불러오지 못했습니다. 연결을 확인하고 다시 불러오세요."}{report.status !== "loading" && <button type="button" onClick={reload}>다시 불러오기</button>}</div>}
       <footer className="daily-footer">인터넷 공개 자료 기반 / 출처는 각 리포트에서 확인</footer>
