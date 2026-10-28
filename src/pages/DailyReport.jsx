@@ -322,7 +322,7 @@ export default function DailyReport() {
             a: ({ node, children, href, ...props }) => {
               if (node?.children?.some((child) => child.tagName === "img")) return <span>{children}<a href={href} target="_blank" rel="noopener noreferrer">원문에서 보기 ↗</a></span>;
               const repository = href?.match(/^https:\/\/github\.com\/([\w.-]+\/[\w.-]+)\/?$/i)?.[1].toLowerCase();
-              const description = repository ? index.repositories[repository] : undefined;
+              const description = repository && !markdown.includes("  - 용도:") ? index.repositories[repository] : undefined;
               return <><a {...props} href={href} target={href?.startsWith("#") ? undefined : "_blank"} rel={href?.startsWith("#") ? undefined : "noopener noreferrer"}>{children}</a>{description && <span className="daily-repo-description">{description}</span>}</>;
             }, img: ({ src, alt, title }) => <SourceImage key={src} src={src} alt={alt} title={title} /> }}>{markdown}</ReactMarkdown></article>
         </> : <div className="daily-message" role="status">{report.status === "loading" ? "리포트를 불러오는 중…" : report.status === "missing" ? "선택한 날짜에 발행된 리포트가 없습니다. 목록에서 다른 날짜를 선택하세요." : "리포트를 불러오지 못했습니다. 연결을 확인하고 다시 불러오세요."}{report.status !== "loading" && <button type="button" onClick={reload}>다시 불러오기</button>}</div>}

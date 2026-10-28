@@ -290,7 +290,7 @@ class ArticleParser(HTMLParser):
             self._caption = []
         if tag == 'img' and self._main and not self._ignored and len(self.images) < 40:
             image = {'url': attrs.get('src') or attrs.get('data-src', ''),
-                     'alt': plain(attrs.get('alt', '')), 'caption': '',
+                     'alt': plain(attrs.get('alt') or ''), 'caption': '',
                      'width': attrs.get('width', ''), 'height': attrs.get('height', '')}
             self.images.append(image)
             if self._figure_images is not None:
@@ -930,7 +930,7 @@ def render(result: dict, bundle: dict, day: str) -> str:
     if bundle['collection_warnings']:
         lines.extend(['', '## 수집 상태', '', '- 일부 피드 수집 실패. 성공한 피드의 지난 24시간 자료만 반영.', *[f'- {warning}' for warning in bundle['collection_warnings']]])
     if bundle.get('source_audit'):
-        lines.extend(['', '## 출처 점검', '', '| 출처 | 상태 | 확인한 글 | 최근 관련 글 | 채택 |', '| --- | --- | ---: | ---: | ---: |'])
+        lines.extend(['', '## 출처 점검', '', '| 출처 | 상태 | 확인한 글 | 최근 관련 글 | 검토 후보 |', '| --- | --- | ---: | ---: | ---: |'])
         labels = {'success': '수집 성공', 'no_recent_matching_items': '확인 범위에 지난 24시간 관련 글 없음',
                   'partial_failure': '일부 요청 실패', 'failed': '수집 실패'}
         for audit in bundle['source_audit']:

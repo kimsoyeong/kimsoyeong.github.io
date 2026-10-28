@@ -29,7 +29,7 @@ class ReportTests(unittest.TestCase):
     def test_original_article_figures_are_bounded_and_not_decorations(self):
         parser = report.ArticleParser()
         parser.feed('<img src="https://cdn.example.org/outside.png" alt="Architecture diagram outside article">'
-                    '<main><img src="/logo.png" alt="Company logo architecture diagram">'
+                    '<main><img src="/empty.png" alt><img src="/logo.png" alt="Company logo architecture diagram">'
                     '<img src="https://cdn.example.org/pixel.png" width="1" alt="Architecture diagram tracker">'
                     '<img src="/hero.png" alt="Product launch announcement">'
                     '<figure><img src="/architecture.png" alt="Tool execution architecture">'
