@@ -115,7 +115,14 @@
 .daily-calendar time {display:flex;gap:8px;align-items:center;color:var(--daily-muted);font-size:13px;font-variant-numeric:tabular-nums}
 .daily-calendar-title {display:block;font-weight:600;font-size:14px;line-height:1.6;margin-top:8px;overflow-wrap:anywhere}
 .daily-calendar-open {display:block;font-size:11px;color:var(--daily-muted);margin-top:8px}
-.daily-today-label {font-size:10px;text-decoration:underline;text-underline-offset:3px}
+.daily-today-label,.daily-badge-today {display:inline-flex;align-items:center;justify-content:center;min-height:24px;padding:2px 9px;border:1px solid var(--daily-fg);border-radius:999px;background:var(--daily-fg);color:var(--daily-bg);font-size:12px;font-weight:700;line-height:1.5;white-space:nowrap;text-decoration:none}
+.daily-calendar td.daily-calendar-today {box-shadow:inset 0 0 0 2px var(--daily-fg)}
+.daily-calendar-today>a,.daily-calendar-today>.daily-calendar-empty {margin:2px;min-height:104px;padding:8px}
+.daily-calendar-today time {color:var(--daily-fg);font-weight:700}
+.daily-source-image {display:block;max-width:100%;margin:24px 0}
+.daily-source-image img {display:block;width:auto;max-width:100%;height:auto;max-height:80svh;object-fit:contain;margin:0 auto;border-radius:4px;outline:1px solid rgb(0 0 0 / .1);outline-offset:-1px}
+.daily-report[data-daily-theme="dark"] .daily-source-image img {outline-color:rgb(255 255 255 / .1)}
+.daily-source-image-caption {display:block;margin-top:10px;color:var(--daily-muted);font-size:12px;line-height:1.8}
 .daily-calendar-legend {color:var(--daily-muted);font-size:12px;margin-top:16px}
 .daily-footer {margin-top:40px;color:var(--daily-muted);font-size:12px;line-height:1.8;border-top:1px solid var(--daily-line);padding-top:20px}
 @media (hover:hover) {

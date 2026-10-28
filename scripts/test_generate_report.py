@@ -17,6 +17,52 @@ class ReportTests(unittest.TestCase):
         self.bundle = {'collected_at': self.now.isoformat(), 'evidence': self.evidence, 'github_trending_snapshot': [], 'collection_warnings': []}
         self.result = {'title': '에이전트 도구 연결과 모델 구조의 변화', 'summary': ['에이전트 도구 연결 절차가 바뀐다.', '구조 변경은 권한 검증에 영향을 준다.', '새 인터페이스를 직접 재현해 검증한다.'], 'trends': [{'headline': '에이전트 도구 변화', 'bullets': ['새 인터페이스 공개', '호출 절차 변경'], 'why_it_matters': '해석: 도구 연결 단순화', 'next_action': '공식 문서 확인', 'caveat': '독립 재현 결과는 아직 미확인', 'source_ids': [source_id], 'flow_steps': ['개념적 해석', '도구 선택', '결과 확인']} for source_id in ('S1', 'S2')]}
 
+    def test_concrete_summary_rejects_empty_direction_and_limit_claim(self):
+        result = copy.deepcopy(self.result)
+        result['summary'][2] = '월드 모델이 실시간 상호작용을 다루는 연구 방향과 현재 한계를 함께 보여준다.'
+        with self.assertRaisesRegex(ValueError, 'concrete result'):
+            report.validate_summary(result)
+        result['summary'][2] = 'Genie 4는 음성과 3D 장면을 생성하지만 긴 세션에서는 물체의 외형이 유지되지 않는다.'
+        report.validate_summary(result)
+        report.validate_summary({'summary': ['새롭게 확인된 핵심 동향이 2개 미만이다.', '이전 기사는 재사용하지 않았다.', '미확인 내용은 제외했다.']})
+
+    def test_original_article_figures_are_bounded_and_not_decorations(self):
+        parser = report.ArticleParser()
+        parser.feed('<img src="https://cdn.example.org/outside.png" alt="Architecture diagram outside article">'
+                    '<main><img src="/logo.png" alt="Company logo architecture diagram">'
+                    '<img src="https://cdn.example.org/pixel.png" width="1" alt="Architecture diagram tracker">'
+                    '<img src="/hero.png" alt="Product launch announcement">'
+                    '<figure><img src="/architecture.png" alt="Tool execution architecture">'
+                    '<figcaption>Figure 1: Tool execution and result validation.</figcaption></figure>'
+                    '<img src="http://cdn.example.org/insecure.png" alt="Model architecture diagram">'
+                    '<img src="https://127.0.0.1/graph.png" alt="Architecture graph diagram"></main>')
+        assets = report.article_visual_assets(parser, 'https://www.anthropic.com/news/model')
+        self.assertEqual(len(assets), 1)
+        self.assertEqual(assets[0]['url'], 'https://www.anthropic.com/architecture.png')
+        self.assertIn('result validation', assets[0]['caption'])
+        self.assertIsNone(report.safe_image_url('javascript:alert(1)'))
+        self.assertIsNone(report.safe_image_url('https://user:secret@example.org/a.png'))
+
+    def test_selected_source_images_require_real_asset_and_cited_source(self):
+        evidence = copy.deepcopy(self.evidence)
+        evidence[0]['visual_assets'] = [{'asset_id': 'S1I1', 'source_id': 'S1', 'url': 'https://cdn.example.org/graph.png',
+                                         'alt': 'Model benchmark chart', 'caption': 'Published benchmark comparison',
+                                         'source_url': evidence[0]['url']}]
+        result = copy.deepcopy(self.result)
+        result['trends'][0]['visual_asset_ids'] = ['S1I1']
+        report.validate_result(result, evidence)
+        text = report.render(result, {**self.bundle, 'evidence': evidence}, '2026-10-27')
+        self.assertIn('![Model benchmark chart](https://cdn.example.org/graph.png)', text)
+        self.assertIn('Published benchmark comparison / [출처 원문](https://example.org/1)', text)
+        for ids in (['invented'], ['S1I1', 'S1I1']):
+            result['trends'][0]['visual_asset_ids'] = ids
+            with self.assertRaises(ValueError):
+                report.validate_result(result, evidence)
+        result['trends'][0]['visual_asset_ids'] = []
+        result['trends'][1]['visual_asset_ids'] = ['S1I1']
+        with self.assertRaisesRegex(ValueError, 'uncited'):
+            report.validate_result(result, evidence)
+
     def test_only_last_24_hours_with_real_timestamps(self):
         rss = b'''<rss><channel>
         <item><title>AI Agent new</title><link>https://example.org/new</link><pubDate>Mon, 26 Oct 2026 23:00:00 GMT</pubDate></item>

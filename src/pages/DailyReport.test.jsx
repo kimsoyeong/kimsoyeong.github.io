@@ -2,7 +2,7 @@ import { act } from "react";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { useNavigate, useParams } from "react-router-dom";
 import mermaid from "mermaid";
-import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, validateDiagram } from "./DailyReport";
+import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, safeImageUrl, validateDiagram } from "./DailyReport";
 
 jest.mock("react-router-dom", () => ({
   useParams: jest.fn(),
@@ -16,6 +16,8 @@ jest.mock("react-markdown", () => ({ __esModule: true, default: ({ children, com
     const Heading = components[`h${heading[1].length}`];
     return <Heading key={index} node={{ position: { start: { line: index + 1 } } }}>{heading[2]}</Heading>;
   }
+  const image = line.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+  if (image) { const Image = components.img; return <p key={index}><Image src={image[2]} alt={image[1]} /></p>; }
   const link = line.match(/^-\s+\[([^\]]+)\]\(([^)]+)\)$/);
   if (link) { const Anchor = components.a; return <p key={index}><Anchor href={link[2]}>{link[1]}</Anchor></p>; }
   return <div key={index}>{line}</div>;
@@ -231,4 +233,45 @@ test("legacy GitHub section gets a clear heading and verified repository descrip
   expect(within(article).getByText(/GitHub의 일간 Trending에 오른 저장소 중 이전 리포트에서 소개하지 않은 항목입니다/)).toBeInTheDocument();
   expect(within(article).getAllByText("Verified repository purpose")).toHaveLength(1);
   expect(fetch).toHaveBeenCalledTimes(2);
+});
+
+
+test("today is explicitly marked in both calendar and mobile archive", async () => {
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Seoul", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  fetch.mockReturnValue(response({ dates: [today], reports: [{ date: today, title: "오늘의 기술 변화" }] }));
+  render(<DailyReport />);
+  const archive = await screen.findByRole("region", { name: "날짜별 데일리 리포트" });
+  expect(within(archive).getByText("오늘")).toHaveClass("daily-badge-today");
+  const calendar = screen.getByRole("region", { name: "월별 데일리 리포트" });
+  const badge = within(calendar).getByText("오늘");
+  expect(badge).toHaveClass("daily-today-label");
+  expect(within(calendar).getAllByRole("cell").filter((cell) => cell.getAttribute("aria-current") === "date")).toHaveLength(1);
+});
+
+test("verified summary overrides replace historical generic meaning bullets", async () => {
+  useParams.mockReturnValue({ date: "2026-01-01" });
+  const lines = ["Genie가 음성과 3D 장면을 함께 생성한다.", "긴 세션에서 사물이 유지되지 않는다.", "외부 검증 결과는 아직 공개되지 않았다."];
+  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: [], summaries: { "2026-01-01": lines } }) : response("## World model\n- **의미:** 연구 방향과 한계를 보여준다."));
+  render(<DailyReport />);
+  const summary = await screen.findByRole("complementary", { name: "오늘의 요약" });
+  expect(within(summary).getAllByRole("listitem").map((item) => item.textContent)).toEqual(lines);
+});
+
+test("source images retain original HTTPS URLs and expose a useful fallback", async () => {
+  useParams.mockReturnValue({ date: "2026-01-01" });
+  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: [] }) : response("## Architecture\n![원문 아키텍처](https://example.com/architecture.png)\n![Unsafe](http://example.com/tracker.png)"));
+  render(<DailyReport />);
+  const image = await screen.findByRole("img", { name: "원문 아키텍처" });
+  expect(image).toHaveAttribute("src", "https://example.com/architecture.png");
+  expect(image).toHaveAttribute("loading", "lazy");
+  expect(image).toHaveAttribute("referrerpolicy", "no-referrer");
+  expect(screen.queryByRole("img", { name: "Unsafe" })).not.toBeInTheDocument();
+  fireEvent.error(image);
+  expect(screen.queryByRole("img", { name: "원문 아키텍처" })).not.toBeInTheDocument();
+  expect(screen.getByRole("link", { name: "원본 이미지에서 확인 ↗" })).toHaveAttribute("href", "https://example.com/architecture.png");
+});
+
+test("source image URL guard rejects unsafe schemes and embedded credentials", () => {
+  expect(safeImageUrl("https://example.com/diagram.svg")).toBe("https://example.com/diagram.svg");
+  for (const value of [["javascript", "alert(1)"].join(":"), "data:image/png;base64,eA==", "http://example.com/a.png", "//example.com/a.png", "https://user:pass@example.com/a.png", undefined]) expect(safeImageUrl(value)).toBe("");
 });

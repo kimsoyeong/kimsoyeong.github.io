@@ -155,6 +155,23 @@ function MarkdownPre({ children }) {
   return <pre>{children}</pre>;
 }
 
+export function safeImageUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && !url.username && !url.password ? url.href : "";
+  } catch { return ""; }
+}
+
+function SourceImage({ src, alt, title }) {
+  const [failed, setFailed] = useState(false);
+  const url = safeImageUrl(src);
+  if (!url) return null;
+  return <span className="daily-source-image">
+    {!failed && <img src={url} alt={alt || "출처 원문의 이미지"} title={title} loading="lazy" decoding="async" referrerPolicy="no-referrer" onError={() => setFailed(true)} />}
+    <span className="daily-source-image-caption">{failed && <span>이미지를 불러오지 못했습니다. </span>}<a href={url} target="_blank" rel="noopener noreferrer">{failed ? "원본 이미지에서 확인 ↗" : "원본 이미지 보기 ↗"}</a></span>
+  </span>;
+}
+
 export function monthCalendar(month) {
   const [year, number] = month.split("-").map(Number);
   const firstWeekday = new Date(Date.UTC(year, number - 1, 1)).getUTCDay();
@@ -177,7 +194,7 @@ function ArchiveCalendar({ dates, titles, today }) {
   const [year, number] = month.split("-").map(Number);
   return <section className="daily-calendar" aria-label="월별 데일리 리포트">
     <div className="daily-calendar-toolbar"><div><h2>{year}년 {number}월</h2><p>리포트가 발행된 날짜를 선택하세요.</p></div><div className="daily-month-controls"><button type="button" aria-label="이전 달" onClick={() => setMonth(changeMonth(month, -1))}>←</button><button type="button" onClick={() => setMonth(today.slice(0, 7))}>이번 달</button><button type="button" aria-label="다음 달" onClick={() => setMonth(changeMonth(month, 1))}>→</button></div></div>
-    <table><caption className="daily-sr-only">{year}년 {number}월 리포트 달력</caption><thead><tr>{["일", "월", "화", "수", "목", "금", "토"].map((day) => <th key={day} scope="col">{day}</th>)}</tr></thead><tbody>{monthCalendar(month).map((week, weekIndex) => <tr key={weekIndex}>{week.map((day, dayIndex) => <td key={day || `empty-${dayIndex}`} className={day === today ? "daily-calendar-today" : undefined}>{day ? available.has(day) ? <Link to={`/daily/${day}`} aria-label={`${day} / ${titles[day] || `${day} 리포트`}`}><time dateTime={day}>{Number(day.slice(-2))}{day === today && <span className="daily-today-label">오늘</span>}</time><span className="daily-calendar-title">{titles[day] || `${day} 리포트`}</span><span className="daily-calendar-open" aria-hidden="true">리포트 읽기 ↗</span></Link> : <div className="daily-calendar-empty"><time dateTime={day}>{Number(day.slice(-2))}{day === today && <span className="daily-today-label">오늘</span>}</time></div> : null}</td>)}</tr>)}</tbody></table>
+    <table><caption className="daily-sr-only">{year}년 {number}월 리포트 달력</caption><thead><tr>{["일", "월", "화", "수", "목", "금", "토"].map((day) => <th key={day} scope="col">{day}</th>)}</tr></thead><tbody>{monthCalendar(month).map((week, weekIndex) => <tr key={weekIndex}>{week.map((day, dayIndex) => <td key={day || `empty-${dayIndex}`} aria-current={day === today ? "date" : undefined} className={day === today ? "daily-calendar-today" : undefined}>{day ? available.has(day) ? <Link to={`/daily/${day}`} aria-label={`${day} / ${titles[day] || `${day} 리포트`}`}><time dateTime={day}>{Number(day.slice(-2))}{day === today && <span className="daily-today-label">오늘</span>}</time><span className="daily-calendar-title">{titles[day] || `${day} 리포트`}</span><span className="daily-calendar-open" aria-hidden="true">리포트 읽기 ↗</span></Link> : <div className="daily-calendar-empty"><time dateTime={day}>{Number(day.slice(-2))}{day === today && <span className="daily-today-label">오늘</span>}</time></div> : null}</td>)}</tr>)}</tbody></table>
     <p className="daily-calendar-legend">제목이 있는 날짜에 리포트가 발행됐습니다.</p>
   </section>;
 }
@@ -185,14 +202,14 @@ function ArchiveCalendar({ dates, titles, today }) {
 export default function DailyReport() {
   const { date } = useParams();
   const navigate = useNavigate();
-  const [index, setIndex] = useState({ status: "loading", dates: [], titles: {}, repositories: {} });
+  const [index, setIndex] = useState({ status: "loading", dates: [], titles: {}, repositories: {}, summaries: {} });
   const [report, setReport] = useState({ status: "loading", content: "" });
   const [retry, setRetry] = useState(0);
   const [theme, setTheme] = useState(() => { try { return localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light"; } catch { return "light"; } });
   const selectedDate = date;
   const headings = useMemo(() => reportHeadings(report.content), [report.content]);
   const markdown = useMemo(() => prepareReportMarkdown(report.content), [report.content]);
-  const summary = useMemo(() => reportSummary(report.content), [report.content]);
+  const summary = useMemo(() => index.summaries[selectedDate] || reportSummary(report.content), [index.summaries, selectedDate, report.content]);
   const collectedAt = useMemo(() => reportCollectedAt(report.content), [report.content]);
   const invalidDate = date !== undefined && !isReportDate(date);
   const today = kstToday();
@@ -202,7 +219,7 @@ export default function DailyReport() {
 
   useEffect(() => {
     const controller = new AbortController();
-    setIndex({ status: "loading", dates: [], titles: {}, repositories: {} });
+    setIndex({ status: "loading", dates: [], titles: {}, repositories: {}, summaries: {} });
     fetch(`${REPORT_ROOT}/index.json`, { signal: controller.signal, cache: "no-cache" })
       .then(async (response) => {
         if (!response.ok) throw new Error("index");
@@ -212,12 +229,16 @@ export default function DailyReport() {
         if (Array.isArray(payload.reports)) payload.reports.forEach((item) => {
           if (item && isReportDate(item.date) && typeof item.title === "string" && item.title.trim()) titles[item.date] = item.title.trim().slice(0, 240);
         });
+        const summaries = {};
+        if (payload.summaries && typeof payload.summaries === "object" && !Array.isArray(payload.summaries)) Object.entries(payload.summaries).forEach(([key, lines]) => {
+          if (isReportDate(key) && Array.isArray(lines) && lines.length === 3 && lines.every((line) => typeof line === "string" && line.trim() && line.length <= 600)) summaries[key] = lines.map((line) => line.trim());
+        });
         const repositories = {};
         if (payload.repositories && typeof payload.repositories === "object" && !Array.isArray(payload.repositories)) Object.entries(payload.repositories).forEach(([key, repository]) => {
           if (/^[\w.-]+\/[\w.-]+$/.test(key) && repository && typeof repository.description === "string" && repository.description.trim()) repositories[key.toLowerCase()] = repository.description.trim().slice(0, 600);
         });
-        if (!controller.signal.aborted) setIndex({ status: "ready", dates: [...new Set(payload.dates)].sort().reverse(), titles, repositories });
-      }).catch(() => { if (!controller.signal.aborted) setIndex({ status: "error", dates: [], titles: {}, repositories: {} }); });
+        if (!controller.signal.aborted) setIndex({ status: "ready", dates: [...new Set(payload.dates)].sort().reverse(), titles, repositories, summaries });
+      }).catch(() => { if (!controller.signal.aborted) setIndex({ status: "error", dates: [], titles: {}, repositories: {}, summaries: {} }); });
     return () => controller.abort();
   }, [retry]);
 
@@ -255,7 +276,7 @@ export default function DailyReport() {
       {invalidDate ? <div className="daily-message" role="alert">올바른 날짜가 아닙니다. YYYY-MM-DD 형식의 날짜를 선택하세요.</div>
         : !date ? <>
           {index.status !== "ready" || index.dates.length === 0 ? <div className="daily-message" role="status">{index.status === "loading" ? "리포트 목록을 불러오는 중…" : index.status === "error" ? "리포트 목록을 불러오지 못했습니다. 연결을 확인하고 다시 불러오세요." : "아직 발행된 리포트가 없습니다. 첫 자동 발행 후 여기에 표시됩니다."}{index.status === "error" && <button type="button" onClick={reload}>다시 불러오기</button>}</div>
-            : <><section className="daily-archive-list" aria-label="날짜별 데일리 리포트"><h2>날짜별 리포트 <span>{index.dates.length}</span></h2><p className="daily-archive-description">최신순 / 읽을 리포트를 선택하세요.</p><ol>{index.dates.map((item, position) => <li key={item}><Link to={`/daily/${item}`}><div className="daily-archive-meta"><time dateTime={item}>{item}</time>{item === today ? <span className="daily-badge">오늘</span> : position === 0 ? <span className="daily-badge">최신</span> : null}</div><div className="daily-archive-title"><strong>{index.titles[item] || `${item} 리포트`}</strong><span aria-hidden="true">↗</span></div></Link></li>)}</ol></section><ArchiveCalendar dates={index.dates} titles={index.titles} today={today} /></>}
+            : <><section className="daily-archive-list" aria-label="날짜별 데일리 리포트"><h2>날짜별 리포트 <span>{index.dates.length}</span></h2><p className="daily-archive-description">최신순 / 읽을 리포트를 선택하세요.</p><ol>{index.dates.map((item, position) => <li key={item}><Link to={`/daily/${item}`}><div className="daily-archive-meta"><time dateTime={item}>{item}</time>{item === today ? <span className="daily-badge daily-badge-today">오늘</span> : position === 0 ? <span className="daily-badge">최신</span> : null}</div><div className="daily-archive-title"><strong>{index.titles[item] || `${item} 리포트`}</strong><span aria-hidden="true">↗</span></div></Link></li>)}</ol></section><ArchiveCalendar dates={index.dates} titles={index.titles} today={today} /></>}
         </>
         : report.status === "ready" ? <>
           {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2>{summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul></aside>}
@@ -264,10 +285,11 @@ export default function DailyReport() {
             h2: ({ node, children }) => <h2 id={`section-${node.position.start.line}`}>{children}</h2>,
             h3: ({ node, children }) => <h3 id={`section-${node.position.start.line}`}>{children}</h3>,
             a: ({ node, children, href, ...props }) => {
+              if (node?.children?.some((child) => child.tagName === "img")) return <span>{children}<a href={href} target="_blank" rel="noopener noreferrer">원문에서 보기 ↗</a></span>;
               const repository = href?.match(/^https:\/\/github\.com\/([\w.-]+\/[\w.-]+)\/?$/i)?.[1].toLowerCase();
               const description = repository ? index.repositories[repository] : undefined;
               return <><a {...props} href={href} target={href?.startsWith("#") ? undefined : "_blank"} rel={href?.startsWith("#") ? undefined : "noopener noreferrer"}>{children}</a>{description && <span className="daily-repo-description">{description}</span>}</>;
-            }, img: () => null }}>{markdown}</ReactMarkdown></article>
+            }, img: ({ src, alt, title }) => <SourceImage key={src} src={src} alt={alt} title={title} /> }}>{markdown}</ReactMarkdown></article>
         </> : <div className="daily-message" role="status">{report.status === "loading" ? "리포트를 불러오는 중…" : report.status === "missing" ? "선택한 날짜에 발행된 리포트가 없습니다. 목록에서 다른 날짜를 선택하세요." : "리포트를 불러오지 못했습니다. 연결을 확인하고 다시 불러오세요."}{report.status !== "loading" && <button type="button" onClick={reload}>다시 불러오기</button>}</div>}
       <footer className="daily-footer">인터넷 공개 자료 기반 / 출처는 각 리포트에서 확인</footer>
     </main>
