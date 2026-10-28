@@ -213,7 +213,8 @@
 .daily-calendar th {padding:12px;text-align:start;color:var(--daily-muted);font-size:13px;font-weight:500}
 .daily-calendar td {padding:0;border:1px solid var(--daily-line);vertical-align:top;width:calc(100% / 7)}
 .daily-calendar td>a,.daily-calendar-empty {display:block;min-height:108px;padding:10px;text-decoration:none;line-height:1.6}
-.daily-calendar td>a {background:var(--daily-surface)}
+.daily-calendar td:has(>a) {background:var(--daily-surface)}
+.daily-calendar td>a {background:transparent}
 .daily-calendar time {display:flex;gap:8px;align-items:center;color:var(--daily-muted);font-size:13px;font-variant-numeric:tabular-nums}
 .daily-calendar-title {display:block;font-weight:600;font-size:14px;line-height:1.6;margin-top:8px;overflow-wrap:anywhere}
 .daily-calendar-open {display:block;font-size:11px;color:var(--daily-muted);margin-top:8px}
