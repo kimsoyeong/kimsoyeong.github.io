@@ -2,7 +2,7 @@ import { act } from "react";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { useNavigate, useParams } from "react-router-dom";
 import mermaid from "mermaid";
-import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportHeadings, reportSummary, validateDiagram } from "./DailyReport";
+import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, validateDiagram } from "./DailyReport";
 
 jest.mock("react-router-dom", () => ({
   useParams: jest.fn(),
@@ -125,10 +125,11 @@ test("invalid route dates are never fetched as file paths", async () => {
 });
 
 
-test("legacy metadata keeps only the collected timestamp without moving TOC line positions", () => {
+test("legacy metadata moves the collected timestamp out of the body without moving TOC line positions", () => {
   const original = "# Daily Report / 2026-10-28\n\n> AI Agent / Agentic AI / LLM / Architecture / Framework / Pattern\n\n- 수집: 2026-10-28 07:00 KST\n- 범위: 최근 24시간\n- 사실 요약과 해석은 출처 원문으로 재확인\n\n## Agent orchestration\n- 수집: this is normal article content";
   const prepared = prepareReportMarkdown(original);
-  expect(prepared).toContain("> 수집: 2026-10-28 07:00 KST\n\n\n");
+  expect(reportCollectedAt(original)).toBe("2026-10-28 07:00 KST");
+  expect(prepared).not.toContain("수집: 2026-10-28 07:00 KST");
   expect(prepared).not.toContain("AI Agent / Agentic AI / LLM / Architecture / Framework / Pattern");
   expect(prepared).not.toContain("범위: 최근 24시간");
   expect(prepared).not.toContain("사실 요약과 해석은 출처 원문으로 재확인");
@@ -200,7 +201,7 @@ test("historical reports show exactly three grounded meaning bullets above the T
 
 test("new summary blocks render once and leave section line anchors unchanged", async () => {
   useParams.mockReturnValue({ date: "2026-01-01" });
-  const body = "# Daily Report\n\n> **오늘의 3줄 요약**\n> - 첫 번째 요약\n> - 두 번째 요약\n> - 세 번째 요약\n\n## 1. Agents\n- **의미:** fallback should not be used";
+  const body = "# Daily Report\n\n> 수집: 2026-01-01 07:12 KST\n\n> **오늘의 3줄 요약**\n> - 첫 번째 요약\n> - 두 번째 요약\n> - 세 번째 요약\n\n## 1. Agents\n- **의미:** fallback should not be used";
   const prepared = prepareReportMarkdown(body);
   expect(reportSummary(body)).toEqual(["첫 번째 요약", "두 번째 요약", "세 번째 요약"]);
   expect(prepared).not.toContain("오늘의 3줄 요약");
@@ -212,6 +213,9 @@ test("new summary blocks render once and leave section line anchors unchanged", 
   await screen.findByRole("complementary", { name: "오늘의 요약" });
   expect(screen.getAllByText("오늘의 3줄 요약")).toHaveLength(1);
   expect(screen.getAllByText("첫 번째 요약")).toHaveLength(1);
+  expect(screen.getAllByText("수집: 2026-01-01 07:12 KST")).toHaveLength(1);
+  expect(within(screen.getByRole("article")).queryByText(/수집:/)).not.toBeInTheDocument();
+  expect(screen.queryByText("매일 07:00 KST / 최근 24시간")).not.toBeInTheDocument();
 });
 
 test("legacy GitHub section gets a clear heading and verified repository descriptions", async () => {

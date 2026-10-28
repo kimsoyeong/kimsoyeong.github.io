@@ -75,6 +75,15 @@ export function reportHeadings(content) {
   return headings;
 }
 
+export function reportCollectedAt(content) {
+  for (const line of content.split("\n")) {
+    if (/^ {0,3}#{2,6}\s|^ {0,3}(?:`{3,}|~{3,})/.test(line)) break;
+    const match = line.match(/^\s*(?:[-*]\s+|>\s*)?수집\s*:\s*(.+)$/);
+    if (match) return match[1].trim();
+  }
+  return "";
+}
+
 // Change only the legacy introductory metadata lines. Keeping every newline
 // preserves the original heading positions used by the table of contents.
 export function prepareReportMarkdown(content) {
@@ -85,7 +94,7 @@ export function prepareReportMarkdown(content) {
     if (/^ {0,3}#{2,6}\s/.test(line) || /^ {0,3}(?:`{3,}|~{3,})/.test(line)) introduction = false;
     if (introduction && /^\s*>\s*AI Agent\s*\/\s*Agentic AI\s*\/\s*LLM\s*\/\s*Architecture\s*\/\s*Framework\s*\/\s*Pattern\s*$/.test(line)) return "";
     if (introduction && /^\s*(?:-\s+|>\s*)(?:범위\s*:|사실 요약과 해석)/.test(line)) return "";
-    if (introduction && /^\s*-\s+수집\s*:/.test(line)) return line.replace(/^\s*-\s+/, "> ");
+    if (introduction && /^\s*(?:[-*]\s+|>\s*)?수집\s*:/.test(line)) return "";
     if (line === `## ${LEGACY_GITHUB_TITLE}`) return `## ${GITHUB_TITLE}`;
     if (line === `- ${LEGACY_GITHUB_NOTE}`) return `> ${GITHUB_NOTE}`;
     return line;
@@ -184,6 +193,7 @@ export default function DailyReport() {
   const headings = useMemo(() => reportHeadings(report.content), [report.content]);
   const markdown = useMemo(() => prepareReportMarkdown(report.content), [report.content]);
   const summary = useMemo(() => reportSummary(report.content), [report.content]);
+  const collectedAt = useMemo(() => reportCollectedAt(report.content), [report.content]);
   const invalidDate = date !== undefined && !isReportDate(date);
   const today = kstToday();
   const summaryTitle = selectedDate ? index.titles[selectedDate] || headings.find((heading) => heading.depth === 2)?.label.replace(/^\d+[.)]\s*/, "") : "";
@@ -240,7 +250,7 @@ export default function DailyReport() {
       <div className="daily-kicker">AI / ENGINEERING / TECH</div>
       <h1 className="daily-page-title">Daily Report{!invalidDate && date && <span className="daily-title-date"> / <time dateTime={date}>{date}</time></span>}</h1>
       <p className="daily-subtitle">{summaryTitle || "출근길에 읽는 AI와 기술 동향"}</p>
-      <div className="daily-properties"><span>매일 07:00 KST / 최근 24시간</span>{!date && index.status === "ready" && <span>발행된 리포트 {index.dates.length}개</span>}</div>
+      <div className="daily-properties">{date ? <span>{collectedAt ? `수집: ${collectedAt}` : report.status === "loading" ? "수집 시각 확인 중…" : report.status === "ready" ? "수집 시각 정보 없음" : ""}</span> : <span>매일 07:00 KST / 최근 24시간</span>}{!date && index.status === "ready" && <span>발행된 리포트 {index.dates.length}개</span>}</div>
       <nav className="daily-datebar" aria-label="리포트 날짜 선택"><Link to="/daily" aria-current={!date ? "page" : undefined}>{date ? "← 리포트 목록" : "리포트 목록"}</Link><label>날짜<input type="date" value={isReportDate(selectedDate) ? selectedDate : ""} max={today} onChange={(event) => { if (isReportDate(event.target.value)) navigate(`/daily/${event.target.value}`); }} /></label></nav>
       {invalidDate ? <div className="daily-message" role="alert">올바른 날짜가 아닙니다. YYYY-MM-DD 형식의 날짜를 선택하세요.</div>
         : !date ? <>
