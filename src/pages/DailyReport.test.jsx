@@ -126,9 +126,10 @@ test("invalid route dates are never fetched as file paths", async () => {
 
 
 test("legacy metadata keeps only the collected timestamp without moving TOC line positions", () => {
-  const original = "# Daily Report / 2026-10-28\n\n- 수집: 2026-10-28 07:00 KST\n- 범위: 최근 24시간\n- 사실 요약과 해석은 출처 원문으로 재확인\n\n## Agent orchestration\n- 수집: this is normal article content";
+  const original = "# Daily Report / 2026-10-28\n\n> AI Agent / Agentic AI / LLM / Architecture / Framework / Pattern\n\n- 수집: 2026-10-28 07:00 KST\n- 범위: 최근 24시간\n- 사실 요약과 해석은 출처 원문으로 재확인\n\n## Agent orchestration\n- 수집: this is normal article content";
   const prepared = prepareReportMarkdown(original);
   expect(prepared).toContain("> 수집: 2026-10-28 07:00 KST\n\n\n");
+  expect(prepared).not.toContain("AI Agent / Agentic AI / LLM / Architecture / Framework / Pattern");
   expect(prepared).not.toContain("범위: 최근 24시간");
   expect(prepared).not.toContain("사실 요약과 해석은 출처 원문으로 재확인");
   expect(prepared).toContain("## Agent orchestration\n- 수집: this is normal article content");

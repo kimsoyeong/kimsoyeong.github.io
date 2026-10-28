@@ -83,6 +83,7 @@ export function prepareReportMarkdown(content) {
   return content.split("\n").map((line, position) => {
     if (hiddenLines.has(position)) return "";
     if (/^ {0,3}#{2,6}\s/.test(line) || /^ {0,3}(?:`{3,}|~{3,})/.test(line)) introduction = false;
+    if (introduction && /^\s*>\s*AI Agent\s*\/\s*Agentic AI\s*\/\s*LLM\s*\/\s*Architecture\s*\/\s*Framework\s*\/\s*Pattern\s*$/.test(line)) return "";
     if (introduction && /^\s*(?:-\s+|>\s*)(?:범위\s*:|사실 요약과 해석)/.test(line)) return "";
     if (introduction && /^\s*-\s+수집\s*:/.test(line)) return line.replace(/^\s*-\s+/, "> ");
     if (line === `## ${LEGACY_GITHUB_TITLE}`) return `## ${GITHUB_TITLE}`;
