@@ -89,6 +89,7 @@ export function reportCollectedAt(content) {
 export function prepareReportMarkdown(content) {
   const { hiddenLines } = summaryBlock(content);
   let introduction = true;
+  let fence = null;
   return content.split("\n").map((line, position) => {
     if (hiddenLines.has(position)) return "";
     if (/^ {0,3}#{2,6}\s/.test(line) || /^ {0,3}(?:`{3,}|~{3,})/.test(line)) introduction = false;
@@ -97,7 +98,18 @@ export function prepareReportMarkdown(content) {
     if (introduction && /^\s*(?:[-*]\s+|>\s*)?수집\s*:/.test(line)) return "";
     if (line === `## ${LEGACY_GITHUB_TITLE}`) return `## ${GITHUB_TITLE}`;
     if (line === `- ${LEGACY_GITHUB_NOTE}`) return `> ${GITHUB_NOTE}`;
-    return line;
+    const marker = line.match(/^ {0,3}(`{3,}|~{3,})/);
+    if (marker) {
+      if (!fence) fence = marker[1][0];
+      else if (marker[1][0] === fence) fence = null;
+      return line;
+    }
+    if (fence) return line;
+    // Source IDs belong to collection metadata, not reader-facing prose.
+    return line.replace(/\s*\(S\d+(?:\s*,\s*S\d+)*\)/g, "")
+      .replace(/^(\s*-\s+)\[S\d+\]\s+(?=\[)/, "$1")
+      .replace("발표: 기업 통제와 에이전트 IAM을 다룬 보도가 수집됐다.", "기업이 AI 에이전트의 접근 권한을 관리하는 방법도 보도됐다. 접근 권한 관리(IAM)는 누가 어떤 시스템에서 무엇을 할 수 있는지 정하는 일이다.")
+      .replace(/^(\s*-\s+)발표:\s*/, "$1");
   }).join("\n");
 }
 

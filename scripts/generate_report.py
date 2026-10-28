@@ -86,6 +86,9 @@ SpaceX/Tesla 합병, AI가 발견한 PHP 취약점 같은 예시는 관심 범�
 오래된 사건이 오늘 재보도됐을 뿐이면 제외한다. 실질적인 새 발표/진전이 증거에 확인될 때만 포함한다.
 단순 뉴스 나열을 하지 않는다. 독자의 기술 선택/개발/운영/산업 이해에서 판단이 달라지는 인사이트를 쓴다.
 각 트렌드 bullets는 '무엇이 바뀜:'과 '기존 대비 차이:'로 시작하는 두 단문으로 쓴다.
+독자가 한 번에 이해하도록 구체적인 주체/변경/영향을 쓴다. '보도가 수집됐다' 같은 수집 작업 설명은 뉴스 내용으로 쓰지 않는다.
+IAM 같은 생소한 약어는 처음 나올 때 '계정과 접근 권한 관리(IAM)'처럼 한국어 뜻을 함께 쓴다. 근거에 없는 구현 세부 사항은 보충하지 않는다.
+S3, S6 같은 source_id와 asset_id는 내부 검증용이다. source_ids/visual_asset_ids 필드에만 넣고 제목, 요약, 본문, 도표 라벨에는 쓰지 않는다. 독자용 출처는 기사 제목 링크로 별도 표시된다.
 why_it_matters는 해당 기술/산업 변화의 실질적 영향과 달라지는 판단 한 문장이다. 에이전트 설계와 무관한 사건을 억지로 에이전트에 연결하지 않는다. 추론은 반드시 '해석:'으로 표시한다.
 next_action은 오늘 직접 재현/검증할 구체적인 작은 행동 하나다. caveat는 증거의 한계/검증 안 된 주장 한 문장이다.
 공식 발표의 벤치마크/성능 주장도 독립 검증된 사실로 단정하지 말고 발표 주체를 표시한다.
@@ -703,6 +706,12 @@ def report_schema() -> dict:
     return {'type': 'object', 'additionalProperties': False, 'properties': {'title': {'type': 'string', 'minLength': 1, 'maxLength': 100}, 'summary': {'type': 'array', 'items': string, 'minItems': 3, 'maxItems': 3}, 'trends': {'type': 'array', 'items': trend, 'minItems': 0, 'maxItems': 3}}, 'required': ['title', 'summary', 'trends']}
 
 
+def reject_reader_source_ids(value: str) -> None:
+    # Citation tokens leak collection internals; preserve real names such as Amazon S3.
+    if re.search(r'[\[(]\s*S\d+(?:\s*[,/]\s*S\d+)*\s*[\])]', value):
+        raise ValueError('Internal source IDs must not appear in reader text')
+
+
 def validate_summary(result: dict) -> None:
     summary = result.get('summary', [])
     if not isinstance(summary, list) or len(summary) != 3:
@@ -710,6 +719,7 @@ def validate_summary(result: dict) -> None:
     for line in summary:
         if not isinstance(line, str) or not line.strip() or len(line) > 200 or re.search(r'https?://|[<>`\n\r]', line):
             raise ValueError('Unsafe or overlong report summary')
+        reject_reader_source_ids(line)
         if re.search(r'(?:연구\s*방향과?\s*(?:현재\s*)?한계|방향과\s*(?:현재\s*)?한계).*보여준다[.!]?$', line) or re.fullmatch(r'.{0,50}(?:검증|확인|관리|통제|재현)(?:이|가|은|는)?\s*(?:필요하다|중요하다)[.!]?', line):
             raise ValueError('Summary needs a concrete result or limitation, not generic advice')
 
@@ -722,6 +732,7 @@ def validate_result(result: dict, evidence: list[dict], history: dict | None = N
     report_title = result.get('title', '')
     if not isinstance(report_title, str) or not report_title.strip() or len(report_title) > 100 or re.search(r'https?://|[<>`\n\r]', report_title):
         raise ValueError('Missing or unsafe report summary title')
+    reject_reader_source_ids(report_title)
     trends = result.get('trends', [])
     if not 2 <= len(trends) <= 3:
         raise ValueError('Expected 2–3 evidence-backed trends')
@@ -753,6 +764,7 @@ def validate_result(result: dict, evidence: list[dict], history: dict | None = N
                 raise ValueError('Empty or overlong report text')
             if re.search(r'https?://|www\.|[<>\n\r]|\]\(', value) or '·' in value:
                 raise ValueError('Unsafe formatting or invented link in model output')
+            reject_reader_source_ids(value)
     if len(used_ids) < 2:
         raise ValueError('At least two distinct dated sources are required')
 
@@ -862,7 +874,7 @@ def render(result: dict, bundle: dict, day: str) -> str:
             row = sources[source_id]
             published = datetime.fromisoformat(row['published_at']).astimezone(KST).strftime('%m-%d %H:%M KST')
             evidence_label = {'official_full_text': '공식 원문 발췌', 'official_rss_excerpt': '공식 RSS 요약', 'official_metadata': '공식 발표 메타데이터', 'rss_excerpt': 'RSS 요약'}.get(row.get('evidence_type'), 'RSS 요약')
-            lines.append(f"- [{source_id}] [{safe_text(row['title'])}]({row['url']}) / {published} / {evidence_label}")
+            lines.append(f"- [{safe_text(row['title'])}]({row['url']}) / {published} / {evidence_label}")
         lines.append('')
     lines.extend(['## 오늘 살펴볼 인기 오픈소스', '', 'GitHub 일간 Trending 중 이전에 소개하지 않은 AI/개발 도구. 신규 출시를 뜻하지 않는다.', ''])
     previous_repositories = bundle.get('_historical_exclusions', {}).get('repositories', [])

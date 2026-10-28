@@ -294,11 +294,27 @@ class ReportTests(unittest.TestCase):
         self.assertIn('> 수집:', text)
         self.assertNotIn('# Daily Report /', text)
         self.assertIn('**한계:**', text)
-        self.assertIn('[S1] [AI Agent release]', text)
+        self.assertIn('[AI Agent release](https://example.org/1)', text)
+        self.assertNotIn('[S1]', text)
         self.assertIn('/ RSS 요약', text)
         self.assertNotIn('rss_excerpt', text)
         self.assertIn('일부 요청 실패', text)
         self.assertIn('확인 범위에 지난 24시간 관련 글 없음', text)
+
+    def test_reader_text_rejects_internal_citations_without_breaking_product_names(self):
+        for marker in ('(S3)', '(S6, S14)', '[S1]'):
+            with self.subTest(marker=marker):
+                result = copy.deepcopy(self.result)
+                result['trends'][0]['bullets'][0] = f'업무협약을 맺었다. {marker}'
+                with self.assertRaisesRegex(ValueError, 'Internal source IDs'):
+                    report.validate_result(result, self.evidence)
+        result = copy.deepcopy(self.result)
+        result['summary'][0] = '계정 접근 절차가 바뀐다. (S1)'
+        with self.assertRaisesRegex(ValueError, 'Internal source IDs'):
+            report.validate_result(result, self.evidence)
+        result = copy.deepcopy(self.result)
+        result['trends'][0]['bullets'][0] = 'Amazon S3 저장소의 접근 권한이 변경됐다.'
+        report.validate_result(result, self.evidence)
 
     def test_summary_requires_exactly_three_safe_lines(self):
         for summary in ([], ['one', 'two'], ['one', 'two', 'three', 'four'], ['one', 'two', '<script>bad</script>']):

@@ -275,3 +275,15 @@ test("source image URL guard rejects unsafe schemes and embedded credentials", (
   expect(safeImageUrl("https://example.com/diagram.svg")).toBe("https://example.com/diagram.svg");
   for (const value of [["javascript", "alert(1)"].join(":"), "data:image/png;base64,eA==", "http://example.com/a.png", "//example.com/a.png", "https://user:pass@example.com/a.png", undefined]) expect(safeImageUrl(value)).toBe("");
 });
+
+test("legacy collection IDs stay internal while citations and heading anchors survive", () => {
+  const body = "## 1. 결제 권한\n- 발표: 업무협약을 맺었다. (S3)\n- 발표: 기업 통제와 에이전트 IAM을 다룬 보도가 수집됐다. (S6, S14)\n- [S3] [기사 제목](https://example.com/article)\n```text\n(S3)\n```";
+  const rendered = prepareReportMarkdown(body);
+  expect(rendered).toContain("- 업무협약을 맺었다.");
+  expect(rendered).toContain("접근 권한 관리(IAM)");
+  expect(rendered).not.toContain("보도가 수집됐다");
+  expect(rendered).not.toContain("(S6, S14)");
+  expect(rendered).toContain("- [기사 제목](https://example.com/article)");
+  expect(rendered).toContain("```text\n(S3)\n```");
+  expect(rendered.split("\n")).toHaveLength(body.split("\n").length);
+});
