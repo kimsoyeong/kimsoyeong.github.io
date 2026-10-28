@@ -198,6 +198,11 @@
 .daily-calendar td.daily-calendar-today {box-shadow:inset 0 0 0 2px var(--daily-fg)}
 .daily-calendar-today>a,.daily-calendar-today>.daily-calendar-empty {margin:2px;min-height:104px;padding:8px}
 .daily-calendar-today time {color:var(--daily-fg);font-weight:700}
+.daily-report :is(h1,h2,h3,h4,h5,h6),
+.daily-report .daily-repository-card header strong,
+.daily-report .daily-panel-chart figcaption,
+.daily-report .daily-archive-title strong,
+.daily-report .daily-calendar-title {font-weight:700}
 .daily-source-image {display:block;max-width:100%;margin:24px 0}
 .daily-source-image img {display:block;width:auto;max-width:100%;height:auto;max-height:80svh;object-fit:contain;margin:0 auto;border-radius:4px;outline:1px solid rgb(0 0 0 / .1);outline-offset:-1px}
 .daily-report[data-daily-theme="dark"] .daily-source-image img {outline-color:rgb(255 255 255 / .1)}
