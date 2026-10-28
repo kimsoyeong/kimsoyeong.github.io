@@ -360,6 +360,8 @@ class ReportTests(unittest.TestCase):
 
     def test_cross_industry_topics_are_optional_relevant_candidates(self):
         cases = [
+            ('Zeroth-order optimization enables transformer pretraining without backpropagation', 'training_optimization'),
+            ('Personal AI agents change consumer pricing and platform competition', 'agent_market_structure'),
             ('SpaceX and Tesla consider merger proposal', 'corporate_moves'),
             ('A humanoid robot starts an autonomous driving pilot', 'robotics_autonomy'),
             ('New semiconductor chips for orbital data centers', 'compute_infrastructure'),
@@ -369,6 +371,12 @@ class ReportTests(unittest.TestCase):
             self.assertTrue(report.relevant(title, ''))
             self.assertIn(topic, report.topic_tags(title))
         self.assertFalse(report.relevant('Football club acquires a striker', 'sports transfer'))
+        self.assertFalse(report.relevant('Training speedrun improves marathon runners', 'fitness'))
+        self.assertNotIn('agent_market_structure', report.topic_tags('Travel agents plan holidays', 'platform market background'))
+        self.assertIn('초기 구현 대비 개선을 역전파 대비 우위로 바꾸거나', report.SYSTEM_PROMPT)
+        self.assertIn('저자의 주장/전망임을 표시', report.SYSTEM_PROMPT)
+        self.assertIn('Google News / Training algorithms and efficiency', report.FEEDS)
+        self.assertIn('Google News / Personal agents and market structure', report.FEEDS)
         self.assertNotIn('corporate_moves', report.topic_tags('A sleep framework for LLMs', 'Google AI research studies knowledge acquisition.'))
         self.assertNotIn('robotics_autonomy', report.topic_tags('A new world simulation model', 'Background use cases include robotics.'))
         self.assertIn('예시는 관심 범위일 뿐 사실이나 오늘의 뉴스라는 뜻이 아니다', report.SYSTEM_PROMPT)

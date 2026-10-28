@@ -35,12 +35,14 @@ KST = ZoneInfo('Asia/Seoul')
 MODEL = 'gpt-6-luna'
 KEYWORDS = ('AI Agent', 'Agentic AI', 'LLM', 'Agent Architecture', 'Agent Framework', 'Agent pattern')
 BROAD_QUERIES = {
+    'Training algorithms and efficiency': '("zeroth-order" OR "backpropagation-free" OR "without backpropagation" OR "pretraining efficiency" OR "training speedrun" OR "optimizer" OR "training algorithm") (AI OR transformer OR LLM OR "neural network") when:1d',
+    'Personal agents and market structure': '("personal AI agent" OR "shopping agent" OR "agentic commerce" OR "consumer AI agent") (economics OR pricing OR advertising OR platform OR incentives OR competition OR trust) when:1d',
     'Tech mergers': '(technology OR semiconductor OR AI OR SpaceX OR Tesla) (merger OR acquisition OR takeover) when:1d',
     'Robotics and autonomy': '(robotics OR humanoid OR "autonomous driving" OR robotaxi) when:1d',
     'Compute and space infrastructure': '("AI chips" OR "data center" OR "space computing" OR "orbital data center" OR "AI infrastructure") when:1d',
     'AI and software vulnerabilities': '(AI OR LLM OR PHP OR "open source") (vulnerability OR CVE OR "security flaw" OR "zero-day") when:1d',
 }
-CROSS_INDUSTRY_TOPICS = ('corporate_moves', 'robotics_autonomy', 'compute_infrastructure', 'software_security')
+CROSS_INDUSTRY_TOPICS = ('training_optimization', 'agent_market_structure', 'corporate_moves', 'robotics_autonomy', 'compute_infrastructure', 'software_security')
 OFFICIAL_FEEDS = {
     'OpenAI News': 'https://openai.com/news/rss.xml',
     'Google DeepMind': 'https://deepmind.google/blog/rss.xml',
@@ -71,6 +73,9 @@ FEEDS = {
 USER_AGENT = 'DailyAgentReport/1.0 (+https://kimsoyeong.github.io/daily)'
 SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 기술 인사이트 리포트 편집자다.
 제공된 evidence만 근거로 서로 다른 핵심 트렌드 2~3개를 엄선한다.
+학습 알고리즘/사전학습/역전파 대안/0차 최적화/학습 시스템 효율 연구, 개인 에이전트가 소비/가격/광고/플랫폼/경쟁/신뢰에 미치는 시장 구조 분석도 탐색 범위다.
+학습 가속 수치는 비교 대상, 모델/데이터 규모, 하드웨어, 평가 조건을 확인한다. 초기 구현 대비 개선을 역전파 대비 우위로 바꾸거나 작은 실험을 대규모 학습으로 일반화하지 않는다. 비용 절감액도 근거 없으면 쓰지 않는다.
+시장 분석은 저자의 주장/전망임을 표시하고, 작동 원리와 성립 조건/반대 가능성을 설명한다. 원문과 최초 발표 시점을 확인하며 재공유 시각을 새로운 발표로 간주하지 않는다. 확인되지 않은 저자 귀속이나 미래 전망을 사실로 단정하지 않는다.
 summary에는 리포트 전체의 실제 변화/인사이트를 요약한 짧은 문장 정확히 3개를 쓴다. 각 줄은 출처로 뒷받침되고 서로 중복하지 않는다. 수집 범위나 읽는 방법 같은 상용구를 쓰지 않는다.
 summary는 결론부터 쓴다. 각 줄에 발표 주체/제품명과 확인된 결과 또는 변경을 명시한다. 한계를 언급하면 어떤 조건에서 무엇이 실패하는지 함께 쓴다.
 '연구 방향과 현재 한계를 보여준다', '검증이 중요하다', '가능성을 제시한다' 같은 내용 없는 평가는 요약으로 쓰지 않는다. why_it_matters의 추상적 권고를 복사하지 않는다.
@@ -161,6 +166,10 @@ def parse_timestamp(value: str) -> datetime | None:
 def topic_tags(title: str, excerpt: str = '') -> list[str]:
     text = f'{title} {excerpt}'
     tags = []
+    if re.search(r'\b(zeroth.order|backpropagation|pre.?training|training speedrun|optimizers?|training algorithm)\b', title, re.I) and re.search(r'\b(AI|LLM|transformer|neural|model|backpropagation|zeroth.order)\b', text, re.I):
+        tags.append('training_optimization')
+    if re.search(r'\b(agents?|agentic)\b', title, re.I) and re.search(r'\b(consumers?|commerce|shopping|pricing|advertising|platforms?|market|competition|incentives|economics|trust)\b', title, re.I):
+        tags.append('agent_market_structure')
     if re.search(r'\b(ai|llms?|agents?|agentic|language models?|claude|gpt|codex|gemini|mcp|langgraph|langchain)\b', text, re.I):
         tags.append('ai_models_agents')
     tech_context = bool(re.search(r'\b(tech(nology)?|semiconductor|software|chip|AI|SpaceX|Tesla|Apple|Meta|Alphabet|Microsoft|Google|Amazon|NVIDIA|Anthropic|OpenAI)\b', text, re.I))
