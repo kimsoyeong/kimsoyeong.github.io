@@ -154,10 +154,11 @@ export function remarkReportNotes() {
         const text = first?.type === "text" ? first.value : first?.type === "strong" && first.children?.length === 1 && first.children[0].type === "text" ? first.children[0].value : "";
         const match = text.match(labels);
         if (match) {
+          const role = { 해석: "interpretation", 의미: "impact", 실행: "action", "기술/산업 영향": "impact", "검증 행동": "action", 한계: "caveat" }[match[1]];
           const tag = { type: "strong", data: { hProperties: { className: "daily-note-tag" } }, children: [{ type: "text", value: match[1] }] };
           const remainder = text.slice(match[0].length);
           paragraph.children.splice(0, 1, tag, ...(remainder ? [{ type: "text", value: ` ${remainder}` }] : []));
-          node.data = { ...node.data, hProperties: { ...node.data?.hProperties, className: "daily-note" } };
+          node.data = { ...node.data, hProperties: { ...node.data?.hProperties, className: "daily-note", "data-note-role": role } };
         }
       }
       node.children?.forEach(walk);
@@ -351,7 +352,7 @@ export default function DailyReport() {
             : <><section className="daily-archive-list" aria-label="날짜별 데일리 리포트"><h2>날짜별 리포트 <span>{index.dates.length}</span></h2><p className="daily-archive-description">최신순 / 읽을 리포트를 선택하세요.</p><ol>{index.dates.map((item, position) => <li key={item}><Link to={`/daily/${item}`}><div className="daily-archive-meta"><time dateTime={item}>{item}</time>{item === today ? <span className="daily-badge daily-badge-today">오늘</span> : position === 0 ? <span className="daily-badge">최신</span> : null}</div><div className="daily-archive-title"><strong>{index.titles[item] || `${item} 리포트`}</strong><span aria-hidden="true">↗</span></div></Link></li>)}</ol></section><ArchiveCalendar dates={index.dates} titles={index.titles} today={today} /></>}
         </>
         : report.status === "ready" ? <>
-          {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2>{summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul></aside>}
+          {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2><span className="daily-summary-pin" aria-hidden="true">📌</span> {summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul></aside>}
           {headings.length > 0 && <nav className="daily-toc" aria-label="리포트 목차"><div className="daily-toc-heading"><h2>목차</h2><span>{headings.length}개 섹션</span></div><ol>{headings.map((heading, position) => <li key={heading.id} className={heading.depth === 3 ? "daily-toc-subsection" : undefined}><a href={`#${heading.id}`}><span className="daily-toc-number" aria-hidden="true">{String(position + 1).padStart(2, "0")}</span><span>{heading.label.replace(/^\d+[.)]\s*/, "")}</span><span className="daily-toc-arrow" aria-hidden="true">↓</span></a></li>)}</ol></nav>}
           <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm, remarkReportNotes, remarkAuditDisclosure, [remarkRepositoryCards, { repositories: index.repositories }]]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
             "repository-card": ({ entry }) => <RepositoryCard entry={entry} />,

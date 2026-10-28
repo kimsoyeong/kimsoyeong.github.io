@@ -7,6 +7,10 @@
   --daily-line:#deded8;
   --daily-control-border:#85857b;
   --daily-focus:#3d3d37;
+  --daily-summary-bg:#fff1b8;
+  --daily-summary-border:#e2bb47;
+  --daily-summary-accent:#a16207;
+  --daily-summary-text:#403313;
   color-scheme:light;
   min-height:100svh;
   background:var(--daily-bg);
@@ -25,6 +29,10 @@
   --daily-line:#484843;
   --daily-control-border:#85857a;
   --daily-focus:#deded3;
+  --daily-summary-bg:#3a3018;
+  --daily-summary-border:#927334;
+  --daily-summary-accent:#facc15;
+  --daily-summary-text:#fff1c2;
   color-scheme:dark;
 }
 .daily-report * {box-sizing:border-box}
@@ -79,8 +87,16 @@
 .daily-repository-original summary:focus-visible {outline:2px solid var(--daily-focus);outline-offset:3px}
 @media(max-width:600px) {.daily-content ul.daily-repository-grid {grid-template-columns:1fr;gap:12px}.daily-repository-card {padding:18px}}
 .daily-content strong {font-weight:650}
-.daily-content li.daily-note {list-style:none;margin:14px 0;padding:14px 16px;border-inline-start:2px solid var(--daily-control-border);background:var(--daily-surface);border-radius:0 5px 5px 0}
-.daily-content .daily-note-tag {display:table;margin:0 0 8px;padding:2px 9px;border:1px solid var(--daily-control-border);border-radius:4px;background:var(--daily-bg);color:var(--daily-fg);font-size:13px;font-weight:700;line-height:1.6;letter-spacing:.01em}
+.daily-note[data-note-role="impact"] {--daily-note-bg:#eff6ff;--daily-note-accent:#2563eb;--daily-note-label:#1e40af;--daily-note-tag-bg:#dbeafe}
+.daily-note[data-note-role="interpretation"] {--daily-note-bg:#faf5ff;--daily-note-accent:#9333ea;--daily-note-label:#6b21a8;--daily-note-tag-bg:#f3e8ff}
+.daily-note[data-note-role="action"] {--daily-note-bg:#f0fdf4;--daily-note-accent:#15803d;--daily-note-label:#166534;--daily-note-tag-bg:#dcfce7}
+.daily-note[data-note-role="caveat"] {--daily-note-bg:#fffbeb;--daily-note-accent:#b45309;--daily-note-label:#92400e;--daily-note-tag-bg:#fef3c7}
+.daily-report[data-daily-theme="dark"] .daily-note[data-note-role="impact"] {--daily-note-bg:#17243a;--daily-note-accent:#60a5fa;--daily-note-label:#bfdbfe;--daily-note-tag-bg:#21385b}
+.daily-report[data-daily-theme="dark"] .daily-note[data-note-role="interpretation"] {--daily-note-bg:#282039;--daily-note-accent:#c084fc;--daily-note-label:#e9d5ff;--daily-note-tag-bg:#3d2b54}
+.daily-report[data-daily-theme="dark"] .daily-note[data-note-role="action"] {--daily-note-bg:#162b23;--daily-note-accent:#4ade80;--daily-note-label:#bbf7d0;--daily-note-tag-bg:#214332}
+.daily-report[data-daily-theme="dark"] .daily-note[data-note-role="caveat"] {--daily-note-bg:#34271a;--daily-note-accent:#fbbf24;--daily-note-label:#fde68a;--daily-note-tag-bg:#4b361d}
+.daily-content li.daily-note {list-style:none;margin:14px 0;padding:14px 16px;border-inline-start:3px solid var(--daily-note-accent,var(--daily-control-border));background:var(--daily-note-bg,var(--daily-surface));border-radius:0 5px 5px 0}
+.daily-content .daily-note-tag {display:table;margin:0 0 8px;padding:2px 9px;border:1px solid var(--daily-note-accent,var(--daily-control-border));border-radius:4px;background:var(--daily-note-tag-bg,var(--daily-bg));color:var(--daily-note-label,var(--daily-fg));font-size:13px;font-weight:700;line-height:1.6;letter-spacing:.01em}
 .daily-content blockquote {margin:24px 0;padding:4px 16px;border-inline-start:3px solid var(--daily-control-border);color:var(--daily-muted);font-size:14px;line-height:1.85}
 .daily-content blockquote p {white-space:pre-line}
 .daily-content hr {border:0;border-top:1px solid var(--daily-line);margin:32px 0}
@@ -136,8 +152,9 @@
   .daily-panel-comparisons dl {gap:14px}
   .daily-content .daily-panel-heading h3 {font-size:20px}
 }
-.daily-summary {margin:0 0 28px;padding:20px 16px;background:var(--daily-surface);border:1px solid var(--daily-line);border-inline-start:3px solid var(--daily-control-border);border-radius:6px}
-.daily-summary h2 {margin:0 0 14px;font-size:18px;font-weight:650;line-height:1.5;letter-spacing:-.02em}
+.daily-summary {margin:0 0 28px;padding:22px 18px;background:var(--daily-summary-bg);color:var(--daily-summary-text);border:1px solid var(--daily-summary-border);border-inline-start:4px solid var(--daily-summary-accent);border-radius:8px}
+.daily-summary h2 {margin:0 0 16px;font-size:20px;font-weight:700;line-height:1.5;letter-spacing:-.02em}
+.daily-summary-pin {margin-inline-end:5px}
 .daily-summary ul {margin:0;padding-inline-start:21px;font-size:16px;line-height:1.85}
 .daily-summary li {padding-inline-start:3px;margin:10px 0}
 .daily-summary li:last-child {margin-bottom:0}

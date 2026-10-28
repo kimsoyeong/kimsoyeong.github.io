@@ -299,6 +299,7 @@ test("report note tags handle legacy text and bold labels without altering prose
   remarkReportNotes()(tree);
   expect(items.map((item) => item.children[0].children[0].children[0].value)).toEqual(labels);
   items.forEach((item) => expect(item.data.hProperties.className).toBe("daily-note"));
+  expect(items.map((item) => item.data.hProperties['data-note-role'])).toEqual(["interpretation", "impact", "action", "impact", "action", "caveat"]);
   expect(items[1].children[0].children[2].url).toBe("https://example.com");
   expect(items[0].children[0].children[1].value).toBe(" 실제 변화");
   expect(plain.data).toBeUndefined();
