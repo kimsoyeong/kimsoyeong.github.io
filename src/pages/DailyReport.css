@@ -61,6 +61,8 @@
 .daily-content li>p {margin:6px 0}
 .daily-repo-description {display:block;color:var(--daily-muted);font-size:14px;line-height:1.85;margin:6px 0 12px}
 .daily-content strong {font-weight:650}
+.daily-content li.daily-note {list-style:none;margin:14px 0;padding:14px 16px;border-inline-start:2px solid var(--daily-control-border);background:var(--daily-surface);border-radius:0 5px 5px 0}
+.daily-content .daily-note-tag {display:table;margin:0 0 8px;padding:2px 9px;border:1px solid var(--daily-control-border);border-radius:4px;background:var(--daily-bg);color:var(--daily-fg);font-size:13px;font-weight:700;line-height:1.6;letter-spacing:.01em}
 .daily-content blockquote {margin:24px 0;padding:4px 16px;border-inline-start:3px solid var(--daily-control-border);color:var(--daily-muted);font-size:14px;line-height:1.85}
 .daily-content blockquote p {white-space:pre-line}
 .daily-content hr {border:0;border-top:1px solid var(--daily-line);margin:32px 0}

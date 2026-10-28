@@ -2,7 +2,7 @@ import { act } from "react";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { useNavigate, useParams } from "react-router-dom";
 import mermaid from "mermaid";
-import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, safeImageUrl, validateDiagram } from "./DailyReport";
+import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, remarkReportNotes, safeImageUrl, validateDiagram } from "./DailyReport";
 
 jest.mock("react-router-dom", () => ({
   useParams: jest.fn(),
@@ -287,3 +287,18 @@ test("legacy collection IDs stay internal while citations and heading anchors su
   expect(rendered).toContain("```text\n(S3)\n```");
   expect(rendered.split("\n")).toHaveLength(body.split("\n").length);
 });
+
+/* eslint-disable testing-library/no-node-access -- These are Markdown AST nodes, not DOM nodes. */
+test("report note tags handle legacy text and bold labels without altering prose or links", () => {
+  const labels = ["해석", "의미", "실행", "기술/산업 영향", "검증 행동", "한계"];
+  const items = labels.map((label, index) => ({ type: "listItem", children: [{ type: "paragraph", children: index === 0 ? [{ type: "text", value: `${label}: 실제 변화` }] : [{ type: "strong", children: [{ type: "text", value: `${label}:` }] }, { type: "text", value: " 실제 변화" }, { type: "link", url: "https://example.com", children: [{ type: "text", value: "근거" }] }] }] }));
+  const plain = { type: "listItem", children: [{ type: "paragraph", children: [{ type: "text", value: "일반 본문" }] }] };
+  const tree = { type: "root", children: [{ type: "list", children: [...items, plain] }] };
+  remarkReportNotes()(tree);
+  expect(items.map((item) => item.children[0].children[0].children[0].value)).toEqual(labels);
+  items.forEach((item) => expect(item.data.hProperties.className).toBe("daily-note"));
+  expect(items[1].children[0].children[2].url).toBe("https://example.com");
+  expect(items[0].children[0].children[1].value).toBe(" 실제 변화");
+  expect(plain.data).toBeUndefined();
+});
+/* eslint-enable testing-library/no-node-access */

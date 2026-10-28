@@ -113,6 +113,29 @@ export function prepareReportMarkdown(content) {
   }).join("\n");
 }
 
+// Mark semantic report notes without changing Markdown line numbers or links.
+export function remarkReportNotes() {
+  const labels = /^(해석|의미|실행|기술\/산업 영향|검증 행동|한계):\s*/;
+  return (tree) => {
+    const walk = (node) => {
+      if (node.type === "listItem") {
+        const paragraph = node.children?.[0];
+        const first = paragraph?.type === "paragraph" ? paragraph.children?.[0] : null;
+        const text = first?.type === "text" ? first.value : first?.type === "strong" && first.children?.length === 1 && first.children[0].type === "text" ? first.children[0].value : "";
+        const match = text.match(labels);
+        if (match) {
+          const tag = { type: "strong", data: { hProperties: { className: "daily-note-tag" } }, children: [{ type: "text", value: match[1] }] };
+          const remainder = text.slice(match[0].length);
+          paragraph.children.splice(0, 1, tag, ...(remainder ? [{ type: "text", value: ` ${remainder}` }] : []));
+          node.data = { ...node.data, hProperties: { ...node.data?.hProperties, className: "daily-note" } };
+        }
+      }
+      node.children?.forEach(walk);
+    };
+    walk(tree);
+  };
+}
+
 export function validateDiagram(source) {
   const text = source.trim();
   if (text.length > 12000 || !/^graph\s+TD\s*(?:;|\n|$)/.test(text) ||
@@ -293,7 +316,7 @@ export default function DailyReport() {
         : report.status === "ready" ? <>
           {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2>{summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul></aside>}
           {headings.length > 0 && <nav className="daily-toc" aria-label="리포트 목차"><div className="daily-toc-heading"><h2>목차</h2><span>{headings.length}개 섹션</span></div><ol>{headings.map((heading, position) => <li key={heading.id} className={heading.depth === 3 ? "daily-toc-subsection" : undefined}><a href={`#${heading.id}`}><span className="daily-toc-number" aria-hidden="true">{String(position + 1).padStart(2, "0")}</span><span>{heading.label.replace(/^\d+[.)]\s*/, "")}</span><span className="daily-toc-arrow" aria-hidden="true">↓</span></a></li>)}</ol></nav>}
-          <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
+          <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm, remarkReportNotes]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
             h2: ({ node, children }) => <h2 id={`section-${node.position.start.line}`}>{children}</h2>,
             h3: ({ node, children }) => <h3 id={`section-${node.position.start.line}`}>{children}</h3>,
             a: ({ node, children, href, ...props }) => {
