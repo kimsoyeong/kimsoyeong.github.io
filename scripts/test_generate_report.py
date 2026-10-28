@@ -296,6 +296,55 @@ class ReportTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'outside the publisher'):
                 report.fetch('https://deepmind.google/blog/rss.xml', official=True)
 
+    def test_cross_industry_topics_are_optional_relevant_candidates(self):
+        cases = [
+            ('SpaceX and Tesla consider merger proposal', 'corporate_moves'),
+            ('A humanoid robot starts an autonomous driving pilot', 'robotics_autonomy'),
+            ('New semiconductor chips for orbital data centers', 'compute_infrastructure'),
+            ('AI discovers a PHP vulnerability CVE-2026-12345', 'software_security'),
+        ]
+        for title, topic in cases:
+            self.assertTrue(report.relevant(title, ''))
+            self.assertIn(topic, report.topic_tags(title))
+        self.assertFalse(report.relevant('Football club acquires a striker', 'sports transfer'))
+        self.assertNotIn('corporate_moves', report.topic_tags('A sleep framework for LLMs', 'Google AI research studies knowledge acquisition.'))
+        self.assertNotIn('robotics_autonomy', report.topic_tags('A new world simulation model', 'Background use cases include robotics.'))
+        self.assertIn('예시는 관심 범위일 뿐 사실이나 오늘의 뉴스라는 뜻이 아니다', report.SYSTEM_PROMPT)
+
+    def test_vulnerability_report_does_not_claim_vendor_advisory_verified(self):
+        row = report.evidence_context({'title': 'AI finds PHP vulnerability CVE-2026-12345', 'excerpt': 'A researcher reports a flaw.', 'url': 'https://news.google.com/rss/articles/example'})
+        self.assertFalse(row['advisory_source_verified'])
+        self.assertIn('software_security', row['topic_tags'])
+        advisory = report.evidence_context({**row, 'url': 'https://www.php.net/security/notice'})
+        self.assertTrue(advisory['advisory_source_verified'])
+        proposal = report.evidence_context({'title': 'SpaceX proposes Tesla merger', 'excerpt': 'Talks only.', 'url': 'https://example.org/news'})
+        self.assertIn('do not assume completion', proposal['transaction_verification'])
+
+    def test_candidate_budget_keeps_cross_industry_when_official_ai_is_abundant(self):
+        rows = []
+        for index in range(40):
+            rows.append({'title': f'Claude agent model {index}', 'excerpt': 'AI tools', 'url': f'https://example.org/ai/{index}', 'publisher_feed': f'official-{index // 3}', 'published_at': self.now.isoformat(), 'official': True, 'topic_tags': ['ai_models_agents']})
+        for index, topic in enumerate(report.CROSS_INDUSTRY_TOPICS):
+            rows.append({'title': f'Fresh industry event {index}', 'excerpt': 'Verified news', 'url': f'https://example.org/industry/{index}', 'publisher_feed': f'industry-{index}', 'published_at': self.now.isoformat(), 'official': False, 'topic_tags': [topic]})
+        selected = report.select_candidates(rows)
+        self.assertEqual(len(selected), 24)
+        self.assertTrue(set(report.CROSS_INDUSTRY_TOPICS).issubset({tag for row in selected for tag in row['topic_tags']}))
+        self.assertGreaterEqual(sum(row['official'] for row in selected), 18)
+        self.assertLessEqual(max(sum(row['publisher_feed'] == source for row in selected) for source in {row['publisher_feed'] for row in selected}), 3)
+
+    def test_business_event_can_omit_a_diagram_without_invented_steps(self):
+        result = copy.deepcopy(self.result)
+        for trend in result['trends']:
+            trend['flow_steps'] = []
+        report.validate_result(result, self.evidence)
+        text = report.render(result, self.bundle, '2026-10-27')
+        self.assertNotIn('```mermaid', text)
+        self.assertIn('**기술/산업 영향:**', text)
+        self.assertEqual(report.report_schema()['properties']['trends']['maxItems'], 3)
+        result['trends'][0]['flow_steps'] = ['unsupported', 'two nodes']
+        with self.assertRaises(ValueError):
+            report.validate_result(result, self.evidence)
+
     def test_trending_snapshot_repositories(self):
         parser = report.TrendingParser()
         parser.feed('<a href="/org/repo/stargazers">stars</a><a href="/org/repo/stargazers">stars</a>')

@@ -33,6 +33,13 @@ ROOT = Path(__file__).resolve().parents[1]
 KST = ZoneInfo('Asia/Seoul')
 MODEL = 'gpt-6-luna'
 KEYWORDS = ('AI Agent', 'Agentic AI', 'LLM', 'Agent Architecture', 'Agent Framework', 'Agent pattern')
+BROAD_QUERIES = {
+    'Tech mergers': '(technology OR semiconductor OR AI OR SpaceX OR Tesla) (merger OR acquisition OR takeover) when:1d',
+    'Robotics and autonomy': '(robotics OR humanoid OR "autonomous driving" OR robotaxi) when:1d',
+    'Compute and space infrastructure': '("AI chips" OR "data center" OR "space computing" OR "orbital data center" OR "AI infrastructure") when:1d',
+    'AI and software vulnerabilities': '(AI OR LLM OR PHP OR "open source") (vulnerability OR CVE OR "security flaw" OR "zero-day") when:1d',
+}
+CROSS_INDUSTRY_TOPICS = ('corporate_moves', 'robotics_autonomy', 'compute_infrastructure', 'software_security')
 OFFICIAL_FEEDS = {
     'OpenAI News': 'https://openai.com/news/rss.xml',
     'Google DeepMind': 'https://deepmind.google/blog/rss.xml',
@@ -53,19 +60,28 @@ OFFICIAL_HOSTS = {'openai.com', 'anthropic.com', 'deepmind.google', 'research.go
 FEEDS = {
     **OFFICIAL_FEEDS,
     **{f'Google News / {word}': 'https://news.google.com/rss/search?q=' + quote(f'"{word}" when:1d') + '&hl=en-US&gl=US&ceid=US:en' for word in KEYWORDS},
+    **{f'Google News / {name}': 'https://news.google.com/rss/search?q=' + quote(query) + '&hl=en-US&gl=US&ceid=US:en' for name, query in BROAD_QUERIES.items()},
+    'The Register': 'https://www.theregister.com/headlines.atom',
+    'BleepingComputer': 'https://www.bleepingcomputer.com/feed/',
     'TechCrunch AI': 'https://techcrunch.com/category/artificial-intelligence/feed/',
     'The Decoder': 'https://the-decoder.com/feed/',
     'MIT Technology Review AI': 'https://www.technologyreview.com/topic/artificial-intelligence/feed/',
 }
 USER_AGENT = 'DailyAgentReport/1.0 (+https://kimsoyeong.github.io/daily)'
-SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 AI 기술 리포트 편집자다.
+SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 기술 인사이트 리포트 편집자다.
 제공된 evidence만 근거로 서로 다른 핵심 트렌드 2~3개를 엄선한다.
 summary에는 리포트 전체의 실제 변화/인사이트를 요약한 짧은 문장 정확히 3개를 쓴다. 각 줄은 출처로 뒷받침되고 서로 중복하지 않는다. 수집 범위나 읽는 방법 같은 상용구를 쓰지 않는다.
 title은 날짜나 'Daily Report' 대신 오늘의 2~3가지 변화가 드러나는 한국어 요약 제목 18~52자로 쓴다.
-공식 제품/모델 발표, 에이전트 구조/프레임워크 기술 글을 일반 기업 도입/금융 기사보다 우선한다.
-단순 뉴스 나열을 하지 않는다. 독자가 에이전트를 설계/개발할 때 판단이 달라지는 인사이트를 쓴다.
+공식 제품/모델 발표와 에이전트 기술을 기본으로 보되, 중요하고 새롭게 검증된 기술기업 인수합병, 로보틱스/자율주행, 반도체/데이터센터/우주 AI 인프라, 광범위한 소프트웨어 취약점도 후보로 평가한다.
+주제별 할당량은 없다. 오늘 가장 중요한 서로 다른 사건 2~3개만 선택한다. 보통의 홍보성 기업 도입/금융 기사는 우선하지 않는다.
+SpaceX/Tesla 합병, AI가 발견한 PHP 취약점 같은 예시는 관심 범위일 뿐 사실이나 오늘의 뉴스라는 뜻이 아니다. 예시를 근거 없이 기사로 만들지 않는다.
+인수합병은 확정 계약/규제 승인/완료/제안/협의/추측을 구별한다. 제안이나 보도를 완료된 합병처럼 쓰지 않는다.
+보안 소식은 공급사/CVE 권고 원문이 직접 확인된 경우와 매체 주장만 있는 경우를 구별한다. advisory_source_verified=false이면 공급사/CVE 원문 미확인이라고 한계에 표시한다.
+취약점 요약은 영향 범위, 공급사 대응/패치 확인에 집중한다. 공격 코드나 악용 절차를 제공하지 않는다.
+오래된 사건이 오늘 재보도됐을 뿐이면 제외한다. 실질적인 새 발표/진전이 증거에 확인될 때만 포함한다.
+단순 뉴스 나열을 하지 않는다. 독자의 기술 선택/개발/운영/산업 이해에서 판단이 달라지는 인사이트를 쓴다.
 각 트렌드 bullets는 '무엇이 바뀜:'과 '기존 대비 차이:'로 시작하는 두 단문으로 쓴다.
-why_it_matters는 에이전트 설계/개발에서 달라지는 판단 한 문장이다. 추론은 반드시 '해석:'으로 표시한다.
+why_it_matters는 해당 기술/산업 변화의 실질적 영향과 달라지는 판단 한 문장이다. 에이전트 설계와 무관한 사건을 억지로 에이전트에 연결하지 않는다. 추론은 반드시 '해석:'으로 표시한다.
 next_action은 오늘 직접 재현/검증할 구체적인 작은 행동 하나다. caveat는 증거의 한계/검증 안 된 주장 한 문장이다.
 공식 발표의 벤치마크/성능 주장도 독립 검증된 사실로 단정하지 말고 발표 주체를 표시한다.
 evidence_type이 official_full_text이면 본문 발췌를 활용한다. rss_excerpt이면 제목/요약 이상의 세부 구현을 추정하지 않는다.
@@ -74,7 +90,7 @@ GitHub Trending은 보조 탐색 목록이며, 메인 인사이트의 근거는 
 줄글을 배제하고 펀치력 있는 단문과 불릿으로 쓴다. 경어체와 가운데점은 쓰지 않는다.
 실제 발표와 해석을 구분한다. 해석은 '해석:'으로 시작한다. 근거가 약하면 단정하지 않는다.
 각 트렌드에 제공된 source_id를 1개 이상 연결한다. URL이나 마크다운 링크는 출력하지 않는다.
-각 트렌드의 시스템 흐름/구조를 세로형 Mermaid graph TD로 표현하기 위해 flow_steps에 3~5개의 짧은 노드 라벨을 작성한다.
+실제 시스템/구조 변화가 있는 트렌드에만 flow_steps에 짧은 노드 라벨 3~5개를 넣어 세로형 Mermaid graph TD로 표현한다. 인수합병/사업 사건 등 구조도가 부적절한 경우 flow_steps=[]로 둔다. 근거 없는 인과관계나 거래 절차를 만들지 않는다.
 흐름이 기사에 명시되지 않았으면 flow_steps 첫 노드를 '개념적 해석'으로 두어 추론임을 드러낸다.
 flow_steps는 렌더러가 graph TD 다이어그램으로 변환한다. 노드 라벨에 따옴표, HTML, Mermaid 문법을 넣지 않는다.
 GitHub Trending은 수집 시점 스냅샷일 뿐 지난 24시간에 발표된 뉴스로 주장하지 않는다.
@@ -132,11 +148,38 @@ def parse_timestamp(value: str) -> datetime | None:
         return None
 
 
+def topic_tags(title: str, excerpt: str = '') -> list[str]:
+    text = f'{title} {excerpt}'
+    tags = []
+    if re.search(r'\b(ai|llms?|agents?|agentic|language models?|claude|gpt|codex|gemini|mcp|langgraph|langchain)\b', text, re.I):
+        tags.append('ai_models_agents')
+    tech_context = bool(re.search(r'\b(tech(nology)?|semiconductor|software|chip|AI|SpaceX|Tesla|Apple|Meta|Alphabet|Microsoft|Google|Amazon|NVIDIA|Anthropic|OpenAI)\b', text, re.I))
+    if tech_context and not re.search(r'\bknowledge acquisition\b', title, re.I) and re.search(r'\b(merger|merging|acquir(e|es|ed|ing)|acquisition|takeover|buyout)\b', title, re.I):
+        tags.append('corporate_moves')
+    if re.search(r'\b(robot(s|ics)?|humanoid|autonomous driving|self.driving|robotaxi)\b', title, re.I):
+        tags.append('robotics_autonomy')
+    if re.search(r'\b(chips?|semiconductors?|GPUs?|data cent(er|re)s?|AI infrastructure|space computing|orbital data|space.based AI)\b', title, re.I):
+        tags.append('compute_infrastructure')
+    if re.search(r'\b(vulnerabilit(y|ies)|CVE-?\d*|zero.day|security flaw|remote code execution)\b', title, re.I):
+        tags.append('software_security')
+    return tags
+
+
+def evidence_context(row: dict) -> dict:
+    tags = topic_tags(row['title'], row['excerpt'])
+    row['topic_tags'] = tags
+    if 'corporate_moves' in tags:
+        row['transaction_verification'] = 'Proposal/rumor/announcement/completion must be distinguished from the cited evidence; do not assume completion'
+    if 'software_security' in tags:
+        host = (urlparse(row['url']).hostname or '').removeprefix('www.')
+        row['advisory_source_verified'] = host in {'cve.org', 'nvd.nist.gov', 'cisa.gov', 'msrc.microsoft.com', 'php.net'}
+    return row
+
+
 def relevant(title: str, excerpt: str, official: bool = False) -> bool:
-    pattern = r'\b(ai|llms?|agents?|agentic|language models?|claude|gpt|codex|gemini|mcp|langgraph|langchain)\b'
-    if official:
-        pattern += r'|\b(model|inference|reasoning|context|memory|evals?|world simulation|multimodal)\b'
-    return bool(re.search(pattern, f'{title} {excerpt}', re.I))
+    if topic_tags(title, excerpt):
+        return True
+    return official and bool(re.search(r'\b(model|inference|reasoning|context|memory|evals?|world simulation|multimodal)\b', f'{title} {excerpt}', re.I))
 
 
 def parse_feed(data: bytes, source: str, now: datetime, audit: dict | None = None) -> list[dict]:
@@ -174,9 +217,9 @@ def parse_feed(data: bytes, source: str, now: datetime, audit: dict | None = Non
         official = source in OFFICIAL_FEEDS
         if urlparse(url).scheme != 'https' or not title or not relevant(title, excerpt, official):
             continue
-        rows.append({'title': title, 'excerpt': excerpt, 'url': url, 'publisher_feed': source,
+        rows.append(evidence_context({'title': title, 'excerpt': excerpt, 'url': url, 'publisher_feed': source,
                      'published_at': published.isoformat(), 'official': official,
-                     'evidence_type': 'official_rss_excerpt' if official else 'rss_excerpt'})
+                     'evidence_type': 'official_rss_excerpt' if official else 'rss_excerpt'}))
     return rows
 
 
@@ -291,11 +334,11 @@ def parse_official_article(data: bytes, url: str, source: str, now: datetime,
     excerpt = (description + '\n' + body).strip()[:4000]
     if not title or not relevant(title, excerpt, True):
         return None, 'not_relevant'
-    return {'title': title, 'excerpt': excerpt, 'url': url, 'publisher_feed': source,
+    return evidence_context({'title': title, 'excerpt': excerpt, 'url': url, 'publisher_feed': source,
             'published_at': published.isoformat(), 'official': True,
             'evidence_type': 'official_full_text' if len(body) > 180 else 'official_metadata',
             'publication_timestamp_basis': basis,
-            'publisher_note': 'Community-author post hosted by Hugging Face; not necessarily a Hugging Face announcement' if 'huggingface.co' in url else 'Direct publisher source'}, 'eligible'
+            'publisher_note': 'Community-author post hosted by Hugging Face; not necessarily a Hugging Face announcement' if 'huggingface.co' in url else 'Direct publisher source'}), 'eligible'
 
 
 def index_article_urls(data: bytes, index_url: str) -> list[str]:
@@ -428,6 +471,38 @@ def exclude_history(rows: list[dict], history: dict) -> list[dict]:
             and normalize_title(row['title']) not in history['titles']]
 
 
+def select_candidates(rows: list[dict], limit: int = 24) -> list[dict]:
+    """Reserve up to six evidence slots for cross-industry discovery, not final report quotas."""
+    eligible = [row for row in rows if not row.get('_exclude')]
+    ordered = sorted(eligible, key=lambda row: (evidence_priority(row), row['published_at']), reverse=True)
+    selected, identities, per_source = [], set(), {}
+
+    def add(row):
+        identity = canonical_url(row['url'])
+        source = row['publisher_feed']
+        if len(selected) >= limit or identity in identities or per_source.get(source, 0) >= 3:
+            return False
+        selected.append(row)
+        identities.add(identity)
+        per_source[source] = per_source.get(source, 0) + 1
+        return True
+
+    # One candidate per available cross-industry topic, then at most six in total.
+    for topic in CROSS_INDUSTRY_TOPICS:
+        for row in ordered:
+            if topic in row.get('topic_tags', []) and add(row):
+                break
+    cross_budget = min(6, limit)
+    for row in ordered:
+        if len(selected) >= cross_budget:
+            break
+        if set(row.get('topic_tags', [])) & set(CROSS_INDUSTRY_TOPICS):
+            add(row)
+    for row in ordered:
+        add(row)
+    return sorted(selected, key=lambda row: (evidence_priority(row), row['published_at']), reverse=True)
+
+
 def repository_priority(repository: dict) -> int:
     text = ' '.join([repository['repository'], repository.get('description') or '', *repository.get('topics', [])])
     if re.search(r'\b(ai|agents?|agentic|llm|mcp|model|langgraph|langchain|inference|claude|codex)\b', text, re.I):
@@ -503,14 +578,7 @@ def collect(now: datetime, history_dir: Path | None = None) -> dict:
                 audit['body_fetch_failures'] = audit.get('body_fetch_failures', 0) + 1
                 audit['status'] = 'partial_failure'
                 errors.append(f"{row['publisher_feed']}: original body unavailable ({type(exc).__name__}); using official RSS excerpt")
-    selected, per_source = [], {}
-    for row in sorted(unique, key=lambda row: (evidence_priority(row), row['published_at']), reverse=True):
-        if row.get('_exclude') or per_source.get(row['publisher_feed'], 0) >= 3:
-            continue
-        selected.append(row)
-        per_source[row['publisher_feed']] = per_source.get(row['publisher_feed'], 0) + 1
-        if len(selected) == 24:
-            break
+    selected = select_candidates(unique)
     # Original-page titles may differ from RSS titles, so enforce history a second time.
     selected = exclude_history(selected, history)
     for index, row in enumerate(selected, 1):
@@ -553,7 +621,7 @@ def report_schema() -> dict:
         'next_action': string,
         'caveat': string,
         'source_ids': {'type': 'array', 'items': string, 'minItems': 1, 'maxItems': 3},
-        'flow_steps': {'type': 'array', 'items': string, 'minItems': 3, 'maxItems': 5},
+        'flow_steps': {'type': 'array', 'items': string, 'minItems': 0, 'maxItems': 5},
     }}
     trend['required'] = list(trend['properties'])
     return {'type': 'object', 'additionalProperties': False, 'properties': {'title': {'type': 'string', 'minLength': 1, 'maxLength': 100}, 'summary': {'type': 'array', 'items': string, 'minItems': 3, 'maxItems': 3}, 'trends': {'type': 'array', 'items': trend, 'minItems': 0, 'maxItems': 3}}, 'required': ['title', 'summary', 'trends']}
@@ -589,8 +657,8 @@ def validate_result(result: dict, evidence: list[dict], history: dict | None = N
             raise ValueError('Unknown or missing source citation')
         used_ids.update(ids)
         steps = trend.get('flow_steps', [])
-        if not 3 <= len(steps) <= 5:
-            raise ValueError('Expected 3–5 vertical flow steps')
+        if not isinstance(steps, list) or (steps and not 3 <= len(steps) <= 5):
+            raise ValueError('Expected no diagram or 3–5 evidence-backed vertical flow steps')
         if not 2 <= len(trend.get('bullets', [])) <= 3:
             raise ValueError('Expected 2–3 concise bullets')
         values = [trend.get('headline'), *trend['bullets'], trend.get('why_it_matters'), trend.get('next_action'), trend.get('caveat'), *steps]
@@ -686,14 +754,17 @@ def render(result: dict, bundle: dict, day: str) -> str:
     for index, trend in enumerate(result['trends'], 1):
         lines.extend([f"## {index}. {safe_text(trend['headline'])}", ''])
         lines.extend(f'- {safe_text(bullet)}' for bullet in trend['bullets'])
-        lines.extend([f"- **설계 영향:** {safe_text(trend['why_it_matters'])}", f"- **검증 행동:** {safe_text(trend['next_action'])}", f"- **한계:** {safe_text(trend.get('caveat', '원문과 실제 환경에서 재검증 필요'))}", '', '```mermaid', 'graph TD'])
-        for i, label in enumerate(trend['flow_steps']):
-            # Labels are always plain text, never executable Mermaid directives.
-            label = re.sub(r'[^\w\s가-힣/.,:()+-]', '', label)[:60]
-            lines.append(f'  T{index}N{i}["{label}"]')
-            if i:
-                lines.append(f'  T{index}N{i-1} --> T{index}N{i}')
-        lines.extend(['```', '', '**출처**', ''])
+        lines.extend([f"- **기술/산업 영향:** {safe_text(trend['why_it_matters'])}", f"- **검증 행동:** {safe_text(trend['next_action'])}", f"- **한계:** {safe_text(trend.get('caveat', '원문과 실제 환경에서 재검증 필요'))}", ''])
+        if trend['flow_steps']:
+            lines.extend(['```mermaid', 'graph TD'])
+            for i, label in enumerate(trend['flow_steps']):
+                # Labels are always plain text, never executable Mermaid directives.
+                label = re.sub(r'[^\w\s가-힣/.,:()+-]', '', label)[:60]
+                lines.append(f'  T{index}N{i}["{label}"]')
+                if i:
+                    lines.append(f'  T{index}N{i-1} --> T{index}N{i}')
+            lines.extend(['```', ''])
+        lines.extend(['**출처**', ''])
         for source_id in dict.fromkeys(trend['source_ids']):
             row = sources[source_id]
             published = datetime.fromisoformat(row['published_at']).astimezone(KST).strftime('%m-%d %H:%M KST')

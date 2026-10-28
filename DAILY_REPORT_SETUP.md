@@ -12,10 +12,10 @@ Codex 앱의 `매일 에이전트 기술 리포트 발행` 자동화가 매일 0
 Mac과 Codex 앱이 실행 가능한 상태이며 인터넷에 연결돼 있어야 한다.
 07:30 열람을 목표로 하지만 절전, 네트워크, 구독 한도, GitHub Actions 대기열에 따라 지연될 수 있다.
 
-1. Python 표준 라이브러리가 공식 기술 채널, 여섯 키워드의 Google News RSS, AI 전문 매체를 수집한다. 공식 채널은 OpenAI News, Anthropic News/Engineering/Research, Google DeepMind/Research, Hugging Face, LangChain, NVIDIA Developer, Microsoft Research, AWS Machine Learning이다. 전문 매체는 TechCrunch AI, The Decoder, MIT Technology Review AI다.
+1. Python 표준 라이브러리가 공식 기술 채널, 여섯 키워드의 Google News RSS, AI 전문 매체를 수집한다. 공식 채널은 OpenAI News, Anthropic News/Engineering/Research, Google DeepMind/Research, Hugging Face, LangChain, NVIDIA Developer, Microsoft Research, AWS Machine Learning이다. 전문 매체는 TechCrunch AI, The Decoder, MIT Technology Review AI, The Register, BleepingComputer다.
 2. 발행 시각이 최근 24시간인 자료만 선별하고, 이전 리포트의 기사 URL/제목과 GitHub 저장소를 제외한다. 같은 사건의 재보도는 이전 제목을 모델에 전달해 추가로 걸러낸다. GitHub Trending은 별도 스냅샷이다.
 3. ChatGPT 구독으로 로그인한 Codex CLI가 `gpt-6-luna`, `model_reasoning_effort="low"`로 구조화된 초안을 생성한다.
-4. 내용 요약 제목, 전체 3줄 요약, 설계 영향/검증 행동/한계, 출처 ID를 검증하고 세로형 Mermaid를 포함한 `public/daily-reports/YYYY-MM-DD.md`를 저장한다.
+4. 내용 요약 제목, 전체 3줄 요약, 기술/산업 영향과 검증 행동/한계, 출처 ID를 검증하고 시스템 구조 변화에만 세로형 Mermaid를 포함한 `public/daily-reports/YYYY-MM-DD.md`를 저장한다.
 5. 임시 clone에서 새 리포트 파일만 커밋/푸시한다. GitHub Actions가 빌드와 Pages 배포를 완료한다.
 
 API 키 또는 GitHub OPENAI_API_KEY Secret은 필요 없다.
@@ -63,6 +63,10 @@ Pages 설정은 GitHub Actions 방식이다. 워크플로우는 `.github/workflo
 개별 리포트는 날짜 포함 단일 제목, 전체 3줄 요약 콜아웃, 번호가 있는 목차를 제공한다. 기본 라이트 테마와 저장되는 다크모드를 지원한다.
 postbuild는 /daily와 발행 날짜별 index.html을 생성해 GitHub Pages 직접 접근 시 404 응답을 피한다.
 기타 경로에는 기존 SPA 복원 스크립트가 유지된다.
+
+조사 주제는 AI 모델/에이전트뿐 아니라 주요 기술기업의 합병/사업 재편, 로봇/자율주행, 반도체/데이터센터/우주 인프라, 광범위한 소프트웨어 취약점과 AI 보안 사건까지 포함한다.
+이 주제들은 매일 채워야 하는 고정 섹션이 아니다. 최근 24시간 내 중요한 신규 변화와 확인 가능한 근거가 있을 때만 전체 2~3개 핵심 트렌드 후보로 선택한다.
+합병 검토와 합병 확정, 취약점 발견과 실제 악용을 구분하고, 지난 기사에 새 전개가 없다면 다시 싣지 않는다.
 
 공식 본문 수집이 막히면 RSS 요약만 사용했다고 표시한다. 최근 글이 없는 채널과 수집 실패를 구분하고 출처 점검에 기록한다.
 GitHub 섹션은 일간 Trending에서 이전에 소개하지 않은 AI/개발 도구를 보여준다. 신규 출시 목록이 아니며, 공개 API 설명/주제/언어를 함께 제시한다.
