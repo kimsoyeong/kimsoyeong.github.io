@@ -321,3 +321,14 @@ test("source audit collapses its whole section without swallowing the next headi
   expect(tree.children[1]).toBe(next);
 });
 /* eslint-enable testing-library/no-node-access */
+
+test("collection diagnostics are omitted from body and TOC while audit anchors stay stable", () => {
+  const content = "## 핵심 동향\n본문\n## 수집 상태\n- 내부 수집 오류\n### 상세 오류\n```text\n## 코드 속 제목\n```\n## 출처 점검\n표";
+  const prepared = prepareReportMarkdown(content);
+  expect(prepared).not.toContain("수집 상태");
+  expect(prepared).not.toContain("내부 수집 오류");
+  expect(prepared.split("\n")).toHaveLength(content.split("\n").length);
+  expect(reportHeadings(content)).toEqual([{ id: "section-1", depth: 2, label: "핵심 동향" }, { id: "section-9", depth: 2, label: "출처 점검" }]);
+  expect(prepared).toContain("## 출처 점검\n표");
+  expect(prepareReportMarkdown("```text\n## 수집 상태\nexample\n```")).toContain("## 수집 상태");
+});

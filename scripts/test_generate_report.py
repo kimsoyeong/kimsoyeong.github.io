@@ -90,6 +90,14 @@ class ReportTests(unittest.TestCase):
         self.assertIsNone(report.safe_image_url('javascript:alert(1)'))
         self.assertIsNone(report.safe_image_url('https://user:secret@example.org/a.png'))
 
+    def test_collection_diagnostics_are_not_published_as_a_report_section(self):
+        bundle = copy.deepcopy(self.bundle)
+        bundle['collection_warnings'] = ['Publisher: internal fetch error']
+        rendered = report.render(self.result, bundle, '2026-10-28')
+        self.assertNotIn('## 수집 상태', rendered)
+        self.assertNotIn('internal fetch error', rendered)
+        self.assertEqual(bundle['collection_warnings'], ['Publisher: internal fetch error'])
+
     def test_selected_source_images_require_real_asset_and_cited_source(self):
         evidence = copy.deepcopy(self.evidence)
         evidence[0]['visual_assets'] = [{'asset_id': 'S1I1', 'source_id': 'S1', 'url': 'https://cdn.example.org/graph.png',

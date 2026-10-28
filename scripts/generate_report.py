@@ -1032,8 +1032,6 @@ def render(result: dict, bundle: dict, day: str) -> str:
                 lines.append('  - 확인할 점: ' + safe_text(' / '.join(details)))
     if not new_repositories:
         lines.append('- 오늘 새롭게 소개할 미소개 저장소가 없다.' if not any(warning.startswith('GitHub Trending:') for warning in bundle['collection_warnings']) else '- 이번 수집에서 GitHub Trending을 읽지 못했다.')
-    if bundle['collection_warnings']:
-        lines.extend(['', '## 수집 상태', '', '- 일부 피드 수집 실패. 성공한 피드의 지난 24시간 자료만 반영.', *[f'- {warning}' for warning in bundle['collection_warnings']]])
     if bundle.get('source_audit'):
         lines.extend(['', '## 출처 점검', '', '| 출처 | 상태 | 확인한 글 | 최근 관련 글 | 검토 후보 |', '| --- | --- | ---: | ---: | ---: |'])
         labels = {'success': '수집 성공', 'no_recent_matching_items': '확인 범위에 지난 24시간 관련 글 없음',

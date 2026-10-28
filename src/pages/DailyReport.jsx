@@ -63,7 +63,7 @@ export function reportSummary(content) {
 export function reportHeadings(content) {
   const headings = [];
   let fence = null;
-  content.split("\n").forEach((line, index) => {
+  prepareReportMarkdown(content).split("\n").forEach((line, index) => {
     const marker = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
     if (marker) {
       if (!fence) fence = { character: marker[1][0], length: marker[1].length };
@@ -89,6 +89,18 @@ export function reportCollectedAt(content) {
 // Change only the legacy introductory metadata lines. Keeping every newline
 // preserves the original heading positions used by the table of contents.
 export function prepareReportMarkdown(content) {
+  let hiddenStatus = false;
+  let statusFence = null;
+  content = content.split("\n").map((line) => {
+    const marker = line.match(/^ {0,3}(`{3,}|~{3,})/);
+    if (marker) {
+      if (!statusFence) statusFence = marker[1][0];
+      else if (statusFence === marker[1][0]) statusFence = null;
+    } else if (!statusFence && /^ {0,3}#{1,2}\s/.test(line)) {
+      hiddenStatus = /^ {0,3}##\s+수집 상태\s*#*\s*$/.test(line);
+    }
+    return hiddenStatus ? "" : line;
+  }).join("\n");
   const { hiddenLines } = summaryBlock(content);
   let introduction = true;
   let fence = null;
