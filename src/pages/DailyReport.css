@@ -172,10 +172,10 @@
   .daily-content .daily-panel-heading h3 {font-size:20px}
 }
 .daily-summary {margin:0 0 28px;padding:22px;background:var(--daily-summary-bg);color:var(--daily-summary-text);border:0;border-radius:5px}
-.daily-summary h2 {margin:0 0 16px;font-size:20px;font-weight:700;line-height:1.5;letter-spacing:-.02em}
+.daily-summary h2 {margin:0 0 7px;font-size:13px;font-weight:700;line-height:1.85}
 .daily-summary-pin {margin-inline-end:5px}
-.daily-summary ul {margin:0;padding-inline-start:21px;font-size:16px;line-height:1.85}
-.daily-summary li {padding-inline-start:3px;margin:10px 0}
+.daily-summary ul {margin:0;padding:0;list-style:none;font-size:15px;font-weight:550;line-height:1.85}
+.daily-summary li {padding:0;margin:7px 0}
 .daily-summary li:last-child {margin-bottom:0}
 .daily-reader-insight {margin-top:18px;padding-top:16px;border-top:1px solid var(--daily-summary-border)}
 .daily-reader-insight strong {font-size:13px;font-weight:700}
