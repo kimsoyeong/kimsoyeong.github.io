@@ -35,6 +35,8 @@ KST = ZoneInfo('Asia/Seoul')
 MODEL = 'gpt-6-luna'
 KEYWORDS = ('AI Agent', 'Agentic AI', 'LLM', 'Agent Architecture', 'Agent Framework', 'Agent pattern')
 BROAD_QUERIES = {
+    'Agent development infrastructure': '("AI coding" OR "coding agents" OR "AI agents" OR Anthropic) ("version control" OR monorepo OR "code review" OR "continuous integration" OR "developer infrastructure") when:1d',
+    'Inference evaluation and model research': '(LLM OR "language model" OR "world model" OR multimodal) (inference OR serving OR quantization OR distillation OR evaluation OR benchmark OR architecture OR reasoning) when:1d',
     'Training algorithms and efficiency': '("zeroth-order" OR "backpropagation-free" OR "without backpropagation" OR "pretraining efficiency" OR "training speedrun" OR "optimizer" OR "training algorithm") (AI OR transformer OR LLM OR "neural network") when:1d',
     'Personal agents and market structure': '("personal AI agent" OR "shopping agent" OR "agentic commerce" OR "consumer AI agent") (economics OR pricing OR advertising OR platform OR incentives OR competition OR trust) when:1d',
     'Tech mergers': '(technology OR semiconductor OR AI OR SpaceX OR Tesla) (merger OR acquisition OR takeover) when:1d',
@@ -42,7 +44,11 @@ BROAD_QUERIES = {
     'Compute and space infrastructure': '("AI chips" OR "data center" OR "space computing" OR "orbital data center" OR "AI infrastructure") when:1d',
     'AI and software vulnerabilities': '(AI OR LLM OR PHP OR "open source") (vulnerability OR CVE OR "security flaw" OR "zero-day") when:1d',
 }
-CROSS_INDUSTRY_TOPICS = ('training_optimization', 'agent_market_structure', 'corporate_moves', 'robotics_autonomy', 'compute_infrastructure', 'software_security')
+CROSS_INDUSTRY_TOPICS = ('training_optimization', 'agent_market_structure', 'developer_infrastructure', 'model_research_evaluation', 'corporate_moves', 'robotics_autonomy', 'compute_infrastructure', 'software_security')
+KOREAN_QUERIES = {
+    'AI research and engineering': '(인공지능 OR LLM OR 에이전트) (학습 OR 추론 OR 모델 OR 개발 OR 평가 OR 최적화) when:1d',
+    'AI industry and economics': '(인공지능 OR 에이전트 OR 반도체) (시장 OR 가격 OR 광고 OR 플랫폼 OR 인수 OR 보안) when:1d',
+}
 OFFICIAL_FEEDS = {
     'OpenAI News': 'https://openai.com/news/rss.xml',
     'Google DeepMind': 'https://deepmind.google/blog/rss.xml',
@@ -64,6 +70,7 @@ FEEDS = {
     **OFFICIAL_FEEDS,
     **{f'Google News / {word}': 'https://news.google.com/rss/search?q=' + quote(f'"{word}" when:1d') + '&hl=en-US&gl=US&ceid=US:en' for word in KEYWORDS},
     **{f'Google News / {name}': 'https://news.google.com/rss/search?q=' + quote(query) + '&hl=en-US&gl=US&ceid=US:en' for name, query in BROAD_QUERIES.items()},
+    **{f'Google News KR / {name}': 'https://news.google.com/rss/search?q=' + quote(query) + '&hl=ko&gl=KR&ceid=KR:ko' for name, query in KOREAN_QUERIES.items()},
     'The Register': 'https://www.theregister.com/headlines.atom',
     'BleepingComputer': 'https://www.bleepingcomputer.com/feed/',
     'TechCrunch AI': 'https://techcrunch.com/category/artificial-intelligence/feed/',
@@ -73,6 +80,8 @@ FEEDS = {
 USER_AGENT = 'DailyAgentReport/1.0 (+https://kimsoyeong.github.io/daily)'
 SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 기술 인사이트 리포트 편집자다.
 제공된 evidence만 근거로 서로 다른 핵심 트렌드 2~3개를 엄선한다.
+AI가 바꾸는 개발 인프라(버전 관리/모노레포/코드 리뷰/CI), 추론/서빙/양자화/증류, 평가/재현성, 새로운 모델 구조와 멀티모달/월드 모델 연구도 탐색한다. 특정 기업명이나 제품명 자체를 필수 검색 조건으로 삼지 않는다.
+개발 인프라의 성과는 저장소 규모/동시 에이전트 수/변경량/비교 환경을 명시하고 일반 개발팀에도 필수인 것처럼 쓰지 않는다. 코드 작성 자동화와 인간 검토 불필요, AGI 도래 시점은 서로 다른 주장이다.
 학습 알고리즘/사전학습/역전파 대안/0차 최적화/학습 시스템 효율 연구, 개인 에이전트가 소비/가격/광고/플랫폼/경쟁/신뢰에 미치는 시장 구조 분석도 탐색 범위다.
 학습 가속 수치는 비교 대상, 모델/데이터 규모, 하드웨어, 평가 조건을 확인한다. 초기 구현 대비 개선을 역전파 대비 우위로 바꾸거나 작은 실험을 대규모 학습으로 일반화하지 않는다. 비용 절감액도 근거 없으면 쓰지 않는다.
 시장 분석은 저자의 주장/전망임을 표시하고, 작동 원리와 성립 조건/반대 가능성을 설명한다. 원문과 최초 발표 시점을 확인하며 재공유 시각을 새로운 발표로 간주하지 않는다. 확인되지 않은 저자 귀속이나 미래 전망을 사실로 단정하지 않는다.
@@ -166,22 +175,33 @@ def parse_timestamp(value: str) -> datetime | None:
 def topic_tags(title: str, excerpt: str = '') -> list[str]:
     text = f'{title} {excerpt}'
     tags = []
+    ai_context = bool(re.search(r'\b(AI|LLMs?|agents?|agentic|transformer|neural|claude|gpt|gemini|Anthropic|OpenAI)\b|인공지능|에이전트|언어\s*모델', text, re.I))
+    if ai_context and re.search(r'version control|monorepo|code review|continuous integration|developer infrastructure|버전\s*관리|모노레포|코드\s*리뷰|개발\s*인프라', title, re.I):
+        tags.append('developer_infrastructure')
+    if ai_context and re.search(r'\b(inference|serving|quantization|distillation|evaluation|benchmark|architecture|reasoning|multimodal|world model)\b|추론|서빙|양자화|증류|평가|멀티모달|월드\s*모델', title, re.I):
+        tags.append('model_research_evaluation')
+    if ai_context and re.search(r'사전\s*학습|역전파|0차\s*최적화|학습\s*(알고리즘|최적화|효율)', title):
+        tags.append('training_optimization')
+    if re.search(r'에이전트', title) and re.search(r'소비|상거래|쇼핑|가격|광고|플랫폼|시장|경쟁|신뢰', title):
+        tags.append('agent_market_structure')
+    if ai_context:
+        tags.append('ai_models_agents')
     if re.search(r'\b(zeroth.order|backpropagation|pre.?training|training speedrun|optimizers?|training algorithm)\b', title, re.I) and re.search(r'\b(AI|LLM|transformer|neural|model|backpropagation|zeroth.order)\b', text, re.I):
         tags.append('training_optimization')
     if re.search(r'\b(agents?|agentic)\b', title, re.I) and re.search(r'\b(consumers?|commerce|shopping|pricing|advertising|platforms?|market|competition|incentives|economics|trust)\b', title, re.I):
         tags.append('agent_market_structure')
     if re.search(r'\b(ai|llms?|agents?|agentic|language models?|claude|gpt|codex|gemini|mcp|langgraph|langchain)\b', text, re.I):
         tags.append('ai_models_agents')
-    tech_context = bool(re.search(r'\b(tech(nology)?|semiconductor|software|chip|AI|SpaceX|Tesla|Apple|Meta|Alphabet|Microsoft|Google|Amazon|NVIDIA|Anthropic|OpenAI)\b', text, re.I))
-    if tech_context and not re.search(r'\bknowledge acquisition\b', title, re.I) and re.search(r'\b(merger|merging|acquir(e|es|ed|ing)|acquisition|takeover|buyout)\b', title, re.I):
+    tech_context = bool(re.search(r'\b(tech(nology)?|semiconductor|software|chip|AI|SpaceX|Tesla|Apple|Meta|Alphabet|Microsoft|Google|Amazon|NVIDIA|Anthropic|OpenAI)\b|인공지능|반도체|소프트웨어|테슬라|스페이스X', text, re.I))
+    if tech_context and not re.search(r'\bknowledge acquisition\b', title, re.I) and re.search(r'\b(merger|merging|acquir(e|es|ed|ing)|acquisition|takeover|buyout)\b|인수|합병', title, re.I):
         tags.append('corporate_moves')
     if re.search(r'\b(robot(s|ics)?|humanoid|autonomous driving|self.driving|robotaxi)\b', title, re.I):
         tags.append('robotics_autonomy')
-    if re.search(r'\b(chips?|semiconductors?|GPUs?|data cent(er|re)s?|AI infrastructure|space computing|orbital data|space.based AI)\b', title, re.I):
+    if re.search(r'\b(chips?|semiconductors?|GPUs?|data cent(er|re)s?|AI infrastructure|space computing|orbital data|space.based AI)\b|반도체|데이터\s*센터|우주\s*(컴퓨팅|데이터)|AI\s*인프라', title, re.I):
         tags.append('compute_infrastructure')
-    if re.search(r'\b(vulnerabilit(y|ies)|CVE-?\d*|zero.day|security flaw|remote code execution)\b', title, re.I):
+    if re.search(r'\b(vulnerabilit(y|ies)|CVE-?\d*|zero.day|security flaw|remote code execution)\b|취약점|제로데이|원격\s*코드\s*실행', title, re.I):
         tags.append('software_security')
-    return tags
+    return list(dict.fromkeys(tags))
 
 
 def evidence_context(row: dict) -> dict:
@@ -445,7 +465,10 @@ def index_article_urls(data: bytes, index_url: str) -> list[str]:
             continue
         if url not in urls:
             urls.append(url)
-    return urls[:4]
+    # Navigation can link other sections before the channel's actual recent posts.
+    section = urlparse(index_url).path.rstrip('/') + '/'
+    urls.sort(key=lambda url: not urlparse(url).path.startswith(section))
+    return urls[:8]
 
 
 def collect_official_index(name: str, url: str, now: datetime) -> tuple[list[dict], dict]:
@@ -557,7 +580,7 @@ def exclude_history(rows: list[dict], history: dict) -> list[dict]:
 
 
 def select_candidates(rows: list[dict], limit: int = 24) -> list[dict]:
-    """Reserve up to six evidence slots for cross-industry discovery, not final report quotas."""
+    """Reserve a bounded discovery slot per topic, without final report quotas."""
     eligible = [row for row in rows if not row.get('_exclude')]
     ordered = sorted(eligible, key=lambda row: (evidence_priority(row), row['published_at']), reverse=True)
     selected, identities, per_source = [], set(), {}
@@ -572,12 +595,12 @@ def select_candidates(rows: list[dict], limit: int = 24) -> list[dict]:
         per_source[source] = per_source.get(source, 0) + 1
         return True
 
-    # One candidate per available cross-industry topic, then at most six in total.
+    # One candidate per available discovery topic; the model still selects 2–3 stories.
     for topic in CROSS_INDUSTRY_TOPICS:
         for row in ordered:
             if topic in row.get('topic_tags', []) and add(row):
                 break
-    cross_budget = min(6, limit)
+    cross_budget = min(len(CROSS_INDUSTRY_TOPICS), limit)
     for row in ordered:
         if len(selected) >= cross_budget:
             break

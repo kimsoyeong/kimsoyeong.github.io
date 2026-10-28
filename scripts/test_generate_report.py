@@ -360,6 +360,14 @@ class ReportTests(unittest.TestCase):
 
     def test_cross_industry_topics_are_optional_relevant_candidates(self):
         cases = [
+            ('Anthropic redesigns version control for coding agents', 'developer_infrastructure'),
+            ('New LLM quantization benchmark compares inference serving', 'model_research_evaluation'),
+            ('에이전트 시대의 코드 리뷰와 개발 인프라', 'developer_infrastructure'),
+            ('개인 에이전트가 소비 시장과 가격에 미치는 영향', 'agent_market_structure'),
+            ('인공지능 역전파 대안과 사전 학습 최적화', 'training_optimization'),
+            ('반도체 기업 합병 검토 발표', 'corporate_moves'),
+            ('우주 데이터센터 반도체 공급 계약', 'compute_infrastructure'),
+            ('오픈소스 라이브러리 취약점 패치', 'software_security'),
             ('Zeroth-order optimization enables transformer pretraining without backpropagation', 'training_optimization'),
             ('Personal AI agents change consumer pricing and platform competition', 'agent_market_structure'),
             ('SpaceX and Tesla consider merger proposal', 'corporate_moves'),
@@ -399,7 +407,7 @@ class ReportTests(unittest.TestCase):
         selected = report.select_candidates(rows)
         self.assertEqual(len(selected), 24)
         self.assertTrue(set(report.CROSS_INDUSTRY_TOPICS).issubset({tag for row in selected for tag in row['topic_tags']}))
-        self.assertGreaterEqual(sum(row['official'] for row in selected), 18)
+        self.assertGreaterEqual(sum(row['official'] for row in selected), 24 - len(report.CROSS_INDUSTRY_TOPICS))
         self.assertLessEqual(max(sum(row['publisher_feed'] == source for row in selected) for source in {row['publisher_feed'] for row in selected}), 3)
 
     def test_business_event_can_omit_a_diagram_without_invented_steps(self):
