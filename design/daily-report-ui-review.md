@@ -6,7 +6,7 @@ Scope: dated report reading flow `/daily/:date`, summary, outline, comparison pa
 
 | Domain | Review and result |
 | --- | --- |
-| Layout | Removed nested panel frames, simplified outline, aligned notes with body. |
+| Layout | Flattened internal cards, retained a thin outer panel border per reader feedback, simplified outline, aligned notes with body. |
 | Typography | Bold heading hierarchy, comfortable reading width, source/status labels at least 12px. |
 | Color | Warm pastel summary, cool pastel role blocks, mint action block. Light mode default preserved. |
 | UI polish | Flat metrics and finding rows, restrained separators and consistent spacing. |
@@ -17,7 +17,7 @@ Scope: dated report reading flow `/daily/:date`, summary, outline, comparison pa
 
 | Priority | Finding | Change / evidence |
 | --- | --- | --- |
-| Medium | Nested cards competed with article content. | Flattened panel exterior and finding rows, `src/pages/DailyReport.css:129`. |
+| Medium | Nested cards competed with article content. | Used a thin panel boundary with flat finding rows, `src/pages/DailyReport.css:129`. |
 | Low | Outline looked like a dashboard card. | Transparent outline with left rule and comfortable targets, `src/pages/DailyReport.css:183`. |
 | Low | Role blocks were indented relative to article. | Aligned block start, `src/pages/DailyReport.css:261`. |
 | Low | Generic image links lacked context. | Accessible name includes image description, `src/pages/DailyReport.jsx:253`. |
@@ -33,4 +33,4 @@ Scope: dated report reading flow `/daily/:date`, summary, outline, comparison pa
 
 ## Decision
 
-Approve within the stated dated-report scope. No observed high-priority issue remains. The interface now uses a document-first structure with restrained callouts rather than nested dashboard cards.
+Approve within the stated dated-report scope. No observed high-priority issue remains. The interface now uses a document-first structure with restrained callouts rather than nested dashboard cards. Subsequent reader feedback retained a thin panel outline and matched summary/role typography to the insight block, preserving role backgrounds.
