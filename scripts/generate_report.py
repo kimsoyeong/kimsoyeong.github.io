@@ -732,7 +732,7 @@ def collect(now: datetime, history_dir: Path | None = None) -> dict:
 
 
 def report_schema() -> dict:
-    string = {'type': 'string'}
+    string = {'type': 'string', 'minLength': 1, 'maxLength': 400}
     def record(fields):
         return {'type': 'object', 'additionalProperties': False, 'properties': fields, 'required': list(fields)}
     def records(fields, maximum):
@@ -957,6 +957,8 @@ def generate(bundle: dict) -> dict:
     # Normalize harmless prose formatting; citation and markup checks still fail closed.
     if isinstance(result.get('title'), str):
         result['title'] = re.sub(r'\s+', ' ', result['title'].replace('·', '/')).strip()
+    if isinstance(result.get('reader_insight'), str):
+        result['reader_insight'] = re.sub(r'\s+', ' ', result['reader_insight'].replace('·', '/')).strip()
     if isinstance(result.get('summary'), list):
         result['summary'] = [re.sub(r'\s+', ' ', line.replace('·', '/')).strip() if isinstance(line, str) else line for line in result['summary']]
     for trend in result.get('trends', []):
@@ -967,6 +969,17 @@ def generate(bundle: dict) -> dict:
                 trend[field] = clean(value)
             elif isinstance(value, list):
                 trend[field] = [clean(text) if isinstance(text, str) else text for text in value]
+    def clean_panel(value):
+        if isinstance(value, str):
+            return re.sub(r'\s+', ' ', value.replace('·', '/')).strip()
+        if isinstance(value, list):
+            return [clean_panel(item) for item in value]
+        if isinstance(value, dict):
+            return {key: clean_panel(item) for key, item in value.items()}
+        return value
+    for trend in result.get('trends', []):
+        if trend.get('explainer') is not None:
+            trend['explainer'] = clean_panel(trend['explainer'])
     validate_repository_summaries(result, bundle.get('github_trending_snapshot', []))
     if result.get('trends') == []:
         validate_summary(result)
