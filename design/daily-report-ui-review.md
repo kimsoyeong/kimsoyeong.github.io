@@ -28,9 +28,11 @@ Scope: dated report reading flow `/daily/:date`, summary, outline, comparison pa
 - All 63 UI tests passed. Generator tests: 51 Python and 3 Node checks passed.
 - Production build passed with a temporary build output directory.
 - In-app browser: 320px and 402px reflow, desktop reading layout, light/dark mode. At 320px, client and scroll widths both 305px; finding content uses one 265px column.
-- Measured text contrast: summary 9.07 light / 10.89 dark; conclusion 8.28 / 9.86; action label 5.73 / 7.14.
+- Measured text contrast: summary 9.07 light / 10.89 dark; action label 5.73 / 7.14.
 - Loading/error/empty paths covered by tests; forced browser network failures, screen-reader navigation and actual 200% browser zoom were not verified.
 
 ## Decision
 
 Approve within the stated dated-report scope. No observed high-priority issue remains. The interface now uses a document-first structure with restrained callouts rather than nested dashboard cards. Subsequent reader feedback retained a thin panel outline and matched summary/role typography to the insight block, preserving role backgrounds.
+
+Reader color refinement: conclusion blocks use warm beige (`#f5f1e8`) with brown-gray text and a subtle border, matching the neutral comparison surface family. Dark mode uses corresponding warm neutrals.

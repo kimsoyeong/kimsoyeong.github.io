@@ -11,10 +11,10 @@
   --daily-summary-border:#e5d4a6;
   --daily-summary-accent:#b89b61;
   --daily-summary-text:#51432a;
-  --daily-conclusion-bg:#e5efff;
-  --daily-conclusion-text:#23476c;
-  --daily-conclusion-border:#adc8ed;
-  --daily-conclusion-accent:#6799d2;
+  --daily-conclusion-bg:#f5f1e8;
+  --daily-conclusion-text:#514a3c;
+  --daily-conclusion-border:#e0d8c9;
+  --daily-conclusion-accent:#b9a788;
   color-scheme:light;
   min-height:100svh;
   background:var(--daily-bg);
@@ -39,10 +39,10 @@
   --daily-summary-border:#78684c;
   --daily-summary-accent:#c4ae7e;
   --daily-summary-text:#f2e6cf;
-  --daily-conclusion-bg:#233950;
-  --daily-conclusion-text:#dcecff;
-  --daily-conclusion-border:#6f95bd;
-  --daily-conclusion-accent:#6799d2;
+  --daily-conclusion-bg:#343028;
+  --daily-conclusion-text:#eee5d6;
+  --daily-conclusion-border:#6f6452;
+  --daily-conclusion-accent:#b9a788;
   color-scheme:dark;
 }
 .daily-report * {box-sizing:border-box}
