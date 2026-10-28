@@ -44,6 +44,8 @@ jobs:
           cache: npm
       - name: Test report pipeline
         run: python -m unittest discover -s scripts -p 'test_*.py' -v
+      - name: Test archive metadata and direct HTML routes
+        run: node --test scripts/test_build_report_index.cjs scripts/test_build_report_routes.cjs
       - run: npm ci --no-audit --no-fund
       - name: Production build and derived report index
         run: npm run build

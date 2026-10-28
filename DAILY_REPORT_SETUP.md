@@ -12,10 +12,10 @@ Codex 앱의 `매일 에이전트 기술 리포트 발행` 자동화가 매일 0
 Mac과 Codex 앱이 실행 가능한 상태이며 인터넷에 연결돼 있어야 한다.
 07:30 열람을 목표로 하지만 절전, 네트워크, 구독 한도, GitHub Actions 대기열에 따라 지연될 수 있다.
 
-1. Python 표준 라이브러리가 여섯 키워드의 Google News RSS와 AI 전문 매체 RSS를 수집한다.
+1. Python 표준 라이브러리가 공식 기술 채널, 여섯 키워드의 Google News RSS, AI 전문 매체를 수집한다. 공식 채널은 OpenAI News, Anthropic News/Engineering/Research, Google DeepMind/Research, Hugging Face, LangChain, NVIDIA Developer, Microsoft Research, AWS Machine Learning이다. 전문 매체는 TechCrunch AI, The Decoder, MIT Technology Review AI다.
 2. 발행 시각이 최근 24시간인 자료만 선별하고, 이전 리포트의 기사 URL/제목과 GitHub 저장소를 제외한다. 같은 사건의 재보도는 이전 제목을 모델에 전달해 추가로 걸러낸다. GitHub Trending은 별도 스냅샷이다.
 3. ChatGPT 구독으로 로그인한 Codex CLI가 `gpt-6-luna`, `model_reasoning_effort="low"`로 구조화된 초안을 생성한다.
-4. 출처 ID와 형식을 검증하고 세로형 Mermaid를 포함한 `public/daily-reports/YYYY-MM-DD.md`를 저장한다.
+4. 내용 요약 제목, 전체 3줄 요약, 설계 영향/검증 행동/한계, 출처 ID를 검증하고 세로형 Mermaid를 포함한 `public/daily-reports/YYYY-MM-DD.md`를 저장한다.
 5. 임시 clone에서 새 리포트 파일만 커밋/푸시한다. GitHub Actions가 빌드와 Pages 배포를 완료한다.
 
 API 키 또는 GitHub OPENAI_API_KEY Secret은 필요 없다.
@@ -58,7 +58,14 @@ codex login status
 
 Pages 설정은 GitHub Actions 방식이다. 워크플로우는 `.github/workflows/daily-post.yml`.
 리포트 목록 index.json은 prestart / prebuild에서 생성되며 커밋하지 않는다.
-직접 접근은 기존 GitHub Pages 404 SPA 복원 스크립트를 사용한다.
+목록은 모바일에서 날짜 목록, 900px 이상 데스크톱에서 월별 달력으로 표시한다. 발행된 날짜만 개별 리포트로 연결한다.
+요약 제목은 새 리포트의 H1에서 읽는다. 기존 발행본의 짧은 제목은 titles.json, 검증된 저장소 설명은 repositories.json에 보관해 원문을 바꾸지 않는다.
+개별 리포트는 날짜 포함 단일 제목, 전체 3줄 요약 콜아웃, 번호가 있는 목차를 제공한다. 기본 라이트 테마와 저장되는 다크모드를 지원한다.
+postbuild는 /daily와 발행 날짜별 index.html을 생성해 GitHub Pages 직접 접근 시 404 응답을 피한다.
+기타 경로에는 기존 SPA 복원 스크립트가 유지된다.
+
+공식 본문 수집이 막히면 RSS 요약만 사용했다고 표시한다. 최근 글이 없는 채널과 수집 실패를 구분하고 출처 점검에 기록한다.
+GitHub 섹션은 일간 Trending에서 이전에 소개하지 않은 AI/개발 도구를 보여준다. 신규 출시 목록이 아니며, 공개 API 설명/주제/언어를 함께 제시한다.
 
 - 날짜별 목록: https://kimsoyeong.github.io/daily
 - 개별 리포트/본문 목차: https://kimsoyeong.github.io/daily/2026-10-27

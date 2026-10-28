@@ -44,8 +44,9 @@
     "cosmos:studio": "python3 packages/cosmos-engine/run.py studio",
     "prestart": "node scripts/build_report_index.cjs",
     "daily:generate": "python3 scripts/generate_report.py",
-    "daily:test": "python3 -m unittest discover -s scripts -p 'test_*.py' -v",
-    "daily:publish": "python3 scripts/run_daily_pipeline.py"
+    "daily:test": "python3 -m unittest discover -s scripts -p 'test_*.py' -v && node --test scripts/test_build_report_index.cjs scripts/test_build_report_routes.cjs",
+    "daily:publish": "python3 scripts/run_daily_pipeline.py",
+    "postbuild": "node scripts/build_report_routes.cjs"
   },
   "eslintConfig": {
     "extends": [

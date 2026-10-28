@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import generate_report as report
 
@@ -15,7 +15,7 @@ class ReportTests(unittest.TestCase):
         self.now = datetime(2026, 10, 27, 0, 0, tzinfo=timezone.utc)
         self.evidence = [{'source_id': 'S1', 'title': 'AI Agent release', 'url': 'https://example.org/1', 'published_at': self.now.isoformat()}, {'source_id': 'S2', 'title': 'LLM architecture', 'url': 'https://example.org/2', 'published_at': self.now.isoformat()}]
         self.bundle = {'collected_at': self.now.isoformat(), 'evidence': self.evidence, 'github_trending_snapshot': [], 'collection_warnings': []}
-        self.result = {'trends': [{'headline': '에이전트 도구 변화', 'bullets': ['새 인터페이스 공개', '호출 절차 변경'], 'why_it_matters': '해석: 도구 연결 단순화', 'next_action': '공식 문서 확인', 'source_ids': [source_id], 'flow_steps': ['개념적 해석', '도구 선택', '결과 확인']} for source_id in ('S1', 'S2')]}
+        self.result = {'title': '에이전트 도구 연결과 모델 구조의 변화', 'summary': ['에이전트 도구 연결 절차가 바뀐다.', '구조 변경은 권한 검증에 영향을 준다.', '새 인터페이스를 직접 재현해 검증한다.'], 'trends': [{'headline': '에이전트 도구 변화', 'bullets': ['새 인터페이스 공개', '호출 절차 변경'], 'why_it_matters': '해석: 도구 연결 단순화', 'next_action': '공식 문서 확인', 'caveat': '독립 재현 결과는 아직 미확인', 'source_ids': [source_id], 'flow_steps': ['개념적 해석', '도구 선택', '결과 확인']} for source_id in ('S1', 'S2')]}
 
     def test_only_last_24_hours_with_real_timestamps(self):
         rss = b'''<rss><channel>
@@ -81,7 +81,7 @@ class ReportTests(unittest.TestCase):
         self.assertEqual(text.count('```mermaid\ngraph TD'), 2)
         self.assertIn('2026-10-27 09:00 KST', text)
         self.assertIn('https://example.org/1', text)
-        self.assertIn('수집 시점 스냅샷', text)
+        self.assertIn('오늘 살펴볼 인기 오픈소스', text)
 
     def test_write_once(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -177,6 +177,124 @@ class ReportTests(unittest.TestCase):
         self.assertIn('새롭게 확인된 동향이 2개 미만', text)
         self.assertNotIn('```mermaid', text)
         self.assertNotIn('https://example.org/1', text)
+
+    def test_atom_feed_uses_publication_not_modification_date(self):
+        data = b'''<feed xmlns="http://www.w3.org/2005/Atom">
+          <entry><title>LLM inference update</title><published>2026-10-26T23:00:00Z</published>
+          <link href="https://developer.nvidia.com/blog/new"/><summary>AI model tooling</summary></entry>
+          <entry><title>AI old article</title><published>2026-10-20T23:00:00Z</published><updated>2026-10-26T23:00:00Z</updated><link href="https://developer.nvidia.com/blog/old"/></entry>
+          <entry><title>AI undated article</title><updated>2026-10-26T23:00:00Z</updated><link href="https://developer.nvidia.com/blog/undated"/></entry>
+        </feed>'''
+        audit = {}
+        rows = report.parse_feed(data, 'NVIDIA Developer', self.now, audit)
+        self.assertEqual(len(rows), 1)
+        self.assertTrue(rows[0]['official'])
+        self.assertEqual(audit['no_reliable_timestamp'], 1)
+
+    def official_html(self, published='2026-10-26T23:00:00Z'):
+        return ('<html><head><script type="application/ld+json">' + json.dumps({
+            '@type': 'NewsArticle', 'headline': 'Claude agent model update', 'datePublished': published,
+            'description': 'New tool calling architecture'}) + '</script></head><body><nav>IGNORE MENU</nav>'
+            '<main><h1>Claude agent model update</h1><p>' + 'The model supports structured tool outputs. ' * 12 +
+            '</p><script>IGNORE EXECUTABLE SCRIPT</script></main></body></html>').encode()
+
+    def test_official_jsonld_timestamp_and_visible_body(self):
+        row, reason = report.parse_official_article(self.official_html(), 'https://www.anthropic.com/news/new-model', 'Anthropic News', self.now)
+        self.assertEqual(reason, 'eligible')
+        self.assertEqual(row['evidence_type'], 'official_full_text')
+        self.assertEqual(row['publication_timestamp_basis'], 'article_metadata')
+        self.assertIn('structured tool outputs', row['excerpt'])
+        self.assertNotIn('IGNORE', row['excerpt'])
+        self.assertLessEqual(len(row['excerpt']), 4000)
+
+    def test_date_only_and_old_modified_articles_are_excluded(self):
+        for published, expected in [('2026-10-26', 'no_reliable_timestamp'), ('2026-10-20T23:00:00Z', 'outside_24h')]:
+            row, reason = report.parse_official_article(self.official_html(published), 'https://www.anthropic.com/news/new-model', 'Anthropic News', self.now)
+            self.assertIsNone(row)
+            self.assertEqual(reason, expected)
+        self.assertIsNone(report.parse_timestamp('2026-10-26T23:00:00'))
+
+    def test_official_index_links_bound_and_crosshost_rejected(self):
+        html = b'''<a href="/research/team/alignment">Team</a><a href="/news/features">Category</a>
+        <a href="https://evil.example/news/model">External</a><a href="/news/new-model">Model</a>
+        <a href="/research/context">Context</a>'''
+        urls = report.index_article_urls(html, 'https://www.anthropic.com/news')
+        self.assertEqual(urls, ['https://www.anthropic.com/news/new-model', 'https://www.anthropic.com/research/context'])
+        row, reason = report.parse_official_article(self.official_html(), 'https://evil.example/new-model', 'Anthropic News', self.now)
+        self.assertIsNone(row)
+        self.assertEqual(reason, 'outside_publisher_allowlist')
+
+    def test_official_index_audits_missing_time_and_request_failure(self):
+        index = b'<a href="/news/no-time">One</a><a href="/news/fails">Two</a>'
+        with patch.object(report, 'fetch', side_effect=[index, self.official_html('2026-10-26'), RuntimeError('HTTP 403')]):
+            rows, audit = report.collect_official_index('Anthropic News', 'https://www.anthropic.com/news', self.now)
+        self.assertEqual(rows, [])
+        self.assertEqual(audit['status'], 'partial_failure')
+        self.assertEqual(audit['no_reliable_timestamp'], 1)
+        self.assertEqual(audit['article_failures'], 1)
+        self.assertEqual(audit['items_checked'], 2)
+
+    def test_official_agent_updates_rank_above_generic_finance(self):
+        official = {'title': 'Claude new model and agent tools', 'excerpt': 'Model architecture', 'official': True}
+        finance = {'title': 'AI enterprise payment MOU', 'excerpt': 'AI agents', 'official': False}
+        infrastructure = {'title': 'Memory sharing in GPU clusters', 'excerpt': 'AI models', 'official': True, 'evidence_type': 'official_full_text'}
+        self.assertGreater(report.evidence_priority(official), report.evidence_priority(finance))
+        self.assertGreater(report.evidence_priority(official), report.evidence_priority(infrastructure))
+
+    def test_summary_title_blockquote_metadata_caveat_and_source_ids(self):
+        bundle = {**self.bundle, 'source_audit': [{'source': 'Anthropic News', 'status': 'no_recent_matching_items', 'items_checked': 4, 'eligible_items': 0, 'selected_items': 0}, {'source': 'OpenAI News', 'status': 'partial_failure', 'items_checked': 10, 'eligible_items': 2, 'selected_items': 2}]}
+        text = report.render(self.result, bundle, '2026-10-27')
+        self.assertTrue(text.startswith('# 에이전트 도구 연결과 모델 구조의 변화'))
+        self.assertIn('> 수집:', text)
+        self.assertNotIn('# Daily Report /', text)
+        self.assertIn('**한계:**', text)
+        self.assertIn('[S1] [AI Agent release]', text)
+        self.assertIn('/ RSS 요약', text)
+        self.assertNotIn('rss_excerpt', text)
+        self.assertIn('일부 요청 실패', text)
+        self.assertIn('확인 범위에 지난 24시간 관련 글 없음', text)
+
+    def test_summary_requires_exactly_three_safe_lines(self):
+        for summary in ([], ['one', 'two'], ['one', 'two', 'three', 'four'], ['one', 'two', '<script>bad</script>']):
+            with self.assertRaises(ValueError):
+                report.validate_summary({'summary': summary})
+        text = report.render(self.result, self.bundle, '2026-10-27')
+        self.assertIn('> **오늘의 3줄 요약**', text)
+        self.assertEqual(len([line for line in text.splitlines() if line.startswith('> - ')]), 3)
+        self.assertNotIn('> 범위:', text)
+        self.assertNotIn('> 근거:', text)
+
+    def test_github_purpose_comes_from_public_metadata(self):
+        metadata = {'description': 'Framework for AI agents', 'topics': ['ai-agent', 'llm'], 'language': 'Python'}
+        with patch.object(report, 'fetch', return_value=json.dumps(metadata).encode()) as fetch:
+            repository = report.fetch_repository_metadata('org/agents')
+        self.assertEqual(fetch.call_args.args[0], 'https://api.github.com/repos/org/agents')
+        self.assertEqual(repository['description'], metadata['description'])
+        bundle = {**self.bundle, 'github_trending_snapshot': [repository]}
+        text = report.render(self.result, bundle, '2026-10-27')
+        self.assertIn('용도: Framework for AI agents', text)
+        self.assertIn('주제 ai-agent, llm / 주 언어 Python', text)
+        self.assertIn('신규 출시를 뜻하지 않는다.', text)
+
+    def test_github_metadata_failure_is_explicit_not_invented(self):
+        with patch.object(report, 'fetch', side_effect=RuntimeError('HTTP 403')):
+            repository = report.fetch_repository_metadata('org/agents')
+        self.assertEqual(repository['metadata_status'], 'failed')
+        self.assertEqual(repository['description'], '')
+        text = report.render(self.result, {**self.bundle, 'github_trending_snapshot': [repository]}, '2026-10-27')
+        self.assertIn('저장소 메타데이터 수집 실패', text)
+
+    def test_gzip_feed_and_official_redirect_guard(self):
+        response = MagicMock()
+        response.__enter__.return_value = response
+        response.read.return_value = report.gzip.compress(b'<rss><channel/></rss>')
+        response.geturl.return_value = 'https://deepmind.google/blog/rss.xml'
+        with patch.object(report, 'urlopen', return_value=response):
+            self.assertEqual(report.fetch('https://deepmind.google/blog/rss.xml', official=True), b'<rss><channel/></rss>')
+        response.geturl.return_value = 'https://evil.example/feed'
+        with patch.object(report, 'urlopen', return_value=response):
+            with self.assertRaisesRegex(ValueError, 'outside the publisher'):
+                report.fetch('https://deepmind.google/blog/rss.xml', official=True)
 
     def test_trending_snapshot_repositories(self):
         parser = report.TrendingParser()
