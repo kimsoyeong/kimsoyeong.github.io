@@ -81,6 +81,7 @@ FEEDS = {
 USER_AGENT = 'DailyAgentReport/1.0 (+https://kimsoyeong.github.io/daily)'
 SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 기술 인사이트 리포트 편집자다.
 제공된 evidence만 근거로 서로 다른 핵심 트렌드 2~3개를 엄선한다.
+reader_insight에는 이 리포트의 근거를 종합해 독자가 얻을 판단 기준/적용 관점을 한국어 한 문장, 180자 이내로 쓴다. 3줄 요약을 반복하지 말고 무엇을 비교하거나 검증해야 판단이 달라지는지 구체적으로 적는다. 새 사실/수치/인과관계를 추가하지 않고, '동향이 중요하다', '가능성을 보여준다' 같은 막연한 평가는 쓰지 않는다.
 각 트렌드 explainer는 핵심 근거를 한눈에 읽는 데이터 블록이다. title에 핵심 질문, metrics에 검증된 수치와 측정 조건, comparisons에 기존 방식/새 방식과 차이, findings에 판단별 근거, conclusion에 결론과 성립 조건을 쓴다. 기사마다 필요한 항목만 채우고 불필요한 배열은 빈 배열, 근거가 부족한 블록 전체는 null로 둔다.
 findings의 status는 confirmed(원문에서 직접 확인한 구조/사실), reported(발표자의 성능 주장), uncertain(가설/미확인), limited(명시된 한계) 중 하나다. 주장을 검증 완료 사실로 바꾸지 않는다. 모든 카드가 같은 뜻을 반복하지 않도록 주장/근거/한계를 나눈다.
 chart는 동일 평가/조건/단위로 비교한 수치가 원문에 있을 때만 쓴다. title, unit, note(평가 조건과 해석 한계), rows의 label/value를 제공하며, 없으면 null이다. 다른 벤치마크나 가격 조건을 섞지 않는다. 숫자/비율/실험 조건을 추정하거나 예시에서 복사하지 않는다. explainer.source_ids는 그 트렌드에서 인용한 원문만 연결한다.
@@ -757,7 +758,7 @@ def report_schema() -> dict:
         'explainer': {'anyOf': [explainer, {'type': 'null'}]},
     }}
     trend['required'] = list(trend['properties'])
-    return {'type': 'object', 'additionalProperties': False, 'properties': {'title': {'type': 'string', 'minLength': 1, 'maxLength': 100}, 'summary': {'type': 'array', 'items': string, 'minItems': 3, 'maxItems': 3}, 'trends': {'type': 'array', 'items': trend, 'minItems': 0, 'maxItems': 3}, 'repository_summaries': records({'repository': string, 'summary_ko': {'type': 'string', 'minLength': 1, 'maxLength': 160}}, 5)}, 'required': ['title', 'summary', 'trends', 'repository_summaries']}
+    return {'type': 'object', 'additionalProperties': False, 'properties': {'title': {'type': 'string', 'minLength': 1, 'maxLength': 100}, 'reader_insight': {'type': 'string', 'minLength': 1, 'maxLength': 180}, 'summary': {'type': 'array', 'items': string, 'minItems': 3, 'maxItems': 3}, 'trends': {'type': 'array', 'items': trend, 'minItems': 0, 'maxItems': 3}, 'repository_summaries': records({'repository': string, 'summary_ko': {'type': 'string', 'minLength': 1, 'maxLength': 160}}, 5)}, 'required': ['title', 'summary', 'reader_insight', 'trends', 'repository_summaries']}
 
 
 def validate_repository_summaries(result: dict, repositories: list[dict]) -> dict[str, str]:
@@ -794,6 +795,7 @@ def reject_reader_source_ids(value: str) -> None:
 
 
 def validate_summary(result: dict) -> None:
+    validate_reader_insight(result)
     summary = result.get('summary', [])
     if not isinstance(summary, list) or len(summary) != 3:
         raise ValueError('Expected exactly three report summary lines')
@@ -803,6 +805,18 @@ def validate_summary(result: dict) -> None:
         reject_reader_source_ids(line)
         if re.search(r'(?:연구\s*방향과?\s*(?:현재\s*)?한계|방향과\s*(?:현재\s*)?한계).*보여준다[.!]?$', line) or re.fullmatch(r'.{0,50}(?:검증|확인|관리|통제|재현)(?:이|가|은|는)?\s*(?:필요하다|중요하다)[.!]?', line):
             raise ValueError('Summary needs a concrete result or limitation, not generic advice')
+
+
+def validate_reader_insight(result: dict) -> None:
+    """Keep old reports valid while checking the required field in new model output."""
+    if 'reader_insight' not in result:
+        return
+    insight = result['reader_insight']
+    if not isinstance(insight, str) or not insight.strip() or len(insight) > 180 or not re.search(r'[가-힣]', insight) or re.search(r'https?://|www\.|[<>`\n\r·]|\]\(', insight):
+        raise ValueError('Unsafe or non-Korean reader insight')
+    reject_reader_source_ids(insight)
+    if re.fullmatch(r'(?:최신\s*)?(?:기술\s*)?동향(?:을 이해하는 것)?(?:이|은)?\s*중요하다[.!]?', insight) or re.fullmatch(r'(?:AI|기술)(?:의)?\s*(?:발전\s*)?가능성을\s*보여준다[.!]?', insight):
+        raise ValueError('Reader insight needs a concrete decision criterion')
 
 
 def validate_explainer(panel: dict | None, source_ids: list[str]) -> None:
@@ -969,6 +983,7 @@ def safe_text(value: str) -> str:
 
 
 def render(result: dict, bundle: dict, day: str) -> str:
+    validate_reader_insight(result)
     sources = {row['source_id']: row for row in bundle['evidence']}
     repository_summaries = validate_repository_summaries(result, bundle.get('github_trending_snapshot', []))
     summary = result.get('summary') or ['새롭게 확인된 핵심 동향이 2개 미만이다.',
@@ -977,6 +992,8 @@ def render(result: dict, bundle: dict, day: str) -> str:
     lines = [f"# {safe_text(result.get('title') or '새로운 동향을 기다리는 하루')}", '',
              f"> 수집: {datetime.fromisoformat(bundle['collected_at']).astimezone(KST).strftime('%Y-%m-%d %H:%M KST')}", '',
              '> **오늘의 3줄 요약**', '>', *[f'> - {safe_text(line)}' for line in summary], '']
+    if result['trends'] and result.get('reader_insight'):
+        lines.extend(['> **오늘의 인사이트**', f"> {safe_text(result['reader_insight'])}", ''])
     if not result['trends']:
         lines.extend(['## 오늘의 새 동향', '', '- 새롭게 확인된 동향이 2개 미만이라 핵심 요약을 생략했다.',
                       '- 기존 리포트에서 소개한 기사와 저장소는 제외했다.', ''])

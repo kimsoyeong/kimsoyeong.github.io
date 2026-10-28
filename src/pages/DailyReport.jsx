@@ -37,7 +37,20 @@ function summaryBlock(content) {
   const hiddenLines = new Set();
   const summary = [];
   let inSummary = false;
+  let inInsight = false;
+  const insight = [];
   lines.forEach((line, position) => {
+    if (/^\s*>\s*\*\*오늘의 인사이트\*\*\s*$/.test(line)) {
+      inSummary = false;
+      inInsight = true;
+      hiddenLines.add(position);
+      return;
+    }
+    if (inInsight) {
+      const value = line.match(/^\s*>\s*(.+)$/);
+      if (value) { hiddenLines.add(position); insight.push(plainHeading(value[1])); return; }
+      inInsight = false;
+    }
     if (/^\s*>\s*\*\*오늘의 3줄 요약\*\*\s*$/.test(line)) {
       inSummary = true;
       hiddenLines.add(position);
@@ -50,8 +63,10 @@ function summaryBlock(content) {
     const bullet = line.match(/^\s*>\s*[-*]\s+(.+)$/);
     if (bullet) summary.push(plainHeading(bullet[1]));
   });
-  return { summary: summary.slice(0, 3), hiddenLines };
+  return { summary: summary.slice(0, 3), hiddenLines, insight: insight.join(" ").slice(0, 500) };
 }
+
+export function reportReaderInsight(content) { return summaryBlock(content).insight; }
 
 export function reportSummary(content) {
   const { summary } = summaryBlock(content);
@@ -235,7 +250,7 @@ function SourceImage({ src, alt, title }) {
   if (!url) return null;
   return <span className="daily-source-image">
     {!failed && <img src={url} alt={alt || "출처 원문의 이미지"} title={title} loading="lazy" decoding="async" referrerPolicy="no-referrer" onError={() => setFailed(true)} />}
-    <span className="daily-source-image-caption">{failed && <span>이미지를 불러오지 못했습니다. </span>}<a href={url} target="_blank" rel="noopener noreferrer">{failed ? "원본 이미지에서 확인 ↗" : "원본 이미지 보기 ↗"}</a></span>
+    <span className="daily-source-image-caption">{failed && <span>이미지를 불러오지 못했습니다. </span>}<a href={url} aria-label={alt ? `${failed ? "원본 이미지에서 확인 ↗" : "원본 이미지 보기 ↗"} / ${alt.slice(0, 100)}` : undefined} target="_blank" rel="noopener noreferrer">{failed ? "원본 이미지에서 확인 ↗" : "원본 이미지 보기 ↗"}</a></span>
   </span>;
 }
 
@@ -278,6 +293,7 @@ export default function DailyReport() {
   const markdown = useMemo(() => prepareReportMarkdown(report.content), [report.content]);
   const summary = useMemo(() => index.summaries[selectedDate] || reportSummary(report.content), [index.summaries, selectedDate, report.content]);
   const collectedAt = useMemo(() => reportCollectedAt(report.content), [report.content]);
+  const readerInsight = useMemo(() => reportReaderInsight(report.content), [report.content]);
   const invalidDate = date !== undefined && !isReportDate(date);
   const today = kstToday();
   const summaryTitle = selectedDate ? index.titles[selectedDate] || headings.find((heading) => heading.depth === 2)?.label.replace(/^\d+[.)]\s*/, "") : "";
@@ -338,12 +354,12 @@ export default function DailyReport() {
 
   const reload = () => setRetry((value) => value + 1);
   const dateNavigation = <nav className="daily-datebar" aria-label="리포트 날짜 선택"><Link to="/daily" aria-current={!date ? "page" : undefined}>{date ? "← 리포트 목록" : "리포트 목록"}</Link><label>날짜<input type="date" value={isReportDate(selectedDate) ? selectedDate : ""} max={today} onChange={(event) => { if (isReportDate(event.target.value)) navigate(`/daily/${event.target.value}`); }} /></label></nav>;
-  return <ReportTheme.Provider value={theme}><div className={`daily-report${date ? " daily-detail" : " daily-index"}`} data-daily-theme={theme}>
+  return <ReportTheme.Provider value={theme}><div className={`daily-report${date ? " daily-detail" : " daily-index"}`} data-daily-theme={theme} lang="ko">
     <a className="daily-skip-link" href="#daily-main">본문으로 이동</a>
     <header className="daily-topbar"><Link to="/">← SOYEONG KIM</Link><button className="daily-theme-toggle" type="button" aria-label="다크 모드" aria-pressed={theme === "dark"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}><span aria-hidden="true">{theme === "dark" ? "◑" : "◐"}</span> 다크 모드 <span className="daily-theme-state">{theme === "dark" ? "켜짐" : "꺼짐"}</span></button></header>
     <main className="daily-page" id="daily-main" tabIndex={-1}>
       {date && <header className="daily-detail-navigation">{dateNavigation}</header>}
-      <div className="daily-kicker">AI / ENGINEERING / TECH</div>
+      {!date && <div className="daily-kicker">AI / ENGINEERING / TECH</div>}
       <h1 className="daily-page-title">{date ? summaryTitle || "리포트" : "Daily Report"}</h1>
       <p className="daily-subtitle">{date && !invalidDate ? <time dateTime={date}>{date}</time> : "출근길에 읽는 AI와 기술 동향"}</p>
       <div className="daily-properties">{date ? <span>{collectedAt ? `수집: ${collectedAt}` : report.status === "loading" ? "수집 시각 확인 중…" : report.status === "ready" ? "수집 시각 정보 없음" : ""}</span> : <span>매일 07:00 KST / 최근 24시간</span>}{!date && index.status === "ready" && <span>발행된 리포트 {index.dates.length}개</span>}</div>
@@ -354,7 +370,7 @@ export default function DailyReport() {
             : <><section className="daily-archive-list" aria-label="날짜별 데일리 리포트"><h2>날짜별 리포트 <span>{index.dates.length}</span></h2><p className="daily-archive-description">최신순 / 읽을 리포트를 선택하세요.</p><ol>{index.dates.map((item, position) => <li key={item}><Link to={`/daily/${item}`}><div className="daily-archive-meta"><time dateTime={item}>{item}</time>{item === today ? <span className="daily-badge daily-badge-today">오늘</span> : position === 0 ? <span className="daily-badge">최신</span> : null}</div><div className="daily-archive-title"><strong>{index.titles[item] || `${item} 리포트`}</strong><span aria-hidden="true">↗</span></div></Link></li>)}</ol></section><ArchiveCalendar dates={index.dates} titles={index.titles} today={today} /></>}
         </>
         : report.status === "ready" ? <>
-          {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2><span className="daily-summary-pin" aria-hidden="true">📌</span> {summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul></aside>}
+          {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2><span className="daily-summary-pin" aria-hidden="true">📌</span> {summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul>{readerInsight && <div className="daily-reader-insight"><strong>오늘의 인사이트</strong><p>{readerInsight}</p></div>}</aside>}
           {headings.length > 0 && <nav className="daily-toc" aria-label="리포트 목차"><div className="daily-toc-heading"><h2>목차</h2><span>{headings.length}개 섹션</span></div><ol>{headings.map((heading, position) => <li key={heading.id} className={heading.depth === 3 ? "daily-toc-subsection" : undefined}><a href={`#${heading.id}`}><span className="daily-toc-number" aria-hidden="true">{String(position + 1).padStart(2, "0")}</span><span>{heading.label.replace(/^\d+[.)]\s*/, "")}</span><span className="daily-toc-arrow" aria-hidden="true">↓</span></a></li>)}</ol></nav>}
           <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm, remarkReportNotes, remarkAuditDisclosure, [remarkRepositoryCards, { repositories: index.repositories }]]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
             "repository-card": ({ entry }) => <RepositoryCard entry={entry} />,

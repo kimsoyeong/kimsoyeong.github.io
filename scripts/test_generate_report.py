@@ -26,6 +26,33 @@ class ReportTests(unittest.TestCase):
         report.validate_summary(result)
         report.validate_summary({'summary': ['새롭게 확인된 핵심 동향이 2개 미만이다.', '이전 기사는 재사용하지 않았다.', '미확인 내용은 제외했다.']})
 
+    def test_reader_insight_is_a_required_new_field_and_renders_after_the_summary(self):
+        schema = report.report_schema()
+        self.assertIn('reader_insight', schema['required'])
+        self.assertEqual(schema['properties']['reader_insight']['maxLength'], 180)
+        result = copy.deepcopy(self.result)
+        result['reader_insight'] = '에이전트를 비교할 때 작업 맥락과 평가 질문에 따른 결과 변동을 함께 확인한다.'
+        report.validate_result(result, self.evidence)
+        rendered = report.render(result, self.bundle, '2026-10-27')
+        marker = '> **오늘의 인사이트**\n> ' + result['reader_insight']
+        self.assertIn(marker, rendered)
+        self.assertGreater(rendered.index(marker), rendered.index('> - ' + result['summary'][2]))
+        self.assertLess(rendered.index(marker), rendered.index('## 1.'))
+        self.assertEqual(rendered.count(result['reader_insight']), 1)
+
+    def test_reader_insight_rejects_unsafe_or_empty_takeaways(self):
+        for value in ['', None, 'English only', '가' * 181, '근거 확인\n새 줄', '근거 <script>실행</script>',
+                      '근거 https://example.org', '근거 (S1)', '기술 동향이 중요하다.', 'AI 가능성을 보여준다.']:
+            with self.subTest(value=value):
+                with self.assertRaises(ValueError):
+                    report.validate_reader_insight({'reader_insight': value})
+        report.validate_reader_insight(self.result)  # Legacy results remain valid.
+
+    def test_no_new_trends_does_not_fabricate_a_reader_insight(self):
+        result = copy.deepcopy(self.result)
+        result['trends'] = []
+        self.assertNotIn('오늘의 인사이트', report.render(result, self.bundle, '2026-10-27'))
+
     def explainer_fixture(self):
         return {'title': '모델 결과를 어떻게 해석할까',
                 'metrics': [{'label': '실험 대상', 'value': '6개 모델', 'detail': '동일한 아이디어 쌍으로 평가'}],

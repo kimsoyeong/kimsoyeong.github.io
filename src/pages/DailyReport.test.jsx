@@ -2,7 +2,7 @@ import { act } from "react";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { useNavigate, useParams } from "react-router-dom";
 import mermaid from "mermaid";
-import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, remarkAuditDisclosure, remarkReportNotes, safeImageUrl, validateDiagram } from "./DailyReport";
+import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, reportReaderInsight, remarkAuditDisclosure, remarkReportNotes, safeImageUrl, validateDiagram } from "./DailyReport";
 
 jest.mock("react-router-dom", () => ({
   useParams: jest.fn(),
@@ -270,7 +270,7 @@ test("source images retain original HTTPS URLs and expose a useful fallback", as
   expect(screen.queryByRole("img", { name: "Unsafe" })).not.toBeInTheDocument();
   fireEvent.error(image);
   expect(screen.queryByRole("img", { name: "원문 아키텍처" })).not.toBeInTheDocument();
-  expect(screen.getByRole("link", { name: "원본 이미지에서 확인 ↗" })).toHaveAttribute("href", "https://example.com/architecture.png");
+  expect(screen.getByRole("link", { name: "원본 이미지에서 확인 ↗ / 원문 아키텍처" })).toHaveAttribute("href", "https://example.com/architecture.png");
 });
 
 test("source image URL guard rejects unsafe schemes and embedded credentials", () => {
@@ -346,4 +346,20 @@ test.each([
   expect(Boolean(navigation.compareDocumentPosition(title) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(beforeTitle);
   expect(screen.getAllByRole("navigation", { name: "리포트 날짜 선택" })).toHaveLength(1);
   expect(within(navigation).getByLabelText("날짜")).toHaveValue(date || "");
+});
+
+test("reader insight is separate from the three facts and displayed once in the summary", async () => {
+  const insight = "모델 점수와 함께 작업 맥락과 평가 질문의 영향을 확인한다.";
+  const body = `# 기술 변화\n> **오늘의 3줄 요약**\n> - 첫 변화\n> - 둘째 변화\n> - 셋째 변화\n\n> **오늘의 인사이트**\n> ${insight}\n\n## 핵심 동향`;
+  expect(reportReaderInsight(body)).toBe(insight);
+  expect(reportSummary(body)).toHaveLength(3);
+  expect(prepareReportMarkdown(body)).not.toContain(insight);
+  expect(prepareReportMarkdown(body).split("\n")).toHaveLength(body.split("\n").length);
+  useParams.mockReturnValue({ date: "2026-01-01" });
+  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: ["2026-01-01"] }) : response(body));
+  render(<DailyReport />);
+  const summary = await screen.findByRole("complementary", { name: "오늘의 요약" });
+  expect(within(summary).getAllByRole("listitem")).toHaveLength(3);
+  expect(within(summary).getByText("오늘의 인사이트")).toBeInTheDocument();
+  expect(screen.getAllByText(insight)).toHaveLength(1);
 });
