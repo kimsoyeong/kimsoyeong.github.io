@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import DOMPurify from "dompurify";
+import ReportPanel from "./ReportPanel";
 import "./DailyReport.css";
 
 const REPORT_ROOT = `${process.env.PUBLIC_URL || ""}/daily-reports`;
@@ -186,6 +187,7 @@ function MermaidDiagram({ source }) {
 
 function MarkdownPre({ children }) {
   const child = Children.toArray(children)[0];
+  if (child?.props?.className === "language-report-panel") return <ReportPanel source={String(child.props.children)} />;
   if (child?.props?.className === "language-mermaid") return <MermaidDiagram source={String(child.props.children).replace(/\n$/, "")} />;
   return <pre>{children}</pre>;
 }

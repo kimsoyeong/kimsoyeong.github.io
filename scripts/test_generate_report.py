@@ -26,6 +26,53 @@ class ReportTests(unittest.TestCase):
         report.validate_summary(result)
         report.validate_summary({'summary': ['새롭게 확인된 핵심 동향이 2개 미만이다.', '이전 기사는 재사용하지 않았다.', '미확인 내용은 제외했다.']})
 
+    def explainer_fixture(self):
+        return {'title': '모델 결과를 어떻게 해석할까',
+                'metrics': [{'label': '실험 대상', 'value': '6개 모델', 'detail': '동일한 아이디어 쌍으로 평가'}],
+                'comparisons': [{'label': '평가 질문', 'before': '질문 표현 A', 'after': '질문 표현 B', 'detail': '다른 조건은 고정'}],
+                'findings': [{'label': '판정 민감도', 'status': 'reported', 'evidence': '논문은 질문 변화에 따른 차이를 보고했다.'}],
+                'chart': {'title': '동일 실험의 정확도', 'unit': '%', 'note': '같은 모델과 평가 집합, 질문 표현만 다르다.', 'rows': [{'label': '질문 A', 'value': 93.5}, {'label': '질문 B', 'value': 40.9}]},
+                'conclusion': '이 실험에서는 질문 표현의 영향이 확인됐다. 다른 과제의 성능은 별도 검증이 필요하다.',
+                'source_ids': ['S1']}
+
+    def test_explainer_resolves_only_cited_sources_and_keeps_original_figures(self):
+        result = copy.deepcopy(self.result)
+        result['trends'][0]['explainer'] = self.explainer_fixture()
+        evidence = copy.deepcopy(self.evidence)
+        evidence[0]['visual_assets'] = [{'asset_id': 'S1I1', 'source_id': 'S1', 'url': 'https://cdn.example.org/chart.png', 'alt': 'Original benchmark chart', 'caption': 'Original conditions', 'source_url': evidence[0]['url']}]
+        result['trends'][0]['visual_asset_ids'] = ['S1I1']
+        report.validate_result(result, evidence)
+        output = report.render(result, {**self.bundle, 'evidence': evidence}, '2026-10-27')
+        panel = json.loads(output.split('```report-panel\n')[1].split('\n```')[0])
+        self.assertNotIn('source_ids', panel)
+        self.assertEqual(panel['sources'], [{'title': self.evidence[0]['title'], 'url': self.evidence[0]['url']}])
+        self.assertEqual(panel['chart']['rows'][0]['value'], 93.5)
+        self.assertIn('![Original benchmark chart](https://cdn.example.org/chart.png)', output)
+        self.assertIn('```mermaid', output)
+        schema = report.report_schema()['properties']['trends']['items']
+        self.assertIn('explainer', schema['required'])
+        report.validate_explainer(None, ['S1'])
+
+    def test_explainer_rejects_invented_sources_unsafe_text_and_misleading_chart_data(self):
+        for edit in [lambda p: p.update(source_ids=['S2']),
+                     lambda p: p['metrics'][0].update(detail='<script>bad</script>'),
+                     lambda p: p.update(conclusion='참고 https://invented.example'),
+                     lambda p: p['findings'][0].update(status='proven'),
+                     lambda p: p['chart'].update(note=''),
+                     lambda p: p['chart'].update(rows=[{'label': '유일한 조건', 'value': 1}]),
+                     lambda p: p['chart']['rows'][0].update(value=float('nan')),
+                     lambda p: p['chart']['rows'][0].update(value=float('inf')),
+                     lambda p: p['chart']['rows'][0].update(value=-1),
+                     lambda p: p['chart']['rows'][0].update(value=True),
+                     lambda p: p.update(metrics=p['metrics'] * 4),
+                     lambda p: p['metrics'][0].update(detail='내부 번호 (S1)'),
+                     lambda p: p.update(metrics=[], comparisons=[], findings=[], chart=None)]:
+            with self.subTest(edit=edit):
+                panel = self.explainer_fixture()
+                edit(panel)
+                with self.assertRaises(ValueError):
+                    report.validate_explainer(panel, ['S1'])
+
     def test_original_article_figures_are_bounded_and_not_decorations(self):
         parser = report.ArticleParser()
         parser.feed('<img src="https://cdn.example.org/outside.png" alt="Architecture diagram outside article">'

@@ -13,6 +13,7 @@ from email.utils import parsedate_to_datetime
 from html import unescape
 from html.parser import HTMLParser
 import json
+import math
 import gzip
 import io
 import ipaddress
@@ -80,6 +81,10 @@ FEEDS = {
 USER_AGENT = 'DailyAgentReport/1.0 (+https://kimsoyeong.github.io/daily)'
 SYSTEM_PROMPT = '''너는 출근길 모바일용 한국어 기술 인사이트 리포트 편집자다.
 제공된 evidence만 근거로 서로 다른 핵심 트렌드 2~3개를 엄선한다.
+각 트렌드 explainer는 핵심 근거를 한눈에 읽는 데이터 블록이다. title에 핵심 질문, metrics에 검증된 수치와 측정 조건, comparisons에 기존 방식/새 방식과 차이, findings에 판단별 근거, conclusion에 결론과 성립 조건을 쓴다. 기사마다 필요한 항목만 채우고 불필요한 배열은 빈 배열, 근거가 부족한 블록 전체는 null로 둔다.
+findings의 status는 confirmed(원문에서 직접 확인한 구조/사실), reported(발표자의 성능 주장), uncertain(가설/미확인), limited(명시된 한계) 중 하나다. 주장을 검증 완료 사실로 바꾸지 않는다. 모든 카드가 같은 뜻을 반복하지 않도록 주장/근거/한계를 나눈다.
+chart는 동일 평가/조건/단위로 비교한 수치가 원문에 있을 때만 쓴다. title, unit, note(평가 조건과 해석 한계), rows의 label/value를 제공하며, 없으면 null이다. 다른 벤치마크나 가격 조건을 섞지 않는다. 숫자/비율/실험 조건을 추정하거나 예시에서 복사하지 않는다. explainer.source_ids는 그 트렌드에서 인용한 원문만 연결한다.
+도표 선택은 정보의 관계에 따른다. 성능/비용은 비교, 구현 변화는 기존/새 구조, 경쟁 가설은 근거별 판단으로 표현한다. 일반적인 A→B→C 화살표로 내용을 반복하는 도표는 생략한다. 원문 핵심 도표가 있으면 원본을 우선 포함하고 explainer는 읽는 데 필요한 맥락만 보완한다.
 AI가 바꾸는 개발 인프라(버전 관리/모노레포/코드 리뷰/CI), 추론/서빙/양자화/증류, 평가/재현성, 새로운 모델 구조와 멀티모달/월드 모델 연구도 탐색한다. 특정 기업명이나 제품명 자체를 필수 검색 조건으로 삼지 않는다.
 개발 인프라의 성과는 저장소 규모/동시 에이전트 수/변경량/비교 환경을 명시하고 일반 개발팀에도 필수인 것처럼 쓰지 않는다. 코드 작성 자동화와 인간 검토 불필요, AGI 도래 시점은 서로 다른 주장이다.
 학습 알고리즘/사전학습/역전파 대안/0차 최적화/학습 시스템 효율 연구, 개인 에이전트가 소비/가격/광고/플랫폼/경쟁/신뢰에 미치는 시장 구조 분석도 탐색 범위다.
@@ -724,6 +729,19 @@ def collect(now: datetime, history_dir: Path | None = None) -> dict:
 
 def report_schema() -> dict:
     string = {'type': 'string'}
+    def record(fields):
+        return {'type': 'object', 'additionalProperties': False, 'properties': fields, 'required': list(fields)}
+    def records(fields, maximum):
+        return {'type': 'array', 'items': record(fields), 'maxItems': maximum}
+    chart = record({'title': string, 'unit': string, 'note': string,
+                    'rows': records({'label': string, 'value': {'type': 'number', 'minimum': 0}}, 6)})
+    chart['properties']['rows']['minItems'] = 2
+    explainer = record({'title': string,
+        'metrics': records({'label': string, 'value': string, 'detail': string}, 3),
+        'comparisons': records({'label': string, 'before': string, 'after': string, 'detail': string}, 3),
+        'findings': records({'label': string, 'status': {'type': 'string', 'enum': ['confirmed', 'reported', 'uncertain', 'limited']}, 'evidence': string}, 4),
+        'chart': {'anyOf': [chart, {'type': 'null'}]}, 'conclusion': string,
+        'source_ids': {'type': 'array', 'items': string, 'minItems': 1, 'maxItems': 3}})
     trend = {'type': 'object', 'additionalProperties': False, 'properties': {
         'headline': string,
         'bullets': {'type': 'array', 'items': string, 'minItems': 2, 'maxItems': 3},
@@ -733,6 +751,7 @@ def report_schema() -> dict:
         'source_ids': {'type': 'array', 'items': string, 'minItems': 1, 'maxItems': 3},
         'flow_steps': {'type': 'array', 'items': string, 'minItems': 0, 'maxItems': 5},
         'visual_asset_ids': {'type': 'array', 'items': string, 'maxItems': 2},
+        'explainer': {'anyOf': [explainer, {'type': 'null'}]},
     }}
     trend['required'] = list(trend['properties'])
     return {'type': 'object', 'additionalProperties': False, 'properties': {'title': {'type': 'string', 'minLength': 1, 'maxLength': 100}, 'summary': {'type': 'array', 'items': string, 'minItems': 3, 'maxItems': 3}, 'trends': {'type': 'array', 'items': trend, 'minItems': 0, 'maxItems': 3}}, 'required': ['title', 'summary', 'trends']}
@@ -756,6 +775,51 @@ def validate_summary(result: dict) -> None:
             raise ValueError('Summary needs a concrete result or limitation, not generic advice')
 
 
+def validate_explainer(panel: dict | None, source_ids: list[str]) -> None:
+    """Validate a bounded data-only explanation, with citations resolved by the renderer."""
+    if panel is None:
+        return
+    if not isinstance(panel, dict) or set(panel) != {'title', 'metrics', 'comparisons', 'findings', 'chart', 'conclusion', 'source_ids'}:
+        raise ValueError('Invalid explainer structure')
+    ids = panel['source_ids']
+    if not isinstance(ids, list) or not 1 <= len(ids) <= 3 or any(not isinstance(value, str) or value not in source_ids for value in ids):
+        raise ValueError('Explainer must cite its trend sources')
+    def text(value):
+        if not isinstance(value, str) or not value.strip() or len(value) > 400 or re.search(r'https?://|www\.|[<>`\n\r]|\]\(', value) or '·' in value:
+            raise ValueError('Unsafe or overlong explainer text')
+        reject_reader_source_ids(value)
+    text(panel['title'])
+    text(panel['conclusion'])
+    for group, fields, maximum in [('metrics', {'label', 'value', 'detail'}, 3), ('comparisons', {'label', 'before', 'after', 'detail'}, 3), ('findings', {'label', 'status', 'evidence'}, 4)]:
+        rows = panel[group]
+        if not isinstance(rows, list) or len(rows) > maximum:
+            raise ValueError('Invalid explainer rows')
+        for row in rows:
+            if not isinstance(row, dict) or set(row) != fields:
+                raise ValueError('Invalid explainer row')
+            for value in row.values():
+                text(value)
+            if group == 'findings' and row['status'] not in ('confirmed', 'reported', 'uncertain', 'limited'):
+                raise ValueError('Unknown explainer verdict')
+    chart = panel['chart']
+    if chart is not None:
+        if not isinstance(chart, dict) or set(chart) != {'title', 'unit', 'note', 'rows'}:
+            raise ValueError('Invalid explainer chart')
+        for field in ('title', 'unit', 'note'):
+            text(chart[field])
+        if not isinstance(chart['rows'], list) or not 2 <= len(chart['rows']) <= 6:
+            raise ValueError('Chart needs 2–6 comparable rows')
+        for row in chart['rows']:
+            if not isinstance(row, dict) or set(row) != {'label', 'value'}:
+                raise ValueError('Invalid chart row')
+            text(row['label'])
+            value = row['value']
+            if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value < 0:
+                raise ValueError('Chart values must be finite nonnegative numbers')
+    if not any(panel[key] for key in ('metrics', 'comparisons', 'findings', 'chart')):
+        raise ValueError('Explainer needs concrete evidence, not an empty conclusion')
+
+
 def validate_result(result: dict, evidence: list[dict], history: dict | None = None) -> None:
     history = history or {'urls': [], 'titles': [], 'headlines': []}
     if any(canonical_url(row['url']) in history['urls'] or normalize_title(row['title']) in history['titles'] for row in evidence):
@@ -777,6 +841,7 @@ def validate_result(result: dict, evidence: list[dict], history: dict | None = N
         if not ids or any(source_id not in known_ids for source_id in ids):
             raise ValueError('Unknown or missing source citation')
         used_ids.update(ids)
+        validate_explainer(trend.get('explainer'), ids)
         assets = {asset['asset_id']: asset for row in evidence for asset in row.get('visual_assets', [])}
         image_ids = trend.get('visual_asset_ids', [])
         if not isinstance(image_ids, list) or len(image_ids) > 2 or len(set(image_ids)) != len(image_ids):
@@ -884,6 +949,13 @@ def render(result: dict, bundle: dict, day: str) -> str:
     for index, trend in enumerate(result['trends'], 1):
         lines.extend([f"## {index}. {safe_text(trend['headline'])}", ''])
         lines.extend(f'- {safe_text(bullet)}' for bullet in trend['bullets'])
+        if trend.get('explainer'):
+            panel = trend['explainer']
+            validate_explainer(panel, trend['source_ids'])
+            rendered = {key: value for key, value in panel.items() if key != 'source_ids'}
+            rendered['sources'] = [{'title': sources[source_id]['title'], 'url': sources[source_id]['url']}
+                                   for source_id in dict.fromkeys(panel['source_ids'])]
+            lines.extend(['', '```report-panel', json.dumps(rendered, ensure_ascii=False, indent=2), '```', ''])
         lines.extend([f"- **기술/산업 영향:** {safe_text(trend['why_it_matters'])}", f"- **검증 행동:** {safe_text(trend['next_action'])}", f"- **한계:** {safe_text(trend.get('caveat', '원문과 실제 환경에서 재검증 필요'))}", ''])
         if trend['flow_steps']:
             lines.extend(['```mermaid', 'graph TD'])
