@@ -333,3 +333,17 @@ test("collection diagnostics are omitted from body and TOC while audit anchors s
   expect(prepared).toContain("## 출처 점검\n표");
   expect(prepareReportMarkdown("```text\n## 수집 상태\nexample\n```")).toContain("## 수집 상태");
 });
+
+test.each([
+  ["2026-01-01", true],
+  [undefined, false],
+])("date navigation is before the title only on a dated report (%s)", async (date, beforeTitle) => {
+  useParams.mockReturnValue(date ? { date } : {});
+  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: ["2026-01-01"], reports: [{ date: "2026-01-01", title: "구체적인 리포트 제목" }] }) : response("## 핵심 동향\n본문"));
+  render(<DailyReport />);
+  const title = await screen.findByRole("heading", { name: date ? "구체적인 리포트 제목" : "Daily Report" });
+  const navigation = screen.getByRole("navigation", { name: "리포트 날짜 선택" });
+  expect(Boolean(navigation.compareDocumentPosition(title) & Node.DOCUMENT_POSITION_FOLLOWING)).toBe(beforeTitle);
+  expect(screen.getAllByRole("navigation", { name: "리포트 날짜 선택" })).toHaveLength(1);
+  expect(within(navigation).getByLabelText("날짜")).toHaveValue(date || "");
+});
