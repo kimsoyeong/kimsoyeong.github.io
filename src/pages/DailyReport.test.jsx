@@ -2,7 +2,7 @@ import { act } from "react";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { useNavigate, useParams } from "react-router-dom";
 import mermaid from "mermaid";
-import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, remarkReportNotes, safeImageUrl, validateDiagram } from "./DailyReport";
+import DailyReport, { isReportDate, monthCalendar, prepareReportMarkdown, reportCollectedAt, reportHeadings, reportSummary, remarkAuditDisclosure, remarkReportNotes, safeImageUrl, validateDiagram } from "./DailyReport";
 
 jest.mock("react-router-dom", () => ({
   useParams: jest.fn(),
@@ -302,5 +302,22 @@ test("report note tags handle legacy text and bold labels without altering prose
   expect(items[1].children[0].children[2].url).toBe("https://example.com");
   expect(items[0].children[0].children[1].value).toBe(" 실제 변화");
   expect(plain.data).toBeUndefined();
+});
+/* eslint-enable testing-library/no-node-access */
+
+/* eslint-disable testing-library/no-node-access -- Markdown AST nodes, not DOM nodes. */
+test("source audit collapses its whole section without swallowing the next heading or losing its anchor", () => {
+  const heading = { type: "heading", depth: 2, children: [{ type: "text", value: "출처 점검" }], position: { start: { line: 42 } } };
+  const table = { type: "table", children: [] };
+  const next = { type: "heading", depth: 2, children: [{ type: "text", value: "다음 섹션" }] };
+  const tree = { type: "root", children: [heading, table, next] };
+  remarkAuditDisclosure()(tree);
+  const disclosure = tree.children[0];
+  expect(disclosure.data.hName).toBe("details");
+  expect(disclosure.data.hProperties.open).toBeUndefined();
+  expect(disclosure.children[0].data.hName).toBe("summary");
+  expect(disclosure.children[0].children[0].position.start.line).toBe(42);
+  expect(disclosure.children[1]).toBe(table);
+  expect(tree.children[1]).toBe(next);
 });
 /* eslint-enable testing-library/no-node-access */

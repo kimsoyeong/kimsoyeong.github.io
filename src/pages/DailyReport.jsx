@@ -115,6 +115,22 @@ export function prepareReportMarkdown(content) {
 }
 
 // Mark semantic report notes without changing Markdown line numbers or links.
+export function remarkAuditDisclosure() {
+  return (tree) => {
+    const nodes = tree.children;
+    for (let index = 0; index < nodes.length; index += 1) {
+      const heading = nodes[index];
+      if (heading.type !== "heading" || heading.depth !== 2 || heading.children.map((child) => child.value || "").join("").trim() !== "출처 점검") continue;
+      let end = index + 1;
+      while (end < nodes.length && !(nodes[end].type === "heading" && nodes[end].depth <= 2)) end += 1;
+      const body = nodes.slice(index + 1, end);
+      nodes.splice(index, end - index, { type: "auditDisclosure", data: { hName: "details", hProperties: { className: "daily-audit" } }, children: [
+        { type: "auditSummary", data: { hName: "summary" }, children: [heading] }, ...body,
+      ] });
+    }
+  };
+}
+
 export function remarkReportNotes() {
   const labels = /^(해석|의미|실행|기술\/산업 영향|검증 행동|한계):\s*/;
   return (tree) => {
@@ -322,7 +338,7 @@ export default function DailyReport() {
         : report.status === "ready" ? <>
           {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2>{summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul></aside>}
           {headings.length > 0 && <nav className="daily-toc" aria-label="리포트 목차"><div className="daily-toc-heading"><h2>목차</h2><span>{headings.length}개 섹션</span></div><ol>{headings.map((heading, position) => <li key={heading.id} className={heading.depth === 3 ? "daily-toc-subsection" : undefined}><a href={`#${heading.id}`}><span className="daily-toc-number" aria-hidden="true">{String(position + 1).padStart(2, "0")}</span><span>{heading.label.replace(/^\d+[.)]\s*/, "")}</span><span className="daily-toc-arrow" aria-hidden="true">↓</span></a></li>)}</ol></nav>}
-          <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm, remarkReportNotes]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
+          <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm, remarkReportNotes, remarkAuditDisclosure]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
             h2: ({ node, children }) => <h2 id={`section-${node.position.start.line}`}>{children}</h2>,
             h3: ({ node, children }) => <h3 id={`section-${node.position.start.line}`}>{children}</h3>,
             a: ({ node, children, href, ...props }) => {

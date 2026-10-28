@@ -74,6 +74,12 @@
 .daily-content table {display:block;overflow-x:auto;max-width:100%;border-collapse:collapse;font-size:14px}
 .daily-content th,.daily-content td {border:1px solid var(--daily-line);padding:9px 12px;text-align:start;min-width:100px}
 .daily-content th {background:var(--daily-surface)}
+.daily-audit {margin:32px 0;border:1px solid var(--daily-line);border-radius:6px;background:var(--daily-bg)}
+.daily-audit>summary {cursor:pointer;padding:14px 16px;min-height:52px;background:var(--daily-surface);border-radius:6px;list-style-position:inside}
+.daily-content .daily-audit>summary h2 {display:inline;margin:0;padding:0;font-size:17px;line-height:1.6;letter-spacing:-.02em}
+.daily-audit>summary:focus-visible {outline:2px solid var(--daily-focus);outline-offset:3px}
+.daily-audit[open]>summary {border-bottom:1px solid var(--daily-line);border-radius:6px 6px 0 0}
+.daily-audit>table {margin:16px;max-width:calc(100% - 32px)}
 .daily-diagram {margin:28px 0;padding:18px 12px;border:1px solid var(--daily-line);border-radius:5px;background:var(--daily-diagram);overflow-x:auto}
 .daily-diagram figcaption {color:var(--daily-muted);font-size:12px;margin-bottom:20px}
 .daily-diagram svg {display:block;width:auto;height:auto;margin:0 auto;max-width:100%!important}
