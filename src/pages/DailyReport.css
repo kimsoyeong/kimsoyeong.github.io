@@ -62,6 +62,22 @@
 .daily-repo-description {display:block;color:var(--daily-muted);font-size:14px;line-height:1.85;margin:6px 0 12px}
 .daily-repo-korean {display:block;font-size:15px;line-height:1.85;margin:0 0 20px;color:var(--daily-fg)}
 .daily-repo-label {display:block;font-size:11px;font-weight:650;color:var(--daily-muted);margin-bottom:3px}
+.daily-content ul.daily-repository-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;list-style:none;padding:0;margin:24px 0 36px}
+.daily-content li.daily-repository-item {padding:0;margin:0;min-width:0}
+.daily-repository-card {display:flex;flex-direction:column;height:100%;padding:20px;background:var(--daily-bg);border:1px solid var(--daily-line);border-radius:8px;overflow-wrap:anywhere}
+.daily-repository-card header a {display:block;position:relative;padding-inline-end:24px;text-decoration:none;line-height:1.5}
+.daily-repository-owner {display:block;color:var(--daily-muted);font-size:12px;margin-bottom:3px}
+.daily-repository-card header strong {font-size:20px;letter-spacing:-.025em;font-weight:650}
+.daily-repository-arrow {position:absolute;inset-inline-end:0;top:16px;color:var(--daily-muted)}
+.daily-content .daily-repository-summary {font-size:15px;line-height:1.85;margin:16px 0;color:var(--daily-fg)}
+.daily-repository-tags {display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.daily-repository-tags span {font-size:11px;line-height:1.6;padding:3px 7px;border-radius:4px;background:var(--daily-surface);color:var(--daily-muted);max-width:100%}
+.daily-repository-tags .daily-repository-language {border:1px solid var(--daily-control-border);padding:2px 6px;color:var(--daily-fg);font-weight:650}
+.daily-repository-original {margin-top:auto;border-top:1px solid var(--daily-line)}
+.daily-repository-original summary {cursor:pointer;min-height:44px;padding-top:10px;font-size:12px;color:var(--daily-muted);list-style-position:inside}
+.daily-content .daily-repository-original p {font-size:13px;line-height:1.8;margin:6px 0 0;color:var(--daily-muted)}
+.daily-repository-original summary:focus-visible {outline:2px solid var(--daily-focus);outline-offset:3px}
+@media(max-width:600px) {.daily-content ul.daily-repository-grid {grid-template-columns:1fr;gap:12px}.daily-repository-card {padding:18px}}
 .daily-content strong {font-weight:650}
 .daily-content li.daily-note {list-style:none;margin:14px 0;padding:14px 16px;border-inline-start:2px solid var(--daily-control-border);background:var(--daily-surface);border-radius:0 5px 5px 0}
 .daily-content .daily-note-tag {display:table;margin:0 0 8px;padding:2px 9px;border:1px solid var(--daily-control-border);border-radius:4px;background:var(--daily-bg);color:var(--daily-fg);font-size:13px;font-weight:700;line-height:1.6;letter-spacing:.01em}

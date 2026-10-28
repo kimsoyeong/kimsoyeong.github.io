@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import DOMPurify from "dompurify";
 import ReportPanel from "./ReportPanel";
+import RepositoryCard, { remarkRepositoryCards } from "./RepositoryCard";
 import "./DailyReport.css";
 
 const REPORT_ROOT = `${process.env.PUBLIC_URL || ""}/daily-reports`;
@@ -291,7 +292,9 @@ export default function DailyReport() {
           if (/^[\w.-]+\/[\w.-]+$/.test(key) && repository) {
             const description = typeof repository.description === "string" ? repository.description.trim().slice(0, 600) : "";
             const summaryKo = typeof repository.summary_ko === "string" ? repository.summary_ko.trim().slice(0, 200) : "";
-            if (description || summaryKo) repositories[key.toLowerCase()] = { description, summaryKo };
+            const language = typeof repository.language === "string" ? repository.language.slice(0, 40) : "";
+            const topics = Array.isArray(repository.topics) ? repository.topics.filter((topic) => typeof topic === "string").slice(0, 4) : [];
+            if (description || summaryKo) repositories[key.toLowerCase()] = { description, summaryKo, language, topics };
           }
         });
         if (!controller.signal.aborted) setIndex({ status: "ready", dates: [...new Set(payload.dates)].sort().reverse(), titles, repositories, summaries });
@@ -338,7 +341,8 @@ export default function DailyReport() {
         : report.status === "ready" ? <>
           {summary.length > 0 && <aside className="daily-summary" aria-label="오늘의 요약"><h2>{summary.length === 3 ? "오늘의 3줄 요약" : "오늘의 요약"}</h2><ul>{summary.map((item, position) => <li key={position}>{item}</li>)}</ul></aside>}
           {headings.length > 0 && <nav className="daily-toc" aria-label="리포트 목차"><div className="daily-toc-heading"><h2>목차</h2><span>{headings.length}개 섹션</span></div><ol>{headings.map((heading, position) => <li key={heading.id} className={heading.depth === 3 ? "daily-toc-subsection" : undefined}><a href={`#${heading.id}`}><span className="daily-toc-number" aria-hidden="true">{String(position + 1).padStart(2, "0")}</span><span>{heading.label.replace(/^\d+[.)]\s*/, "")}</span><span className="daily-toc-arrow" aria-hidden="true">↓</span></a></li>)}</ol></nav>}
-          <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm, remarkReportNotes, remarkAuditDisclosure]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
+          <article className="daily-content" aria-label={`${selectedDate} 데일리 리포트`}><ReactMarkdown remarkPlugins={[remarkGfm, remarkReportNotes, remarkAuditDisclosure, [remarkRepositoryCards, { repositories: index.repositories }]]} skipHtml components={{ pre: MarkdownPre, h1: () => null,
+            "repository-card": ({ entry }) => <RepositoryCard entry={entry} />,
             h2: ({ node, children }) => <h2 id={`section-${node.position.start.line}`}>{children}</h2>,
             h3: ({ node, children }) => <h3 id={`section-${node.position.start.line}`}>{children}</h3>,
             a: ({ node, children, href, ...props }) => {
