@@ -238,9 +238,9 @@ export default function DailyReport() {
 
   useEffect(() => {
     const previous = document.title;
-    document.title = `${selectedDate ? `Daily Report / ${selectedDate}` : "Daily Report"} / Soyeong Kim`;
+    document.title = `${selectedDate ? `${summaryTitle || "리포트"} / ${selectedDate}` : "Daily Report"} / Soyeong Kim`;
     return () => { document.title = previous; };
-  }, [selectedDate]);
+  }, [selectedDate, summaryTitle]);
 
   const reload = () => setRetry((value) => value + 1);
   return <ReportTheme.Provider value={theme}><div className={`daily-report${date ? " daily-detail" : " daily-index"}`} data-daily-theme={theme}>
@@ -248,8 +248,8 @@ export default function DailyReport() {
     <header className="daily-topbar"><Link to="/">← SOYEONG KIM</Link><button className="daily-theme-toggle" type="button" aria-label="다크 모드" aria-pressed={theme === "dark"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}><span aria-hidden="true">{theme === "dark" ? "◑" : "◐"}</span> 다크 모드 <span className="daily-theme-state">{theme === "dark" ? "켜짐" : "꺼짐"}</span></button></header>
     <main className="daily-page" id="daily-main" tabIndex={-1}>
       <div className="daily-kicker">AI / ENGINEERING / TECH</div>
-      <h1 className="daily-page-title">Daily Report{!invalidDate && date && <span className="daily-title-date"> / <time dateTime={date}>{date}</time></span>}</h1>
-      <p className="daily-subtitle">{summaryTitle || "출근길에 읽는 AI와 기술 동향"}</p>
+      <h1 className="daily-page-title">{date ? summaryTitle || "리포트" : "Daily Report"}</h1>
+      <p className="daily-subtitle">{date && !invalidDate ? <time dateTime={date}>{date}</time> : "출근길에 읽는 AI와 기술 동향"}</p>
       <div className="daily-properties">{date ? <span>{collectedAt ? `수집: ${collectedAt}` : report.status === "loading" ? "수집 시각 확인 중…" : report.status === "ready" ? "수집 시각 정보 없음" : ""}</span> : <span>매일 07:00 KST / 최근 24시간</span>}{!date && index.status === "ready" && <span>발행된 리포트 {index.dates.length}개</span>}</div>
       <nav className="daily-datebar" aria-label="리포트 날짜 선택"><Link to="/daily" aria-current={!date ? "page" : undefined}>{date ? "← 리포트 목록" : "리포트 목록"}</Link><label>날짜<input type="date" value={isReportDate(selectedDate) ? selectedDate : ""} max={today} onChange={(event) => { if (isReportDate(event.target.value)) navigate(`/daily/${event.target.value}`); }} /></label></nav>
       {invalidDate ? <div className="daily-message" role="alert">올바른 날짜가 아닙니다. YYYY-MM-DD 형식의 날짜를 선택하세요.</div>

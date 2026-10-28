@@ -42,7 +42,6 @@
 .daily-page {width:min(100%,800px);margin:0 auto;padding:40px max(20px,env(safe-area-inset-right)) calc(40px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left))}
 .daily-kicker {color:var(--daily-muted);font:11px/1.5 ui-monospace,SFMono-Regular,monospace;letter-spacing:.09em}
 .daily-page-title {font-size:30px;font-weight:700;letter-spacing:-.035em;line-height:1.35;margin:16px 0 14px;text-wrap:balance}
-.daily-title-date {margin-inline-start:.22em;white-space:nowrap;font-size:.8em;font-weight:500;letter-spacing:-.025em}
 .daily-subtitle {color:var(--daily-muted);margin:0 0 20px;font-size:16px;line-height:1.8;text-wrap:pretty}
 .daily-properties {display:flex;align-items:center;flex-wrap:wrap;gap:8px 24px;font-size:12px;color:var(--daily-muted);margin-bottom:24px}
 .daily-datebar {display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;border-top:1px solid var(--daily-line);border-bottom:1px solid var(--daily-line);padding:12px 0;margin-bottom:32px;font-size:14px}
@@ -126,13 +125,11 @@
 @media (max-width:420px) {
   .daily-datebar label {width:100%;justify-content:space-between}
   .daily-page-title {font-size:28px}
-  .daily-title-date {display:inline-block}
 }
 @media (min-width:640px) {
   .daily-page {padding:64px max(40px,env(safe-area-inset-right)) calc(56px + env(safe-area-inset-bottom)) max(40px,env(safe-area-inset-left))}
   .daily-topbar {padding-inline:max(40px,env(safe-area-inset-left)) max(40px,env(safe-area-inset-right))}
   .daily-page-title {font-size:36px}
-  .daily-title-date {font-size:.8em}
   .daily-diagram {padding:24px 20px}
   .daily-toc {padding:24px 24px 8px}
 }

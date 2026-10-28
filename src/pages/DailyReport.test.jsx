@@ -71,12 +71,14 @@ test("the landing page lists every date newest first without fetching any report
 test("a dated report includes same-page TOC links, unique heading IDs, and a return to archive", async () => {
   useParams.mockReturnValue({ date: "2026-01-01" });
   const markdown = "# Daily Report\n## 1. Agents\n### Pattern\n## Agents";
-  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: ["2026-01-01"] }) : response(markdown));
+  fetch.mockImplementation((url) => url.endsWith("index.json") ? response({ dates: ["2026-01-01"], reports: [{date: "2026-01-01", title: "도구 호출과 검증 구조의 변화"}] }) : response(markdown));
   render(<DailyReport />);
   await act(async () => { await Promise.resolve(); });
   const article = await screen.findByRole("article");
   expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-  expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Daily Report / 2026-01-01");
+  expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("도구 호출과 검증 구조의 변화");
+  expect(screen.getByRole("heading", { level: 1 })).not.toHaveTextContent("Daily Report");
+  expect(screen.getByText("2026-01-01", { selector: "time" })).toBeInTheDocument();
   const toc = screen.getByRole("navigation", { name: "리포트 목차" });
   expect(within(toc).getAllByRole("link").map((link) => link.getAttribute("href"))).toEqual(["#section-2", "#section-3", "#section-4"]);
   expect(within(toc).queryByRole("link", { name: "1. Agents" })).not.toBeInTheDocument();
