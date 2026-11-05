@@ -46,6 +46,9 @@ def publish(root: Path = ROOT, *, day: str | None = None, generate: Callable[[],
     from datetime import date
     if date.fromisoformat(day).isoformat() != day:
         raise ValueError('Report day must use YYYY-MM-DD.')
+    if date.fromisoformat(day).weekday() >= 5:
+        print('Weekend: no report scheduled')
+        return False
     relative = Path('public/daily-reports') / f'{day}.md'
     target = root / relative
     remote_url = git(root, 'remote', 'get-url', 'origin').stdout.decode().strip()

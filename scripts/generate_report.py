@@ -134,6 +134,13 @@ previous_reports는 중복 제외용 과거 보도 이력이며 오늘의 사실
 JSON 스키마에 맞는 결과만 반환한다.'''
 
 
+def collection_start(now):
+    local = now.astimezone(ZoneInfo('Asia/Seoul'))
+    if local.weekday() == 0:
+        return (local - timedelta(days=3)).replace(hour=7, minute=0, second=0, microsecond=0)
+    return now - timedelta(hours=24)
+
+
 def fetch(url: str, *, official: bool = False) -> bytes:
     request = Request(url, headers={'User-Agent': USER_AGENT, 'Accept': '*/*'})
     for attempt in range(3):
@@ -260,7 +267,7 @@ def parse_feed(data: bytes, source: str, now: datetime, audit: dict | None = Non
             if audit is not None:
                 audit['no_reliable_timestamp'] += 1
             continue
-        if not now - timedelta(hours=24) <= published <= now:
+        if not collection_start(now) <= published <= now:
             continue
         official = source in OFFICIAL_FEEDS
         if urlparse(url).scheme != 'https' or not title or not relevant(title, excerpt, official):
@@ -439,7 +446,7 @@ def parse_official_article(data: bytes, url: str, source: str, now: datetime,
         basis = 'official_feed'
     if published is None:
         return None, 'no_reliable_timestamp'
-    if not now - timedelta(hours=24) <= published <= now:
+    if not collection_start(now) <= published <= now:
         return None, 'outside_24h'
     title = plain(metadata.get('headline') or parser.metadata.get('og:title') or ' '.join(parser.heading) or ' '.join(parser.title))
     description = plain(metadata.get('description') or parser.metadata.get('description') or parser.metadata.get('og:description', ''))
@@ -723,7 +730,7 @@ def collect(now: datetime, history_dir: Path | None = None) -> dict:
     except Exception as exc:
         errors.append(f'GitHub Trending: {type(exc).__name__}')
         audits.append({'source': 'GitHub Trending', 'kind': 'snapshot', 'status': 'failed', 'error': str(exc)})
-    return {'collected_at': now.isoformat(), 'window_start': (now - timedelta(hours=24)).isoformat(), 'evidence': selected,
+    return {'collected_at': now.isoformat(), 'window_start': collection_start(now).isoformat(), 'evidence': selected,
             'github_trending_snapshot': trending, 'collection_warnings': sorted(errors),
             'source_audit': sorted(audits, key=lambda row: row['source']),
             'successful_feeds': successful_feeds, 'dated_candidates_count': len(candidates),
