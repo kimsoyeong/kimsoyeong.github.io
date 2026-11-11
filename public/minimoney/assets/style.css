@@ -56,7 +56,9 @@ h3 { font-size: 1.15rem; letter-spacing: -.025em; }
   cursor: pointer;
 }
 .action:hover { background: #37373e; }
-.hero .action { margin-top: 1.5rem; }
+.store-badge { display: inline-block; margin-top: 1.5rem; }
+.store-badge img { display: block; width: auto; height: 48px; }
+.store-attribution { margin-top: .75rem; color: var(--muted); font-size: .78rem; }
 .preview {
   display: block;
   width: min(100%, 16rem);
