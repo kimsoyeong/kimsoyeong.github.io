@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Remaining budget calculator | MiniMoney</title>
+  <meta name="description" content="Add income to your monthly budget, subtract spending, and see what’s left.">
+  <link rel="canonical" href="https://kimsoyeong.github.io/minimoney/en/tools/budget/">
+  <link rel="alternate" hreflang="ko" href="https://kimsoyeong.github.io/minimoney/tools/budget/">
+  <link rel="alternate" hreflang="en" href="https://kimsoyeong.github.io/minimoney/en/tools/budget/">
+  <meta property="og:title" content="Remaining budget calculator | MiniMoney">
+  <meta property="og:description" content="Add income to your monthly budget, subtract spending, and see what’s left.">
+  <meta property="og:url" content="https://kimsoyeong.github.io/minimoney/en/tools/budget/">
+  <meta property="og:image" content="https://kimsoyeong.github.io/minimoney/assets/icon.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/minimoney/assets/icon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="/minimoney/assets/style.css">
+  <script src="/minimoney/assets/calculators.js" defer></script>
+</head>
+<body>
+  <header class="shell masthead">
+    <a class="wordmark" href="/minimoney/en/"><img src="/minimoney/assets/icon.jpg" alt="" width="34" height="34">MiniMoney</a>
+    <nav class="navigation" aria-label="Page navigation">
+      <a href="/minimoney/en/#tools">Calculators</a>
+      <a href="/minimoney/tools/budget/" lang="ko">한국어</a>
+    </nav>
+  </header>
+  <main class="shell calculator">
+    <h1>Remaining budget calculator</h1>
+    <p class="lead">Add income to your monthly budget, subtract spending, and see what’s left.</p>
+    <p class="description">Enter zero if you want to leave income out of your budget.</p>
+    <form data-calculator="budget">
+      <label class="field">Monthly budget (KRW)<input type="number" id="budget" name="budget" inputmode="numeric" min="0" max="999999999999" step="1" value="1500000" required></label>
+      <label class="field">Income to include (KRW)<input type="number" id="income" name="income" inputmode="numeric" min="0" max="999999999999" step="1" value="0" required></label>
+      <label class="field">Spending (KRW)<input type="number" id="spending" name="spending" inputmode="numeric" min="0" max="999999999999" step="1" value="450000" required></label>
+      <button class="action" type="submit">Calculate</button>
+      <div class="result" role="status">
+        <span>Result</span>
+        <output for="budget income spending">—</output>
+        <small></small>
+      </div>
+    </form>
+    <p class="description">Calculations run in your browser.</p>
+  </main>
+  <footer>
+    <nav class="shell" aria-label="Footer navigation">
+      <a href="/">Developer blog</a>
+      <div class="links">
+        <a href="/minimoney-web/">Support</a>
+        <a href="/minimoney-web/privacy.html">Privacy policy</a>
+      </div>
+    </nav>
+  </footer>
+</body>
+</html>

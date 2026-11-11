@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interest-free installment calculator | MiniMoney</title>
+  <meta name="description" content="Split a purchase into monthly payments and see what’s due each month.">
+  <link rel="canonical" href="https://kimsoyeong.github.io/minimoney/en/tools/installments/">
+  <link rel="alternate" hreflang="ko" href="https://kimsoyeong.github.io/minimoney/tools/installments/">
+  <link rel="alternate" hreflang="en" href="https://kimsoyeong.github.io/minimoney/en/tools/installments/">
+  <meta property="og:title" content="Interest-free installment calculator | MiniMoney">
+  <meta property="og:description" content="Split a purchase into monthly payments and see what’s due each month.">
+  <meta property="og:url" content="https://kimsoyeong.github.io/minimoney/en/tools/installments/">
+  <meta property="og:image" content="https://kimsoyeong.github.io/minimoney/assets/icon.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/minimoney/assets/icon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="/minimoney/assets/style.css">
+  <script src="/minimoney/assets/calculators.js" defer></script>
+</head>
+<body>
+  <header class="shell masthead">
+    <a class="wordmark" href="/minimoney/en/"><img src="/minimoney/assets/icon.jpg" alt="" width="34" height="34">MiniMoney</a>
+    <nav class="navigation" aria-label="Page navigation">
+      <a href="/minimoney/en/#tools">Calculators</a>
+      <a href="/minimoney/tools/installments/" lang="ko">한국어</a>
+    </nav>
+  </header>
+  <main class="shell calculator">
+    <h1>Interest-free installment calculator</h1>
+    <p class="lead">Split a purchase into monthly payments and see what’s due each month.</p>
+    <p class="description">This estimate puts any remainder in the first payment. Check your card statement for the actual amounts.</p>
+    <form data-calculator="installments">
+      <label class="field">Purchase amount (KRW)<input type="number" id="total" name="total" inputmode="numeric" min="1" max="999999999999" step="1" value="1000000" required></label>
+      <label class="field">Number of months<input type="number" id="months" name="months" inputmode="numeric" min="1" max="60" step="1" value="3" required></label>
+      <button class="action" type="submit">Calculate</button>
+      <div class="result" role="status">
+        <span>Result</span>
+        <output for="total months">—</output>
+        <small></small>
+      </div>
+    </form>
+    <p class="description">Calculations run in your browser.</p>
+  </main>
+  <footer>
+    <nav class="shell" aria-label="Footer navigation">
+      <a href="/">Developer blog</a>
+      <div class="links">
+        <a href="/minimoney-web/">Support</a>
+        <a href="/minimoney-web/privacy.html">Privacy policy</a>
+      </div>
+    </nav>
+  </footer>
+</body>
+</html>

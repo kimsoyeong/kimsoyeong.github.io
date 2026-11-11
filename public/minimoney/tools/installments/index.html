@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>무이자 할부 계산기 | MiniMoney</title>
+  <meta name="description" content="결제 금액과 할부 개월 수로 매달 낼 금액을 확인해요.">
+  <link rel="canonical" href="https://kimsoyeong.github.io/minimoney/tools/installments/">
+  <link rel="alternate" hreflang="ko" href="https://kimsoyeong.github.io/minimoney/tools/installments/">
+  <link rel="alternate" hreflang="en" href="https://kimsoyeong.github.io/minimoney/en/tools/installments/">
+  <meta property="og:title" content="무이자 할부 계산기 | MiniMoney">
+  <meta property="og:description" content="결제 금액과 할부 개월 수로 매달 낼 금액을 확인해요.">
+  <meta property="og:url" content="https://kimsoyeong.github.io/minimoney/tools/installments/">
+  <meta property="og:image" content="https://kimsoyeong.github.io/minimoney/assets/icon.jpg">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="/minimoney/assets/icon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="/minimoney/assets/style.css">
+  <script src="/minimoney/assets/calculators.js" defer></script>
+</head>
+<body>
+  <header class="shell masthead">
+    <a class="wordmark" href="/minimoney/"><img src="/minimoney/assets/icon.jpg" alt="" width="34" height="34">미니머니</a>
+    <nav class="navigation" aria-label="페이지 메뉴">
+      <a href="/minimoney/#tools">계산기</a>
+      <a href="/minimoney/en/tools/installments/" lang="en">English</a>
+    </nav>
+  </header>
+  <main class="shell calculator">
+    <h1>무이자 할부 계산기</h1>
+    <p class="lead">결제 금액과 할부 개월 수로 매달 낼 금액을 확인해요.</p>
+    <p class="description">나누고 남는 금액은 첫 달에 더한 예시예요. 실제 청구액은 카드사에서 확인해요.</p>
+    <form data-calculator="installments">
+      <label class="field">결제 금액 (원)<input type="number" id="total" name="total" inputmode="numeric" min="1" max="999999999999" step="1" value="1000000" required></label>
+      <label class="field">할부 개월 수<input type="number" id="months" name="months" inputmode="numeric" min="1" max="60" step="1" value="3" required></label>
+      <button class="action" type="submit">계산하기</button>
+      <div class="result" role="status">
+        <span>계산 결과</span>
+        <output for="total months">—</output>
+        <small></small>
+      </div>
+    </form>
+    <p class="description">값은 브라우저에서만 계산해요.</p>
+  </main>
+  <footer>
+    <nav class="shell" aria-label="하단 메뉴">
+      <a href="/">개발자 블로그</a>
+      <div class="links">
+        <a href="/minimoney-web/">지원</a>
+        <a href="/minimoney-web/privacy.html">개인정보 처리방침</a>
+      </div>
+    </nav>
+  </footer>
+</body>
+</html>
