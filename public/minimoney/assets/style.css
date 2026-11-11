@@ -68,10 +68,6 @@ h3 { font-size: 1.15rem; letter-spacing: -.025em; }
 .band { border-top: 1px solid var(--line); padding-block: 2rem 2.5rem; }
 .feature-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: 1.3rem; }
 .feature-list p { margin-top: .45rem; }
-.tool-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .85rem; margin-top: 1rem; }
-.tool-links a { padding: 1.15rem; border-radius: .85rem; border: 1px solid var(--line); background: var(--white); text-decoration: none; }
-.tool-links a:hover { border-color: #71717a; }
-.tool-links p { margin-top: .4rem; }
 footer { border-top: 1px solid var(--line); padding-block: 1.3rem; }
 .calculator { max-width: 38rem; padding-block: 2.75rem 3.5rem; }
 .calculator h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); }
@@ -93,8 +89,12 @@ footer { border-top: 1px solid var(--line); padding-block: 1.3rem; }
 @media (max-width: 42rem) {
   .shell { width: calc(100% - 2rem); }
   .masthead { min-height: 4rem; }
-  .hero, .feature-list, .tool-links { grid-template-columns: 1fr; }
+  .hero, .feature-list { grid-template-columns: 1fr; }
   .preview { width: min(100%, 14rem); }
   footer .shell { align-items: start; flex-direction: column; }
 }
 :lang(ko) h1 { word-break: keep-all; }
+
+.guide section { margin-block: 1.6rem; }
+.guide section p { margin-top: .55rem; color: var(--muted); line-height: 1.65; word-break: keep-all; }
+.related { margin-top: 1rem; }
